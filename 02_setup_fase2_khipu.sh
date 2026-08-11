@@ -37,6 +37,15 @@ module purge
 module load miniconda/3.0
 eval "$(conda shell.bash hook)"
 
+# En Khipu el canal 'defaults' (repo.anaconda.com) no resuelve y ademas exige
+# aceptar sus Terms of Service. Usamos solo conda-forge + bioconda
+# (conda.anaconda.org), que si resuelven. Esto evita el error de red
+# "Failed to resolve 'repo.anaconda.com'".
+conda config --remove channels defaults 2>/dev/null || true
+conda config --add channels bioconda    2>/dev/null || true
+conda config --add channels conda-forge 2>/dev/null || true
+conda config --set channel_priority strict 2>/dev/null || true
+
 SOLVER="conda"
 if command -v mamba >/dev/null 2>&1; then SOLVER="mamba"; fi
 echo "    Usando solver: $SOLVER"
@@ -47,7 +56,8 @@ if conda env list | grep -qE '^\s*gtdbtk\s'; then
   echo "    El entorno 'gtdbtk' ya existe. Se omite."
 else
   # gtdbtk >=2.4 es necesario para los datos R220.
-  $SOLVER create -y -n gtdbtk -c conda-forge -c bioconda 'gtdbtk>=2.4.0'
+  # --override-channels: no consultar 'defaults' (repo.anaconda.com).
+  $SOLVER create -y -n gtdbtk --override-channels -c conda-forge -c bioconda 'gtdbtk>=2.4.0'
 fi
 
 # --- Entorno dRep ------------------------------------------------------------
@@ -55,7 +65,7 @@ echo "==> [3/4] Creando entorno 'drep'"
 if conda env list | grep -qE '^\s*drep\s'; then
   echo "    El entorno 'drep' ya existe. Se omite."
 else
-  $SOLVER create -y -n drep -c conda-forge -c bioconda drep fastani mash
+  $SOLVER create -y -n drep --override-channels -c conda-forge -c bioconda drep fastani mash
 fi
 
 # --- Descompresion de la base GTDB R220 --------------------------------------
