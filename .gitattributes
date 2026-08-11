@@ -1,0 +1,9 @@
+# Forzar saltos de linea LF para que los scripts funcionen en Linux/Khipu
+# aunque se editen o clonen desde Windows.
+* text=auto eol=lf
+*.sh   text eol=lf
+*.slurm text eol=lf
+*.py   text eol=lf
+*.md   text eol=lf
+*.yml  text eol=lf
+*.tsv  text eol=lf

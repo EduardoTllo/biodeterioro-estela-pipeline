@@ -1,0 +1,29 @@
+# --- Datos (no versionar: son GB de secuencias) ---
+bins/
+Datos/
+MAGs_all/
+MAGs_v2/
+*.fasta
+*.fa
+*.fna
+*.fastq
+*.fastq.gz
+*.tar
+*.tar.gz
+*.zip
+
+# --- Resultados y bases de datos ---
+results/
+dbs/
+*.dmnd
+
+# --- Logs de SLURM ---
+fase1_*.out
+fase1_*.err
+slurm-*.out
+
+# --- Basura del SO / editores ---
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
