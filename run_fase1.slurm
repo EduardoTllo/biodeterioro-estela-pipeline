@@ -28,7 +28,10 @@
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=diegotello2000@hotmail.com
 
-set -euo pipefail
+# Nota: NO usar 'set -u' (nounset): Lmod (module) referencia LD_PRELOAD sin
+# definir y aborta la carga de modulos en Khipu.
+set -eo pipefail
+export LD_PRELOAD="${LD_PRELOAD:-}"
 
 # =============================================================================
 # CONFIGURACION  (edita estas rutas segun tu cuenta en Khipu)
@@ -89,8 +92,13 @@ echo "Bins de entrada encontrados: $N_BINS"
 mkdir -p "$TIARA_DIR" "$CHECKM2_INPUT" "$CHECKM2_OUT" "$SELECTED_DIR"
 
 # --- Entorno conda -----------------------------------------------------------
-module purge
+module purge 2>/dev/null || true
 module load miniconda/3.0
+if ! command -v conda >/dev/null 2>&1; then
+  echo "ERROR: 'conda' no quedo en el PATH tras 'module load miniconda/3.0'." >&2
+  echo "       Verifica con: module avail 2>&1 | grep -i conda" >&2
+  exit 1
+fi
 eval "$(conda shell.bash hook)"
 
 # --- Registro de versiones (reproducibilidad) --------------------------------

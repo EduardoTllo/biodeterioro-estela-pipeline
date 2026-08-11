@@ -19,15 +19,25 @@
 #
 # Es idempotente: si un entorno ya existe, no lo vuelve a crear.
 # =============================================================================
-set -euo pipefail
+# Nota: NO usar 'set -u' (nounset): Lmod (module) referencia LD_PRELOAD sin
+# definir y aborta la carga de modulos en Khipu.
+set -eo pipefail
+export LD_PRELOAD="${LD_PRELOAD:-}"
 
 # --- Rutas configurables -----------------------------------------------------
 # Carpeta donde vivira la base de datos de CheckM2 (en tu HOME por defecto).
 CHECKM2_DB_DIR="${CHECKM2_DB_DIR:-$HOME/dbs/checkm2}"
 
 echo "==> [1/4] Cargando modulo miniconda"
-module purge
+module purge 2>/dev/null || true
 module load miniconda/3.0
+if ! command -v conda >/dev/null 2>&1; then
+  echo "ERROR: 'conda' no quedo en el PATH tras 'module load miniconda/3.0'." >&2
+  echo "       Verifica el nombre exacto del modulo con:" >&2
+  echo "         module avail 2>&1 | grep -i conda" >&2
+  echo "       y ajusta la linea 'module load ...' en este script." >&2
+  exit 1
+fi
 eval "$(conda shell.bash hook)"
 
 # Usar mamba si esta disponible (mas rapido); si no, conda.
