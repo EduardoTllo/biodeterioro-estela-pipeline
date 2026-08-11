@@ -24,10 +24,10 @@ Salida: lista de genomas seleccionados + tablas + `phase1_report.md`.
   muestra de origen**, así que la trazabilidad para la Fase 2 queda preservada.
   El conteo por muestra coincide exactamente con la Tabla 4.1 de la tesis
   (97 bins; muestras 66 y 67 sin bins).
-- ⚠️ **No usar** `MAGs_v2/`, `MAGs_v2.zip` ni los `<muestra>_mag.fasta`: son 24
+- **No usar** `MAGs_v2/`, `MAGs_v2.zip` ni los `<muestra>_mag.fasta`: son 24
   ensamblajes **por muestra** (contigs `k141_*`), no bins; un QC sobre ellos
   daría contaminación altísima.
-- ⚠️ **No usar** `Datos\MAGs_all\`: es una copia con nombres corruptos
+- **No usar** `Datos\MAGs_all\`: es una copia con nombres corruptos
   (`bin-1.fasta 10`) de `bins completos`; quedó obsoleta.
 
 El script `01_prep_bins.sh` copia los 97 `bin-<N>-<muestra>.fasta` a `bins_clean/`
