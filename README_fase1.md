@@ -53,34 +53,47 @@ fase1_khipu/
 
 ## Paso a paso
 
-### 0) Preparar los bins (una vez, en tu laptop con Git Bash)
+> **Dónde se corre cada cosa (¡importante!):**
+> - Los `scp` y la preparación de bins → **en tu laptop (WSL/Ubuntu)**, en una
+>   terminal que **NO** esté conectada a Khipu. En WSL, tu disco `C:` está en
+>   `/mnt/c/`.
+> - `ssh`, `tar`, `bash 00_setup...`, `sbatch` → **dentro de Khipu** (por SSH).
+> - Reemplaza `USUARIO` por tu usuario de Khipu (p.ej. `eduardo.tello`).
+
+### 0) Preparar los bins (una vez, en tu laptop / WSL)
 
 ```bash
-cd /c/Tesis-EstelaRaimondi/fase1_khipu
-bash 01_prep_bins.sh "/c/Tesis-EstelaRaimondi/Datos/Shotgun Analysis/bins completos" "/c/Tesis-EstelaRaimondi/Datos/bins_clean"
-# Empaquetar para subir (FASTA comprime bien: ~1.1 GB -> ~300 MB)
-tar czf /c/Tesis-EstelaRaimondi/Datos/bins_clean.tar.gz -C "/c/Tesis-EstelaRaimondi/Datos/bins_clean" .
+cd /mnt/c/Tesis-EstelaRaimondi/fase1_khipu
+bash 01_prep_bins.sh "/mnt/c/Tesis-EstelaRaimondi/Datos/Shotgun Analysis/bins completos" "/mnt/c/Tesis-EstelaRaimondi/Datos/bins_clean"
+# Empaquetar para subir (FASTA comprime bien: ~1.1 GB -> ~335 MB)
+tar czf /mnt/c/Tesis-EstelaRaimondi/Datos/bins_clean.tar.gz -C "/mnt/c/Tesis-EstelaRaimondi/Datos/bins_clean" .
 ```
 
-### 1) Subir a Khipu (PowerShell/Git Bash; reemplaza `USUARIO`)
+### 1) Subir a Khipu (en tu laptop / WSL, NO dentro de Khipu)
 
 ```bash
 ssh USUARIO@khipu.utec.edu.pe "mkdir -p ~/estela/fase1/bins ~/estela/fase1/scripts"
+```
+```bash
 # scripts
-scp 00_setup_khipu.sh run_fase1.slurm USUARIO@khipu.utec.edu.pe:~/estela/fase1/
-scp bin/summarize_phase1.py           USUARIO@khipu.utec.edu.pe:~/estela/fase1/scripts/
+scp /mnt/c/Tesis-EstelaRaimondi/fase1_khipu/00_setup_khipu.sh /mnt/c/Tesis-EstelaRaimondi/fase1_khipu/run_fase1.slurm USUARIO@khipu.utec.edu.pe:~/estela/fase1/
+scp /mnt/c/Tesis-EstelaRaimondi/fase1_khipu/bin/summarize_phase1.py USUARIO@khipu.utec.edu.pe:~/estela/fase1/scripts/
 # datos (tarball)
-scp /c/Tesis-EstelaRaimondi/Datos/bins_clean.tar.gz USUARIO@khipu.utec.edu.pe:~/estela/fase1/
+scp /mnt/c/Tesis-EstelaRaimondi/Datos/bins_clean.tar.gz USUARIO@khipu.utec.edu.pe:~/estela/fase1/
 ```
 
-### 2) Preparar el entorno (en el NODO DE LOGIN, con internet)
+### 2) Preparar el entorno (en el NODO DE LOGIN de Khipu, requiere internet)
 
 ```bash
 ssh USUARIO@khipu.utec.edu.pe
 cd ~/estela/fase1
-tar xzf bins_clean.tar.gz -C bins      # deja bin_0001.fasta ... en bins/
+tar xzf bins_clean.tar.gz -C bins      # deja bin-<N>-<muestra>.fasta en bins/
 bash 00_setup_khipu.sh                  # crea entornos + descarga DB (~3 GB)
 ```
+
+> ⚠️ El nodo de acceso necesita salida a internet para este paso. Si `conda`
+> no resuelve `conda.anaconda.org` (p.ej. mantenimiento de red), espera a que
+> el internet del clúster esté disponible y reintenta.
 
 ### 3) Enviar el job
 
@@ -107,8 +120,10 @@ tail -f fase1_<JOBID>.out
 | `phase1_selected_genomes/` | FASTA de los genomas seleccionados |
 | `versions.txt` | Versiones de herramientas y umbrales usados |
 
+Para traerlo a tu laptop (en tu laptop / WSL):
+
 ```bash
-scp USUARIO@khipu.utec.edu.pe:~/estela/fase1/results/phase1_report.md .
+scp USUARIO@khipu.utec.edu.pe:~/estela/fase1/results/phase1_report.md /mnt/c/Tesis-EstelaRaimondi/
 ```
 
 ---
