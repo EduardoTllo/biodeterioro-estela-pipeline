@@ -1,0 +1,9 @@
+Fase 1 - registro de versiones
+Fecha:   Tue Aug 11 11:19:20 -05 2026
+Job:     49286   Nodo: n003
+Umbrales: min_contig=3000, completitud>70, contaminacion<5
+N bins entrada: 97
+----
+Tiara:   usage: tiara [-h] -i input [-o output] [-m MIN_LEN]
+CheckM2: /home/eduardo.tello/.conda/envs/checkm2/lib/python3.12/site-packages/checkm2/../h5py/__init__.py:36: UserWarning: h5py is running against HDF5 2.2.0 when it was built against 2.1.0, this may cause problems
+CheckM2 DB: /home/eduardo.tello/dbs/checkm2/CheckM2_database/uniref100.KO.1.dmnd

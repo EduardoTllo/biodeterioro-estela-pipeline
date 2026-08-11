@@ -14,8 +14,15 @@ Shotgun Analysis/
 *.tar.gz
 *.zip
 
-# --- Resultados y bases de datos ---
-results/
+# --- Resultados ---
+# Se versionan SOLO las tablas y reportes de texto (evidencia reproducible).
+# Los FASTA y datos pesados quedan excluidos por los patrones de arriba.
+results/*
+!results/*.md
+!results/*.tsv
+!results/*.txt
+
+# --- Bases de datos ---
 dbs/
 *.dmnd
 
