@@ -2,31 +2,33 @@
 # =============================================================================
 # 01_prep_bins.sh
 # -----------------------------------------------------------------------------
-# Normaliza los nombres de los bins antes de la Fase 1.
+# Prepara la carpeta de bins limpia y trazable para la Fase 1.
 #
-# CONTEXTO:
-#   Los 97 bins vienen de una carpeta (MAGs_all) donde, al consolidarlos, el
-#   sistema operativo renombro los duplicados con sufijos tipo:
-#       "bin-1.fasta 10", "bin-1.fasta 22"
-#   Esto rompe la extension y genera colisiones. Este script copia cada bin a
-#   un nombre limpio y unico ( bin_0001.fasta ... bin_0097.fasta ) y guarda una
-#   tabla de mapeo para trazabilidad (bin_rename_map.tsv).
+# FUENTE RECOMENDADA:
+#   C:\Tesis-EstelaRaimondi\Datos\Shotgun Analysis\bins completos\
+#   -> 97 genomas con nombres "bin-<N>-<muestra>.fasta" (p.ej. bin-1-49.fasta).
+#      El nombre YA codifica el bin y la muestra de origen (libreria 49-72), lo
+#      que preserva la trazabilidad necesaria para la Fase 2 (prevalencia).
 #
-#   IMPORTANTE: este paso NO recupera la muestra de origen (libreria 49-72), que
-#   se perdio al aplanar la carpeta. Eso no afecta la Fase 1 (el QC es por bin),
-#   pero para la Fase 2 (prevalencia por muestra) hay que recuperar el mapeo
-#   bin->muestra del binning original (UPCH).
+# QUE HACE:
+#   - Copia los .fasta de genoma (patron bin-*-*.fasta) a la carpeta de salida,
+#     conservando el nombre original (limpio y unico).
+#   - Ignora los ensamblajes por muestra "<muestra>_mag.fasta" (no son bins).
+#   - Escribe bin_rename_map.tsv con: archivo, muestra, bin, n_contigs, long_bp.
 #
-# USO (local o en el cluster):
-#   bash 01_prep_bins.sh <carpeta_bins_crudos> <carpeta_salida>
+# USO:
+#   bash 01_prep_bins.sh <carpeta_origen> <carpeta_salida>
 # Ejemplo:
-#   bash 01_prep_bins.sh "/c/Tesis-EstelaRaimondi/Datos/MAGs_all" ./bins
+#   bash 01_prep_bins.sh "/c/Tesis-EstelaRaimondi/Datos/Shotgun Analysis/bins completos" \
+#                        "/c/Tesis-EstelaRaimondi/Datos/bins_clean"
+#
+# Tambien acepta como origen el arbol por muestra ("Shotgun Analysis") y busca
+# recursivamente los bin-*-*.fasta.
 # =============================================================================
 set -euo pipefail
 
-SRC="${1:?Falta la carpeta de bins crudos}"
+SRC="${1:?Falta la carpeta de origen}"
 DEST="${2:?Falta la carpeta de salida}"
-OUT_EXT="fasta"
 
 if [[ ! -d "$SRC" ]]; then
   echo "ERROR: no existe la carpeta de origen: $SRC" >&2; exit 1
@@ -34,24 +36,32 @@ fi
 
 mkdir -p "$DEST"
 MAP="$DEST/bin_rename_map.tsv"
-printf "nuevo_nombre\tarchivo_original\tn_contigs\tlongitud_bp\n" > "$MAP"
+printf "archivo\tmuestra\tbin\tn_contigs\tlongitud_bp\n" > "$MAP"
 
-# Recorremos TODOS los archivos regulares del origen (la carpeta solo trae
-# bins). Orden determinista por nombre para que el resultado sea reproducible.
 i=0
+# Buscamos genomas de bin (bin-<N>-<muestra>.fasta), excluyendo <muestra>_mag.fasta.
+# Deduplicamos por nombre de archivo (por si el origen es el arbol por muestra
+# y ademas contiene la carpeta "bins completos").
+declare -A seen
 while IFS= read -r -d '' f; do
+  bn="$(basename "$f")"
+  [[ -n "${seen[$bn]:-}" ]] && continue
+  seen[$bn]=1
   i=$((i+1))
-  new=$(printf "bin_%04d.%s" "$i" "$OUT_EXT")
-  cp -f "$f" "$DEST/$new"
-  # Metricas basicas para la tabla de mapeo.
-  nctg=$(grep -c '^>' "$DEST/$new" || echo 0)
-  len=$(grep -v '^>' "$DEST/$new" | tr -d '\n' | wc -c)
-  printf "%s\t%s\t%s\t%s\n" "$new" "$(basename "$f")" "$nctg" "$len" >> "$MAP"
-done < <(find "$SRC" -maxdepth 1 -type f -print0 | sort -z)
+  cp -f "$f" "$DEST/$bn"
+  # Parseo del nombre: bin-<N>-<muestra>.fasta
+  core="${bn%.fasta}"                 # bin-1-49
+  sample="${core##*-}"                # 49
+  rest="${core%-*}"                   # bin-1
+  binn="${rest##*-}"                  # 1
+  nctg=$(grep -c '^>' "$DEST/$bn" || echo 0)
+  len=$(grep -v '^>' "$DEST/$bn" | tr -d '\n' | wc -c)
+  printf "%s\t%s\t%s\t%s\t%s\n" "$bn" "$sample" "$binn" "$nctg" "$len" >> "$MAP"
+done < <(find "$SRC" -type f -name 'bin-*-*.fasta' ! -name '*_mag.fasta' -print0 | sort -z)
 
-echo "Bins normalizados: $i"
-echo "Carpeta de salida: $DEST"
-echo "Tabla de mapeo:    $MAP"
+echo "Genomas preparados: $i"
+echo "Carpeta de salida:  $DEST"
+echo "Tabla de mapeo:     $MAP  (con muestra de origen para trazabilidad)"
 if [[ "$i" -ne 97 ]]; then
   echo "ADVERTENCIA: se esperaban 97 bins y se encontraron $i. Revisa el origen." >&2
 fi

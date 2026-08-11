@@ -18,20 +18,21 @@ Salida: lista de genomas seleccionados + tablas + `phase1_report.md`.
 
 ## Datos de entrada
 
-- **Input correcto:** los **97 bins individuales** (`C:\Tesis-EstelaRaimondi\Datos\MAGs_all`),
-  con contigs `contig_*`. El QC de CheckM2 se hace **por bin**.
-- ⚠️ **No usar** `MAGs_v2/` ni `MAGs_v2.zip`: esos son 24 ensamblajes **por muestra**
-  (contigs `k141_*`), no bins; un QC sobre ellos daría contaminación altísima.
+- **Fuente correcta:** `C:\Tesis-EstelaRaimondi\Datos\Shotgun Analysis\bins completos\`
+  → los **97 bins individuales** con nombres `bin-<N>-<muestra>.fasta`
+  (p.ej. `bin-1-49.fasta` = bin 1 de la muestra 49). El nombre **codifica la
+  muestra de origen**, así que la trazabilidad para la Fase 2 queda preservada.
+  El conteo por muestra coincide exactamente con la Tabla 4.1 de la tesis
+  (97 bins; muestras 66 y 67 sin bins).
+- ⚠️ **No usar** `MAGs_v2/`, `MAGs_v2.zip` ni los `<muestra>_mag.fasta`: son 24
+  ensamblajes **por muestra** (contigs `k141_*`), no bins; un QC sobre ellos
+  daría contaminación altísima.
+- ⚠️ **No usar** `Datos\MAGs_all\`: es una copia con nombres corruptos
+  (`bin-1.fasta 10`) de `bins completos`; quedó obsoleta.
 
-### Dos avisos importantes sobre `MAGs_all`
-
-1. **Nombres rotos.** Al consolidar los bins, Windows renombró duplicados como
-   `bin-1.fasta 10`, `bin-1.fasta 22`, etc. El script `01_prep_bins.sh` los
-   normaliza a `bin_0001.fasta … bin_0097.fasta` y guarda `bin_rename_map.tsv`.
-2. **Trazabilidad a la muestra perdida.** Al aplanar la carpeta se perdió de qué
-   librería (49–72) vino cada bin. **No afecta la Fase 1** (QC independiente por
-   bin), pero **sí la Fase 2** (prevalencia espacial). Antes de la Fase 2 hay que
-   recuperar el mapeo bin→muestra del binning original (MetaBAT2, UPCH).
+El script `01_prep_bins.sh` copia los 97 `bin-<N>-<muestra>.fasta` a `bins_clean/`
+y genera `bin_rename_map.tsv` con la muestra de origen, nº de contigs y longitud
+de cada bin.
 
 ---
 
@@ -56,7 +57,7 @@ fase1_khipu/
 
 ```bash
 cd /c/Tesis-EstelaRaimondi/fase1_khipu
-bash 01_prep_bins.sh "/c/Tesis-EstelaRaimondi/Datos/MAGs_all" "/c/Tesis-EstelaRaimondi/Datos/bins_clean"
+bash 01_prep_bins.sh "/c/Tesis-EstelaRaimondi/Datos/Shotgun Analysis/bins completos" "/c/Tesis-EstelaRaimondi/Datos/bins_clean"
 # Empaquetar para subir (FASTA comprime bien: ~1.1 GB -> ~300 MB)
 tar czf /c/Tesis-EstelaRaimondi/Datos/bins_clean.tar.gz -C "/c/Tesis-EstelaRaimondi/Datos/bins_clean" .
 ```
@@ -123,7 +124,8 @@ Puedes bajar `--time` para reducir la espera en cola.
   y en `results/versions.txt` de cada corrida.
 - Umbrales fijados por parámetros (no hardcodeados): min contig 3000 bp,
   completitud > 70 %, contaminación < 5 %.
-- `bin_rename_map.tsv` documenta el renombrado de cada bin.
+- `bin_rename_map.tsv` documenta cada bin con su **muestra de origen** (49–72),
+  nº de contigs y longitud — insumo directo para la prevalencia espacial de la Fase 2.
 
 > Nota: el umbral (>70 %, <5 %) es criterio propio del proyecto, no una categoría
 > MIMAG estándar (tesis 4.1.3.2). Tiara no separa bacteria/arquea; eso se resuelve

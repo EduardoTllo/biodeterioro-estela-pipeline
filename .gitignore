@@ -1,8 +1,10 @@
 # --- Datos (no versionar: son GB de secuencias) ---
 bins/
+bins_clean/
 Datos/
 MAGs_all/
 MAGs_v2/
+Shotgun Analysis/
 *.fasta
 *.fa
 *.fna
