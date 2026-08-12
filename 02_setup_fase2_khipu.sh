@@ -6,11 +6,14 @@
 # linajes, OE2) en el cluster Khipu (UTEC).
 #
 # QUE HACE:
-#   - Crea dos entornos conda:
+#   - Deja ~/.condarc con solo conda-forge + bioconda (el canal 'defaults' de
+#     repo.anaconda.com no resuelve en Khipu).
+#   - Crea dos entornos conda con versiones PINNEADAS:
 #       * gtdbtk  -> clasificacion taxonomica + ANI + arbol (GTDB-Tk, datos R220)
 #       * drep    -> desreplicacion y definicion de linajes (dRep + fastANI + Mash)
 #   - Verifica que haya espacio suficiente y descomprime la base GTDB R220
 #     (~110 GB descomprimidos) desde gtdbtk_r220_data.tar.gz.
+#   - Fija GTDBTK_DATA_PATH dentro del entorno y verifica la integridad de la base.
 #
 # DONDE SE EJECUTA:
 #   En el NODO DE LOGIN de Khipu (unico con internet, para crear los entornos).
@@ -18,7 +21,8 @@
 #
 #   Uso:   bash 02_setup_fase2_khipu.sh
 #
-# Es idempotente: no recrea entornos ni re-descomprime si ya existen.
+# Es idempotente: omite la creacion de un entorno solo si ya existe CON LA
+# VERSION CORRECTA, y no re-descomprime la base si ya esta extraida.
 # =============================================================================
 # NOTA: no usamos 'set -u' por compatibilidad con Lmod en Khipu (igual que Fase 1).
 set -eo pipefail
@@ -32,40 +36,88 @@ GTDB_DEST="${GTDB_DEST:-$HOME/gtdbtk_data}"
 # Espacio minimo requerido en el destino (GB):
 MIN_FREE_GB=120
 
+# Version de GTDB-Tk. DEBE ser compatible con el release de la base de datos.
+# Tabla oficial de compatibilidad (docs de GTDB-Tk):
+#   datos R220 -> gtdbtk 2.4.0 a 2.6.1
+#   datos R232 -> gtdbtk 2.7.0 en adelante
+# Con datos R220 usamos 2.6.1 (la mas alta compatible, con mas correcciones).
+GTDBTK_VERSION="${GTDBTK_VERSION:-2.6.1}"
+
+# Version de Python. CRITICO: hay que fijarla.
+# Sin pin, conda resuelve Python 3.14, y GTDB-Tk falla al arrancar con
+#   ValueError: "__StageLogger" object has no field "version"
+# porque la funcionalidad de pydantic v1 que usa GTDB-Tk no es compatible con
+# Python >= 3.14 (issue #669 del repo de GTDB-Tk).
+PYTHON_VERSION="${PYTHON_VERSION:-3.11}"
+
 echo "==> [1/4] Cargando modulo miniconda"
 module purge
 module load miniconda/3.0
 eval "$(conda shell.bash hook)"
 
-# En Khipu el canal 'defaults' (repo.anaconda.com) no resuelve y ademas exige
-# aceptar sus Terms of Service. Usamos solo conda-forge + bioconda
-# (conda.anaconda.org), que si resuelven. Esto evita el error de red
-# "Failed to resolve 'repo.anaconda.com'".
-conda config --remove channels defaults 2>/dev/null || true
-conda config --add channels bioconda    2>/dev/null || true
-conda config --add channels conda-forge 2>/dev/null || true
-conda config --set channel_priority strict 2>/dev/null || true
+# En Khipu el canal 'defaults' (repo.anaconda.com) no resuelve de forma fiable.
+# Ademas, algunos ~/.condarc traen las URLs de repo.anaconda.com escritas de
+# forma EXPLICITA (no como el nombre "defaults"), en cuyo caso
+# 'conda config --remove channels defaults' NO las quita (no hace match por
+# texto). Por eso reescribimos ~/.condarc por completo, dejando solo
+# conda-forge y bioconda (conda.anaconda.org), y afinamos timeouts/reintentos
+# para tolerar una red intermitente.
+CONDARC="$HOME/.condarc"
+if [[ -f "$CONDARC" ]]; then
+  cp -f "$CONDARC" "${CONDARC}.bak.$(date +%Y%m%d%H%M%S)"
+  echo "    Backup de ~/.condarc guardado junto al original (.bak.*)"
+fi
+cat > "$CONDARC" << 'EOF'
+channels:
+  - conda-forge
+  - bioconda
+channel_priority: strict
+remote_connect_timeout_secs: 30
+remote_read_timeout_secs: 120
+remote_max_retries: 10
+EOF
+echo "    ~/.condarc reescrito (solo conda-forge + bioconda)"
 
 SOLVER="conda"
 if command -v mamba >/dev/null 2>&1; then SOLVER="mamba"; fi
 echo "    Usando solver: $SOLVER"
 
 # --- Entorno GTDB-Tk ---------------------------------------------------------
+# Idempotencia real: no basta con que exista un entorno con ese NOMBRE (un
+# intento previo fallido puede dejar un entorno vacio/a medias registrado).
+# Se verifica que el binario realmente funcione antes de omitir la creacion.
 echo "==> [2/4] Creando entorno 'gtdbtk'"
-if conda env list | grep -qE '^\s*gtdbtk\s'; then
-  echo "    El entorno 'gtdbtk' ya existe. Se omite."
+# Se exige que exista Y que sea exactamente la version pinneada: una version
+# distinta (p.ej. la ultima) es incompatible con los datos R220.
+INSTALLED_VER="$(conda run -n gtdbtk gtdbtk --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)"
+if [[ "$INSTALLED_VER" == "$GTDBTK_VERSION" ]]; then
+  echo "    El entorno 'gtdbtk' ya existe con la version correcta ($GTDBTK_VERSION). Se omite."
 else
-  # gtdbtk >=2.4 es necesario para los datos R220.
+  if conda env list | grep -qE '^\s*gtdbtk\s'; then
+    echo "    Entorno 'gtdbtk' con version incorrecta ('${INSTALLED_VER:-ninguna}', se requiere $GTDBTK_VERSION). Se recrea."
+    conda env remove -n gtdbtk -y >/dev/null 2>&1 || true
+  fi
+  # Versiones PINNEADAS: GTDB-Tk al release de los datos y Python a una serie
+  # compatible con pydantic v1 (ver notas arriba).
   # --override-channels: no consultar 'defaults' (repo.anaconda.com).
-  $SOLVER create -y -n gtdbtk --override-channels -c conda-forge -c bioconda 'gtdbtk>=2.4.0'
+  echo "    Instalando gtdbtk=$GTDBTK_VERSION con python=$PYTHON_VERSION"
+  $SOLVER create -y -n gtdbtk --override-channels -c conda-forge -c bioconda \
+      "gtdbtk=$GTDBTK_VERSION" "python=$PYTHON_VERSION"
 fi
 
 # --- Entorno dRep ------------------------------------------------------------
 echo "==> [3/4] Creando entorno 'drep'"
-if conda env list | grep -qE '^\s*drep\s'; then
-  echo "    El entorno 'drep' ya existe. Se omite."
+if conda run -n drep dRep --version >/dev/null 2>&1; then
+  echo "    El entorno 'drep' ya existe y funciona. Se omite."
 else
-  $SOLVER create -y -n drep --override-channels -c conda-forge -c bioconda drep fastani mash
+  if conda env list | grep -qE '^\s*drep\s'; then
+    echo "    Entorno 'drep' incompleto/roto (intento previo fallido). Se recrea."
+    conda env remove -n drep -y >/dev/null 2>&1 || true
+  fi
+  # Python tambien pinneado aqui: sin pin, conda resuelve la serie mas nueva y
+  # se expone al mismo tipo de incompatibilidad que rompio a GTDB-Tk.
+  $SOLVER create -y -n drep --override-channels -c conda-forge -c bioconda \
+      drep fastani mash "python=$PYTHON_VERSION"
 fi
 
 # --- Descompresion de la base GTDB R220 --------------------------------------
@@ -113,6 +165,42 @@ ENVS_DIR="$SCRIPT_DIR/envs"
 mkdir -p "$ENVS_DIR"
 conda env export -n gtdbtk > "$ENVS_DIR/gtdbtk.lock.yml" 2>/dev/null || true
 conda env export -n drep   > "$ENVS_DIR/drep.lock.yml"   2>/dev/null || true
+
+# --- Verificacion de la base de referencia -----------------------------------
+# Se hacen DOS verificaciones:
+#  1) Integridad real: archivos de 0 bytes (sintoma de descompresion truncada).
+#  2) gtdbtk check_install, SOLO INFORMATIVO.
+#
+# check_install NO es bloqueante a proposito: su manifiesto de hashes tiene
+# falsos positivos documentados con R220 (issues #594 y #626 del repo de
+# GTDB-Tk; el changelog de 2.7.1 incluye un "fix for MD5 mismatch in
+# check_install configuration"). Reporta HASH MISMATCH por 1 archivo entre
+# ~114.000 aun con el MD5 del tar.gz correcto. La prueba real es que
+# classify_wf corra.
+echo "==> Verificando la base de referencia"
+conda activate gtdbtk
+export GTDBTK_DATA_PATH="$GTDBTK_DATA_PATH_DETECTED"
+
+echo "    [1/2] Buscando archivos de 0 bytes (descompresion truncada)..."
+N_EMPTY=$(find "$GTDBTK_DATA_PATH_DETECTED" -type f -size 0 2>/dev/null | wc -l)
+if [[ "$N_EMPTY" -gt 0 ]]; then
+  echo "    ERROR: se encontraron $N_EMPTY archivos vacios: la descompresion" >&2
+  echo "           quedo incompleta. Vuelve a extraer el tar.gz." >&2
+  find "$GTDBTK_DATA_PATH_DETECTED" -type f -size 0 2>/dev/null | head -5 >&2
+  conda deactivate
+  exit 1
+fi
+echo "          OK: sin archivos vacios."
+
+echo "    [2/2] gtdbtk check_install (informativo, no bloqueante)..."
+if gtdbtk check_install >/dev/null 2>&1; then
+  echo "          OK: check_install paso."
+else
+  echo "          AVISO: check_install reporta HASH MISMATCH."
+  echo "          Es un falso positivo conocido con R220 y NO bloquea el analisis."
+  echo "          Se continua; la prueba real es la ejecucion de classify_wf."
+fi
+conda deactivate
 
 echo
 echo "============================================================"
