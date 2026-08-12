@@ -21,6 +21,8 @@ results/*
 !results/*.md
 !results/*.tsv
 !results/*.txt
+!results/*.csv
+!results/*.tree
 
 # --- Bases de datos ---
 dbs/

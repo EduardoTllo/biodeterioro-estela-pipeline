@@ -1,0 +1,22 @@
+genome	muestra	clasificacion	ani	af	ref	especie_confirmada	linaje_cluster	linaje_id
+bin-1-51	51	d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Pantoea;s__				NA	14_0	L5
+bin-1-53	53	d__Bacteria;p__Bacillota;c__Bacilli;o__Staphylococcales;f__Staphylococcaceae;g__Staphylococcus;s__Staphylococcus warneri_A	99.02	90.1	GCF_003491325.1	si	1_0	L11
+bin-1-54	54	d__Bacteria;p__Bacillota;c__Bacilli;o__Bacillales_B;f__DSM-1321;g__Peribacillus;s__Peribacillus frigoritolerans	97.2	87.9	GCF_001636405.1	si	2_0	L12
+bin-1-57	57	d__Bacteria;p__Actinomycetota;c__Actinomycetes;o__Actinomycetales;f__Brevibacteriaceae;g__Brevibacterium;s__Brevibacterium sp021023135	98.31	91.5	GCF_021023135.1	si	15_0	L6
+bin-1-59	59	d__Bacteria;p__Bacillota;c__Bacilli;o__Paenibacillales;f__Paenibacillaceae;g__Paenibacillus;s__Paenibacillus sp001955535	99.99	94.6	GCF_001955535.1	si	16_0	L7
+bin-1-64	64	d__Bacteria;p__Bacillota;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus licheniformis	99.75	98.5	GCF_000011645.1	si	4_0	L14
+bin-1-68	68	d__Bacteria;p__Actinomycetota;c__Actinomycetes;o__Mycobacteriales;f__Mycobacteriaceae;g__Corynebacterium;s__	90.55	44.3	GCF_030826625.1	no	13_1	L2
+bin-2-53	53	d__Bacteria;p__Bacillota;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Metabacillus;s__Metabacillus halosaccharovorans	98.9	92.0	GCF_002019635.1	si	5_0	L15
+bin-2-57	57	d__Bacteria;p__Bacillota;c__Bacilli;o__Bacillales_B;f__DSM-18226;g__Cytobacillus;s__Cytobacillus oceanisediminis	95.61	79.7	GCF_007830235.1	si	7_0	L17
+bin-2-58	58	d__Bacteria;p__Bacillota;c__Bacilli;o__Bacillales_B;f__DSM-18226;g__Mesobacillus;s__Mesobacillus sp014856545	98.01	85.8	GCF_014856545.2	si	9_0	L19
+bin-2-63	63	d__Bacteria;p__Bacillota;c__Bacilli;o__Bacillales_B;f__Bacillaceae_B;g__Rossellomorea;s__Rossellomorea marisflavi	98.53	92.6	GCF_001274775.1	si	3_0	L13
+bin-2-69	69	d__Bacteria;p__Actinomycetota;c__Actinomycetes;o__Mycobacteriales;f__Mycobacteriaceae;g__Corynebacterium;s__	90.5	44.0	GCF_030826625.1	no	13_1	L2
+bin-3-52	52	d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;o__Burkholderiales;f__Burkholderiaceae;g__Telluria;s__Telluria timonae	99.96	99.2	GCF_000315425.1	si	12_1	L1
+bin-3-64	64	d__Bacteria;p__Bacillota;c__Bacilli;o__Bacillales_A;f__Planococcaceae;g__Sporosarcina;s__	91.25	60.4	GCF_001531445.1	no	11_0	L4
+bin-4-52	52	d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;o__Pseudomonadales;f__Moraxellaceae;g__Acinetobacter;s__Acinetobacter schindleri	98.03	80.7	GCF_000368625.1	si	17_0	L8
+bin-5-50	50	d__Bacteria;p__Bacillota;c__Bacilli;o__Bacillales_B;f__DSM-18226;g__Cytobacillus;s__Cytobacillus firmus_B	98.08	84.7	GCF_023657595.1	si	8_0	L18
+bin-5-60	60	d__Bacteria;p__Bacillota;c__Bacilli;o__Bacillales;f__Bacillaceae_H;g__Priestia;s__Priestia flexa	99.44	92.9	GCF_001591565.1	si	18_0	L9
+bin-5-63	63	d__Bacteria;p__Bacillota;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus altitudinis	98.19	93.7	GCF_000691145.1	si	6_0	L16
+bin-6-50	50	d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;o__Burkholderiales;f__Burkholderiaceae;g__Telluria;s__Telluria timonae	99.92	95.3	GCF_000315425.1	si	12_1	L1
+bin-6-61	61	d__Bacteria;p__Bacillota;c__Bacilli;o__Bacillales_B;f__DSM-18226;g__Bacillus_AB;s__Bacillus_AB infantis	98.22	89.6	GCF_000473245.1	si	10_0	L3
+bin-9-71	71	d__Bacteria;p__Pseudomonadota;c__Alphaproteobacteria;o__Acetobacterales;f__Acetobacteraceae;g__Aristophania;s__				NA	19_0	L10

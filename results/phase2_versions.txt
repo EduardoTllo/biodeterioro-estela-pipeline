@@ -1,0 +1,8 @@
+Fase 2 - registro de versiones
+Fecha: Tue Aug 11 23:12:30 -05 2026   Job: 49316   Nodo: n003
+N genomas entrada: 21
+GTDBTK_DATA_PATH: /home/eduardo.tello/gtdbtk_data/release220
+Umbrales: dRep -pa 0.90 -sa 0.95 | especie ANI>=95 AF>=65 | top=3
+----
+GTDB-Tk: gtdbtk: version 2.6.1 Copyright 2017 Pierre-Alain Chaumeil, Aaron Mussig and Donovan Parks
+dRep:    usage: dRep [-h] {dereplicate,compare,check_dependencies} ...

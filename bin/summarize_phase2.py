@@ -99,23 +99,49 @@ def cmd_genomeinfo(args):
 # ---------------------------------------------------------------------------
 def read_gtdbtk(gtdbtk_dir):
     """
-    Busca recursivamente los *.summary.tsv de GTDB-Tk (bac120 y ar53) y devuelve
+    Lee los summary de CLASIFICACION de GTDB-Tk (bac120 y ar53) y devuelve
     {user_genome: {classification, ani, af, reference, method}}.
+
+    IMPORTANTE: hay que excluir los archivos de identify/
+    (gtdbtk.*.markers_summary.tsv y gtdbtk.translation_table_summary.tsv).
+    Tambien terminan en "summary.tsv" y traen una columna 'name' con los
+    nombres de genoma, pero NO tienen taxonomia. Si se leen, sobrescriben las
+    entradas buenas de classify/ con valores vacios (se procesan despues por
+    orden alfabetico) y el reporte sale sin taxonomia.
     """
     out = {}
-    files = glob.glob(os.path.join(gtdbtk_dir, "**", "*summary.tsv"), recursive=True)
+    files = sorted(glob.glob(os.path.join(gtdbtk_dir, "**", "*summary.tsv"),
+                             recursive=True))
     for f in files:
-        with open(f, encoding="utf-8") as fh:
+        base = os.path.basename(f)
+        # Solo los summary de clasificacion.
+        if "markers_summary" in base or "translation_table" in base:
+            continue
+        try:
+            fh = open(f, encoding="utf-8")
+        except OSError:
+            # p.ej. enlace simbolico roto al copiar los resultados a otro SO.
+            continue
+        with fh:
             reader = csv.DictReader(fh, delimiter="\t")
+            # Sin columna 'user_genome' no es un summary de clasificacion.
+            if not reader.fieldnames or "user_genome" not in reader.fieldnames:
+                continue
             for row in reader:
-                g = row.get("user_genome") or row.get("name")
+                g = row.get("user_genome")
                 if not g:
                     continue
-                ani = row.get("fastani_ani") or row.get("closest_placement_ani") or ""
-                af = row.get("fastani_af") or row.get("closest_placement_af") or ""
-                ref = (row.get("fastani_reference")
-                       or row.get("closest_placement_reference")
-                       or row.get("closest_genome_reference") or "")
+                # GTDB-Tk 2.x usa closest_genome_* (la asignacion de especie).
+                # Se mantienen los nombres antiguos (fastani_*) por compatibilidad.
+                ani = (_val(row, "closest_genome_ani")
+                       or _val(row, "fastani_ani")
+                       or _val(row, "closest_placement_ani"))
+                af = (_val(row, "closest_genome_af")
+                      or _val(row, "fastani_af")
+                      or _val(row, "closest_placement_af"))
+                ref = (_val(row, "closest_genome_reference")
+                       or _val(row, "fastani_reference")
+                       or _val(row, "closest_placement_reference"))
                 out[g] = {
                     "classification": row.get("classification", ""),
                     "ani": ani,
@@ -124,6 +150,12 @@ def read_gtdbtk(gtdbtk_dir):
                     "method": row.get("classification_method", ""),
                 }
     return out
+
+
+def _val(row, key):
+    """Devuelve el valor de una columna, tratando 'N/A' como vacio."""
+    v = (row.get(key) or "").strip()
+    return "" if v.upper() in ("N/A", "NA", "NONE") else v
 
 
 def read_drep_clusters(cdb_path):
