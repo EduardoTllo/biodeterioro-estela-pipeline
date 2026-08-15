@@ -126,6 +126,10 @@ Para traerlo a tu laptop (en tu laptop / WSL):
 scp USUARIO@khipu.utec.edu.pe:~/estela/fase1/results/phase1_report.md /mnt/c/Tesis-EstelaRaimondi/
 ```
 
+> **En este repositorio**, los resultados de texto de esta fase están versionados
+> en [`results/fase1/`](results/fase1/). Las rutas de la tabla de arriba son las
+> del clúster (donde el job escribe); en el repo llevan el prefijo `phase1_`.
+
 ---
 
 ## Recursos SLURM (dentro de tus límites: 32 cores, 98 GB, 24 h)

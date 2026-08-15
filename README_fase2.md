@@ -115,6 +115,11 @@ tail -f fase2_<JOBID>.out
 scp USUARIO@khipu.utec.edu.pe:~/estela/fase2/results/phase2_report.md .
 ```
 
+> **En este repositorio**, los resultados de texto de esta fase están versionados
+> en [`results/fase2/`](results/fase2/). Las rutas de la tabla de arriba son las
+> del clúster (donde el job escribe); en el repo llevan el prefijo `phase2_`.
+> El MSA de GTDB-Tk (~230 MB) y los FASTA **no** se versionan.
+
 ## Recursos SLURM (dentro de tus límites: 32 cores, 98 GB, 24 h)
 
 `run_fase2.slurm` pide **partición `standard`, 32 CPU, 90 GB RAM, 12 h**, con

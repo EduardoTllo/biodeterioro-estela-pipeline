@@ -17,12 +17,17 @@ Shotgun Analysis/
 # --- Resultados ---
 # Se versionan SOLO las tablas y reportes de texto (evidencia reproducible).
 # Los FASTA y datos pesados quedan excluidos por los patrones de arriba.
-results/*
-!results/*.md
-!results/*.tsv
-!results/*.txt
-!results/*.csv
-!results/*.tree
+# Los patrones con ** alcanzan tambien las subcarpetas por fase
+# (results/fase1/, results/fase2/, ...). La linea '!results/**/' es necesaria
+# para que git entre en esos directorios; sin ella, un directorio ignorado no
+# se recorre y las excepciones de abajo nunca se evaluan.
+results/**
+!results/**/
+!results/**/*.md
+!results/**/*.tsv
+!results/**/*.txt
+!results/**/*.csv
+!results/**/*.tree
 
 # --- Bases de datos ---
 dbs/
