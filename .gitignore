@@ -28,6 +28,10 @@ results/**
 !results/**/*.txt
 !results/**/*.csv
 !results/**/*.tree
+# Figuras generadas por las herramientas (dendrogramas de dRep, etc.).
+# Son pequenas (decenas de KB) y son evidencia visual del analisis.
+!results/**/*.pdf
+!results/**/*.png
 
 # --- Bases de datos ---
 dbs/

@@ -68,7 +68,14 @@ de la fracción cultivable, provistos por el Laboratorio de Genómica Microbiana
         ├── phase2_gtdbtk_backbone_bac120.classify.tree
         ├── phase2_gtdbtk_tree_mapping.tsv
         ├── phase2_genomeInfo.csv
-        └── phase2_versions.txt
+        ├── phase2_versions.txt
+        └── figuras_drep/                     # dendrogramas y gráficos de dRep
+            ├── Primary_clustering_dendrogram.pdf
+            ├── Secondary_clustering_dendrograms.pdf
+            ├── Secondary_clustering_MDS.pdf
+            ├── Clustering_scatterplots.pdf
+            ├── Cluster_scoring.pdf
+            └── Winning_genomes.pdf
 ```
 
 > **Qué se versiona y qué no.** En `results/` se guardan **solo tablas, reportes y
