@@ -1,11 +1,9 @@
 #!/bin/bash
-# =============================================================================
 # 02_setup_fase2_khipu.sh
-# -----------------------------------------------------------------------------
 # Preparacion del entorno para la FASE 2 (Asignacion taxonomica y definicion de
 # linajes, OE2) en el cluster Khipu (UTEC).
 #
-# QUE HACE:
+# Que hace:
 #   - Deja ~/.condarc con solo conda-forge + bioconda (el canal 'defaults' de
 #     repo.anaconda.com no resuelve en Khipu).
 #   - Crea dos entornos conda con versiones PINNEADAS:
@@ -15,7 +13,7 @@
 #     (~110 GB descomprimidos) desde gtdbtk_r220_data.tar.gz.
 #   - Fija GTDBTK_DATA_PATH dentro del entorno y verifica la integridad de la base.
 #
-# DONDE SE EJECUTA:
+# Donde se ejecuta:
 #   En el NODO DE LOGIN de Khipu (unico con internet, para crear los entornos).
 #   La descompresion es I/O de archivos (permitida en login).
 #
@@ -23,11 +21,11 @@
 #
 # Es idempotente: omite la creacion de un entorno solo si ya existe CON LA
 # VERSION CORRECTA, y no re-descomprime la base si ya esta extraida.
-# =============================================================================
-# NOTA: no usamos 'set -u' por compatibilidad con Lmod en Khipu (igual que Fase 1).
+
+# Nota: no usamos 'set -u' por compatibilidad con Lmod en Khipu (igual que Fase 1).
 set -eo pipefail
 
-# --- Rutas configurables -----------------------------------------------------
+# Rutas configurables
 # Carpeta que contiene gtdbtk_r220_data.tar.gz:
 GTDB_TARDIR="${GTDB_TARDIR:-$HOME/gtdbtk_data}"
 GTDB_TAR="$GTDB_TARDIR/gtdbtk_r220_data.tar.gz"
@@ -82,7 +80,7 @@ SOLVER="conda"
 if command -v mamba >/dev/null 2>&1; then SOLVER="mamba"; fi
 echo "    Usando solver: $SOLVER"
 
-# --- Entorno GTDB-Tk ---------------------------------------------------------
+# Entorno GTDB-Tk
 # Idempotencia real: no basta con que exista un entorno con ese NOMBRE (un
 # intento previo fallido puede dejar un entorno vacio/a medias registrado).
 # Se verifica que el binario realmente funcione antes de omitir la creacion.
@@ -105,7 +103,7 @@ else
       "gtdbtk=$GTDBTK_VERSION" "python=$PYTHON_VERSION"
 fi
 
-# --- Entorno dRep ------------------------------------------------------------
+# Entorno dRep
 echo "==> [3/4] Creando entorno 'drep'"
 if conda run -n drep dRep --version >/dev/null 2>&1; then
   echo "    El entorno 'drep' ya existe y funciona. Se omite."
@@ -120,7 +118,7 @@ else
       drep fastani mash "python=$PYTHON_VERSION"
 fi
 
-# --- Descompresion de la base GTDB R220 --------------------------------------
+# Descompresion de la base GTDB R220
 echo "==> [4/4] Preparando base GTDB R220"
 RELEASE_DIR="$GTDB_DEST/release220"
 if [[ -d "$RELEASE_DIR" && -n "$(ls -A "$RELEASE_DIR" 2>/dev/null)" ]]; then
@@ -159,14 +157,14 @@ conda activate gtdbtk
 conda env config vars set GTDBTK_DATA_PATH="$GTDBTK_DATA_PATH_DETECTED" >/dev/null 2>&1 || true
 conda deactivate
 
-# --- Exportar lock files (reproducibilidad) ----------------------------------
+# Exportar lock files (reproducibilidad)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ENVS_DIR="$SCRIPT_DIR/envs"
 mkdir -p "$ENVS_DIR"
 conda env export -n gtdbtk > "$ENVS_DIR/gtdbtk.lock.yml" 2>/dev/null || true
 conda env export -n drep   > "$ENVS_DIR/drep.lock.yml"   2>/dev/null || true
 
-# --- Verificacion de la base de referencia -----------------------------------
+# Verificacion de la base de referencia
 # Se hacen DOS verificaciones:
 #  1) Integridad real: archivos de 0 bytes (sintoma de descompresion truncada).
 #  2) gtdbtk check_install, SOLO INFORMATIVO.

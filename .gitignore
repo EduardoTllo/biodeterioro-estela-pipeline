@@ -1,4 +1,4 @@
-# --- Datos (no versionar: son GB de secuencias) ---
+# Datos (no versionar: son GB de secuencias)
 bins/
 bins_clean/
 Datos/
@@ -14,7 +14,7 @@ Shotgun Analysis/
 *.tar.gz
 *.zip
 
-# --- Resultados ---
+# Resultados
 # Se versionan SOLO las tablas y reportes de texto (evidencia reproducible).
 # Los FASTA y datos pesados quedan excluidos por los patrones de arriba.
 # Los patrones con ** alcanzan tambien las subcarpetas por fase
@@ -33,16 +33,18 @@ results/**
 !results/**/*.pdf
 !results/**/*.png
 
-# --- Bases de datos ---
+# Bases de datos
 dbs/
 *.dmnd
 
-# --- Logs de SLURM ---
+# Logs de SLURM
 fase1_*.out
+fase2_*.out
 fase1_*.err
+fase2_*.err
 slurm-*.out
 
-# --- Basura del SO / editores ---
+# Basura del SO / editores
 .DS_Store
 Thumbs.db
 __pycache__/

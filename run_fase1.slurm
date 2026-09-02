@@ -1,7 +1,5 @@
 #!/bin/bash
-# =============================================================================
 # run_fase1.slurm
-# -----------------------------------------------------------------------------
 # FASE 1 - Control de calidad y seleccion de genomas (OE1)
 # Tesis: Estela de Raimondi | Cluster: Khipu (UTEC) | SLURM 25.11
 #
@@ -14,7 +12,7 @@
 #   Paso 3 (resumen) -> tablas y reporte legible del proceso.
 #
 # Envio:   sbatch run_fase1.slurm
-# =============================================================================
+
 # Recursos dentro de los limites de la cuenta (max: 32 cores, 98 GB RAM, 24 h):
 #SBATCH --job-name=fase1_estela
 #SBATCH --partition=standard
@@ -33,9 +31,7 @@
 set -eo pipefail
 export LD_PRELOAD="${LD_PRELOAD:-}"
 
-# =============================================================================
-# CONFIGURACION  (edita estas rutas segun tu cuenta en Khipu)
-# =============================================================================
+# Configuracion: edita estas rutas segun tu cuenta en Khipu
 # Carpeta raiz del proyecto de la Fase 1 en Khipu:
 WORKDIR="$HOME/estela/fase1"
 
@@ -57,9 +53,7 @@ MAX_CONTAMINATION=5     # contaminacion < 5 %
 # Directorio donde estan los scripts (esta carpeta):
 SCRIPTS_DIR="$WORKDIR/scripts"
 
-# =============================================================================
 # No edites debajo de esta linea salvo que sepas lo que haces
-# =============================================================================
 THREADS="${SLURM_CPUS_PER_TASK:-16}"
 RESULTS="$WORKDIR/results"
 TIARA_DIR="$RESULTS/01_tiara"
@@ -73,7 +67,7 @@ echo " Job SLURM: ${SLURM_JOB_ID:-NA}  |  Nodo: $(hostname)  |  Hilos: $THREADS"
 echo " Inicio: $(date)"
 echo "======================================================================"
 
-# --- Comprobaciones previas --------------------------------------------------
+# Comprobaciones previas
 if [[ ! -d "$BINS_DIR" ]]; then
   echo "ERROR: no existe la carpeta de bins: $BINS_DIR" >&2; exit 1
 fi
@@ -91,7 +85,7 @@ echo "Bins de entrada encontrados: $N_BINS"
 
 mkdir -p "$TIARA_DIR" "$CHECKM2_INPUT" "$CHECKM2_OUT" "$SELECTED_DIR"
 
-# --- Entorno conda -----------------------------------------------------------
+# Entorno conda
 module purge 2>/dev/null || true
 module load miniconda/3.0
 if ! command -v conda >/dev/null 2>&1; then
@@ -101,7 +95,7 @@ if ! command -v conda >/dev/null 2>&1; then
 fi
 eval "$(conda shell.bash hook)"
 
-# --- Registro de versiones (reproducibilidad) --------------------------------
+# Registro de versiones (reproducibilidad)
 VERS="$RESULTS/versions.txt"
 {
   echo "Fase 1 - registro de versiones"
@@ -116,9 +110,7 @@ VERS="$RESULTS/versions.txt"
 } > "$VERS"
 echo "Versiones registradas en: $VERS"
 
-# =============================================================================
-# PASO 1 - FILTRADO POR DOMINIO (Tiara)
-# =============================================================================
+# Paso 1: filtrado por dominio (Tiara)
 echo
 echo "---> PASO 1: Filtrado por dominio con Tiara (min_len=$MIN_CONTIG_LEN)"
 conda activate tiara
@@ -139,7 +131,7 @@ for f in "${BIN_FILES[@]}"; do
 done
 conda deactivate
 
-# --- Resumen de Tiara + decision por bin (script python) ---------------------
+# Resumen de Tiara + decision por bin (script python)
 echo "     Generando resumen de dominio por bin..."
 conda activate checkm2   # usamos su python (solo stdlib) para el resumen
 python "$SCRIPTS_DIR/summarize_phase1.py" tiara \
@@ -164,9 +156,7 @@ if [[ "$N_PROK" -eq 0 ]]; then
 fi
 conda deactivate
 
-# =============================================================================
-# PASO 2 - CALIDAD GENOMICA (CheckM2)
-# =============================================================================
+# Paso 2: calidad genomica (CheckM2)
 echo
 echo "---> PASO 2: Calidad genomica con CheckM2"
 conda activate checkm2
@@ -183,9 +173,7 @@ checkm2 predict \
 
 echo "     Reporte de calidad: $CHECKM2_OUT/quality_report.tsv"
 
-# =============================================================================
-# PASO 3 - SELECCION FINAL + REPORTE LEGIBLE
-# =============================================================================
+# Paso 3: seleccion final y reporte
 echo
 echo "---> PASO 3: Seleccion final y reporte"
 python "$SCRIPTS_DIR/summarize_phase1.py" report \

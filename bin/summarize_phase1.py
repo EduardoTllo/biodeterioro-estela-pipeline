@@ -37,9 +37,7 @@ EUK_CLASSES = {"eukarya"}
 ORGANELLE_CLASSES = {"organelle", "mitochondrion", "plastid"}
 
 
-# ---------------------------------------------------------------------------
 # Utilidades FASTA
-# ---------------------------------------------------------------------------
 def read_fasta_lengths(path):
     """Devuelve dict {contig_id: longitud} leyendo un FASTA (id = primer token)."""
     lengths = {}
@@ -73,9 +71,7 @@ def bin_name(path):
     return os.path.splitext(os.path.basename(path))[0]
 
 
-# ---------------------------------------------------------------------------
 # Parseo de la salida de Tiara
-# ---------------------------------------------------------------------------
 def read_tiara(path):
     """
     Lee un archivo de salida de Tiara.
@@ -152,9 +148,7 @@ def classify_bin(bin_path, tiara_path):
     }
 
 
-# ---------------------------------------------------------------------------
 # Subcomando: tiara
-# ---------------------------------------------------------------------------
 def cmd_tiara(args):
     bins = list_bins(args.bins_dir, args.bin_ext)
     if not bins:
@@ -181,9 +175,7 @@ def cmd_tiara(args):
     print("    Resumen escrito en: %s" % args.out)
 
 
-# ---------------------------------------------------------------------------
 # Subcomando: copy-prok
-# ---------------------------------------------------------------------------
 def cmd_copy_prok(args):
     ext = args.bin_ext.lstrip(".")
     os.makedirs(args.dest, exist_ok=True)
@@ -203,9 +195,7 @@ def cmd_copy_prok(args):
     print("    Copiados %d bins procariotas a %s" % (n, args.dest))
 
 
-# ---------------------------------------------------------------------------
 # Parseo del reporte de CheckM2
-# ---------------------------------------------------------------------------
 def read_checkm2(path):
     """
     Lee quality_report.tsv de CheckM2.
@@ -234,9 +224,7 @@ def read_checkm2(path):
     return out
 
 
-# ---------------------------------------------------------------------------
 # Subcomando: report
-# ---------------------------------------------------------------------------
 def cmd_report(args):
     ext = args.bin_ext.lstrip(".")
 
@@ -402,9 +390,7 @@ def write_markdown_report(args, rows, selected, n_total, n_pass_dom,
                  "accesorio (tesis, seccion 4.1.3.2).\n")
 
 
-# ---------------------------------------------------------------------------
 # CLI
-# ---------------------------------------------------------------------------
 def main():
     ap = argparse.ArgumentParser(description="Resumenes de la Fase 1 (OE1).")
     sub = ap.add_subparsers(dest="cmd", required=True)

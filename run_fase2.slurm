@@ -1,7 +1,5 @@
 #!/bin/bash
-# =============================================================================
 # run_fase2.slurm
-# -----------------------------------------------------------------------------
 # FASE 2 - Asignacion taxonomica y definicion de linajes (OE2)
 # Tesis: Estela de Raimondi | Cluster: Khipu (UTEC) | SLURM 25.11
 #
@@ -13,11 +11,11 @@
 #   Paso 3 (resumen)             -> prevalencia espacial, confirmacion de especie,
 #                                   top-3 linajes para la Fase 3 y reporte legible.
 #
-# NOTA: el arbol de novo FOCALIZADO se hara en la Fase 4 (no aqui), solo con los
+# Nota: el arbol de novo FOCALIZADO se hara en la Fase 4 (no aqui), solo con los
 #       linajes seleccionados. En Fase 2 se usa el arbol de colocacion.
 #
 # Envio:   sbatch run_fase2.slurm
-# =============================================================================
+
 # Recursos dentro de los limites de la cuenta (max: 32 cores, 98 GB RAM, 24 h):
 #SBATCH --job-name=fase2_estela
 #SBATCH --partition=standard
@@ -34,9 +32,7 @@
 # No usamos 'set -u' por compatibilidad con Lmod en Khipu (igual que Fase 1).
 set -eo pipefail
 
-# =============================================================================
-# CONFIGURACION  (edita segun tu cuenta en Khipu)
-# =============================================================================
+# Configuracion: edita segun tu cuenta en Khipu
 # Carpeta de la Fase 1 (para tomar los genomas seleccionados y la calidad):
 FASE1_DIR="$HOME/estela/fase1"
 SELECTED_DIR="$FASE1_DIR/results/phase1_selected_genomes"
@@ -61,9 +57,7 @@ ANI_ESPECIE=95      # confirmacion de especie: ANI >=
 AF_ESPECIE=65       # confirmacion de especie: AF  >=
 TOP_LINAJES=3       # linajes priorizados para la Fase 3
 
-# =============================================================================
 # No editar debajo salvo que sepas lo que haces
-# =============================================================================
 THREADS="${SLURM_CPUS_PER_TASK:-32}"
 RESULTS="$WORKDIR/results"
 GTDBTK_OUT="$RESULTS/03_gtdbtk"
@@ -77,7 +71,7 @@ echo " Job SLURM: ${SLURM_JOB_ID:-NA}  |  Nodo: $(hostname)  |  Hilos: $THREADS"
 echo " Inicio: $(date)"
 echo "======================================================================"
 
-# --- Comprobaciones previas --------------------------------------------------
+# Comprobaciones previas
 if [[ ! -d "$SELECTED_DIR" ]]; then
   echo "ERROR: no existe la carpeta de genomas seleccionados: $SELECTED_DIR" >&2; exit 1
 fi
@@ -98,12 +92,12 @@ echo "Genomas de entrada (seleccionados en Fase 1): $N_GEN"
 
 mkdir -p "$GTDBTK_OUT" "$DREP_OUT" "$DREP_INPUT" "$SEL_LINEAGES"
 
-# --- Entorno conda -----------------------------------------------------------
+# Entorno conda
 module purge
 module load miniconda/3.0
 eval "$(conda shell.bash hook)"
 
-# --- Registro de versiones ---------------------------------------------------
+# Registro de versiones
 VERS="$RESULTS/versions.txt"
 {
   echo "Fase 2 - registro de versiones"
@@ -117,9 +111,7 @@ VERS="$RESULTS/versions.txt"
 } > "$VERS"
 echo "Versiones registradas en: $VERS"
 
-# =============================================================================
-# PASO 1 - CLASIFICACION TAXONOMICA (GTDB-Tk classify_wf)
-# =============================================================================
+# Paso 1: clasificacion taxonomica (GTDB-Tk classify_wf)
 echo
 echo "---> PASO 1: GTDB-Tk classify_wf"
 conda activate gtdbtk
@@ -140,9 +132,7 @@ gtdbtk classify_wf \
 echo "     Resumen(es): $(ls "$GTDBTK_OUT"/classify/*summary.tsv 2>/dev/null | tr '\n' ' ')"
 conda deactivate
 
-# =============================================================================
-# PASO 2 - DESREPLICACION Y DEFINICION DE LINAJES (dRep)
-# =============================================================================
+# Paso 2: desreplicacion y definicion de linajes (dRep)
 echo
 echo "---> PASO 2: dRep (linaje = especie a ${DREP_SA} ANI)"
 conda activate drep
@@ -172,9 +162,7 @@ dRep dereplicate "$DREP_OUT" \
 echo "     Clusteres (linajes): $DREP_OUT/data_tables/Cdb.csv"
 conda deactivate
 
-# =============================================================================
-# PASO 3 - PREVALENCIA, SELECCION Y REPORTE
-# =============================================================================
+# Paso 3: prevalencia, seleccion y reporte
 echo
 echo "---> PASO 3: prevalencia espacial, top-${TOP_LINAJES} y reporte"
 conda activate drep   # su python (stdlib) sirve para el resumen

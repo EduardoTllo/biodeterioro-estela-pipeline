@@ -34,9 +34,7 @@ import sys
 from datetime import datetime
 
 
-# ---------------------------------------------------------------------------
 # Utilidades
-# ---------------------------------------------------------------------------
 def bin_name(fname):
     """bin-1-49.fasta -> bin-1-49"""
     return os.path.splitext(os.path.basename(fname))[0]
@@ -66,9 +64,7 @@ def read_checkm2(path):
     return out
 
 
-# ---------------------------------------------------------------------------
 # Subcomando: genomeinfo
-# ---------------------------------------------------------------------------
 def cmd_genomeinfo(args):
     ext = args.bin_ext.lstrip(".")
     qc = read_checkm2(args.checkm2)
@@ -94,9 +90,7 @@ def cmd_genomeinfo(args):
         print("    ADVERTENCIA: sin metricas CheckM2 para: %s" % ", ".join(missing))
 
 
-# ---------------------------------------------------------------------------
 # Parseo de GTDB-Tk
-# ---------------------------------------------------------------------------
 def read_gtdbtk(gtdbtk_dir):
     """
     Lee los summary de CLASIFICACION de GTDB-Tk (bac120 y ar53) y devuelve
@@ -186,9 +180,7 @@ def read_drep_winners(wdb_path):
     return reps
 
 
-# ---------------------------------------------------------------------------
 # Subcomando: report
-# ---------------------------------------------------------------------------
 def cmd_report(args):
     ext = args.bin_ext.lstrip(".")
     genomes = sorted(glob.glob(os.path.join(args.genomes_dir, "*." + ext)))
@@ -376,9 +368,7 @@ def short_tax(tax):
     return " ".join(tail) if tail else tax
 
 
-# ---------------------------------------------------------------------------
 # CLI
-# ---------------------------------------------------------------------------
 def main():
     ap = argparse.ArgumentParser(description="Resumenes de la Fase 2 (OE2).")
     sub = ap.add_subparsers(dest="cmd", required=True)

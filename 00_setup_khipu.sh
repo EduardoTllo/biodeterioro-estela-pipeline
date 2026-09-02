@@ -1,30 +1,28 @@
 #!/bin/bash
-# =============================================================================
 # 00_setup_khipu.sh
-# -----------------------------------------------------------------------------
 # Preparacion del entorno para la FASE 1 (Control de calidad y seleccion de
 # genomas, OE1) de la tesis de la Estela de Raimondi, en el cluster Khipu (UTEC).
 #
-# QUE HACE:
+# Que hace:
 #   - Crea dos entornos conda separados (para evitar conflictos de dependencias):
 #       * tiara    -> filtrado por dominio (paso 1)
 #       * checkm2  -> calidad genomica: completitud/contaminacion (paso 2)
 #   - Descarga la base de datos de CheckM2 (~3 GB, DIAMOND).
 #
-# DONDE SE EJECUTA:
+# Donde se ejecuta:
 #   SOLO en el NODO DE LOGIN de Khipu (es el unico con acceso a internet).
 #   NO lo mandes con sbatch: correlo directamente en la terminal del login.
 #
 #   Uso:   bash 00_setup_khipu.sh
 #
 # Es idempotente: si un entorno ya existe, no lo vuelve a crear.
-# =============================================================================
+
 # Nota: NO usar 'set -u' (nounset): Lmod (module) referencia LD_PRELOAD sin
 # definir y aborta la carga de modulos en Khipu.
 set -eo pipefail
 export LD_PRELOAD="${LD_PRELOAD:-}"
 
-# --- Rutas configurables -----------------------------------------------------
+# Rutas configurables
 # Carpeta donde vivira la base de datos de CheckM2 (en tu HOME por defecto).
 CHECKM2_DB_DIR="${CHECKM2_DB_DIR:-$HOME/dbs/checkm2}"
 
@@ -45,7 +43,7 @@ SOLVER="conda"
 if command -v mamba >/dev/null 2>&1; then SOLVER="mamba"; fi
 echo "    Usando solver: $SOLVER"
 
-# --- Entorno 1: Tiara --------------------------------------------------------
+# Entorno 1: Tiara
 echo "==> [2/4] Creando entorno 'tiara'"
 if conda env list | grep -qE '^\s*tiara\s'; then
   echo "    El entorno 'tiara' ya existe. Se omite."
@@ -53,7 +51,7 @@ else
   $SOLVER create -y -n tiara -c conda-forge -c bioconda tiara
 fi
 
-# --- Entorno 2: CheckM2 ------------------------------------------------------
+# Entorno 2: CheckM2
 echo "==> [3/4] Creando entorno 'checkm2'"
 if conda env list | grep -qE '^\s*checkm2\s'; then
   echo "    El entorno 'checkm2' ya existe. Se omite."
@@ -61,7 +59,7 @@ else
   $SOLVER create -y -n checkm2 -c conda-forge -c bioconda checkm2
 fi
 
-# --- Base de datos de CheckM2 ------------------------------------------------
+# Base de datos de CheckM2
 echo "==> [4/4] Descargando base de datos de CheckM2 en: $CHECKM2_DB_DIR"
 mkdir -p "$CHECKM2_DB_DIR"
 conda activate checkm2
@@ -74,7 +72,7 @@ else
 fi
 conda deactivate
 
-# --- Exportar entornos exactos (reproducibilidad) ----------------------------
+# Exportar entornos exactos (reproducibilidad)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ENVS_DIR="$SCRIPT_DIR/envs"
 mkdir -p "$ENVS_DIR"

@@ -1,22 +1,20 @@
 #!/bin/bash
-# =============================================================================
 # 01_prep_bins.sh
-# -----------------------------------------------------------------------------
 # Prepara la carpeta de bins limpia y trazable para la Fase 1.
 #
-# FUENTE RECOMENDADA:
+# Fuente:
 #   C:\Tesis-EstelaRaimondi\Datos\Shotgun Analysis\bins completos\
 #   -> 97 genomas con nombres "bin-<N>-<muestra>.fasta" (p.ej. bin-1-49.fasta).
 #      El nombre YA codifica el bin y la muestra de origen (libreria 49-72), lo
 #      que preserva la trazabilidad necesaria para la Fase 2 (prevalencia).
 #
-# QUE HACE:
+# Que hace:
 #   - Copia los .fasta de genoma (patron bin-*-*.fasta) a la carpeta de salida,
 #     conservando el nombre original (limpio y unico).
 #   - Ignora los ensamblajes por muestra "<muestra>_mag.fasta" (no son bins).
 #   - Escribe bin_rename_map.tsv con: archivo, muestra, bin, n_contigs, long_bp.
 #
-# USO:
+# Uso:
 #   bash 01_prep_bins.sh <carpeta_origen> <carpeta_salida>
 # Ejemplo:
 #   bash 01_prep_bins.sh "/c/Tesis-EstelaRaimondi/Datos/Shotgun Analysis/bins completos" \
@@ -24,7 +22,7 @@
 #
 # Tambien acepta como origen el arbol por muestra ("Shotgun Analysis") y busca
 # recursivamente los bin-*-*.fasta.
-# =============================================================================
+
 set -euo pipefail
 
 SRC="${1:?Falta la carpeta de origen}"
