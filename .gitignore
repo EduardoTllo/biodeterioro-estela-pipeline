@@ -40,8 +40,10 @@ dbs/
 # Logs de SLURM
 fase1_*.out
 fase2_*.out
+fase3_*.out
 fase1_*.err
 fase2_*.err
+fase3_*.err
 slurm-*.out
 
 # Basura del SO / editores

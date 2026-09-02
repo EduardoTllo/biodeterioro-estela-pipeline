@@ -1,12 +1,18 @@
 # Fase 2 en Khipu: asignacion taxonomica y definicion de linajes (OE2)
 
 Toma los 21 genomas seleccionados en la Fase 1, los clasifica taxonomicamente,
-confirma su especie por ANI, los agrupa en linajes y prioriza los tres linajes
-mas prevalentes para la Fase 3. Produce un reporte del proceso.
+confirma su especie por ANI, los agrupa en linajes y los ordena por prevalencia
+espacial. Produce un reporte del proceso.
 
 Solo se analizan los genomas que superaron la Fase 1 (completitud > 70 %,
 contaminacion < 5 %). Los nombres `bin-<N>-<muestra>` conservan la muestra de
 origen, que es lo que permite calcular la prevalencia espacial.
+
+> **Nota.** El top 3 por prevalencia que produce esta fase ya **no** determina
+> que especies pasan al pangenoma. Desde la Fase 3 la seleccion se hace por
+> disponibilidad genomica publica (>= 10 genomas de calidad); ver
+> [README_fase3.md](README_fase3.md). La prevalencia sigue siendo un resultado de
+> la Fase 2 y se reporta como tal.
 
 ## Que hace (tesis, seccion 4.1.4)
 
