@@ -1,0 +1,22 @@
+Genoma	Muestra	Linaje	Representante	Tamano (Mb)	Contigs	N50 (kb)	GC (%)	Completitud (%)	Contaminacion (%)	Calidad CheckM2	Filo	Clase	Orden	Familia	Genero	Especie	Referencia GTDB	ANI (%)	AF (%)	Especie confirmada	MSA retenido (%)	Marcadores bac120
+bin-3-52	52	L1	no	5.18	204	45	66	98.97	0.58	Alta (>=90/<5)	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Burkholderiaceae	Telluria	Telluria timonae	GCF_000315425.1	99.96	99.2	si	82.7	100
+bin-6-50	50	L1	si	5.54	591	14.5	65	100	0.65	Alta (>=90/<5)	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Burkholderiaceae	Telluria	Telluria timonae	GCF_000315425.1	99.92	95.3	si	94.8	115
+bin-1-68	68	L2	no	2.47	50	82.9	57	100	1.79	Alta (>=90/<5)	Actinomycetota	Actinomycetes	Mycobacteriales	Mycobacteriaceae	Corynebacterium	NA	GCF_030826625.1	90.55	44.3	no	96.35	118
+bin-2-69	69	L2	si	2.48	61	76.3	57	99.99	0.18	Alta (>=90/<5)	Actinomycetota	Actinomycetes	Mycobacteriales	Mycobacteriaceae	Corynebacterium	NA	GCF_030826625.1	90.5	44	no	95.89	118
+bin-6-61	61	L3	si	4.79	30	288.3	46	100	0.74	Alta (>=90/<5)	Bacillota	Bacilli	Bacillales_B	DSM-18226	Bacillus_AB	Bacillus_AB infantis	GCF_000473245.1	98.22	89.60000000000001	si	92.15	111
+bin-3-64	64	L4	si	2.35	459	6.4	46	70.14	0.64	Media (>=50/<10)	Bacillota	Bacilli	Bacillales_A	Planococcaceae	Sporosarcina	NA	GCF_001531445.1	91.25	60.4	no	67.11	85
+bin-1-51	51	L5	si	4.73	51	189.4	53	100	0	Alta (>=90/<5)	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Enterobacteriaceae	Pantoea	NA	NA	NA	NA	NA	98.63	119
+bin-1-57	57	L6	si	4.03	22	480.1	66	99.99	3.23	Alta (>=90/<5)	Actinomycetota	Actinomycetes	Actinomycetales	Brevibacteriaceae	Brevibacterium	Brevibacterium sp021023135	GCF_021023135.1	98.31	91.5	si	96.78	118
+bin-1-59	59	L7	si	5.91	98	410.8	46	99.97	3.07	Alta (>=90/<5)	Bacillota	Bacilli	Paenibacillales	Paenibacillaceae	Paenibacillus	Paenibacillus sp001955535	GCF_001955535.1	99.99	94.6	si	89.91	109
+bin-4-52	52	L8	si	3.5	96	68.3	42	99.86	0.25	Alta (>=90/<5)	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Acinetobacter	Acinetobacter schindleri	GCF_000368625.1	98.03	80.7	si	93.58	113
+bin-5-60	60	L9	si	2.85	97	51.2	38	77.53	0.1	Media (>=50/<10)	Bacillota	Bacilli	Bacillales	Bacillaceae_H	Priestia	Priestia flexa	GCF_001591565.1	99.44	92.9	si	84.57	102
+bin-9-71	71	L10	si	1.83	346	6.6	43	85.09	2.13	Media (>=50/<10)	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Aristophania	NA	NA	NA	NA	NA	83.02	104
+bin-1-53	53	L11	si	2.48	30	289.3	32	99.84	0.12	Alta (>=90/<5)	Bacillota	Bacilli	Staphylococcales	Staphylococcaceae	Staphylococcus	Staphylococcus warneri_A	GCF_003491325.1	99.02	90.10000000000001	si	97.66	118
+bin-1-54	54	L12	si	4.31	49	152.8	41	92.25	0.01	Alta (>=90/<5)	Bacillota	Bacilli	Bacillales_B	DSM-1321	Peribacillus	Peribacillus frigoritolerans	GCF_001636405.1	97.2	87.9	si	68.86	83
+bin-2-63	63	L13	si	4.28	150	46.5	49	92.39	0.34	Alta (>=90/<5)	Bacillota	Bacilli	Bacillales_B	Bacillaceae_B	Rossellomorea	Rossellomorea marisflavi	GCF_001274775.1	98.53	92.60000000000001	si	69.41	84
+bin-1-64	64	L14	si	3.94	163	45.4	46	99.84	0.59	Alta (>=90/<5)	Bacillota	Bacilli	Bacillales	Bacillaceae	Bacillus	Bacillus licheniformis	GCF_000011645.1	99.75	98.5	si	97.26	118
+bin-2-53	53	L15	si	5.16	39	328.4	36	99.99	0.57	Alta (>=90/<5)	Bacillota	Bacilli	Bacillales	Bacillaceae	Metabacillus	Metabacillus halosaccharovorans	GCF_002019635.1	98.9	92	si	95.41	115
+bin-5-63	63	L16	si	2.76	90	48.1	41	72.46	0.05	Media (>=50/<10)	Bacillota	Bacilli	Bacillales	Bacillaceae	Bacillus	Bacillus altitudinis	GCF_000691145.1	98.19	93.7	si	58.05	70
+bin-2-57	57	L17	si	5.17	28	311.7	41	99.96	1.01	Alta (>=90/<5)	Bacillota	Bacilli	Bacillales_B	DSM-18226	Cytobacillus	Cytobacillus oceanisediminis	GCF_007830235.1	95.61	79.7	si	70.57	85
+bin-5-50	50	L18	si	3.47	1041	3.7	42	76.56	0.44	Media (>=50/<10)	Bacillota	Bacilli	Bacillales_B	DSM-18226	Cytobacillus	Cytobacillus firmus_B	GCF_023657595.1	98.08	84.7	si	56.98	74
+bin-2-58	58	L19	si	4.77	17	757.4	43	100	0.06	Alta (>=90/<5)	Bacillota	Bacilli	Bacillales_B	DSM-18226	Mesobacillus	Mesobacillus sp014856545	GCF_014856545.2	98.01	85.8	si	92.97	112

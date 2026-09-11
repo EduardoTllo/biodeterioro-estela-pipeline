@@ -1,0 +1,20 @@
+Linaje	Taxon (GTDB)	Filo	Nº genomas	Muestras	Prevalencia	Representante	Completitud rep. (%)	Contaminacion rep. (%)	Especie confirmada	Fase 3
+L1	Telluria timonae	Pseudomonadota	2	50, 52	2	bin-6-50	100	0.65	si	SI
+L2	Corynebacterium sp.	Actinomycetota	2	68, 69	2	bin-2-69	99.99	0.18	no	SI
+L3	Bacillus_AB infantis	Bacillota	1	61	1	bin-6-61	100	0.74	si	SI
+L4	Sporosarcina sp.	Bacillota	1	64	1	bin-3-64	70.14	0.64	no	no
+L5	Pantoea sp.	Pseudomonadota	1	51	1	bin-1-51	100	0	NA	no
+L6	Brevibacterium sp021023135	Actinomycetota	1	57	1	bin-1-57	99.99	3.23	si	no
+L7	Paenibacillus sp001955535	Bacillota	1	59	1	bin-1-59	99.97	3.07	si	no
+L8	Acinetobacter schindleri	Pseudomonadota	1	52	1	bin-4-52	99.86	0.25	si	no
+L9	Priestia flexa	Bacillota	1	60	1	bin-5-60	77.53	0.1	si	no
+L10	Aristophania sp.	Pseudomonadota	1	71	1	bin-9-71	85.09	2.13	NA	no
+L11	Staphylococcus warneri_A	Bacillota	1	53	1	bin-1-53	99.84	0.12	si	no
+L12	Peribacillus frigoritolerans	Bacillota	1	54	1	bin-1-54	92.25	0.01	si	no
+L13	Rossellomorea marisflavi	Bacillota	1	63	1	bin-2-63	92.39	0.34	si	no
+L14	Bacillus licheniformis	Bacillota	1	64	1	bin-1-64	99.84	0.59	si	no
+L15	Metabacillus halosaccharovorans	Bacillota	1	53	1	bin-2-53	99.99	0.57	si	no
+L16	Bacillus altitudinis	Bacillota	1	63	1	bin-5-63	72.46	0.05	si	no
+L17	Cytobacillus oceanisediminis	Bacillota	1	57	1	bin-2-57	99.96	1.01	si	no
+L18	Cytobacillus firmus_B	Bacillota	1	50	1	bin-5-50	76.56	0.44	si	no
+L19	Mesobacillus sp014856545	Bacillota	1	58	1	bin-2-58	100	0.06	si	no

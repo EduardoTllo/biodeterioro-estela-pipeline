@@ -1,0 +1,5 @@
+Grupo	n	Completitud (mediana)	Completitud (rango)	Contaminacion (mediana)	Contaminacion (max)	Tamano Mb (mediana)	Tamano Mb (rango)	GC % (mediana)	N50 kb (mediana)	Contigs (mediana)
+Bacillota	13	99.84	70.14-100.00	0.44	3.07	4.28	2.35-5.91	42	152.8	90
+Pseudomonadota	5	99.86	85.09-100.00	0.58	2.13	4.73	1.83-5.54	53	45	204
+Actinomycetota	3	99.99	99.99-100.00	1.79	3.23	2.48	2.47-4.03	57	82.9	50
+TOTAL	21	99.86	70.14-100.00	0.57	3.23	4.03	1.83-5.91	46	76.3	90

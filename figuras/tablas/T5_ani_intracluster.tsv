@@ -1,0 +1,3 @@
+Linaje	Taxon (GTDB)	Genoma A	Genoma B	ANI (%)	Cobertura del alineamiento (%)	Supera 95 % ANI
+L2	Corynebacterium sp.	bin-1-68	bin-2-69	99.96	97.1	si
+L1	Telluria timonae	bin-3-52	bin-6-50	99.78	85.2	si

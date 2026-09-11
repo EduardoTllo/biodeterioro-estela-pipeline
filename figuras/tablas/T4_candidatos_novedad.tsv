@@ -1,0 +1,6 @@
+genoma	muestra	linaje_id	filo	familia	genero	referencia	ani	af	classification_method	note
+bin-1-51	51	L5	Pseudomonadota	Enterobacteriaceae	Pantoea	NA	NA	NA	taxonomic classification defined by topology and ANI	classification based on placement in class-level tree
+bin-9-71	71	L10	Pseudomonadota	Acetobacteraceae	Aristophania	NA	NA	NA	taxonomic classification fully defined by topology	classification based on placement in class-level tree
+bin-2-69	69	L2	Actinomycetota	Mycobacteriaceae	Corynebacterium	GCF_030826625.1	90.5	44	taxonomic classification defined by topology and ANI	classification based on placement in class-level tree
+bin-1-68	68	L2	Actinomycetota	Mycobacteriaceae	Corynebacterium	GCF_030826625.1	90.55	44.3	taxonomic classification defined by topology and ANI	classification based on placement in class-level tree
+bin-3-64	64	L4	Bacillota	Planococcaceae	Sporosarcina	GCF_001531445.1	91.25	60.4	taxonomic classification defined by topology and ANI	classification based on placement in class-level tree
