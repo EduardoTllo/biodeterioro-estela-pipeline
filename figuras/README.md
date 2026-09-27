@@ -70,3 +70,27 @@ Todos los archivos que consumen los scripts viven en el repo:
    conteos son extraibles de los `.gbk` de Bakta y quedan pendientes.
 4. La prevalencia es por muestra y no por zona fisica de la estela; falta el
    mapeo de muestra a zona.
+
+## Fase 3 (OE3)
+
+Las figuras de la Fase 3 leen `results/fase3/`, que se trae de Khipu con
+`bin/export_fase3.sh` y `rsync` (ver [README_fase3.md](../README_fase3.md)).
+
+```bash
+Rscript figuras/R/f3_run_all.R
+```
+
+Requieren ademas `micropan` (ley de Heaps) y `phangorn` (enraizado en el punto
+medio):
+
+```r
+install.packages(c("micropan", "phangorn"))
+```
+
+| Script | Produce |
+|---|---|
+| `f3_00_setup.R` | Carga `00_setup.R`, las especies seleccionadas, las referencias finales y las paletas por categoria y habitat |
+| `f3_01_curvas_heaps.R` | `fig_f3_curvas_acumulacion` (pan y core, solo referencias) y `tab_f3_heaps.tsv` (alpha de Heaps; < 1 = abierto) |
+| `f3_02_posicion_bin.R` | `fig_f3_posicion_bin` (genes del bin por categoria; recuperacion del core vs completitud) y `tab_f3_resumen_pangenoma.tsv` |
+| `f3_03_arbol_core.R` | `fig_f3_arbol_core_<especie>` (arbol ML del core con el habitat de cada referencia y el bin destacado) |
+| `f3_04_exclusivos.R` | `fig_f3_exclusivos` (embudo F1-F6 y origen segun nr) y `tab_f3_embudo_exclusivos.tsv` |

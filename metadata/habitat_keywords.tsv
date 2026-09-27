@@ -1,0 +1,9 @@
+categoria	patron
+animal	\b(animal|cattle|bovine|cow|calf|pig|swine|porcine|chicken|poultry|avian|bird|fish|shrimp|insect|bee|honeybee|mosquito|termite|larva|rumen|mouse|mice|rat|horse|equine|dog|canine|sheep|ovine|goat|caprine|snail|oyster|coral|sponge|nematode|worm)
+clinico_humano	\b(human|homo sapiens|patient|clinical|hospital|blood|urine|feces|faeces|stool|sputum|wound|abscess|catheter|nasal|nasopharyn|oral|saliva|vagina|skin|kidney|pus|cerebrospinal|bronch|infant|neonat|biopsy|swab)
+petreo_arido	\b(rock|stone|granite|marble|limestone|sandstone|basalt|monument|heritage|mural|fresco|painting|building|facade|masonry|cave|desert|arid|dust|mine|mining|mineral|weathered|ruin|sculpture|statue|tomb|temple)
+alimento_industrial	\b(food|milk|cheese|dairy|meat|sausage|fermented|fermentation|kimchi|soy|natto|doenjang|bread|dough|beverage|juice|wine|beer|vinegar|tea|cocoa|coffee|honey|industrial|factory|probiotic|feed|silage|starter|brine|pickle)
+agua_sedimento	\b(water|marine|sea|ocean|lake|river|sediment|estuar|wastewater|sewage|sludge|hot spring|spring|pond|lagoon|saline|salt|hypersaline|mangrove|groundwater|aquifer|glacier|ice|snow|permafrost)
+planta	\b(plant|root|rhizosphere|leaf|leaves|phyllosphere|seed|endophyt|stem|flower|fruit|tree|maize|corn|wheat|tomato|potato|cotton|tobacco|grass|moss|lichen|algae|alga)
+suelo	\b(soil|compost|manure|humus|peat|farmland|field|agricultural|forest|garden)
+otro_ambiental	\b(environment|air|aerosol|clean ?room|spacecraft|space station|surface|oil|petroleum|hydrocarbon|contaminat|polluted|biofilm|pipeline|volcan|geothermal|radioactive)

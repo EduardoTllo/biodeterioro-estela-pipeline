@@ -14,7 +14,7 @@ la fraccion cultivable, provistos por el Laboratorio de Genomica Microbiana
 |---|---|---|---|
 | 1 | Control de calidad y seleccion de genomas (OE1) | Ejecutada | [`results/fase1/`](results/fase1/) |
 | 2 | Asignacion taxonomica y definicion de linajes (OE2) | Ejecutada | [`results/fase2/`](results/fase2/) |
-| 3 | Analisis pangenomico comparativo (OE3) | En curso (etapas 3.0-3.2) | - |
+| 3 | Analisis pangenomico comparativo (OE3) | Codigo completo; pendiente de ejecucion | [`results/fase3/`](results/fase3/) |
 | 4 | Potencial metabolico y de riesgo (OE4) | Pendiente | - |
 
 En la Fase 1, de 97 bins crudos 66 pasan el filtro por dominio (Tiara) y quedan
@@ -30,7 +30,11 @@ por prevalencia espacial. El cambio es de factibilidad: un pangenoma necesita un
 conjunto de referencia suficiente, y varios de los linajes mas prevalentes no lo
 tienen. La prevalencia espacial se mantiene como resultado de la Fase 2 y viaja
 como columna en la tabla de viabilidad, para dejar constancia de los casos en que
-los dos criterios discrepan. El detalle esta en [README_fase3.md](README_fase3.md).
+los dos criterios discrepan. Cada pangenoma se arma con hasta 50 referencias
+publicas (GTDB R220 + NCBI) mas el bin de la Estela, todo anotado con Bakta y
+agrupado con Panaroo; la particion core/shell/cloud se calcula solo con las
+referencias, y los genes candidatos a exclusivos de la Estela pasan por seis
+filtros de verificacion. El detalle esta en [README_fase3.md](README_fase3.md).
 
 ## Estructura del repositorio
 
@@ -48,16 +52,30 @@ los dos criterios discrepan. El detalle esta en [README_fase3.md](README_fase3.m
 ├── run_fase2.slurm              #   job SLURM de la Fase 2
 │
 ├── README_fase3.md              # guia de la Fase 3
-├── 03_censo_genomas.py          #   censo de disponibilidad y seleccion de especies
+├── 03_setup_fase3_khipu.sh      #   entornos (bakta, panaroo, iqtree, blast...) + BD
+├── 03_censo_genomas.py          #   censo de disponibilidad genomica (GTDB R220)
+├── 04_fetch_refs.sh             #   descarga de referencias (NCBI Datasets)
+├── 04_clasificar_refs.py        #   verificacion, prioridad/habitat, ranking, seleccion
+├── 04_drep_refs.slurm           #   dRep 99 % sobre las referencias
+├── 05_bakta_all.slurm           #   anotacion homogenea con Bakta (array)
+├── 06_panaroo.slurm             #   pangenoma con Panaroo + particion
+├── 06b_iqtree.slurm             #   arbol del core por especie
+├── 07_particion.py              #   control de Bakta y particion solo con referencias
+├── 08_exclusivos.py             #   filtros F1-F6 de genes exclusivos
+├── 08_exclusivos_local.slurm    #   F1-F4 (tblastn/blastn locales)
+├── 08_exclusivos_remoto.sh      #   F5-F6 (BLAST remoto contra nr/core_nt)
 │
 ├── bin/
 │   ├── summarize_phase1.py      # tablas y reporte de la Fase 1
-│   └── summarize_phase2.py      # tablas y reporte de la Fase 2
+│   ├── summarize_phase2.py      # tablas y reporte de la Fase 2
+│   └── export_fase3.sh          # reune los resultados versionables de la Fase 3
 │
 ├── figuras/                     # scripts en R para las figuras y tablas
 │
 ├── metadata/
-│   └── bin_provenance.tsv       # los 97 bins con su muestra de origen (49-72)
+│   ├── bin_provenance.tsv       # los 97 bins con su muestra de origen (49-72)
+│   ├── habitat_keywords.tsv     # patrones para clasificar la fuente de aislamiento
+│   └── paises_continentes.tsv   # pais -> continente y marca de Latinoamerica
 │
 ├── envs/                        # lock files de conda (versiones exactas)
 │
@@ -78,13 +96,11 @@ los dos criterios discrepan. El detalle esta en [README_fase3.md](README_fase3.m
     │   ├── phase2_genomeInfo.csv
     │   ├── phase2_versions.txt
     │   └── figuras_drep/                     # dendrogramas y graficos de dRep
-    └── fase3/
-        ├── phase3_censo_report.md
+    └── fase3/                                # (se llena al ejecutar la fase)
         ├── phase3_viabilidad.tsv             # decision de viabilidad por linaje
-        ├── phase3_censo_genomas.tsv          # censo completo por linaje
-        ├── phase3_genomas_candidatos.tsv     # accesiones que pasan el QC
-        ├── phase3_mapeo_ncbi.tsv             # mapeo GTDB<->NCBI
-        └── phase3_ncbi_counts.tsv            # conteos GenBank/RefSeq vigentes
+        ├── phase3_ranking_especies.tsv       # ranking por genomas no redundantes
+        ├── phase3_referencias_finales.tsv    # referencias de cada pangenoma
+        └── <especie>/                        # particion, arbol del core y exclusivos
 ```
 
 En `results/` se versionan solo tablas, reportes y arboles, que son la evidencia

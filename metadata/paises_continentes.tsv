@@ -1,0 +1,258 @@
+pais	continente	latam
+Argentina	America_Latina_Caribe	si
+Belize	America_Latina_Caribe	si
+Bolivia	America_Latina_Caribe	si
+Brazil	America_Latina_Caribe	si
+Chile	America_Latina_Caribe	si
+Colombia	America_Latina_Caribe	si
+Costa Rica	America_Latina_Caribe	si
+Cuba	America_Latina_Caribe	si
+Dominican Republic	America_Latina_Caribe	si
+Ecuador	America_Latina_Caribe	si
+El Salvador	America_Latina_Caribe	si
+French Guiana	America_Latina_Caribe	si
+Guatemala	America_Latina_Caribe	si
+Guyana	America_Latina_Caribe	si
+Haiti	America_Latina_Caribe	si
+Honduras	America_Latina_Caribe	si
+Jamaica	America_Latina_Caribe	si
+Mexico	America_Latina_Caribe	si
+Nicaragua	America_Latina_Caribe	si
+Panama	America_Latina_Caribe	si
+Paraguay	America_Latina_Caribe	si
+Peru	America_Latina_Caribe	si
+Puerto Rico	America_Latina_Caribe	si
+Suriname	America_Latina_Caribe	si
+Trinidad and Tobago	America_Latina_Caribe	si
+Uruguay	America_Latina_Caribe	si
+Venezuela	America_Latina_Caribe	si
+Barbados	America_Latina_Caribe	si
+Bahamas	America_Latina_Caribe	si
+Guadeloupe	America_Latina_Caribe	si
+Martinique	America_Latina_Caribe	si
+Grenada	America_Latina_Caribe	si
+Saint Lucia	America_Latina_Caribe	si
+Dominica	America_Latina_Caribe	si
+Antigua and Barbuda	America_Latina_Caribe	si
+Saint Kitts and Nevis	America_Latina_Caribe	si
+Saint Vincent and the Grenadines	America_Latina_Caribe	si
+Aruba	America_Latina_Caribe	si
+Curacao	America_Latina_Caribe	si
+Cayman Islands	America_Latina_Caribe	si
+Virgin Islands	America_Latina_Caribe	si
+British Virgin Islands	America_Latina_Caribe	si
+Falkland Islands (Islas Malvinas)	America_Latina_Caribe	si
+USA	America_del_Norte	no
+Canada	America_del_Norte	no
+Greenland	America_del_Norte	no
+Bermuda	America_del_Norte	no
+Saint Pierre and Miquelon	America_del_Norte	no
+Albania	Europa	no
+Andorra	Europa	no
+Austria	Europa	no
+Belarus	Europa	no
+Belgium	Europa	no
+Bosnia and Herzegovina	Europa	no
+Bulgaria	Europa	no
+Croatia	Europa	no
+Cyprus	Europa	no
+Czechia	Europa	no
+Czech Republic	Europa	no
+Denmark	Europa	no
+Estonia	Europa	no
+Faroe Islands	Europa	no
+Finland	Europa	no
+France	Europa	no
+Germany	Europa	no
+Gibraltar	Europa	no
+Greece	Europa	no
+Hungary	Europa	no
+Iceland	Europa	no
+Ireland	Europa	no
+Isle of Man	Europa	no
+Italy	Europa	no
+Jersey	Europa	no
+Guernsey	Europa	no
+Kosovo	Europa	no
+Latvia	Europa	no
+Liechtenstein	Europa	no
+Lithuania	Europa	no
+Luxembourg	Europa	no
+Malta	Europa	no
+Moldova	Europa	no
+Monaco	Europa	no
+Montenegro	Europa	no
+Netherlands	Europa	no
+North Macedonia	Europa	no
+Macedonia	Europa	no
+Norway	Europa	no
+Poland	Europa	no
+Portugal	Europa	no
+Romania	Europa	no
+Russia	Europa	no
+San Marino	Europa	no
+Serbia	Europa	no
+Slovakia	Europa	no
+Slovenia	Europa	no
+Spain	Europa	no
+Svalbard	Europa	no
+Sweden	Europa	no
+Switzerland	Europa	no
+Ukraine	Europa	no
+United Kingdom	Europa	no
+Afghanistan	Asia	no
+Armenia	Asia	no
+Azerbaijan	Asia	no
+Bahrain	Asia	no
+Bangladesh	Asia	no
+Bhutan	Asia	no
+Brunei	Asia	no
+Cambodia	Asia	no
+China	Asia	no
+Georgia	Asia	no
+Hong Kong	Asia	no
+India	Asia	no
+Indonesia	Asia	no
+Iran	Asia	no
+Iraq	Asia	no
+Israel	Asia	no
+Japan	Asia	no
+Jordan	Asia	no
+Kazakhstan	Asia	no
+Kuwait	Asia	no
+Kyrgyzstan	Asia	no
+Laos	Asia	no
+Lebanon	Asia	no
+Macau	Asia	no
+Malaysia	Asia	no
+Maldives	Asia	no
+Mongolia	Asia	no
+Myanmar	Asia	no
+Nepal	Asia	no
+North Korea	Asia	no
+Oman	Asia	no
+Pakistan	Asia	no
+Palestine	Asia	no
+Philippines	Asia	no
+Qatar	Asia	no
+Saudi Arabia	Asia	no
+Singapore	Asia	no
+South Korea	Asia	no
+Sri Lanka	Asia	no
+Syria	Asia	no
+Taiwan	Asia	no
+Tajikistan	Asia	no
+Thailand	Asia	no
+Timor-Leste	Asia	no
+Turkey	Asia	no
+Turkmenistan	Asia	no
+United Arab Emirates	Asia	no
+Uzbekistan	Asia	no
+Viet Nam	Asia	no
+Vietnam	Asia	no
+Yemen	Asia	no
+Algeria	Africa	no
+Angola	Africa	no
+Benin	Africa	no
+Botswana	Africa	no
+Burkina Faso	Africa	no
+Burundi	Africa	no
+Cameroon	Africa	no
+Cape Verde	Africa	no
+Cabo Verde	Africa	no
+Central African Republic	Africa	no
+Chad	Africa	no
+Comoros	Africa	no
+Cote d'Ivoire	Africa	no
+Democratic Republic of the Congo	Africa	no
+Republic of the Congo	Africa	no
+Djibouti	Africa	no
+Egypt	Africa	no
+Equatorial Guinea	Africa	no
+Eritrea	Africa	no
+Eswatini	Africa	no
+Swaziland	Africa	no
+Ethiopia	Africa	no
+Gabon	Africa	no
+Gambia	Africa	no
+Ghana	Africa	no
+Guinea	Africa	no
+Guinea-Bissau	Africa	no
+Kenya	Africa	no
+Lesotho	Africa	no
+Liberia	Africa	no
+Libya	Africa	no
+Madagascar	Africa	no
+Malawi	Africa	no
+Mali	Africa	no
+Mauritania	Africa	no
+Mauritius	Africa	no
+Morocco	Africa	no
+Mozambique	Africa	no
+Namibia	Africa	no
+Niger	Africa	no
+Nigeria	Africa	no
+Rwanda	Africa	no
+Reunion	Africa	no
+Senegal	Africa	no
+Seychelles	Africa	no
+Sierra Leone	Africa	no
+Somalia	Africa	no
+South Africa	Africa	no
+South Sudan	Africa	no
+Sudan	Africa	no
+Tanzania	Africa	no
+Togo	Africa	no
+Tunisia	Africa	no
+Uganda	Africa	no
+Western Sahara	Africa	no
+Zambia	Africa	no
+Zimbabwe	Africa	no
+Mayotte	Africa	no
+Saint Helena	Africa	no
+Australia	Oceania	no
+Fiji	Oceania	no
+French Polynesia	Oceania	no
+Guam	Oceania	no
+Kiribati	Oceania	no
+Marshall Islands	Oceania	no
+Micronesia	Oceania	no
+Nauru	Oceania	no
+New Caledonia	Oceania	no
+New Zealand	Oceania	no
+Palau	Oceania	no
+Papua New Guinea	Oceania	no
+Samoa	Oceania	no
+American Samoa	Oceania	no
+Solomon Islands	Oceania	no
+Tonga	Oceania	no
+Tuvalu	Oceania	no
+Vanuatu	Oceania	no
+Northern Mariana Islands	Oceania	no
+Cook Islands	Oceania	no
+Norfolk Island	Oceania	no
+Antarctica	Antartida	no
+South Georgia and the South Sandwich Islands	Antartida	no
+Heard Island and McDonald Islands	Antartida	no
+Bouvet Island	Antartida	no
+Atlantic Ocean	Oceano	no
+Pacific Ocean	Oceano	no
+Indian Ocean	Oceano	no
+Arctic Ocean	Oceano	no
+Southern Ocean	Oceano	no
+Mediterranean Sea	Oceano	no
+Baltic Sea	Oceano	no
+North Sea	Oceano	no
+Red Sea	Oceano	no
+Black Sea	Oceano	no
+Caribbean Sea	Oceano	no
+South China Sea	Oceano	no
+East China Sea	Oceano	no
+Sea of Japan	Oceano	no
+Tasman Sea	Oceano	no
+Coral Sea	Oceano	no
+Ross Sea	Oceano	no
+Arabian Sea	Oceano	no
+Bay of Bengal	Oceano	no
+Gulf of Mexico	Oceano	no
+Persian Gulf	Oceano	no

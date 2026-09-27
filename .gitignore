@@ -28,6 +28,9 @@ results/**
 !results/**/*.txt
 !results/**/*.csv
 !results/**/*.tree
+# Fase 3: matriz de presencia del pangenoma (solo referencias) y arbol de IQ-TREE.
+!results/**/*.Rtab
+!results/**/*.treefile
 # Figuras generadas por las herramientas (dendrogramas de dRep, etc.).
 # Son pequenas (decenas de KB) y son evidencia visual del analisis.
 !results/**/*.pdf

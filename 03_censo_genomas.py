@@ -11,11 +11,12 @@ Solo biblioteca estandar (sin pandas), para correr con el python de cualquier
 entorno conda del cluster Khipu.
 
 Criterio de seleccion (acordado con asesoria; reemplaza al de prevalencia
-espacial de la Fase 2): DISPONIBILIDAD GENOMICA. El umbral es de >= 15 genomas,
-que es el minimo que PPanGGOLiN recomienda para que su particionado estadistico
-en core/shell/cloud sea confiable (Gautreau et al. 2020, PLoS Comput Biol 16(3):
-e1007732). Se aplica al conteo DEPURADO (post-QC y post-desreplicacion) y no al
-bruto de NCBI: una especie con 17 MAGs fragmentados no es viable, y los genomas
+espacial de la Fase 2): DISPONIBILIDAD GENOMICA. El umbral es de >= 15 genomas.
+La cifra se apoya en la recomendacion de Gautreau et al. 2020 (PLoS Comput Biol
+16(3):e1007732) de contar con al menos 15 genomas para particionar un pangenoma
+de forma confiable; se cita como referencia bibliografica, no como herramienta
+(el pangenoma se construye solo con Panaroo). Se aplica al conteo DEPURADO
+(post-QC y post-desreplicacion) y no al bruto de NCBI: una especie con 17 MAGs fragmentados no es viable, y los genomas
 redundantes inflan el core de forma artificial (Guerra 2026, Bioinform Adv 6(1):
 vbag069).
 
@@ -23,7 +24,8 @@ Subcomandos:
   censo   Cruza phase2_selection.tsv con el metadata de GTDB (bac120_metadata_r220.tsv)
           y produce, por linaje: mapeo a NCBI Taxonomy, tamano del cluster de
           especie, conteo RefSeq/GenBank, conteo post-QC y habitats representados.
-          Emite ademas la lista de accesiones candidatas que consume 04_fetch_refs.sh.
+          Emite ademas la lista de accesiones candidatas que consumen
+          04_clasificar_refs.py y 04_fetch_refs.sh.
           NO requiere internet.
   ncbi    Consulta el CLI de NCBI Datasets para los conteos GenBank/RefSeq vigentes.
           REQUIERE INTERNET -> correr en el nodo de login de Khipu.
@@ -57,7 +59,7 @@ DEF_MIN_COMPLETITUD = 95.0
 DEF_MAX_CONTAMINACION = 5.0
 DEF_MAX_CONTIGS = 300
 DEF_UMBRAL = 15          # minimo de genomas post-QC para declarar viabilidad
-                         # (minimo recomendado por PPanGGOLiN para particionar)
+                         # (Gautreau et al. 2020; ver docstring)
 DEF_TOPE = 50            # tope de genomas por especie (computo + sesgo clonal)
 
 # Categorias de NCBI que indican que el genoma NO proviene de un aislado.
@@ -218,6 +220,9 @@ def resolver_columnas(cabecera):
         "isolation_source":   ["ncbi_isolation_source"],
         "representative":     ["gtdb_representative"],
         "genbank_acc":        ["ncbi_genbank_assembly_accession"],
+        "country":            ["ncbi_country"],
+        "type_designation":   ["gtdb_type_designation_ncbi_taxa"],
+        "ncbi_date":          ["ncbi_date"],
     }
     resueltas, faltantes = {}, []
     for logico, opciones in alternativas.items():
@@ -278,6 +283,9 @@ def escanear_metadata(path, especies_objetivo):
                 "genome_category": val(fila, "genome_category"),
                 "isolation_source": val(fila, "isolation_source"),
                 "representative": val(fila, "representative"),
+                "country": val(fila, "country"),
+                "type_designation": val(fila, "type_designation"),
+                "ncbi_date": val(fila, "ncbi_date"),
             })
     return genomas
 
@@ -437,6 +445,9 @@ def cmd_censo(args):
                 "isolation_source": g["isolation_source"],
                 "representante_gtdb": g["representative"],
                 "fuente": "RefSeq" if es_refseq(g) else "GenBank",
+                "ncbi_country": g["country"],
+                "tipo_designacion": g["type_designation"],
+                "ncbi_date": g["ncbi_date"],
             })
 
     os.makedirs(args.outdir, exist_ok=True)
@@ -458,7 +469,8 @@ def cmd_censo(args):
                  ["linaje_id", "especie_gtdb", "accession_gtdb", "accession_ncbi",
                   "organismo", "assembly_level", "completitud", "contaminacion",
                   "contigs", "n50", "genome_size", "isolation_source",
-                  "representante_gtdb", "fuente"])
+                  "representante_gtdb", "fuente", "ncbi_country",
+                  "tipo_designacion", "ncbi_date"])
     escribir_tsv(p_map, filas,
                  ["linaje_id", "especie_gtdb", "ncbi_especie_esperada",
                   "ncbi_especie", "ncbi_taxid", "acuerdo_mapeo",
@@ -587,13 +599,14 @@ def cmd_tabla(args):
         })
 
     # Ranking por disponibilidad depurada. El orden es PRELIMINAR: el definitivo
-    # se fija tras la desreplicacion a 99 % ANI en 04_fetch_refs.sh, porque el
-    # conteo bruto premia a las especies clinicas/industriales sobresecuenciadas.
+    # se fija tras la desreplicacion a 99 % ANI (04_clasificar_refs.py seleccionar),
+    # porque el conteo bruto premia a las especies clinicas/industriales
+    # sobresecuenciadas. Con --top 0 (defecto) todas las viables pasan a la descarga.
     viables = sorted([f for f in filas if f["viabilidad_pangenoma"] == "Si"],
                      key=lambda f: -f["_n"])
     for i, f in enumerate(viables, 1):
         f["ranking_disponibilidad"] = i
-        f["seleccion_fase3"] = "Si" if i <= args.top else "No"
+        f["seleccion_fase3"] = "Si" if (args.top <= 0 or i <= args.top) else "No"
     for f in filas:
         f.setdefault("ranking_disponibilidad", "NA")
         f.setdefault("seleccion_fase3", "No")
@@ -640,7 +653,9 @@ def cmd_tabla(args):
                 f["ncbi_especie"], f["ncbi_taxid"], f["n_genbank"], f["n_refseq"],
                 f["n_cluster_gtdb"], f["n_postqc"], f["prevalencia_espacial"],
                 f["viabilidad_pangenoma"]))
-        w("\n## Especies seleccionadas para el analisis pangenomico\n\n")
+        w("\n## Especies que pasan a la descarga (ranking preliminar)\n\n")
+        w("El top-3 definitivo se fija tras la desreplicacion al 99 % ANI\n"
+          "(04_clasificar_refs.py seleccionar).\n\n")
         if seleccionadas:
             for f in seleccionadas:
                 w("%s. **%s** (%s) - %s genomas post-QC, %s para el pangenoma; "
@@ -665,7 +680,8 @@ def cmd_tabla(args):
               "  escindida, el total esta inflado): %s. Usar el tamano del cluster GTDB.\n"
               % ", ".join("%s (%s)" % (f["linaje_id"], f["especie_gtdb"]) for f in incomp))
         w("- El ranking es PRELIMINAR: el orden definitivo se fija tras la desreplicacion\n"
-          "  a 99 % ANI (04_fetch_refs.sh), que mide diversidad de cepas no redundante.\n")
+          "  a 99 % ANI (04_drep_refs.slurm y 04_clasificar_refs.py seleccionar), que\n"
+          "  mide diversidad de cepas no redundante.\n")
         w("- Los bins propios son MAGs (70-100 %% de completitud) frente a aislados al\n"
           "  >= %.0f %%. Las conclusiones sobre PRESENCIA de genes son validas; las de\n"
           "  AUSENCIA no lo son sin controlar por la completitud del MAG.\n"
@@ -724,8 +740,9 @@ def main():
                     help="minimo de genomas post-QC para viabilidad (def: %d)" % DEF_UMBRAL)
     p3.add_argument("--tope", type=int, default=DEF_TOPE,
                     help="maximo de genomas por pangenoma (def: %d)" % DEF_TOPE)
-    p3.add_argument("--top", type=int, default=3,
-                    help="cuantas especies seleccionar para la Fase 3 (def: 3)")
+    p3.add_argument("--top", type=int, default=0,
+                    help="cuantas especies viables pasan a la descarga; 0 = todas "
+                         "(def: 0). El top-3 definitivo se fija tras el dRep al 99%%")
     p3.set_defaults(func=cmd_tabla)
 
     args = ap.parse_args()
