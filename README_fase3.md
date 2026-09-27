@@ -7,7 +7,7 @@ conocida del taxon.
 
 ## Criterio de seleccion
 
-**Disponibilidad genomica publica**, con un umbral de **>= 10 genomas** de calidad
+**Disponibilidad genomica publica**, con un umbral de **>= 15 genomas** de calidad
 adecuada por especie.
 
 Este criterio reemplaza al de prevalencia espacial que la Fase 2 usaba para
@@ -17,9 +17,25 @@ tienen. La prevalencia espacial se sigue calculando y reportando como resultado
 de la Fase 2, y aparece como columna en la tabla de viabilidad para dejar
 constancia de los casos en que ambos criterios discrepan.
 
+### De donde sale el 15
+
+El numero no es arbitrario. PPanGGOLiN, la herramienta con la que se particiona el
+pangenoma en core, shell y cloud, recomienda de forma explicita un minimo de **15
+genomas con variacion genomica real** para que su modelo estadistico entregue una
+particion confiable (Gautreau et al. 2020, *PLoS Comput Biol* 16(3):e1007732). Por
+debajo de esa cifra el paradigma clasico core/accesorio sigue siendo calculable a
+partir de 5 genomas (Tettelin et al. 2005, *PNAS* 102(39):13950-13955), pero la
+asignacion de categorias pierde soporte estadistico.
+
+Una version previa de este documento fijaba el umbral en 10 genomas. Ese valor no
+tenia respaldo bibliografico y fue corregido.
+
 El umbral se aplica sobre el conteo **post-QC**, no sobre el conteo bruto de
-NCBI. Una especie con 12 MAGs fragmentados no es viable; una con 11 aislados
-completos si lo es.
+NCBI. Una especie con 20 MAGs fragmentados no es viable; una con 16 aislados
+completos si lo es. Por el mismo motivo el conteo se hace sobre genomas ya
+desreplicados: incluir cepas casi identicas infla el core de forma artificial y
+puede hacer parecer cerrado un pangenoma abierto (Guerra 2026, *Bioinform Adv*
+6(1):vbag069).
 
 ## Etapas
 
@@ -27,7 +43,7 @@ completos si lo es.
 |---|---|---|
 | 3.0 Censo de disponibilidad | `03_censo_genomas.py censo` + metadata de GTDB R220 | Mapeo GTDB<->NCBI, tamano del cluster de especie, conteo RefSeq/GenBank |
 | 3.1 Filtro de calidad | metadata de GTDB (CheckM2) | Completitud >= 95 %, contaminacion <= 5 %, <= 300 contigs, solo aislados |
-| 3.2 Seleccion de especies diana | `03_censo_genomas.py tabla` | Umbral >= 10 genomas post-QC; ranking por disponibilidad; tope de 50 genomas |
+| 3.2 Seleccion de especies diana | `03_censo_genomas.py tabla` | Umbral >= 15 genomas post-QC; ranking por disponibilidad; tope de 50 genomas |
 | 3.3 Anotacion homogenea | Bakta | Misma version y misma BD para referencias y bins propios |
 | 3.4 Pangenoma | Panaroo (`--clean-mode moderate`) + PPanGGOLiN | Core >= 95 %, shell 15-95 %, cloud < 15 % |
 | 3.5 Analisis | scripts | Curvas de acumulacion, posicion del MAG propio, genes exclusivos |
@@ -136,7 +152,7 @@ el script avisa y sigue con las demas en vez de abortar.
 ### 4) Tabla de viabilidad y seleccion
 
 ```bash
-python 03_censo_genomas.py tabla --outdir results/fase3 --umbral 10 --top 3
+python 03_censo_genomas.py tabla --outdir results/fase3 --umbral 15 --top 3
 ```
 
 `--umbral` fija el minimo de genomas post-QC, `--tope` el maximo de genomas por

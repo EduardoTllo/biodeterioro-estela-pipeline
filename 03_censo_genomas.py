@@ -11,9 +11,13 @@ Solo biblioteca estandar (sin pandas), para correr con el python de cualquier
 entorno conda del cluster Khipu.
 
 Criterio de seleccion (acordado con asesoria; reemplaza al de prevalencia
-espacial de la Fase 2): DISPONIBILIDAD GENOMICA. El umbral de >= 10 genomas se
-aplica al conteo DEPURADO (post-QC), no al conteo bruto de NCBI: una especie con
-12 MAGs fragmentados no es viable, una con 11 aislados completos si lo es.
+espacial de la Fase 2): DISPONIBILIDAD GENOMICA. El umbral es de >= 15 genomas,
+que es el minimo que PPanGGOLiN recomienda para que su particionado estadistico
+en core/shell/cloud sea confiable (Gautreau et al. 2020, PLoS Comput Biol 16(3):
+e1007732). Se aplica al conteo DEPURADO (post-QC y post-desreplicacion) y no al
+bruto de NCBI: una especie con 17 MAGs fragmentados no es viable, y los genomas
+redundantes inflan el core de forma artificial (Guerra 2026, Bioinform Adv 6(1):
+vbag069).
 
 Subcomandos:
   censo   Cruza phase2_selection.tsv con el metadata de GTDB (bac120_metadata_r220.tsv)
@@ -52,7 +56,8 @@ from datetime import datetime
 DEF_MIN_COMPLETITUD = 95.0
 DEF_MAX_CONTAMINACION = 5.0
 DEF_MAX_CONTIGS = 300
-DEF_UMBRAL = 10          # minimo de genomas post-QC para declarar viabilidad
+DEF_UMBRAL = 15          # minimo de genomas post-QC para declarar viabilidad
+                         # (minimo recomendado por PPanGGOLiN para particionar)
 DEF_TOPE = 50            # tope de genomas por especie (computo + sesgo clonal)
 
 # Categorias de NCBI que indican que el genoma NO proviene de un aislado.

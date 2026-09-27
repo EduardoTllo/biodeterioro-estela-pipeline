@@ -10,7 +10,7 @@ origen, que es lo que permite calcular la prevalencia espacial.
 
 > **Nota.** El top 3 por prevalencia que produce esta fase ya **no** determina
 > que especies pasan al pangenoma. Desde la Fase 3 la seleccion se hace por
-> disponibilidad genomica publica (>= 10 genomas de calidad); ver
+> disponibilidad genomica publica (>= 15 genomas de calidad); ver
 > [README_fase3.md](README_fase3.md). La prevalencia sigue siendo un resultado de
 > la Fase 2 y se reporta como tal.
 

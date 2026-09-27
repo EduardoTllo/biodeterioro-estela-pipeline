@@ -25,7 +25,7 @@ son L1 *Telluria timonae* (muestras 50 y 52), L2 *Corynebacterium* sp. (68 y 69)
 y L3 *Bacillus_AB infantis* (61).
 
 La Fase 3 selecciona las especies para el analisis pangenomico por
-**disponibilidad genomica publica**, con un umbral de 10 genomas de calidad, y no
+**disponibilidad genomica publica**, con un umbral de 15 genomas de calidad, y no
 por prevalencia espacial. El cambio es de factibilidad: un pangenoma necesita un
 conjunto de referencia suficiente, y varios de los linajes mas prevalentes no lo
 tienen. La prevalencia espacial se mantiene como resultado de la Fase 2 y viaja
