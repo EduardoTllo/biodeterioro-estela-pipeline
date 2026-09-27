@@ -1,0 +1,910 @@
+\chapter{PRUEBAS Y RESULTADOS}
+
+% ======================================================================
+% CAPITULO VII - PRUEBAS Y RESULTADOS
+% Estructura exigida por la guia: 7.1 Plan de pruebas, 7.2 Analisis de
+% resultados, 7.3 Verificacion de especificaciones, 7.4 Verificacion de
+% restricciones. Alcance: Fases 1 y 2 (OE1 y OE2).
+%
+% El texto de las secciones 7.2.1 y 7.2.2 proviene del capitulo de
+% resultados previo y se conserva sin cambios; solo se rebajo el nivel
+% de los encabezados para acomodarlo dentro de 7.2.
+%
+% Figuras requeridas en images/ (copiar desde fase1_khipu/figuras/figs/):
+%   fig1_embudo_seleccion.pdf      fig2_calidad_genomica.pdf
+%   fig3_arbol_filogenomico.pdf    fig4_matriz_mash.pdf
+%   fig5_novedad_taxonomica.pdf    fig6_prevalencia_linajes.pdf
+%   fig7_composicion_taxonomica.pdf
+% ======================================================================
+
+Este capítulo presenta el desempeño del flujo bioinformático diseñado en el
+Capítulo VI. Primero se define bajo qué condiciones se probó el flujo. Luego se
+exponen los resultados obtenidos en las Fases, junto con los ajustes de
+diseño que esos resultados obligaron a realizar. Por último se verifica si la
+solución cumple las especificaciones técnicas y las restricciones del proyecto.
+
+\section{Plan de pruebas de la solución}
+
+El flujo diseñado no es un cálculo cerrado. Sus resultados dependen de umbrales
+numéricos que el equipo eligió. Por ese motivo la validación no consiste solo en
+ejecutar el flujo una vez. Consiste en ejecutarlo con una configuración de
+referencia y luego comprobar cuánto cambian los resultados si esos umbrales se
+mueven.
+
+Esta sección define tres cosas. Primero, la configuración de referencia o caso
+base. Segundo, las variables que se midieron en cada etapa. Tercero, los
+escenarios alternativos con los que se evaluó la sensibilidad del diseño.
+
+\subsection{Caso base}
+
+El caso base es la configuración con la que se ejecutaron las dos fases en el
+clúster Khipu. Corresponde a los trabajos SLURM 49286 (Fase 1) y 49316
+(Fase 2). Todos los resultados de la Sección 7.2 provienen de esta
+configuración, salvo los del análisis de sensibilidad, que se identifican de
+forma explícita. La Tabla~\ref{tab:caso_base} resume sus parámetros.
+
+\begin{table}[H]
+\centering
+\small
+\caption[Parámetros del caso base]{Parámetros operativos del caso base con el
+que se ejecutaron las Fases 1 y 2.}
+\label{tab:caso_base}
+\makebox[\textwidth][c]{%
+\begin{tabular}{llll}
+\toprule
+\textbf{Etapa} & \textbf{Parámetro} & \textbf{Valor} & \textbf{Herramienta} \\
+\midrule
+Entrada            & Bins de partida                & 97 (22 librerías)      & --- \\
+Filtrado de dominio & Longitud mínima de contig      & 3000 bp                & Tiara \\
+Filtrado de dominio & Criterio de decisión           & dominio mayoritario    & Tiara \\
+Calidad genómica   & Completitud                    & $> 70\%$               & CheckM2 \\
+Calidad genómica   & Contaminación                  & $< 5\%$                & CheckM2 \\
+Clasificación      & Base de datos                  & GTDB R220              & GTDB-Tk 2.6.1 \\
+Confirmación de especie & ANI                       & $\ge 95\%$             & FastANI \\
+Confirmación de especie & Fracción alineada (AF)    & $\ge 65\%$             & FastANI \\
+Definición de linaje & Umbral primario / secundario  & 0.90 / 0.95            & dRep \\
+Cómputo            & Núcleos, memoria, tiempo       & 32, 98 GB, 24 h        & SLURM \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Variables medidas}
+
+En cada etapa del flujo se registró un conjunto de variables de respuesta. Estas
+variables son las que permiten juzgar si la etapa funcionó. La
+Tabla~\ref{tab:variables} las organiza por etapa.
+
+\begin{table}[H]
+\centering
+\small
+\caption[Variables medidas en cada etapa]{Variables de respuesta registradas en
+cada etapa del flujo.}
+\label{tab:variables}
+\makebox[\textwidth][c]{%
+\begin{tabular}{ll}
+\toprule
+\textbf{Etapa} & \textbf{Variables medidas} \\
+\midrule
+Filtrado de dominio & Número de bins retenidos; porcentaje de longitud asignada \\
+                    & a cada dominio en cada bin \\
+Calidad genómica    & Número de genomas retenidos; completitud y contaminación; \\
+                    & motivo de rechazo; número de contigs, N50, tamaño y GC \\
+Clasificación       & Número de filos, órdenes y géneros; número de genomas con \\
+                    & especie confirmada; ANI y AF frente a la referencia más próxima \\
+Desreplicación      & Número de linajes; ANI y cobertura dentro de cada clúster \\
+Prevalencia         & Número de muestras distintas en que aparece cada linaje \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Escenarios de sensibilidad}
+
+Los umbrales del caso base son decisiones de diseño y no constantes físicas. Un
+umbral distinto habría producido un conjunto de genomas distinto. Para medir esa
+dependencia se repitió la selección con otros valores y se contó cuántos genomas
+y cuántos linajes quedaban en cada caso.
+
+Estos escenarios no requirieron volver a ejecutar el flujo en el clúster. Las
+herramientas del caso base ya entregan, para cada genoma, el valor numérico
+sobre el que actúa cada filtro. La selección se recalculó sobre esas tablas de
+salida. El procedimiento es equivalente porque los filtros son comparaciones
+directas sobre valores ya calculados. La Tabla~\ref{tab:escenarios} detalla los
+cinco escenarios evaluados.
+
+\begin{table}[H]
+\centering
+\small
+\caption[Escenarios de sensibilidad]{Escenarios de sensibilidad evaluados sobre
+los resultados del caso base.}
+\label{tab:escenarios}
+\makebox[\textwidth][c]{%
+\begin{tabular}{llll}
+\toprule
+\textbf{Escenario} & \textbf{Variable manipulada} & \textbf{Valores} & \textbf{Variable medida} \\
+\midrule
+E1 & Umbral de completitud     & 50, 60, 70, 80, 90, 95\%   & Genomas retenidos \\
+E2 & Umbral de contaminación   & 1, 3, 5, 10\%              & Genomas retenidos \\
+E3 & Criterio de dominio       & mayoría simple; 25 a 90\% & Bins retenidos \\
+   &                           & de longitud procariota     &  \\
+E4 & Umbral de ANI de linaje   & 95, 98, 99, 99.5\%         & Linajes definidos \\
+E5 & Continuidad del ensamblaje & sin filtro; $\le 300$ contigs & Genomas retenidos \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\section{Análisis de los resultados de las pruebas}
+
+Esta sección presenta los resultados de las dos fases ejecutadas. Las
+Secciones 7.2.1 y 7.2.2 exponen los resultados del caso base. La Sección 7.2.3
+evalúa cuánto dependen esos resultados de los umbrales elegidos. La
+Sección 7.2.4 documenta los dos ajustes de diseño que los resultados obligaron a
+realizar.
+
+\subsection{Resultados de la Fase 1: control de calidad y selección de genomas (OE1)}
+
+La Fase 1 se ejecutó en el clúster Khipu mediante el controlador
+\texttt{run\_fase1.slurm} (trabajo SLURM 49286), sobre los 97 bins genómicos
+crudos procedentes de las 22 librerías Illumina que recuperaron material
+ensamblable (Tabla~\ref{tab:bins}). El flujo aplicó dos filtros secuenciales e
+independientes: primero una discriminación por dominio con Tiara y después una
+estimación de calidad genómica con CheckM2. El orden no es intercambiable, ya
+que las métricas de completitud y contaminación de CheckM2 se calculan sobre
+marcadores procariotas y carecen de sentido en un ensamblaje
+mayoritariamente eucariota.
+
+\subsubsection{Depuración secuencial del conjunto de bins}
+
+El filtrado por dominio descartó 31 de los 97 bins, cuya mayoría se
+clasificó como eucariota u organelar. Este resultado era esperable dado el
+origen de las muestras: una superficie pétrea expuesta a la intemperie acumula
+material fúngico, algal y vegetal que el ensamblaje por muestra no separa del
+componente procariota. Casos como \texttt{bin-1-55}, con 34.2 Mb repartidos en
+247 contigs, corresponden con claridad a un genoma eucariota parcialmente
+reconstruido y no a un genoma bacteriano contaminado.
+
+Los 66 bins restantes pasaron al control de calidad genómica, donde se aplicó el
+criterio definido para el OE1: completitud superior al 70\% y contaminación
+inferior al 5\%. De ellos, 45 fueron rechazados y 21 seleccionados, lo que
+representa una tasa de retención del 21.65\% sobre el total crudo inicial. El
+motivo de los rechazos resulta informativo porque expone dos problemas de
+naturaleza distinta:
+
+\begin{itemize}
+    \item \textbf{18 bins} incumplieron únicamente el criterio de completitud
+    ($\le 70\%$). Se trata de reconstrucciones parciales, atribuibles a baja
+    profundidad de secuenciación o a fragmentación del ensamblaje. Los valores
+    cubren todo el rango, desde reconstrucciones cercanas al umbral, como
+    \texttt{bin-1-50} con 62.29\%, hasta fragmentos residuales sin utilidad
+    analítica, como \texttt{bin-1-52} con 6.05\%.
+    \item \textbf{20 bins} incumplieron únicamente el criterio de contaminación
+    ($\ge 5\text{\%}$), lo que indica quimerismo: contigs de linajes distintos
+    coagrupados por MetaBAT2 durante el \textit{binning}. La magnitud es en
+    ocasiones considerable, como en \texttt{bin-1-60}, con 24.87\%.
+    \item \textbf{7 bins} incumplieron ambos criterios de forma simultánea. El
+    caso extremo es \texttt{bin-1-58}, con 0.00\% de completitud y 17.71\% de
+    contaminación, un agrupamiento sin correspondencia con ningún genoma real.
+\end{itemize}
+
+
+Esta diferencia es importante para entender qué se perdió en cada caso. Los 18 bins incompletos corresponden a información que estaba presente en la muestra, pero que no pudo reconstruirse completamente durante el ensamblaje. En cambio, los 20 bins contaminados contienen fragmentos de distintos organismos que fueron agrupados incorrectamente. Este segundo problema es más crítico, porque podría afectar la reconstrucción del genoma accesorio en los análisis posteriores. Por ello, se mantuvo un límite estricto de contaminación del 5\%, mientras que el umbral de completitud se fijó en 70 \%.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/fig1_embudo_seleccion.pdf}
+    \caption[Embudo de selección de genomas]{Embudo de selección de genomas
+    desde los bins crudos hasta los linajes. \textbf{(a)} Número de genomas que
+    sobrevive a cada etapa del flujo: 97 bins crudos procedentes de 22 librerías
+    Illumina, 66 con dominio mayoritariamente procariota según Tiara, 21 que
+    superan los umbrales de calidad de CheckM2 (completitud superior al
+    70\%, contaminación inferior al 5\%) y 19 linajes tras la
+    desreplicación con dRep al
+    95\% de ANI. Las cifras en blanco indican las pérdidas en cada paso.
+    \textbf{(b)} Motivos de descarte de los 76 bins eliminados. \textbf{(c)}
+    Composición por dominio de cada uno de los 97 bins según Tiara, expresada
+    como porcentaje de la longitud del bin clasificada en cada categoría; los
+    bins se separan según su dominio mayoritario y se ordenan por la fracción
+    procariota.}
+    \label{fig:embudo}
+\end{figure}
+
+La Figura~\ref{fig:embudo}(c) muestra que la clasificación por dominio no es
+ambigua en la mayoría de los casos: los bins se concentran en los extremos de
+la escala, con una fracción procariota cercana al 0\% o al 100\%, y son
+pocos los que ocupan posiciones intermedias. Esto respalda la decisión de
+aplicar un criterio de mayoría simple sobre la longitud clasificada en lugar de
+un umbral más elaborado.
+
+\subsubsection{Calidad y estructura de los 21 genomas seleccionados}
+
+Los 21 genomas retenidos presentan una calidad marcadamente asimétrica respecto
+del umbral. La mediana de la completitud alcanza el 99.86\%, con 13 genomas por
+encima del 99\% y 5 con completitud estimada del 100.00\%; solo cuatro
+quedan por debajo del 80\%. La mediana de la contaminación es del 0.44\%, valor muy por debajo del límite fijado.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/fig2_calidad_genomica.pdf}
+    \caption[Calidad y métricas de ensamblaje]{Calidad y métricas de ensamblaje
+    de los genomas. \textbf{(a)} Completitud frente a contaminación (CheckM2) de
+    los 66 bins procariotas. El eje de contaminación usa escala logarítmica
+    ($\log(1+x)$) porque unos pocos bins superan el 60\% y comprimirían la
+    región de interés. Las líneas discontinuas marcan los umbrales del estudio
+    (completitud igual o superior al 70\%, contaminación inferior al 5\%) y
+    la región sombreada, los
+    21 genomas seleccionados. \textbf{(b)} Tamaño del genoma frente a contenido
+    GC de los 21 genomas seleccionados; el tamaño del punto es proporcional al
+    N50 de los contigs y el color indica el filo. \textbf{(c)} Distribución de
+    N50, número de contigs, densidad codificante y completitud por filo. Cada
+    punto es un genoma; las cajas muestran mediana y cuartiles.}
+    \label{fig:calidad}
+\end{figure}
+
+La Figura~\ref{fig:calidad}(a) muestra los criterios de contaminación y completitud sobre las distintas poblaciones de bins.
+
+La completitud y la contaminación no describen por completo la utilidad de un
+genoma para el análisis pangenómico. La continuidad del ensamblaje sí importa, y
+en esa dimensión el conjunto es heterogéneo: el número de contigs va de 17 a
+1041, con mediana de 90. Cuatro genomas superan los 300 contigs
+(\texttt{bin-5-50} con 1041, \texttt{bin-6-50} con 591, \texttt{bin-3-64} con
+459 y \texttt{bin-9-71} con 346).
+
+El caso de \texttt{bin-5-50} muestra que la calidad y la fragmentación de un genoma son aspectos distintos. Este bin tiene una completitud del 76.56\% y una contaminación del 0.44\%, por lo que cumple los criterios del OE1. Sin embargo, sus 3.47 Mb están divididos en más de mil contigs, con una longitud media de solo 3.3 kb.
+
+CheckM2 le asigna una buena calidad porque evalúa principalmente la presencia de genes marcadores, muchos de los cuales pueden encontrarse completos incluso en contigs pequeños. Por tanto, esta métrica no refleja directamente qué tan continuo está el ensamblaje.
+
+El problema aparece en la Fase 3. Cuando un gen queda cortado entre contigs, puede no coincidir correctamente con su versión completa en los genomas de referencia. Como resultado, el análisis pangenómico puede interpretarlo como un gen diferente y clasificarlo como accesorio o incluso exclusivo de la Estela. Así, una alta fragmentación puede generar falsos genes exclusivos, afectando directamente al OE3. Por esta razón, la Fase 3 incluye controles para identificar y descartar estos casos.
+
+
+Los tamaños genómicos oscilan entre 1.83 y 5.91 Mb, con mediana de 4.03 Mb,
+valores compatibles con genomas bacterianos. El extremo inferior
+corresponde a \texttt{bin-9-71} (1.83 Mb), cuya completitud del 85.09\%.
+
+\begin{table}[H]
+\centering
+\small
+\caption[Métricas de los 21 MAGs seleccionados]{Métricas de ensamblaje y calidad
+genómica de los 21 MAGs seleccionados (completitud superior al 70\% y
+contaminación inferior al 5\%).}
+\label{tab:bins_seleccionados}
+\makebox[\textwidth][c]{%
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Bin} & \textbf{Contigs} & \textbf{Longitud (bp)} & \textbf{Dominio} & \textbf{Completitud (\%)} & \textbf{Contaminación (\%)} \\
+\midrule
+bin-1-51 & 51 & 4.727.435 & prok & 100.00 & 0.00 \\
+bin-1-53 & 30 & 2.476.631 & prok & 99.84 & 0.12 \\
+bin-1-54 & 49 & 4.312.038 & prok & 92.25 & 0.01 \\
+bin-1-57 & 22 & 4.032.412 & prok & 99.99 & 3.23 \\
+bin-1-59 & 98 & 5.907.869 & prok & 99.97 & 3.07 \\
+bin-1-64 & 163 & 3.944.265 & prok & 99.84 & 0.59 \\
+bin-1-68 & 50 & 2.465.224 & prok & 100.00 & 1.79 \\
+bin-2-53 & 39 & 5.164.804 & prok & 99.99 & 0.57 \\
+bin-2-57 & 28 & 5.172.263 & prok & 99.96 & 1.01 \\
+bin-2-58 & 17 & 4.771.531 & prok & 100.00 & 0.06 \\
+bin-2-63 & 150 & 4.282.638 & prok & 92.39 & 0.34 \\
+bin-2-69 & 61 & 2.481.071 & prok & 99.99 & 0.18 \\
+bin-3-52 & 204 & 5.184.467 & prok & 98.97 & 0.58 \\
+bin-3-64 & 459 & 2.352.198 & prok & 70.14 & 0.64 \\
+bin-4-52 & 96 & 3.497.259 & prok & 99.86 & 0.25 \\
+bin-5-50 & 1041 & 3.472.002 & prok & 76.56 & 0.44 \\
+bin-5-60 & 97 & 2.849.856 & prok & 77.53 & 0.10 \\
+bin-5-63 & 90 & 2.758.939 & prok & 72.46 & 0.05 \\
+bin-6-50 & 591 & 5.543.214 & prok & 100.00 & 0.65 \\
+bin-6-61 & 30 & 4.792.746 & prok & 100.00 & 0.74 \\
+bin-9-71 & 346 & 1.832.072 & prok & 85.09 & 2.13 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsubsection{Implicancia para el OE1}
+
+El OE1 se cumple. Obtenemos un conjunto de 21 genomas procariotas cuya
+completitud y pureza permiten la asignación taxonómica y la comparación
+genómica posteriores. Por ese motivo descartamos 78.35\% del material de
+partida. La depuración  descarta
+organismos que estuvieran presentes en la estela pero que no alcanzan la calidad necesaria para los posteriores análisis. Por lo tanto, la diversidad
+real de la fracción viable es mayor que la que estos 21 genomas representan.
+
+El detalle de todos los 97 bins evaluados, con los motivos específicos para su
+exclusión, se presenta en el Anexo~\ref{anexo:tabla_completa_bins}.
+
+\subsection{Resultados de la Fase 2: asignación taxonómica y definición de linajes (OE2)}
+
+La Fase 2 se ejecutó en Khipu mediante \texttt{run\_fase2.slurm} (trabajo SLURM
+49316) sobre los 21 genomas seleccionados en la fase anterior. El flujo
+comprendió la clasificación taxonómica con GTDB-Tk sobre los datos de la versión
+R220, la confirmación de especie por ANI, la desreplicación en linajes con dRep
+y el cálculo de la prevalencia espacial de cada linaje.
+
+\subsubsection{Composición taxonómica de la fracción viable}
+
+GTDB-Tk clasificó los 21 genomas dentro de tres filos bacterianos. No se detectó
+ningún genoma arqueal, lo que resuelve la ambigüedad que
+Tiara había dejado abierta en la Fase 1 entre bacterias y arqueas. La
+distribución está dominada por Bacillota, con 13 genomas (62\%), seguido de
+Pseudomonadota con 5 (24\%) y Actinomycetota con 3 (14\%). Por debajo del
+filo, la diversidad es alta en relación con el tamaño de la muestra: los 21
+genomas se reparten en 11 órdenes y 17 géneros distintos, y solo cuatro géneros
+aportan más de un genoma.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/fig7_composicion_taxonomica.pdf}
+    \caption[Composición taxonómica]{Composición taxonómica del conjunto de
+    genomas seleccionados. \textbf{(a)} Número de genomas por género, agrupados
+    por filo. \textbf{(b)} Número de genomas por orden. \textbf{(c)} Reparto de
+    los 21 genomas entre los tres filos detectados.}
+    \label{fig:composicion}
+\end{figure}
+
+El predominio de Bacillota (Figura~\ref{fig:composicion}) es coherente con el
+sustrato y con el método de obtención de la muestra. Buena parte de los géneros
+recuperados dentro de este filo (\textit{Bacillus}, \textit{Peribacillus},
+\textit{Priestia}, \textit{Cytobacillus}, \textit{Metabacillus},
+\textit{Rossellomorea}, \textit{Mesobacillus}, \textit{Sporosarcina},
+\textit{Paenibacillus}) forma endosporas, una estrategia de resistencia que
+favorece la supervivencia sobre una superficie pétrea expuesta a desecación,
+radiación ultravioleta y oscilación térmica    \cite{jroundi2020}. 
+
+\subsubsection{Confirmación filogenómica}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/fig3_arbol_filogenomico.pdf}
+    \caption[Árbol filogenómico de los 21 genomas]{Árbol filogenómico de los 21
+    genomas seleccionados con sus metadatos. Árbol de Neighbor-Joining calculado
+    sobre distancias-p a partir del alineamiento concatenado de los 120
+    marcadores bacterianos de copia única (bac120, 5035 posiciones) generado por
+    GTDB-Tk (datos R220), enraizado en el filo Pseudomonadota. Los números sobre
+    las ramas son valores de soporte de \textit{bootstrap} (500 réplicas); solo
+    se muestran los iguales o superiores al 70\%. Las columnas de la derecha
+    indican, para cada
+    genoma, la muestra de origen, el linaje asignado por dRep (el asterisco marca
+    el genoma representante del linaje) y los valores de completitud y
+    contaminación de CheckM2.}
+    \label{fig:arbol}
+\end{figure}
+
+La topología del árbol (Figura~\ref{fig:arbol}) es congruente con la asignación
+taxonómica: los tres filos se recuperan como grupos separados y los genomas del
+mismo género quedan en ramas adyacentes. Los valores de soporte son altos en los
+nodos que definen la estructura principal, con \textit{bootstrap} del 100\% en
+la separación de los filos y en los pares congenéricos.
+
+El alcance de este resultado es limitado. El árbol es de distancias y se
+calculó únicamente sobre los genomas de consulta, sin incorporar genomas de
+referencia de GTDB, de modo que verifica la coherencia interna del conjunto pero
+no constituye una prueba filogenética independiente de la asignación taxonómica.
+Tal como se justificó en el Capítulo IV, el árbol de novo focalizado por linaje,
+con referencias del taxón asignado y grupo externo, queda previsto para la
+Fase 4.
+
+\subsubsection{Confirmación de especie y candidatos a novedad taxonómica}
+
+Se calculó la Identidad Nucleotídica Promedio de cada genoma frente a su
+referencia GTDB más próxima, aplicando los criterios de confirmación de especie
+definidos en el Capítulo IV (ANI $\ge 95\%$ y fracción alineada $\ge 65\%$).
+Dieciséis de los 21 genomas satisfacen ambos criterios, con valores de ANI entre
+95.61\% y 99.99\% y mediana de 98.53\%. Doce de los 16 superan el 98\% de ANI, lo que indica correspondencias con especies
+descritas.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images/fig5_novedad_taxonomica.pdf}
+    \caption[Evaluación de novedad taxonómica]{Evaluación de novedad taxonómica
+    frente a la referencia GTDB más cercana. ANI frente a fracción alineada (AF)
+    de cada genoma respecto de su referencia GTDB más cercana. Las líneas
+    discontinuas marcan los criterios de confirmación de especie (ANI
+    igual o superior al 95\% y AF igual o superior al 65\%). Los 16 genomas
+    del cuadrante sombreado
+    tienen especie confirmada. Dos genomas adicionales (\texttt{bin-1-51},
+    \textit{Pantoea} sp., y \texttt{bin-9-71}, \textit{Aristophania} sp.) fueron
+    clasificados únicamente por topología del árbol, sin cálculo de ANI, y no
+    aparecen representados.}
+    \label{fig:novedad}
+\end{figure}
+
+Los 5 genomas restantes se distribuyen en dos situaciones distintas
+(Figura~\ref{fig:novedad}). Dos de ellos, \texttt{bin-1-51}
+(\textit{Pantoea} sp.) y \texttt{bin-9-71} (\textit{Aristophania} sp.), fueron
+ubicados por GTDB-Tk mediante la topología del árbol de colocación sin que se
+calculara ANI, de modo que su clasificación se detiene en el rango de género por
+ausencia de una referencia suficientemente próxima. Por ese motivo, esas secuencias se descartan para la fase 3.
+
+Los otros 3 sí produjeron valores de ANI, pero por debajo del umbral de
+especie, y constituyen el hallazgo taxonómico más relevante de esta fase. Los
+dos genomas de \textit{Corynebacterium} sp. (\texttt{bin-1-68} y
+\texttt{bin-2-69}) alcanzan un ANI de 90.55 y 90.50\% frente a su referencia
+más cercana, con fracciones alineadas de apenas 44,3 y 44.0\%. El genoma de
+\textit{Sporosarcina} sp. (\texttt{bin-3-64}) queda en 91.25\% de ANI y
+60.4\% de AF. Los tres valores de ANI se encuentran por debajo del umbral de similitud utilizado para la circunscripción de especies en GTDB, lo que indica que ninguno de estos genomas puede asignarse a la misma especie que su referencia más cercana. 
+
+En el caso de los \textit{Corynebacterium}
+la fracción alineada, inferior al 45\%, indica que menos de la mitad del genoma
+encuentra correspondencia en la referencia. Estos genomas son, por tanto,
+candidatos a especies no descritas en la versión R220 del GTDB. 
+
+Hacemos énfasis en este resultado porque ambos \textit{Corynebacterium} proceden de muestras
+distintas y presentan completitud del 100\%, de modo que la divergencia
+observada no es atribuible a una reconstrucción defectuosa.
+
+\subsubsection{Desreplicación y definición de linajes}
+
+La desreplicación con dRep agrupó los 21 genomas en 19 linajes, definidos como
+clústeres de especie al 95\% de ANI. Solo dos pares colapsaron.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/fig4_matriz_mash.pdf}
+    \caption[Matriz de similitud genómica]{Matriz de similitud genómica entre
+    los 21 genomas seleccionados. Similitud MASH ($100 -$ distancia MASH) entre
+    todas las parejas de genomas, ordenadas por filo y género. Solo dos parejas
+    presentan similitud máxima: los dos \textit{Telluria timonae} (muestras 50 y
+    52) y los dos \textit{Corynebacterium} sp. (muestras 68 y 69). Nota
+    metodológica: dRep ejecuta fastANI únicamente dentro de cada clúster primario
+    definido por MASH, de modo que no existe una matriz de ANI completa para los
+    21 genomas; la matriz de todos contra todos disponible es la de MASH.}
+    \label{fig:mash}
+\end{figure}
+
+Las dos parejas sometidas a fastANI dentro de su clúster primario superan el
+umbral de especie con amplitud: \textit{Corynebacterium} sp.
+(\texttt{bin-1-68} $\leftrightarrow$ \texttt{bin-2-69}) alcanza 99.96\% de ANI
+con 97.1\% de cobertura del alineamiento, y \textit{Telluria timonae}
+(\texttt{bin-3-52} $\leftrightarrow$ \texttt{bin-6-50}), 99.78\% de ANI con
+85.2\% de cobertura. Ambas colapsan en un único linaje.
+
+El resto de los genomas resulta mutuamente distante
+(Figura~\ref{fig:mash}), incluido el par de \textit{Cytobacillus}
+(\texttt{bin-5-50} y \texttt{bin-2-57}), que pese a compartir género se mantiene
+como dos linajes separados con una similitud MASH del 80\%. Este es el motivo
+de que 21 genomas den lugar a 19 linajes y no a un número menor: la redundancia
+entre muestras es baja, y la mayor parte de lo recuperado corresponde a
+organismos distintos y no a reconstrucciones repetidas del mismo genoma.
+
+\subsubsection{Prevalencia espacial de los linajes}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/fig6_prevalencia_linajes.pdf}
+    \caption[Prevalencia espacial de los linajes]{Prevalencia espacial de los
+    linajes. \textbf{(a)} Matriz de presencia de cada linaje (filas, ordenadas
+    por prevalencia descendente) en cada muestra (columnas); el color indica el
+    filo. \textbf{(b)} Prevalencia de cada linaje, definida como el número de
+    muestras distintas en que aparece, coloreada por filo. \textbf{(c)} Número de
+    genomas de alta calidad recuperados por muestra, coloreado por filo.
+    Limitación: la prevalencia se calcula sobre el número de muestras y no sobre
+    zonas físicas de la estela, porque no se dispone de un mapeo
+    muestra $\rightarrow$ zona en formato analizable.}
+    \label{fig:prevalencia}
+\end{figure}
+
+La prevalencia espacial resultó baja en todo el conjunto. Diecisiete de los 19
+linajes aparecen en una sola muestra, y solo dos alcanzan una prevalencia de
+dos: L1 (\textit{Telluria timonae}, muestras 50 y 52) y L2
+(\textit{Corynebacterium} sp., muestras 68 y 69). Ningún linaje se recuperó en
+tres o más puntos. Además, de las 22 librerías que produjeron bins, solo 15
+aportaron al menos un genoma de alta calidad tras la Fase 1
+(Figura~\ref{fig:prevalencia}(c)).
+
+Este resultado limita el poder discriminante de la métrica. Con un rango
+efectivo de apenas dos valores, la prevalencia no permite ordenar los linajes ni separar con seguridad a los colonizadores
+estables de las detecciones puntuales.
+
+Dos hipotésis resultan compatibles con los datos. La primera es que la comunidad
+viable de la estela sea genuinamente heterogénea entre muestras, sin un núcleo de
+organismos compartido. La segunda es que la recuperación de genomas de alta calidad sea limitada, de modo que un linaje presente en varias muestras solo pueda reconstruirse con suficiente calidad en una de ellas.
+
+Los datos disponibles no permiten discriminar entre ambas. La segunda tampoco puede descartarse, dado que el flujo retuvo apenas el 21.65\% de los bins iniciales.
+
+Por esta razón, la prevalencia espacial se reporta aquí como caracterización de
+la distribución de cada linaje sobre el monumento, pero no se emplea como
+criterio para decidir qué especies ingresan al análisis pangenómico. 
+
+Por ese motivo, el criterio de selección de bins para el pangenoma (fase 3) cambia como se explica en la siguiente sección. 
+
+\subsubsection{Implicancia para el OE2}
+
+El OE2 se cumple: los 21 genomas quedan clasificados con resolución de especie
+en 16 casos y de género en los 5 restantes, y agrupados en 19 linajes
+operativos que constituyen la unidad de análisis de las fases siguientes.
+
+Dos resultados condicionan el diseño posterior. El primero es la baja
+redundancia entre muestras: con 19 linajes sobre 21 genomas, y 17 de ellos
+representados por un único genoma, no es posible construir un pangenoma
+empleando exclusivamente material de la estela. El análisis pangenómico de la
+Fase 3 debe apoyarse necesariamente en conjuntos de genomas de referencia
+públicos. El segundo es la detección de tres candidatos a especies no descritas,
+entre ellos los dos \textit{Corynebacterium} de completitud íntegra, que por
+carecer de referencia comparable quedan fuera del análisis pangenómico pero
+constituyen un hallazgo reportable por sí mismo.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption[Linajes definidos en la Fase 2]{Linajes definidos en la Fase 2,
+ordenados por prevalencia espacial descendente.}
+\label{tab:linajes}
+\makebox[\textwidth][c]{%
+\begin{tabular}{llrlll}
+\toprule
+\textbf{Linaje} & \textbf{Taxonomía (GTDB)} & \textbf{Prev.} & \textbf{Muestras} & \textbf{Representante} & \textbf{Especie conf.} \\
+\midrule
+L1  & \textit{Telluria timonae}              & 2 & 50, 52 & bin-6-50 & Sí \\
+L2  & \textit{Corynebacterium} sp.           & 2 & 68, 69 & bin-2-69 & No \\
+L3  & \textit{Bacillus\_AB infantis}         & 1 & 61 & bin-6-61 & Sí \\
+L4  & \textit{Sporosarcina} sp.              & 1 & 64 & bin-3-64 & No \\
+L5  & \textit{Pantoea} sp.                   & 1 & 51 & bin-1-51 & --- \\
+L6  & \textit{Brevibacterium} sp021023135    & 1 & 57 & bin-1-57 & Sí \\
+L7  & \textit{Paenibacillus} sp001955535     & 1 & 59 & bin-1-59 & Sí \\
+L8  & \textit{Acinetobacter schindleri}      & 1 & 52 & bin-4-52 & Sí \\
+L9  & \textit{Priestia flexa}                & 1 & 60 & bin-5-60 & Sí \\
+L10 & \textit{Aristophania} sp.              & 1 & 71 & bin-9-71 & --- \\
+L11 & \textit{Staphylococcus warneri\_A}     & 1 & 53 & bin-1-53 & Sí \\
+L12 & \textit{Peribacillus frigoritolerans}  & 1 & 54 & bin-1-54 & Sí \\
+L13 & \textit{Rossellomorea marisflavi}      & 1 & 63 & bin-2-63 & Sí \\
+L14 & \textit{Bacillus licheniformis}        & 1 & 64 & bin-1-64 & Sí \\
+L15 & \textit{Metabacillus halosaccharovorans} & 1 & 53 & bin-2-53 & Sí \\
+L16 & \textit{Bacillus altitudinis}          & 1 & 63 & bin-5-63 & Sí \\
+L17 & \textit{Cytobacillus oceanisediminis}  & 1 & 57 & bin-2-57 & Sí \\
+L18 & \textit{Cytobacillus firmus\_B}        & 1 & 50 & bin-5-50 & Sí \\
+L19 & \textit{Mesobacillus} sp014856545      & 1 & 58 & bin-2-58 & Sí \\
+\bottomrule
+\end{tabular}%
+}
+
+\vspace{0.5em}
+\begin{minipage}{0.95\textwidth}
+\footnotesize
+\textit{Nota.} Prev.: prevalencia espacial, número de muestras distintas que
+aportan al menos un genoma al linaje. Especie conf.: confirmación de especie por
+ANI igual o superior al 95\% y AF igual o superior al 65\%; el guion indica
+los linajes clasificados por
+topología del árbol, sin cálculo de ANI. Los sufijos \texttt{\_A} y \texttt{\_B}
+y los epítetos alfanuméricos del tipo \texttt{sp}$\langle$dígitos$\rangle$
+corresponden a la nomenclatura propia del GTDB.
+\end{minipage}
+\end{table}
+
+\subsection{Sensibilidad de los resultados a los umbrales elegidos}
+
+Los resultados anteriores corresponden a una sola configuración. Esta sección
+responde a una pregunta distinta: cuánto habrían cambiado esos resultados con
+otros umbrales. La respuesta permite saber si el conjunto de 21 genomas es un
+resultado estable o el producto de una elección afortunada.
+
+\subsubsection{Umbrales de calidad genómica}
+
+Los escenarios E1 y E2 recalcularon la selección sobre los 66 bins procariotas
+variando de forma simultánea los dos umbrales de CheckM2. La
+Tabla~\ref{tab:sensibilidad_calidad} muestra el resultado.
+
+\begin{table}[H]
+\centering
+\small
+\caption[Sensibilidad a los umbrales de calidad]{Número de genomas retenidos
+sobre los 66 bins procariotas al variar los umbrales de completitud y
+contaminación. La celda en negrita corresponde al caso base.}
+\label{tab:sensibilidad_calidad}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Completitud} & \textbf{Cont. $<1\%$} & \textbf{Cont. $<3\%$} & \textbf{Cont. $<5\%$} & \textbf{Cont. $<10\%$} \\
+\midrule
+$> 50\%$ & 17 & 22 & 24 & 25 \\
+$> 60\%$ & 17 & 22 & 24 & 25 \\
+$> 70\%$ & 16 & 19 & \textbf{21} & 22 \\
+$> 80\%$ & 12 & 15 & 17 & 18 \\
+$> 90\%$ & 12 & 14 & 16 & 17 \\
+$> 95\%$ & 10 & 12 & 14 & 15 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+El conjunto seleccionado resulta poco sensible al umbral de completitud. Bajarlo
+de 70 a 50\% solo añade tres genomas. Subirlo de 70 a 90\% solo retira cinco. La
+explicación está en la distribución de la completitud dentro del conjunto
+retenido, descrita en la Sección 7.2.1: la mediana alcanza el 99.86\% y trece
+genomas superan el 99\%. La mayoría de los genomas seleccionados está lejos del
+umbral, de modo que moverlo no los afecta.
+
+El umbral de contaminación pesa más. Entre 1 y 5\% el conjunto pasa de 16 a 21
+genomas, y cinco genomas dependen por completo de dónde se ponga ese límite. La
+contaminación es también el criterio que rechazó más bins en el caso base, con
+20 exclusiones por ese solo motivo. En conjunto, la contaminación es el
+parámetro que gobierna el tamaño final del conjunto, y no la completitud.
+
+Aumentar la contaminación hasta el 10\% habría añadido un solo genoma frente al
+caso base. Esto indica que el límite del 5\% no está descartando material útil
+que un criterio algo más permisivo habría recuperado. Entre 5 y 10\% de
+contaminación casi no hay bins.
+
+\subsubsection{Criterio de discriminación por dominio}
+
+El caso base decide el dominio de cada bin por mayoría simple sobre la longitud
+clasificada. El escenario E3 reemplazó ese criterio por un umbral explícito
+sobre la fracción procariota. La Tabla~\ref{tab:sensibilidad_dominio} compara
+ambas opciones.
+
+\begin{table}[H]
+\centering
+\small
+\caption[Sensibilidad del criterio de dominio]{Número de bins retenidos, sobre
+los 97 de partida, según el criterio de discriminación por dominio.}
+\label{tab:sensibilidad_dominio}
+\begin{tabular}{lr}
+\toprule
+\textbf{Criterio} & \textbf{Bins retenidos} \\
+\midrule
+Mayoría simple (caso base)        & 66 \\
+Fracción procariota $> 25\%$      & 56 \\
+Fracción procariota $> 40\%$      & 54 \\
+Fracción procariota $> 50\%$      & 50 \\
+Fracción procariota $> 60\%$      & 44 \\
+Fracción procariota $> 75\%$      & 34 \\
+Fracción procariota $> 90\%$      & 30 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Este es el punto del flujo más sensible al criterio elegido. La mayoría simple
+retiene 66 bins, mientras que exigir más de la mitad de la longitud clasificada
+como procariota retendría 50. La diferencia de 16 bins se explica porque la
+mayoría simple compara la fracción procariota contra las fracciones eucariota,
+organelar y desconocida por separado. Un bin con 40\% de longitud procariota,
+30\% eucariota y 30\% desconocida tiene mayoría procariota, aunque menos de la
+mitad de su longitud lo sea.
+
+Hay 22 bins cuya fracción procariota queda entre el 25 y el 75\%. La afirmación
+de la Sección 7.2.1 sobre la concentración de los bins en los extremos de la
+escala describe bien la tendencia general, pero este grupo intermedio existe y
+conviene dimensionarlo.
+
+El efecto sobre el resultado final es menor de lo que sugieren estas cifras. El
+filtro de calidad de CheckM2 actúa después y elimina de todos modos los bins con
+mezcla de dominios, porque esa mezcla aparece como contaminación. El criterio de
+dominio afecta sobre todo al costo de cómputo de la etapa siguiente, ya que
+determina cuántos bins se someten a CheckM2.
+
+\subsubsection{Umbral de ANI para la definición de linaje}
+
+El escenario E4 varió el umbral de ANI con el que dRep agrupa genomas en
+linajes. El resultado es que el número de linajes no cambia: se mantiene en 19
+para umbrales de 95, 98, 99 y 99.5\% de ANI.
+
+La razón está en los valores observados. Solo dos parejas de genomas fueron
+comparadas con fastANI dentro de su clúster primario, y ambas presentan
+identidades muy altas: 99.95\% entre los dos \textit{Corynebacterium} y 99.78\%
+entre los dos \textit{Telluria timonae}. Ambas parejas siguen colapsando incluso
+con un umbral del 99.5\%. El resto de los genomas está tan separado que ningún
+umbral razonable los uniría.
+
+Por lo tanto, la definición de linaje es insensible al umbral dentro de este
+conjunto. Este resultado refuerza la conclusión de la Sección 7.2.2 sobre la
+baja redundancia del material recuperado.
+
+\subsubsection{Continuidad del ensamblaje}
+
+El caso base no filtra por número de contigs. El escenario E5 añadió ese filtro
+para medir su efecto. Aplicar un límite de 300 contigs sobre los 21 genomas
+seleccionados dejaría 17. Saldrían \texttt{bin-5-50} (1041 contigs),
+\texttt{bin-6-50} (591), \texttt{bin-3-64} (459) y \texttt{bin-9-71} (346).
+
+Este filtro no se aplicó en la Fase 1 por una razón concreta. Los cuatro genomas
+afectados incluyen a \texttt{bin-6-50}, representante del linaje más prevalente,
+y a \texttt{bin-9-71}, único representante de su género. Excluirlos habría
+reducido la descripción taxonómica de la comunidad, que es el objetivo del OE2,
+a cambio de una mejora que solo importa en el análisis pangenómico posterior. La
+decisión fue conservarlos en las Fases 1 y 2 y trasladar el control de
+continuidad a la etapa donde la fragmentación sí genera un error, tal como se
+discute en la Sección 7.2.1 a propósito de \texttt{bin-5-50}.
+
+\subsection{Iteraciones de diseño derivadas de los resultados}
+
+El diseño del flujo no se mantuvo fijo durante la ejecución. Dos resultados
+obligaron a modificarlo. Esta sección documenta ambos casos siguiendo el ciclo
+de prueba, evaluación y rediseño.
+
+Conviene precisar en qué consiste cada cambio. El diseño descrito en el
+Capítulo IV es el punto de partida, y las pruebas de este capítulo son
+precisamente el mecanismo previsto para ponerlo a prueba. En los dos casos siguientes, los cambios se hicieron a partir de resultados obtenidos durante el análisis. Uno se debió a un requerimiento de memoria mayor al disponible y el otro a una métrica que no permitió diferenciar adecuadamente los resultados. Para mantener la trazabilidad, se presentan por separado el diseño original, la evidencia que motivó el cambio y el diseño corregido.
+
+
+\subsubsection{Primera iteración: alcance del árbol filogenómico}
+
+El diseño inicial contemplaba construir un árbol \textit{de novo} que incluyera
+los genomas propios junto con el conjunto completo de genomas de referencia del
+dominio bacteriano de GTDB. La prueba mostró que ese cálculo no cabe en los
+98 GB de memoria asignados a la cuenta.
+
+La evaluación de ese fallo distingue dos problemas. El primero es de recursos y
+no admite solución dentro de la cuota disponible. El segundo es de alcance: el
+objetivo del OE2 no requiere un árbol del dominio completo, sino verificar la
+coherencia de las asignaciones taxonómicas.
+
+El rediseño consistió en dos cambios. Para la Fase 2 se calculó un árbol de
+distancias sobre el alineamiento concatenado de los 120 marcadores, restringido
+a los nuestros genomas. Ese árbol es el que aparece en la
+Figura~\ref{fig:arbol} y cumple la función de verificación interna.
+
+\subsubsection{Segunda iteración: criterio de selección de linajes para el pangenoma}
+
+El diseño original preveía seleccionar los linajes del análisis pangenómico por
+prevalencia espacial. La lógica era que un linaje presente en varios puntos del
+monumento resulta más relevante para el biodeterioro que una detección aislada.
+
+La prueba invalidó ese criterio. Como muestra la Sección 7.2.2, diecisiete de
+los 19 linajes aparecen en una sola muestra y solo dos alcanzan una prevalencia
+de dos. Con
+esa distribución no es posible construir un ranking ni separar bacterias colonizadoras
+estables de detecciones puntuales.
+
+La evaluación de este resultado identificó además una restricción más básica.
+Con 19 linajes sobre 21 genomas, y 17 de ellos representados por un único
+genoma, el material propio no alcanza para construir ningún pangenoma. El
+análisis pangenómico depende necesariamente de genomas de referencia públicos,
+de modo que el criterio de selección debe incorporar la disponibilidad de esas
+referencias.
+
+El rediseño reemplazó la prevalencia espacial por la disponibilidad genómica
+pública. Un linaje ingresa al análisis pangenómico si existe para su especie un
+número suficiente de genomas públicos de calidad adecuada. El umbral adoptado es
+de 15 genomas.
+
+Es importante mencionar que la inclusión de genomas filogenéticamente redundantes infla de
+forma artificial el tamaño del core y subestima el genoma accesorio, lo que
+puede llevar a describir como cerrado un pangenoma que en realidad es
+abierto~\cite{guerra2026}. Quince genomas redundantes no equivalen a quince
+genomas informativos. Por lo tanto, este parámetro está abierto a iteración. 
+
+La prevalencia espacial se conserva como resultado descriptivo del OE2 y se
+reporta en la Tabla~\ref{tab:linajes}, pero deja de cumplir función de criterio
+de selección. 
+
+\section{Verificación del cumplimiento de las especificaciones técnicas}
+
+Esta sección
+dictamina si el desempeño del \textit{pipeline} alcanza los valores comprometidos. Las
+especificaciones se derivan de los objetivos específicos OE1 y OE2 y son las
+únicas que admiten una verificación cuantitativa directa. La
+Tabla~\ref{tab:matriz_especificaciones} cruza cada especificación con su método
+de verificación y con el resultado obtenido.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption[Matriz de verificación de especificaciones técnicas]{Matriz de
+verificación del cumplimiento de las especificaciones técnicas.}
+\label{tab:matriz_especificaciones}
+\makebox[\textwidth][c]{%
+\begin{tabular}{p{3.5cm}p{3.2cm}p{2.6cm}p{3.4cm}c}
+\toprule
+\textbf{Especificación} & \textbf{Método de verificación} & \textbf{Objetivo} & \textbf{Resultado obtenido} & \textbf{Cumple} \\
+\midrule
+Calidad del conjunto final de genomas &
+CheckM2 sobre cada genoma &
+Completitud $> 70\%$ y contaminación $< 5\%$ &
+21 de 21 genomas; mediana de completitud 99.86\% y de contaminación 0.44\% &
+Sí \\
+\addlinespace
+Resolución taxonómica de la asignación &
+GTDB-Tk sobre datos R220, con confirmación por ANI &
+Asignación al menos a nivel de género &
+21 de 21 a género; 16 de 21 con especie confirmada (ANI $\ge 95\%$, AF $\ge 65\%$) &
+Sí \\
+\addlinespace
+Trazabilidad entre genoma y muestra de origen &
+Registro de correspondencia generado en la normalización de nombres &
+21 de 21 genomas &
+21 de 21 genomas vinculados a su librería de origen &
+Sí \\
+\addlinespace
+Definición de unidades de análisis no redundantes &
+Desreplicación con dRep al 95\% de ANI &
+Conjunto sin genomas duplicados &
+19 linajes sobre 21 genomas; dos parejas colapsadas &
+Sí \\
+\addlinespace
+Reproducibilidad de la ejecución &
+Registro de versiones y control de versiones del código &
+Versiones de herramientas y bases registradas &
+Registro de versiones por fase; scripts y resultados versionados en repositorio &
+Sí \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\section{Verificación del cumplimiento de restricciones}
+
+Las restricciones son límites que el diseño no podía cruzar, a diferencia de las
+especificaciones, que son metas de desempeño. La
+Tabla~\ref{tab:matriz_restricciones} verifica cada una.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption[Matriz de verificación de restricciones]{Matriz de verificación del
+cumplimiento de las restricciones del proyecto.}
+\label{tab:matriz_restricciones}
+\makebox[\textwidth][c]{%
+\begin{tabular}{p{3.2cm}p{3.0cm}p{4.4cm}c}
+\toprule
+\textbf{Restricción} & \textbf{Origen} & \textbf{Forma en que el diseño la respeta} & \textbf{Cumple} \\
+\midrule
+Cuota de cómputo de 32 núcleos, 98 GB de memoria y 24 h por trabajo &
+Política de asignación del clúster Khipu &
+Ambas fases se ejecutaron como trabajos únicos y finalizaron dentro del límite de tiempo asignado. El árbol de referencia completo se reemplazó por un árbol focalizado tras exceder la memoria disponible &
+Sí \\
+\addlinespace
+Los nodos de cómputo no tienen acceso a internet &
+Arquitectura del clúster &
+Las bases de datos de CheckM2 y GTDB R220 se descargaron en el nodo de login antes de la ejecución. Ninguna etapa del flujo requiere conexión durante el cálculo &
+Sí \\
+\addlinespace
+No se dispone de las lecturas crudas de secuenciación &
+Condición de entrega del material por el centro de secuenciación &
+El flujo se diseñó para operar sobre bins ya ensamblados. No se recalculan coberturas ni se rehace el ensamblaje ni el \textit{binning} &
+Sí \\
+\addlinespace
+El conjunto de muestras es cerrado y no ampliable &
+Condición de acceso al monumento &
+El diseño trabaja con las 22 librerías disponibles. Las limitaciones de prevalencia se reportan como tales y no se compensan con muestreo adicional &
+Sí \\
+\addlinespace
+Uso exclusivo de software de licencia libre y bases de datos públicas &
+Restricción presupuestal del proyecto &
+Todas las herramientas y bases empleadas son de acceso abierto &
+Sí \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+% ======================================================================
+% ENTRADAS BIBLIOGRAFICAS NUEVAS - agregar a referencias.bib
+% ======================================================================
+%
+% @article{gautreau2020,
+%   author  = {Gautreau, Guillaume and Bazin, Adelme and Gachet, Mathieu and
+%              Planel, Remi and Burlot, Laura and Dubois, Mathieu and
+%              Perrin, Amandine and Medigue, Claudine and Calteau, Alexandra and
+%              Cruveiller, Stephane and Matias, Catherine and Ambroise, Christophe and
+%              Rocha, Eduardo P. C. and Vallenet, David},
+%   title   = {{PPanGGOLiN}: Depicting microbial diversity via a partitioned pangenome graph},
+%   journal = {PLOS Computational Biology},
+%   volume  = {16},
+%   number  = {3},
+%   pages   = {e1007732},
+%   year    = {2020},
+%   doi     = {10.1371/journal.pcbi.1007732}
+% }
+%
+% @article{tettelin2005,
+%   author  = {Tettelin, Herve and Masignani, Vega and Cieslewicz, Michael J. and others},
+%   title   = {Genome analysis of multiple pathogenic isolates of {Streptococcus agalactiae}: Implications for the microbial pan-genome},
+%   journal = {Proceedings of the National Academy of Sciences},
+%   volume  = {102},
+%   number  = {39},
+%   pages   = {13950--13955},
+%   year    = {2005},
+%   doi     = {10.1073/pnas.0506758102}
+% }
+%
+% @article{guerra2026,
+%   author  = {Guerra, Alberto},
+%   title   = {The pangenome: a statistical model, not a fixed biological property},
+%   journal = {Bioinformatics Advances},
+%   volume  = {6},
+%   number  = {1},
+%   pages   = {vbag069},
+%   year    = {2026},
+%   doi     = {10.1093/bioadv/vbag069}
+% }

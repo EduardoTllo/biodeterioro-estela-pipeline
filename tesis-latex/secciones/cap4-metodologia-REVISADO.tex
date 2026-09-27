@@ -1,0 +1,377 @@
+\chapter{ MARCO METODOLÓGICO}
+% ======================================================================
+% SECCION DE METODOLOGIA - Tesis Estela de Raimondi
+% Texto listo para pegar en LaTeX. Citas con \cite{} (BibTeX, IEEEtran).
+% Las claves de [1]-[50] son una PROPUESTA (autor+anio); ajustar a tu .bib
+% (ver tabla de equivalencia al final). Las 5 entradas nuevas vienen como
+% BibTeX listo para pegar. Sin guiones largos. Genes y especies en \textit{}.
+% ======================================================================
+
+\section{Metodología}
+
+\subsection{Diseño general y criterios de decisión metodológica}
+
+El estudio es de naturaleza estrictamente computacional y descriptiva. Parte de datos metagenómicos shotgun previamente secuenciados y ensamblados en el marco del informe técnico microbiológico de la Estela de Raimondi, realizado por UPCH \cite{tsukayama2025informe}, sobre los cuales se construye un flujo bioinformático que va desde el control de calidad de los genomas hasta la inferencia del potencial metabólico de los linajes dominantes. El flujo se organiza en cuatro fases consecutivas, cada una asociada a un objetivo específico (OE1 a OE4), y se ejecuta en el orden presentado a continuación.
+
+\subsection{Origen de los datos y unidad de análisis}
+
+%El microbioma de la Estela de Raimondi fue muestreado mediante hisopado en seco sobre la superficie del monumento. En cada punto de muestreo se recolectaron dos hisopados independientes: el hisopo A, destinado a la extracción directa de ADN ambiental para secuenciación de amplicones (16S rRNA e ITS2), y el hisopo B, destinado al cultivo microbiológico de la fracción viable \cite{tsukayama2025informe}. La secuenciación metagenómica shotgun analizada en esta tesis se realizó sobre el material proveniente del cultivo (hisopo B). En consecuencia, los genomas reconstruidos representan la fracción microbiana recuperable mediante cultivo y no necesariamente las poblaciones dominantes \textit{in situ}. Esta condición se trata de forma explícita como limitación en la Fase 3.
+
+El microbioma de la Estela de Raimondi fue muestreado mediante hisopado en seco sobre la superficie del monumento. En cada punto de muestreo se recolectaron dos hisopados independientes: el hisopo A, destinado a la extracción directa de ADN ambiental para secuenciación de amplicones (16S rRNA e ITS2), y el hisopo B, destinado al cultivo microbiológico de la fracción viable \cite{tsukayama2025informe}. La secuenciación metagenómica shotgun analizada en esta tesis se realizó sobre el material proveniente del cultivo (hisopo B). 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/Muestras.png}
+    \caption{Esquema de muestreo de la Estela de Raimondi. Se señalan los 20 puntos de hisopado distribuidos sobre las cinco regiones del monumento (base superior, cara frontal, laterales izquierda y derecha, y sección inferior). En cada punto se recolectaron dos hisopados independientes: el hisopo A, destinado a la extracción directa de ADN para secuenciación de amplicones, y el hisopo B, destinado al cultivo de la fracción viable, posteriormente secuenciado por metagenómica \textit{shotgun}. Tomado del informe técnico de la UPCH~\cite{tsukayama2025informe}.}
+    \label{fig:muestreo}
+\end{figure}
+
+Si bien la metagenómica suele aplicarse de
+forma independiente de cultivo, en el estudio del patrimonio pétreo se han documentado
+también aproximaciones dependientes de cultivo acopladas a la identificación molecular por
+secuenciación~\cite{suchy2024}. En consecuencia, los genomas reconstruidos representan la fracción microbiana recuperable mediante cultivo y no necesariamente las poblaciones dominantes \textit{in situ}. Esta condición se trata de forma explícita en la sección de limitaciones del estudio.
+
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.05}
+\setlength{\tabcolsep}{3pt}
+\caption{Bins genómicos recuperados por muestra (previos al filtrado por dominio y calidad).}
+\label{tab:bins}
+
+\makebox[\textwidth][c]{%
+\begin{tabular}{c c c c c c}
+\hline
+\textbf{Muestra} & \textbf{N.\textsuperscript{o} bins} & \textbf{Long. total (Mb)} & \textbf{Rango bin (Mb)} & \textbf{N50 prom. (kb)} & \textbf{\%GC prom.} \\
+\hline
+49 & 2  & 28.1  & 0.55--27.6  & 173 & 36.2 \\
+50 & 6  & 67.3  & 0.61--53.4  & 47  & 59.5 \\
+51 & 1  & 4.7   & 4.73        & 189 & 52.6 \\
+52 & 5  & 18.2  & 0.42--5.3   & 37  & 61.6 \\
+53 & 3  & 36.9  & 2.48--29.2  & 264 & 40.5 \\
+54 & 2  & 11.6  & 4.31--7.3   & 167 & 38.7 \\
+55 & 1  & 34.2  & 34.24       & 404 & 51.1 \\
+56 & 6  & 88.4  & 0.23--49.6  & 95  & 45.6 \\
+57 & 6  & 74.7  & 0.22--39.1  & 164 & 46.9 \\
+58 & 3  & 46.5  & 4.77--29.6  & 418 & 48.5 \\
+59 & 2  & 29.1  & 5.91--23.2  & 283 & 40.9 \\
+60 & 5  & 49.6  & 2.32--25.7  & 52  & 43.5 \\
+61 & 6  & 73.1  & 0.61--40.1  & 207 & 47.7 \\
+62 & 5  & 45.7  & 0.23--27.9  & 128 & 39.4 \\
+63 & 6  & 88.8  & 0.37--56.5  & 40  & 45.7 \\
+64 & 7  & 75.5  & 0.24--29.7  & 33  & 43.4 \\
+65 & 5  & 94.8  & 0.22--29.6  & 89  & 47.0 \\
+66 & 0  & ---   & ---         & --- & ---  \\
+67 & 0  & ---   & ---         & --- & ---  \\
+68 & 2  & 2.7   & 0.25--2.5   & 43  & 49.2 \\
+69 & 2  & 2.7   & 0.25--2.5   & 40  & 49.1 \\
+70 & 6  & 109.2 & 0.28--94.3  & 3   & 44.0 \\
+71 & 12 & 126.9 & 0.26--101.9 & 6   & 47.2 \\
+72 & 4  & 9.7   & 0.25--6.6   & 4   & 38.9 \\
+\hline
+\textbf{Total} & \textbf{97} & & & & \\
+\hline
+\end{tabular}%
+}
+
+\vspace{0.5em}
+
+\begin{minipage}{0.95\textwidth}
+\footnotesize
+\textit{Nota.} Se dispuso de 24 librerías de secuenciación Illumina, identificadas con los códigos 49 a 72. El procesamiento previo, documentado por el centro de secuenciación, comprendió el ensamblaje por muestra mediante MEGAHIT, la segmentación del ensamblaje en bins genómicos mediante MetaBAT2, la evaluación de métricas de ensamblaje con QUAST y la anotación preliminar de cada bin con Bakta, junto con una asignación taxonómica preliminar basada en Kraken2. Un bin corresponde, en este punto del flujo, a un subconjunto de contigs del ensamblaje agrupados según su perfil de cobertura y composición de tetranucleótidos, bajo el supuesto de que los contigs pertenecientes a un mismo organismo comparten estas señales. Por tanto, cada bin constituye una reconstrucción parcial o completa de un genoma individual, cuya pureza taxonómica y calidad genómica se evalúan posteriormente. De las 24 librerías, 22 produjeron bins, con un total de 97 bins; las muestras 66 y 67 no recuperaron bins y fueron excluidas del análisis genómico. Las cifras mostradas corresponden a bins crudos entregados por el centro de secuenciación y preceden al filtrado por dominio y al control de calidad genómica descritos en la Fase 1; por ello, no implican que la totalidad de los bins listados sean genomas procariotas completos o libres de contaminación.
+\end{minipage}
+
+\end{table}
+Las lecturas crudas (archivos FASTQ) no estuvieron disponibles para este
+trabajo. Por ello, todo el flujo se ejecuta sobre los genomas ensamblados
+(bins) y no sobre lecturas. En consecuencia, la distribución de cada linaje en
+el monumento no se mide por abundancia, sino por prevalencia espacial: el
+número de puntos de muestreo distintos en los que se recuperó ese linaje. Esta
+métrica no depende de las lecturas crudas y es más robusta frente al sesgo del
+cultivo. Conviene precisar desde ahora que la prevalencia espacial describe la
+distribución de un linaje sobre la estela, y que la selección de las especies
+que ingresan al análisis pangenómico responde a un criterio distinto, de
+factibilidad analítica, definido en la Fase 3.
+
+
+\subsection{Fase 1. Control de calidad y selección de genomas (OE1)}
+
+\subsubsection{Filtrado por dominio}
+
+Los bins se filtraron primero por dominio para descartar contigs de origen eucariota u organelar antes de cualquier métrica basada en genes procariotas. Se utilizó Tiara \cite{karlicki2022tiara}, un clasificador de secuencias metagenómicas basado en aprendizaje profundo que opera sobre la composición de los contigs en un esquema de dos etapas. La elección de Tiara frente a Whokaryote \cite{pronk2022whokaryote} y EukRep \cite{west2018genomereconstruction} se sustentó en la matriz de selección ponderada (Tabla~\ref{tab:seleccion_software}), en la que Tiara obtuvo la mayor puntuación total gracias a su facilidad de instalación, su menor costo computacional y su capacidad adicional de identificar ADN organelar; la descripción detallada de cada herramienta evaluada se presenta en el Anexo 1.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Matriz de selección de software para la clasificación de contigs.}
+\label{tab:seleccion_software}
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+& & \multicolumn{2}{c}{\textbf{Tiara}} & \multicolumn{2}{c}{\textbf{Whokaryote}} & \multicolumn{2}{c}{\textbf{EukRep}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+\textbf{Criterio} & \textbf{Peso (\%)} & \textbf{Pts} & \textbf{Peso$\times$Pts} & \textbf{Pts} & \textbf{Peso$\times$Pts} & \textbf{Pts} & \textbf{Peso$\times$Pts} \\
+\midrule
+Facilidad de instalación & 10 & 4 & 40 & 3 & 30 & 2 & 20 \\
+Acceso a dependencias & 15 & 4 & 60 & 2 & 30 & 2 & 30 \\
+Costo computacional & 10 & 3 & 30 & 2 & 20 & 3 & 30 \\
+Integración en pipeline & 15 & 4 & 60 & 3 & 45 & 2 & 30 \\
+Calidad de resultado & 30 & 4 & 120 & 3 & 90 & 2 & 60 \\
+Alcance funcional & 10 & 4 & 40 & 2 & 20 & 2 & 20 \\
+Interpretabilidad & 10 & 3 & 30 & 4 & 40 & 2 & 20 \\
+\midrule
+\textbf{Total} & \textbf{100} & & \textbf{380} & & \textbf{275} & & \textbf{210} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Se aplicó una longitud mínima de contig de 3000 pares de bases, valor por debajo del cual los clasificadores basados en composición de secuencia pierden exactitud, y se descartaron los bins cuya fracción mayoritaria de longitud se clasificó como eucariota u organelar. Dado que Tiara discrimina entre procariotas y eucariotas pero no separa bacterias de arqueas, esta última distinción se resolvió en las fases posteriores mediante CheckM2 y GTDB-Tk.
+
+
+\subsubsection{Evaluación de la calidad genómica}
+
+La completitud y la contaminación de los bins procariotas se estimaron con CheckM2 \cite{checkm2}, que predice ambas métricas mediante modelos de aprendizaje automático entrenados sobre genomas de referencia y no requiere asignación taxonómica previa, lo que mejora su desempeño en linajes divergentes \cite{checkm2}. Se conservaron únicamente los genomas con completitud superior al 70\% y contaminación inferior al 5\%.
+
+El umbral no corresponde a ninguna categoría MIMAG estándar. Se adoptó un valor intermedio que flexibiliza la exigencia de completitud, con el fin de recuperar genomas ambientales fragmentados, pero mantiene la restricción más estricta de contaminación (inferior al 5\%) para evitar que la posterior reconstrucción del genoma accesorio se sesgue por la inclusión de ADN foráneo \cite{bowers2017}. Este compromiso se documenta como criterio propio del proyecto y no como un estándar MIMAG de alta calidad.
+
+\subsection{Fase 2. Asignación taxonómica y definición de linajes (OE2)}
+
+\subsubsection{Clasificación taxonómica genómica}
+
+Los genomas que superaron el control de calidad se clasificaron taxonómicamente con GTDB-Tk \cite{gtdbtk2019}, empleando los conjuntos de marcadores bac120 para bacterias y arc122 para arqueas. GTDB-Tk ubica cada genoma en el árbol de referencia del GTDB, que normaliza los rangos taxonómicos según la divergencia evolutiva relativa \cite{gtdbtk2019, gtdb2022}. Este enfoque basado en el genoma completo reemplaza a la asignación preliminar por Kraken2, de naturaleza basada en lecturas, por una clasificación de mayor resolución y consistencia filogenética.
+
+\subsubsection{Confirmación de especie por ANI}
+
+La clasificación de GTDB-Tk asigna taxonomía comparando características genómicas globales, pero no compara directamente el genoma completo contra una cepa de referencia. Para confirmar la identidad a nivel de especie, se calculó la Identidad Nucleotídica Promedio (ANI) entre cada genoma ensamblado y el genoma de referencia oficial de su taxón asignado. Este genoma de referencia corresponde a la cepa tipo de la especie (el organismo depositado en bases de datos públicas cuando esa especie fue descrita por primera vez, y que actualmente actúa como estándar de comparación).
+
+El ANI mide qué tan parecidas son dos secuencias de ADN a lo largo del genoma completo. Dos genomas se consideran de la misma especie cuando el ANI es igual o superior al 95\% y al menos el 65\% del genoma puede alinearse \cite{fastANI2018, gtdbtk2019}.
+
+\subsubsection{Desreplicación y definición de linajes}
+
+Dado que el ensamblaje y el binning se realizaron por muestra de forma independiente, un mismo organismo presente en varias muestras pudo recuperarse como bins redundantes. Para colapsar esta redundancia se aplicó dRep  \cite{olm2017}, que agrupa los genomas en clústeres según su Identidad Nucleotídica Promedio (ANI). Se utilizó un umbral primario del 95\% de ANI para delimitar clústeres a nivel de especie, congruente con el radio de circunscripción taxonómica estándar empleado por la base de datos GTDB \cite{gtdbtk2019}. De forma complementaria, el agrupamiento secundario se definió a un umbral estricto del 99\% de ANI para lograr una resolución de cepa. Este último umbral permite agrupar genomas casi idénticos \cite{olm2017}, asegurando la desreplicación de poblaciones clonales sin colapsar cepas de la misma especie que pudieran albergar variaciones intraespecíficas relevantes. Cada clúster resultante se define operativamente como un linaje.
+
+La desreplicación cumple dos funciones determinantes. Primero, colapsa la redundancia introducida por el binning independiente por muestra, de modo que un mismo organismo recuperado en varios puntos del monumento se contabilice una sola vez como linaje y no como genomas distintos. Segundo, permite definir una métrica de prevalencia objetiva, calculada como el número de muestras, sobre el total de 24, que aportan al menos un genoma a cada clúster. Esta métrica no depende de las lecturas crudas y describe la distribución espacial del linaje sobre el monumento.
+
+Es preciso señalar que la desreplicación no provee, por sí sola, réplicas suficientes para construir un pangenoma únicamente con los genomas de la Estela: la mayoría de los linajes quedó representada por un solo genoma. En consecuencia, el análisis pangenómico de la Fase 3 se realiza contra conjuntos de genomas de referencia públicos y no entre genomas del monumento, lo que condiciona el criterio de selección de las especies descrito en esa fase.
+
+\subsubsection{Confirmación filogenómica}
+
+La ubicación de cada linaje se visualizó mediante un árbol filogenómico focalizado que incluyó los genomas de la Estela y los genomas de referencia, inferido de novo por GTDB-Tk \cite{gtdbtk2019} a partir de los mismos marcadores bac120 empleados en la clasificación taxonómica. Esta elección, frente a la alternativa de inferir el árbol externamente con IQ-TREE \cite{minh2020}, se sustentó en la matriz de selección ponderada (Tabla~\ref{tab:seleccion_filogenomica}), en la que GTDB-Tk obtuvo la mayor puntuación gracias a su integración directa en el flujo ya ejecutado y a su menor costo computacional, criterio priorizado dada la restricción de cómputo propia de un proyecto de pregrado. Como contrapartida, el árbol de novo de GTDB-Tk no provee selección de modelo de sustitución ni soporte de rama mediante bootstrap, por lo que la topología resultante se interpreta como una verificación visual de la monofilia de cada linaje frente a las referencias, y no como una confirmación con soporte estadístico cuantificado.
+
+\begin{table}[H]
+\centering
+
+\caption{Matriz de selección de software para la confirmación filogenómica.}
+\label{tab:seleccion_filogenomica}
+
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& & \multicolumn{2}{c}{\textbf{GTDB-Tk (árbol de novo)}} & \multicolumn{2}{c}{\textbf{IQ-TREE}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+\textbf{Criterio} & \textbf{Peso (\%)} & \textbf{Pts} & \textbf{Peso$\times$Pts} & \textbf{Pts} & \textbf{Peso$\times$Pts} \\
+\midrule
+Facilidad de instalación & 20 & 4 & 80 & 3 & 60 \\
+Acceso a dependencias & 20 & 4 & 80 & 3 & 60 \\
+Costo computacional & 15 & 4 & 60 & 2 & 30 \\
+Integración en pipeline & 20 & 4 & 80 & 3 & 60 \\
+Calidad de resultado & 10 & 2 & 20 & 4 & 40 \\
+Alcance funcional & 5  & 2 & 10 & 4 & 20 \\
+Interpretabilidad & 10 & 2 & 20 & 4 & 40 \\
+\midrule
+\textbf{Total} & \textbf{100} & & \textbf{350} & & \textbf{310} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsubsection{Prevalencia espacial de los linajes}
+
+A partir de los linajes definidos, entendidos como los clústeres de especie obtenidos al 95\% de ANI, se calculó la prevalencia espacial de cada uno \cite{olm2017}: el número de muestras distintas, sobre el total de 24 librerías, que aportan al menos un genoma a ese linaje. No se dispone de un mapeo entre muestra y zona física del monumento, de modo que la métrica cuantifica la recurrencia del linaje entre puntos de muestreo y no su distribución sobre regiones de la estela.
+
+La prevalencia espacial se reporta como resultado del OE2 y caracteriza la distribución de cada linaje sobre el monumento. No determina, sin embargo, qué especies ingresan al análisis pangenómico: esa decisión responde a un criterio de factibilidad analítica que se define en la Fase 3.
+
+%\subsection{Fase 3. Validación cruzada con el perfil ambiental 16S}
+
+%Para evaluar la relevancia ecológica de los linajes recuperados de la fracción cultivable, su composición se contrastó con el perfil taxonómico de la comunidad ambiental total. Este perfil proviene de la secuenciación de amplicones 16S rRNA del hisopo A, procesada en el informe técnico previo frente a la base de datos SILVA \cite{tsukayama2025informe}. La comparación se realizó a nivel de género: la presencia, y en particular la abundancia, de los géneros seleccionados en el perfil ambiental se interpreta como evidencia de que dichos linajes son miembros genuinos de la comunidad colonizadora y no errores del cultivo. Dado que la taxonomía de SILVA y la del GTDB no son equivalentes, los nombres de género se armonizaron entre ambos sistemas antes de la comparación. Este paso convierte la limitación impuesta por el origen cultivado de la muestra en un control de relevancia ecológica.
+
+\subsection{Fase 3. Análisis pangenómico comparativo (OE3)}
+
+\subsubsection{Criterio de selección de las especies diana}
+
+Dado que la mayoría de los linajes quedó representada por un único genoma de la Estela, el pangenoma de cada uno debe construirse contra un conjunto de genomas de referencia públicos. La existencia de ese conjunto es, por tanto, una condición necesaria del análisis: sin un número suficiente de genomas comparables, la partición entre genoma núcleo y genoma accesorio carece de sustento estadístico y la curva de acumulación no llega a estabilizarse \cite{tettelin2005}. En consecuencia, el criterio que determina qué especies ingresan al análisis pangenómico es la \textbf{disponibilidad genómica pública}, y no la prevalencia espacial calculada en la Fase 2.
+
+Esta distinción es deliberada y conviene explicitarla. La prevalencia espacial responde a una pregunta ecológica, la de qué linajes colonizan de forma estable el monumento, y se reporta como resultado del OE2. La disponibilidad genómica responde a una pregunta de factibilidad, la de qué especies admiten un análisis pangenómico con sustento. Ambas se reportan de forma conjunta en la tabla de viabilidad, de modo que quedan documentados los casos en los que un linaje espacialmente prevalente no pudo ser analizado por falta de referencias públicas. Tales linajes se excluyen del pangenoma por limitación de las bases de datos y no por ausencia de relevancia ecológica.
+
+\subsubsection{Censo de disponibilidad genómica}
+
+El censo se restringió a los linajes cuya clasificación alcanzó un binomio específico válido. Quedaron fuera dos grupos. El primero corresponde a los linajes sin asignación de especie en GTDB, cuya clasificación se detiene en el rango de género. El segundo corresponde a los linajes cuyo clúster de especie en GTDB lleva un nombre provisional de tipo alfanumérico, de la forma \texttt{sp} seguida de dígitos; se trata de clústeres válidos a nivel de especie, pero sin binomio publicado ni equivalente estable en NCBI Taxonomy, por lo que no admiten un censo por nombre. Ambos grupos se documentan de forma individual y, en el caso de los linajes con valores bajos de ANI frente a su referencia más próxima, se reportan como candidatos a especie no descrita.
+
+Para cada especie evaluada se cuantificó el número de genomas públicos disponibles a partir de dos fuentes. La primera es el archivo de metadatos de GTDB correspondiente al mismo release empleado en la clasificación de la Fase 2, que proporciona, por genoma, las métricas de calidad estimadas con CheckM2, el nivel de ensamblaje, la categoría de origen y la correspondencia con NCBI Taxonomy. La segunda es la interfaz NCBI Datasets, que provee los recuentos vigentes de GenBank y RefSeq. Se evitó tratar NCBI Assembly y NCBI Datasets como fuentes independientes, dado que corresponden al mismo repositorio: la primera es la interfaz retirada del segundo.
+
+La correspondencia entre la taxonomía de GTDB y la de NCBI se resolvió de forma sistemática, por voto mayoritario del identificador de especie de NCBI entre los genomas que integran cada clúster de GTDB, registrando además la fracción de genomas que respalda el identificador mayoritario como medida de consistencia del mapeo. Este procedimiento resuelve dos discrepancias que una búsqueda por nombre no detecta. La primera son los géneros reasignados por GTDB: una especie puede figurar en GTDB bajo un género distinto del que conserva NCBI Taxonomy, de modo que la consulta por el nombre de GTDB devuelve cero genomas y llevaría a declarar erróneamente inviable a esa especie. La segunda son los sufijos de GTDB, de la forma \texttt{\_A} o \texttt{\_B}, que identifican especies escindidas por criterios filogenómicos y que NCBI mantiene agrupadas bajo un solo nombre; en esos casos el recuento de NCBI agrega varias especies de GTDB y sobreestima la disponibilidad real, por lo que la cifra comparable es el tamaño del clúster de GTDB. Las especies afectadas se señalan de forma explícita en la tabla de viabilidad.
+
+\subsubsection{Filtrado de calidad y umbral de viabilidad}
+
+Los recuentos brutos de las bases de datos no son una medida adecuada de disponibilidad, porque incluyen ensamblajes que no admiten un análisis pangenómico fiable. Por ello, el umbral se aplicó sobre el recuento depurado y no sobre el total depositado. Se admitieron al conjunto de referencia únicamente los genomas que cumplieron simultáneamente cuatro condiciones: completitud igual o superior al 95\%, contaminación igual o inferior al 5\%, un máximo de 300 contigs, y origen en un aislado. Esta última condición excluye los genomas derivados de metagenoma o de muestra ambiental, cuya naturaleza es equivalente a la de los propios MAGs de la Estela y que por tanto no constituyen un referente de comparación independiente.
+
+Los dos primeros umbrales son más exigentes que los aplicados a los genomas de la Estela en la Fase 1, donde la completitud mínima fue del 70\%. La asimetría es intencional: sobre los genomas del monumento no existe posibilidad de elección, mientras que sobre las referencias públicas sí, y conviene que el marco de comparación sea el de mayor calidad disponible. El límite de contigs responde a que la fragmentación del ensamblaje interrumpe marcos de lectura en los bordes de contig, lo que Panaroo interpreta como ausencia o duplicación génica e infla artificialmente el genoma accesorio \cite{panaroo2020}.
+
+Se consideró viable para el análisis pangenómico toda especie que reunió al menos diez genomas tras este filtrado. Todas las especies viables ingresaron al análisis; no se aplicó un corte adicional por número de especies. Las especies que no alcanzaron el umbral se describen de forma individual, sin pangenoma comparativo, y su exclusión queda registrada en la tabla de viabilidad junto con el desglose de las causas de descarte de cada genoma candidato.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{Viabilidad de cada especie para el análisis pangenómico según disponibilidad genómica pública.}
+\label{tab:viabilidad}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}llllcccccc@{}}
+\toprule
+\textbf{Linaje} & \textbf{Especie (GTDB)} & \textbf{Especie (NCBI)} & \textbf{TaxID} & \textbf{Sufijo} & \textbf{GenBank} & \textbf{RefSeq} & \textbf{Clúster GTDB} & \textbf{Post-QC} & \textbf{Viable} \\
+\midrule
+ &  &  &  &  &  &  &  &  &  \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{0.5em}
+\begin{minipage}{0.95\textwidth}
+\footnotesize
+\textit{Nota.} La columna Sufijo indica si el nombre de GTDB lleva un sufijo de especie escindida, caso en el cual el recuento de NCBI agrega varias especies de GTDB y no es directamente comparable; en esas filas la cifra de referencia es el tamaño del clúster de GTDB. La columna Post-QC corresponde al número de genomas que superaron el filtrado de calidad descrito en el texto, y es la que se contrasta contra el umbral de diez genomas.
+\end{minipage}
+\end{table}
+
+\subsubsection{Recopilación y depuración de los genomas de referencia}
+
+Para cada especie viable se descargaron los genomas admitidos mediante la interfaz NCBI Datasets. A diferencia de un diseño basado en la ampliación taxonómica, no se recurrió al género correspondiente cuando el número de genomas de especie resultó insuficiente: una especie que no alcanza el umbral se declara inviable y se describe de forma individual. Esta decisión evita mezclar rangos taxonómicos dentro de un mismo pangenoma, lo que degradaría la detección de ortólogos por la razón expuesta más adelante.
+
+El conjunto de referencias se desreplicó con dRep a un umbral del 99\% de ANI, con el fin de evitar que genomas casi clonales, frecuentes en taxones muy secuenciados por interés clínico o industrial, inflaran artificialmente el genoma núcleo \cite{olm2017}. El número final de genomas de referencia por especie no se fijó de forma arbitraria, sino que se determinó mediante la curva de acumulación del pangenoma: se añadieron genomas secuencialmente hasta observar la estabilización del genoma núcleo \cite{tettelin2005}. Sobre este procedimiento se impuso un límite superior de 50 genomas por especie, por dos razones: la restricción de cómputo del entorno de ejecución y el sesgo por clonalidad que introducen las especies sobrerrepresentadas en las bases de datos. Cuando la curva no se estabilizó dentro de ese límite, la condición se reporta de forma explícita y el pangenoma resultante se interpreta como abierto.
+
+La priorización dentro de cada conjunto, cuando el número de genomas admitidos excedió el necesario, siguió dos criterios: los genomas designados como representantes de clúster en GTDB y la diversidad de fuente de aislamiento. Este segundo criterio es pertinente al objeto de estudio, dado que un conjunto de referencia compuesto íntegramente por aislados de origen clínico aporta poca información sobre la adaptación a un sustrato pétreo expuesto.
+
+Esta elección de la especie como unidad primaria de análisis resulta indispensable para el correcto funcionamiento de Panaroo, dado que el algoritmo requiere comparar un conjunto de genomas estrechamente emparentados para diferenciar con precisión los genes esenciales y conservados (genoma core) de aquellos genes ganados o perdidos como producto de la adaptación evolutiva al nicho específico (genoma accesorio). Cuando la comparación se realiza entre genomas filogenéticamente distantes, esta distinción pierde fiabilidad, pues la divergencia de secuencia entre especies no relacionadas introduce una subestimación artificial del genoma core, atribuible a limitaciones del método de detección de ortólogos y no a una reducción real del repertorio génico compartido \cite{panaroo2020}.
+
+\subsubsection{Anotación estructural y funcional consistente}
+
+La totalidad de los genomas, tanto los MAGs de la Estela como las referencias, se anotó con la misma herramienta y versión para garantizar la homogeneidad requerida por el análisis pangenómico \cite{panaroo2020}. Se empleó Bakta \cite{schwengers2021}, que realiza la predicción de marcos abiertos de lectura y la anotación mediante identificación de secuencias sin alineamiento, y que ya se había aplicado a los bins originales. Esta elección, frente a la alternativa de Prokka \cite{prokka2014} (heredero directo de Prodigal \cite{Hyatt2010}), se sustentó en la matriz de selección ponderada (Tabla~\ref{tab:seleccion_anotacion}), en la que Bakta obtuvo la mayor puntuación gracias a su continuidad con la anotación ya aplicada a los bins originales, su mayor resolución en linajes ambientales divergentes y su alcance funcional más amplio; Prokka resultó más liviano de instalar, pero con menor calidad de resultado en MAGs poco representados en bases de datos curadas. La anotación consistente evita que diferencias en la predicción génica se confundan con diferencias biológicas. Por esta razón, los genomas de referencia se reanotaron íntegramente con Bakta y no se emplearon las anotaciones que acompañan a los ensamblajes depositados en RefSeq, generadas por la tubería PGAP de NCBI. Combinar ambas procedencias introduciría diferencias sistemáticas en los límites de los marcos de lectura y en los criterios de llamado génico entre los genomas de referencia y los del monumento, diferencias que el análisis pangenómico registraría como variación del genoma accesorio.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Matriz de selección de software para la anotación estructural y funcional.}
+\label{tab:seleccion_anotacion}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& & \multicolumn{2}{c}{\textbf{Bakta}} & \multicolumn{2}{c}{\textbf{Prokka}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+\textbf{Criterio} & \textbf{Peso (\%)} & \textbf{Pts} & \textbf{Peso$\times$Pts} & \textbf{Pts} & \textbf{Peso$\times$Pts} \\
+\midrule
+Facilidad de instalación & 10 & 3 & 30  & 4 & 40 \\
+Acceso a dependencias    & 10 & 3 & 30  & 4 & 40 \\
+Costo computacional      & 5  & 3 & 15  & 4 & 20 \\
+Integración en pipeline  & 25 & 4 & 100 & 2 & 50 \\
+Calidad de resultado     & 25 & 4 & 100 & 2 & 50 \\
+Alcance funcional        & 15 & 4 & 60  & 3 & 45 \\
+Interpretabilidad        & 10 & 4 & 40  & 3 & 30 \\
+\midrule
+\textbf{Total} & \textbf{100} & & \textbf{375} & & \textbf{275} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Reconstrucción del pangenoma}
+
+El pangenoma de cada especie viable se reconstruyó con Panaroo \cite{panaroo2020}. Esta elección, frente a la alternativa de PPanGGOLiN \cite{ppanggolin2020}, se sustentó en la matriz de selección ponderada (Tabla~\ref{tab:seleccion_pangenoma}), en la que Panaroo obtuvo la mayor puntuación gracias a su representación gráfica del pangenoma, que corrige errores de anotación y de ensamblaje mediante la propagación del contexto genómico vecino y reduce de forma marcada la inflación artificial del genoma accesorio asociada a la fragmentación de los MAGs; PPanGGOLiN, pese a ofrecer un modelo probabilístico de partición con módulos adicionales (regiones de plasticidad genómica), no corrige esta inflación con la misma eficacia en colecciones de MAGs fragmentados.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Matriz de selección de software para la reconstrucción del pangenoma.}
+\label{tab:seleccion_pangenoma}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& & \multicolumn{2}{c}{\textbf{Panaroo}} & \multicolumn{2}{c}{\textbf{PPanGGOLiN}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+\textbf{Criterio} & \textbf{Peso (\%)} & \textbf{Pts} & \textbf{Peso$\times$Pts} & \textbf{Pts} & \textbf{Peso$\times$Pts} \\
+\midrule
+Facilidad de instalación & 10 & 3 & 30  & 3 & 30 \\
+Acceso a dependencias    & 10 & 3 & 30  & 3 & 30 \\
+Costo computacional      & 5  & 3 & 15  & 4 & 20 \\
+Integración en pipeline  & 15 & 3 & 45  & 3 & 45 \\
+Calidad de resultado     & 35 & 4 & 140 & 2 & 70 \\
+Alcance funcional        & 15 & 3 & 45  & 4 & 60 \\
+Interpretabilidad        & 10 & 4 & 40  & 3 & 30 \\
+\midrule
+\textbf{Total} & \textbf{100} & & \textbf{345} & & \textbf{285} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Panaroo corrige los errores de anotación y de ensamblaje mediante la propagación del contexto genómico vecino en un grafo de vecindad génica, y el parámetro \texttt{clean-mode} gradúa cuán agresivamente descarta los agrupamientos de baja frecuencia que ese contexto no respalda. Se empleó el modo moderado (\texttt{clean-mode moderate}). La razón es que el objetivo del OE3 son los genes candidatos exclusivos de la Estela, que por definición aparecen en un solo genoma del conjunto y constituyen precisamente la clase de agrupamiento que el modo estricto descarta con mayor probabilidad. El desequilibrio del conjunto acentúa este riesgo: cada pangenoma reúne decenas de aislados de alta calidad frente a uno o dos MAGs del monumento, de modo que un gen presente únicamente en el MAG resulta indistinguible de un artefacto para un filtro basado en frecuencia. El control frente a falsos positivos se ejerce, en su lugar, mediante los criterios dirigidos descritos en el apartado siguiente, que evalúan cada gen candidato de forma individual en lugar de filtrarlo por su frecuencia en el conjunto.
+
+El pangenoma se particionó en tres compartimentos siguiendo la convención de la genómica comparativa \cite{panaroo2020, tettelin2005, Page2015}: genoma nuclear (genes presentes en al menos el 95\% de los genomas), genoma de cubierta o shell (genes en el 15 a 95\%) y genoma accesorio o cloud (genes en menos del 15\%).
+
+\subsubsection{Identificación de genes candidatos exclusivos de la Estela}
+
+Los genes candidatos a ser exclusivos de la Estela se definieron como aquellos presentes en uno o más MAGs del monumento y ausentes en todos los genomas de referencia. Para reducir la probabilidad de errores, se exigió que el gen estuviera completo y no truncado en el borde de un contig. Los candidatos se contrastaron mediante búsqueda de homología frente a las bases de datos nr (non-redundant) y nt (nucleotide) para descartar contaminación. Estos genes se interpretan en el marco de la transferencia horizontal de genes como principal motor de adaptación ecológica en procariotas \cite{soucy2015}. Dado que la incompletitud de los MAGs implica que la ausencia observada de un gen no equivale a su ausencia real \cite{bowers2017}, los resultados se reportan como candidatos a exclusivos y como adquisición probable, sin afirmar certeza.
+
+Esta asimetría se agrava por el diseño del conjunto de comparación y condiciona la interpretación de toda la fase. Los genomas del monumento son MAGs admitidos con una completitud mínima del 70\%, mientras que los genomas de referencia ingresan con una completitud mínima del 95\%. En consecuencia, un MAG incompleto aparentará carecer de genes del genoma nuclear por una razón metodológica y no biológica. Se adopta por tanto el siguiente criterio de interpretación, aplicable también a la Fase 4: las conclusiones sobre la presencia de un gen en un genoma de la Estela son válidas, mientras que las conclusiones sobre su ausencia no lo son sin controlar por la completitud del MAG correspondiente. Para permitir ese control, la completitud estimada por CheckM2 de cada genoma del monumento se reporta junto a su perfil génico.
+
+\subsection{Fase 4. Caracterización del potencial metabólico y del riesgo (OE4)}
+
+\subsubsection{Anotación funcional del potencial metabólico}
+
+
+El potencial metabólico de las especies viables seleccionadas en la Fase 3, junto con los genomas del monumento que las representan, se caracterizó con la herramienta DRAM \cite{dram2020}, la cual integra la asignación de ortólogos KEGG (KO) y produce resúmenes de los ciclos biogeoquímicos del nitrógeno, el azufre y el carbono, así como el inventario de enzimas activas sobre carbohidratos (CAZymes) basado en las bases dbCAN y CAZy. Para la evaluación de los módulos de KEGG, DRAM modela las vías como redes dirigidas y calcula la completitud como el porcentaje de cobertura de la ruta que presenta la mayor proporción de genes (nodos) detectados \cite{dram2020}. Sobre esta base, en el presente estudio se estableció un umbral operativo estricto: un marcador individual se consideró detectado cuando el KO estuvo presente, mientras que un módulo metabólico completo se consideró funcionalmente "presente" solo cuando su porcentaje de completitud alcanzó o superó el 66\%.
+
+\subsubsection{Definición de marcadores de riesgo y supervivencia}
+
+La interpretación funcional se ancló en una tabla de marcadores genómicos definida \textit{a priori}, es decir, fijada antes de observar los resultados, con el fin de evitar el sesgo de confirmación. Esta tabla clasifica genes y ortólogos KO en dos categorías: marcadores de riesgo de biodeterioro, que incluyen la producción de ácidos orgánicos por el ciclo de los ácidos tricarboxílicos \cite{zanardini2019}, la síntesis de ácido 2-cetoglucónico como quelante de silicatos \cite{gutarowska2015}, la biosíntesis de sustancias poliméricas extracelulares de la biopelícula \cite{flemming2010}, la nitrificación y la oxidación del azufre como fuentes de ácidos inorgánicos \cite{dakal2012, zanardini2019} y las CAZymes \cite{cantarel2009,zhang2018}; y marcadores de supervivencia o persistencia, que incluyen la esporulación \cite{Galperin2022} y la respuesta a estrés oxidativo y desecación. La Tabla~\ref{tab:marcadores} detalla los marcadores organizados por categoría. Para cada función se consignan los genes representativos, el identificador KEGG Orthology (KO) y, cuando corresponde, el módulo metabólico KEGG. Los identificadores KO y los módulos se asignaron consultando directamente la base de datos KEGG \cite{kegg2023} a partir del nombre del gen. Los operones de exopolisacáridos (EPS) y las enzimas activas sobre carbohidratos (CAZymes) no poseen un identificador KO único; su detección se realiza mediante la base de datos dbCAN, integrada en DRAM. La detección efectiva de cada marcador en los genomas se obtiene de DRAM durante la fase de anotación funcional.
+
+\subsubsection{Integración del potencial funcional con la estructura del pangenoma}
+
+En el paso final, cada marcador de la tabla \textit{a priori} se mapeó sobre la partición del pangenoma para determinar si reside en el genoma nuclear o en el accesorio. Para evaluar de forma cuantitativa si los marcadores de riesgo se concentran en el genoma accesorio, se aplicó una prueba exacta de Fisher sobre una tabla de contingencia de dos por dos que cruza la condición de gen de riesgo o no de riesgo con su pertenencia al genoma accesorio o nuclear, reportando tanto el valor de probabilidad como la razón de momios (odds ratio) como medida del tamaño del efecto. Cuando se evaluaron varias categorías funcionales de forma simultánea, los valores de probabilidad se ajustaron por comparaciones múltiples mediante el procedimiento de Benjamini y Hochberg. Esta prueba se interpreta con cautela por dos razones: las familias génicas no constituyen observaciones estadísticamente independientes, debido a la no independencia filogenética, y el número reducido de marcadores de riesgo limita la potencia estadística. Por ello, el resultado se presenta como evidencia de apoyo y no como prueba concluyente. De forma complementaria, se caracterizó la apertura del pangenoma estimando el parámetro de la ley de Heaps sobre la curva de acumulación \cite{tettelin2005}.
+
+La lógica interpretativa es la siguiente. Si los genes de biodeterioro se enriquecen de forma significativa en el genoma accesorio, en particular si son compartidos por varios MAGs del mismo linaje, ello aporta soporte cuantitativo a la hipótesis de que dichas funciones fueron adquiridas como adaptación al nicho del monumento. Si, por el contrario, residen en el genoma nuclear, se interpretan como rasgos intrínsecos y conservados del linaje. En coherencia con el alcance del estudio, estas conclusiones describen el potencial metabólico codificado y no la actividad biológica real en el momento del muestreo.
+
+% Requiere en el preambulo: \usepackage{tabularx}
+% Si el documento es a dos columnas (p. ej. IEEEtran) y la tabla queda muy
+% apretada, cambia \begin{table} por \begin{table*} para que ocupe el ancho
+% completo de la pagina.
+\newcolumntype{Q}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}
+\begin{table*}[htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Marcadores genómicos \textit{a priori} de biodeterioro y supervivencia.}
+\label{tab:marcadores}
+\begin{tabularx}{\linewidth}{Q{1.2} Q{1.1} Q{1.0} Q{1.5} Q{0.5} Q{0.7}}
+\hline
+\textbf{Categoría} & \textbf{Función / mecanismo} & \textbf{Genes} & \textbf{KO} & \textbf{Módulo} & \textbf{Fuente} \\
+\hline
+Riesgo & Ácidos orgánicos del ciclo TCA (acidólisis) & gltA, acnA, icd, sdhA, fumA & K01647, K01681, K00031, K00239, K01676 & M00009 & \cite{zanardini2019, gutarowska2015} \\
+Riesgo & Ácido 2-cetoglucónico (quelación de silicatos) & gcd & K00117 & --- & \cite{gutarowska2015} \\
+Riesgo & Biosíntesis de EPS de biopelícula & pel, psl, epsA-O & sin KO único (dbCAN) & --- & \cite{flemming2010} \\
+Riesgo & Adhesión y curli & csgA, csgB & K04334, K04335 & --- & \cite{flemming2010} \\
+Riesgo & Nitrificación (ácido nítrico) & amoA, hao, nxrA & K10944, K10535, K00370 & M00528 & \cite{zanardini2019, dram2020} \\
+Riesgo & Oxidación de azufre (ácido sulfúrico) & soxB, dsrA, dsrB & K17224, K11180, K11181 & M00595 & \cite{zanardini2019} \\
+Riesgo & CAZymes (polisacáridos y EPS) & familias GH, GT & sin KO único (dbCAN) & --- & \cite{cantarel2009, zhang2018} \\
+Supervivencia & Esporulación (latencia y resistencia) & spo0A, spoIIAA, spoIIE & K07699, K06378, K06382 & --- & \cite{Galperin2022} \\
+Supervivencia & Carotenoides (protección UV) & crtB, crtI & K02291, K10027 & M00915 & \cite{basile2025} \\
+Supervivencia & Estrés oxidativo y desecación & katA, sodA, dps & K03781, K04564, K04047 & --- & \cite{alonso2025, basile2025} \\
+\hline
+\end{tabularx}
+\end{table*}
+
+
+\subsection{Reproducibilidad}
+Se registró la versión exacta de cada herramienta bioinformática y la versión de cada base de datos empleada, y cada identificador KO se verificó contra la versión vigente de KEGG. El conjunto de software comprende, en orden de ejecución, Tiara \cite{karlicki2022tiara}, CheckM2 \cite{checkm2}, GTDB-Tk \cite{gtdbtk2019}, FastANI \cite{fastANI2018}, dRep \cite{olm2017}, la interfaz de línea de comandos NCBI Datasets, Bakta \cite{schwengers2021}, Panaroo \cite{panaroo2020} y DRAM \cite{dram2020}. Las pruebas estadísticas se ejecutaron en un entorno de R con las bibliotecas correspondientes.
+
+El censo de disponibilidad genómica se ejecutó sobre el archivo de metadatos de GTDB correspondiente al mismo release empleado en la clasificación taxonómica de la Fase 2, de modo que los recuentos de genomas y las métricas de calidad de las referencias provienen de una versión fija y citable de la base de datos. Los recuentos obtenidos de NCBI Datasets se registraron junto con su fecha de consulta, dado que, a diferencia de un release de GTDB, corresponden a un repositorio en actualización continua y no son reproducibles sin esa referencia temporal.
+
+Los análisis computacionalmente intensivos se ejecutaron en el clúster de cómputo de alto rendimiento Khipu de la Universidad de Ingeniería y Tecnología (UTEC), modalidad Tesis. Este tipo de acceso permite el uso de las particiones \texttt{debug}, \texttt{debug-gpu}, \texttt{standard}, \texttt{gpu} y \texttt{big-mem}, con una asignación máxima por usuario de 32 núcleos de CPU, 98 GB de memoria RAM y 40 \textit{GPU shards}, además de un tiempo máximo de ejecución de 24 horas por trabajo computacional. La disponibilidad de esta infraestructura permitió ejecutar de manera controlada y reproducible las etapas de filtrado, evaluación de calidad, clasificación taxonómica, comparación genómica, anotación funcional y análisis pangenómico.
+
+Para asegurar la trazabilidad del flujo de trabajo, se conservaron los comandos utilizados, los parámetros de ejecución, los archivos de entrada y salida, y los registros generados por cada herramienta. Asimismo, los resultados intermedios relevantes fueron organizados por etapa del análisis. Esta estructura permite auditar cada paso del procesamiento, repetir los análisis bajo las mismas condiciones computacionales y vincular los resultados finales con los archivos originales.
+
+

@@ -1,0 +1,80 @@
+%% ============================================================================
+%%  Marco Referencial — Tesis Estela de Raimondi
+%%  Compatible con: tesisutecinvestigacion.cls  (pdfLaTeX)
+%%
+%%  INTEGRACIÓN EN EL DOCUMENTO PRINCIPAL:
+%%    \include{marco_referencial/marco_referencial}
+%%
+%%  Las referencias están en referencias/referencias_mt.bib (archivo unificado)
+%% ============================================================================
+
+\chapter{ MARCO REFERENCIAL}
+\label{chap:marco_referencial}
+
+El presente marco referencial contextualiza el entorno operativo para el análisis genómico de la Estela de Raimondi, estableciendo las directrices, limitaciones y consideraciones éticas que fundamentan las decisiones metodológicas del proyecto. Para transitar de un simple inventario taxonómico a la caracterización del potencial metabólico mediante genomas metagenómicos (MAGs), el diseño del estudio asume compromisos técnicos (trade-offs) justificados a través de tres componentes críticos: los estándares de ingeniería bioinformática, las restricciones del entorno real y el análisis ético de la conservación patrimonial.
+
+\section{Estándares bioinformáticos}
+\label{subsec:estandares_bioinformaticos}
+
+El flujo de trabajo para el ensamblaje, control de calidad y análisis comparativo de linajes bacterianos se rige por métricas consensuadas internacionalmente en genómica ambiental, las cuales garantizan la viabilidad técnica de las conclusiones:
+
+\begin{itemize}
+    \item \textbf{Estándares MIMAG para la calidad de genomas:} De acuerdo a lo mencionado en el marco teórico, este umbral ($>$70\% completitud, $<$5\% contaminación) representa un \textit{trade-off} de diseño, pues flexibiliza el rigor de completitud para maximizar la recuperación de genomas ambientales fragmentados, pero adopta la máxima restricción de contaminación ($<5\%$) para asegurar que el análisis del genoma accesorio no se vea sesgado por la inclusión de ADN foráneo \citep{bowers2017}.
+    
+    \item \textbf{Estandarización taxonómica y genómica:} Para evitar ambigüedades en la clasificación de los MAGs, el diseño requiere el uso de bases de datos curadas y de alta resolución, como la base de datos GTDB (\textit{Genome Taxonomy Database}) a través de herramientas como GTDB-Tk, la cual provee una asignación taxonómica objetiva basada en la divergencia evolutiva relativa y la Identidad Nucleotídica Promedio (ANI) \citep{gtdbtk2019}. Asimismo, el mapeo de rutas de esporulación y biodeterioro se enmarca en la capacidad de herramientas de destilación metabólica como DRAM, diseñadas para decodificar las contribuciones microbianas a los ciclos geoquímicos a partir de datos genómicos \citep{dram2020}.
+    
+    \item \textbf{Requerimientos para el pangenoma:} La comparación genómica a nivel poblacional debe mitigar los errores inherentes a la anotación automatizada, como la fragmentación de ensamblajes que infla artificialmente el tamaño del genoma accesorio \citep{panaroo2020}. Por ello, se asume el requerimiento de utilizar algoritmos basados en grafos (como la topología de red de Panaroo) que permiten corregir errores de traducción y colapsar familias de genes diversos, asegurando que los genes exclusivos de la Estela correspondan a verdaderas adaptaciones evolutivas (xenólogos o parálogos) y no a artefactos del ensamblaje \citep{panaroo2020}.
+\end{itemize}
+
+%% ------------------------------------------------------------------
+\section{Restricciones realistas del proyecto}
+\label{sec:ref_restricciones}
+
+Las decisiones de diseño del estudio no solo responden a la teoría bioinformática, sino que están fuertemente moldeadas por las limitaciones del objeto de estudio y su entorno:
+
+\begin{itemize}
+    \item \textbf{Restricciones físicas y normativas:} La Estela de Raimondi es una pieza única, inscrita en el Registro Nacional Informatizado del Perú (Pieza L-8741) y de incalculable valor para la nación \citep{mnaahp2015}. Normativamente, cualquier muestreo debe ser estrictamente no destructivo e \textit{in situ}, prohibiendo la alteración física del soporte \citep{branysova2022}. Esto obliga a utilizar técnicas de hisopado superficial en seco que generan cantidades de ADN extremadamente limitadas (baja biomasa) \citep{tsukayama2025informe}. Esta restricción justifica directamente la decisión de priorizar en los objetivos únicamente a los linajes bacterianos dominantes, pues la secuenciación profunda del microbioma ``raro'' resulta computacionalmente inviable y estadísticamente ruidosa frente a la baja cantidad de material genético extraíble.
+    
+    \item \textbf{Restricciones económicas:} Las tecnologías de secuenciación de próxima generación (NGS) y la evaluación bioinformática profunda presentan altos costos financieros y computacionales. Esta barrera económica justifica el compromiso de emplear metodologías metagenómicas basadas en ADN en lugar de aproximaciones dinámicas más costosas como la metatranscriptómica (ARN) \citep{branysova2022}.
+\end{itemize}
+
+Las restricciones materiales, operativas y éticas del proyecto se
+resumen en la tabla~\ref{tab:restricciones}. Cada restricción se asocia
+a la decisión metodológica concreta que originó.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{Matriz de restricciones realistas del proyecto y su impacto
+    en las decisiones de diseño metodológico.}
+  \label{tab:restricciones}
+  \begin{tabular}{p{2.3cm} p{4.5cm} p{7cm}}
+    \toprule
+    \textbf{Categoría} & \textbf{Restricción} & \textbf{Consecuencia metodológica} \\
+    \midrule
+    Ético-patrimonial
+      & Prohibición de muestreo destructivo (raspado, corte, extracción de fragmentos).
+      & Adopción de hisopado seco estéril sobre área $<$10\,cm$^{2}$; no es viable la metaproteómica directa. \\
+
+    \midrule
+    Computacional
+      & Capacidad del clúster institucional (memoria RAM, núcleos disponibles).
+      & Selección de MEGAHIT sobre metaSPAdes por menor huella de memoria; binning con MetaBAT~2 en lugar de ensamble de herramientas. \\
+    \midrule
+    Histórica
+      & Ausencia de muestras previas conservadas de la Estela.
+      & No es posible comparar el estado actual con líneas de base históricas; la inferencia de cambios temporales se limita a hipótesis ecológicas. \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+El conjunto de restricciones de la tabla~\ref{tab:restricciones} no
+constituye una limitación accesoria del trabajo, sino el marco que
+define qué preguntas pueden responderse con rigor y cuáles permanecen
+fuera del alcance metodológico de esta tesis. En particular, la
+caracterización del potencial metabólico (OE4) es alcanzable bajo estas
+restricciones; la verificación de su actividad real \textit{in situ},
+en cambio, exigiría intervenciones (metatranscriptómica directa o
+metaproteómica) que el marco ético-patrimonial vigente no permite y
+que se proponen como continuidad de la investigación en el capítulo
+final.

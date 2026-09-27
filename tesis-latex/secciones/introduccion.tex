@@ -1,0 +1,53 @@
+\chapter{INTRODUCCIÓN} 
+
+\introsection{Presentación del proyecto}
+
+La Estela de Raimondi es una de las piezas más importantes de la cultura Chavín (Horizonte Temprano, 1200 a.C. - 400 a.C.) y un pilar de la arqueología andina. Elaborada en granito pulido, esta litoescultura de casi dos metros de altura representa a una divinidad antropomorfa, el ``Dios de los Báculos'', caracterizada por una compleja iconografía que integra rasgos de felinos, aves de rapiña y serpientes \cite{cordycollins1993}. Tras su hallazgo a mediados del siglo XIX, inicialmente por el agricultor Timoteo Espinoza en 1840 y su posterior reconocimiento valórico por Antonio Raimondi en 1860 en el Templo Nuevo de Chavín de Huántar, la Estela ha sido objeto de múltiples traslados y, por consiguiente, daños, desde su uso doméstico en Áncash hasta su actual custodia en el Museo Nacional de Arqueología, Antropología e Historia del Perú (MNAAHP) \cite{hernandez2012}.
+
+El presente proyecto de tesis surge de la necesidad de aplicar herramientas de genómica avanzada y bioinformática para entender la ecología microbiana que habita este monumento, integrando el análisis del pangenoma de linajes bacterianos para identificar poblaciones propias de la región, así como para predecir riesgos de deterioro en elementos arqueológicos.
+
+\introsection{Descripción de la situación problemática}
+
+A pesar de encontrarse en un ambiente controlado de museo, la Estela de Raimondi no es inmune al paso del tiempo ni a la interacción con agentes biológicos. Históricamente, la pieza ha sufrido daños físicos, incluyendo fracturas por el terremoto de 1940 \cite{mnaahp2015}. Sin embargo, informes técnicos recientes han identificado la presencia de biopelículas y alteraciones cromáticas en la superficie del granito.
+
+Las piedras arqueológicas, como la caliza, el granito o la toba volcánica, son altamente susceptibles al daño causado por comunidades microbianas, incluyendo bacterias, cianobacterias, algas y hongos. Los microorganismos penetran los poros y fisuras de la piedra mediante hifas fúngicas o forman biopelículas \cite{dakal2012}. Estas comunidades pueden inducir biocorrosión mediante la secreción de ácidos orgánicos que disuelven la matriz mineral o generar pigmentos que alteran irreparablemente la estética del monumento \cite{dakal2012,villa2016}. Sin embargo, se ha demostrado que las biopelículas subaéreas tienen un rol dual, pues mientras algunas causan deterioro, otras pueden actuar como una capa bioprotectora que regula la humedad térmica, consolida la superficie y protege a la piedra de los contaminantes atmosféricos \cite{villa2016,alonso2025}.
+
+El problema reside en que las estrategias tradicionales de conservación suelen ser reactivas y basadas en identificación taxonómica básica, ignorando el potencial metabólico real, las poblaciones favorables y las capacidades adaptativas de las bacterias que dominan la biopelícula.
+
+\introsection{Formulación del problema}
+
+Si bien estudios previos sobre la Estela de Raimondi permitieron caracterizar la diversidad taxonómica de su microbioma mediante secuenciación de amplicones (16S rRNA e ITS2) a partir de ADN ambiental, esta aproximación presenta limitaciones importantes para evaluar su papel en el biodeterioro del monumento. Por un lado, el ADN ambiental no permite distinguir entre microorganismos metabólicamente activos, latentes o muertos, ni diferenciar a los verdaderos colonizadores del sustrato de aquellos microorganismos depositados pasivamente desde el ambiente ~\cite{skipper2022,branysova2022}. Por otro lado, la secuenciación de amplicones ofrece información sobre la identidad taxonómica de la comunidad microbiana, pero no permite determinar su potencial metabólico ni las capacidades adaptativas de las poblaciones presentes ~\cite{PitaGaleana2025}.
+
+Frente a ello, la presente tesis se concentra en la fracción viable del microbioma, es decir, en aquellos microorganismos capaces de crecer en cultivo y, por tanto, confirmados como vivos. A partir de esta fracción se realizó secuenciación metagenómica \textit{shotgun}~\cite{tsukayama2025informe}. Mediante el ensamblaje de genomas metagenómicos (MAGs) y el análisis comparativo de sus genes accesorios frente a referencias globales, se busca caracterizar el potencial metabólico y las señales de adaptación evolutiva de los linajes bacterianos dominantes en el sustrato lítico. Esta aproximación permite identificar biomarcadores genómicos asociados a la producción de ácidos y a la formación de biopelículas, aportando parámetros técnicos para la evaluación del riesgo de biodeterioro y el diseño de protocolos de conservación preventiva basados en evidencia genómica.
+
+\introsection{Objetivos del proyecto}
+
+\introsection{Objetivo general}
+
+Diseñar un modelo predictivo para determinar el potencial metabólico y la evolución genómica de los linajes bacterianos dominantes en la Estela de Raimondi mediante análisis de pangenoma y potencial metabólico.
+
+%Caracterizar el potencial de biodeterioro y las señales de adaptación genómica de los linajes bacterianos dominantes de la fracción viable de la Estela de Raimondi, mediante el análisis pangenómico comparativo y la reconstrucción de su potencial metabólico frente a genomas de referencia globales.
+
+\introsection{Objetivos específicos}
+
+\begin{enumerate}
+    \item Seleccionar los MAGs con mayor integridad ($>70\%$) y baja contaminación ($<5\%$).
+    \item Determinar la posición filogenómica de los MAGs seleccionados mediante el cálculo de ANI (Identidad Nucleotídica Promedio) y filogenia frente a bases de datos internacionales como NCBI y GTDB.
+    \item Definir el genoma core y el genoma accesorio de los linajes dominantes de la fracción viable de la Estela frente a genomas de referencia globales, identificando genes exclusivos, es decir, específicos de la Estela.
+    \item Mapear las rutas metabólicas de supervivencia, como la esporulación, y de deterioro, como la formación de biopelículas y la producción de ácidos, analizando si los genes responsables se encuentran en el genoma accesorio, es decir, si fueron adquiridos por adaptación al monumento.
+\end{enumerate}
+
+\introsection{Justificación}
+
+El presente trabajo surge de la necesidad de transitar de una caracterización taxonómica convencional hacia un análisis de resolución genómica. En el contexto de la conservación del patrimonio en Latinoamérica, los estudios microbiológicos suelen detenerse en la descripción de géneros, dejando sin respuesta la interrogante sobre qué mecanismos biológicos específicos están siendo ejecutados activamente en la superficie del monumento \cite{villa2016,alonso2025}. El uso de bioinformática avanzada para la reconstrucción de MAGs y el análisis pangenómico permitirá identificar si los determinantes de biodeterioro, como la síntesis de ácidos orgánicos o la formación de biopelículas, son rasgos intrínsecos de los linajes o adaptaciones adquiridas para la supervivencia en el monumento \cite{skipper2022,jroundi2020}. Este estudio no solo posiciona el análisis del patrimonio cultural peruano a la vanguardia tecnológica regional, sino que provee una base científica para predecir riesgos y optimizar estrategias de conservación preventiva menos invasivas.
+
+\introsection{Alcance y limitaciones}
+
+El alcance de esta tesis es de naturaleza estrictamente computacional y descriptiva, basándose en el análisis de datos metagenómicos previamente secuenciados de la Estela de Raimondi por la Universidad Peruana Cayetano Heredia (Laboratorio de Genómica Microbiana). El estudio se centrará exclusivamente en los linajes bacterianos dominantes que presenten métricas de calidad genómica adecuadas para un análisis pangenómico robusto.
+
+Entre las limitaciones, se debe precisar que la caracterización
+describe la fracción del microbioma recuperable mediante cultivo, que corresponde a un
+subconjunto de la comunidad viable y no necesariamente a la totalidad de las
+poblaciones dominantes \textit{in situ}~\cite{sterflinger2013,branysova2022}. A cambio,
+garantiza que los genomas analizados provienen de organismos vivos, condición necesaria
+para atribuirles un rol activo en el biodeterioro. Asimismo, al no contar con datos de metatranscriptómica (RNA-seq), la caracterización funcional representa el potencial metabólico y no la actividad biológica real en el momento de la toma de muestra \cite{cappitelli2020}. Además, la integridad y el grado de contaminación de los MAGs están intrínsecamente ligados a la profundidad de la secuenciación original y a la complejidad de la biopelícula colonizadora \cite{villa2016,checkm2}. Por otro lado, la potencia del análisis pangenómico está sujeta a la disponibilidad y representatividad de genomas de referencia de alta calidad en bases de datos globales como NCBI o GTDB \cite{gtdbtk2019}. Finalmente, factores abióticos externos, como las fluctuaciones de humedad y temperatura en el museo, solo se utilizarán como marco contextual para interpretar las estrategias de supervivencia microbiana.

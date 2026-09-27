@@ -1,0 +1,113 @@
+%% --------------------------------------------------------------------
+%% Template UTEC Tesis
+%% --------------------------------------------------------------------
+% Este es el archivo que se debe compilar.
+% 
+% Este template ha sido modificado y actualizado por Eduardo Castro y Roosevelt Ubaldo sobre la base de lo trabajado por Víctor Murray, Oscar Ramos y Juan Carlos Barbaran.
+%
+% Última actualización: Marzo, 2026
+
+\documentclass[a4paper,12pt,oneside]{tesisutec}
+
+\selectlanguage{spanish}
+
+%% Paquetes
+
+\usepackage{tabularx}
+\usepackage{xltabular}
+\usepackage{booktabs}
+\usepackage[utf8]{inputenc}
+\usepackage[square, numbers, comma, sort&compress]{natbib}
+% Libreria de idioma
+\usepackage[spanish]{babel}
+% Libreria para posicionamiento
+\usepackage{float}
+% Librerias para insertar codigos
+\usepackage[spanish,onelanguage,ruled,vlined]{algorithm2e}
+\usepackage{verbatim} 
+% Librería para hipervínculos
+\usepackage{hyperref}
+ % Librería necesaria para arreglar el orden de referencias en overleaf.com
+\usepackage{notoccite}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+% Incluir acá los paquetes adicionales que deseas. 
+% Ubicación de los imágenes.
+\graphicspath{images/}
+
+\makeatletter
+% Reinsert missing \algbackskip
+\def\algbackskip{\hskip-\ALG@thistlm}
+\makeatother
+
+\hypersetup{urlcolor=blue, colorlinks=true}
+
+\begin{document}
+
+\frontmatter
+
+\department{BIOINGENIERÍA}
+\degree{Bioingeniería}
+\major{Bachiller}
+
+\title{Diseño de un modelo predictivo de riesgo de deterioro de la Estela de Raimondi basado en genómica comparativa y potencial metabólico}
+
+\author{\centering Eduardo Esteban Tello Osorio \orcid{0009-0003-1365-2577} \\
+Ana Sofía Barrientos Uriarte \orcid{0009-0006-0570-552X}} % Es obligatorio agregar ORCID del alumno
+
+\supervisor{ Pablo Tsukayama Cisneros \orcid{0000-0002-1669-2553} 
+\\
+Monica Cecilia Santa María Fuster \orcid{0000-0003-4789-7444}
+\\
+Harry Gustavo Saavedra Espinoza \orcid{0000-0002-8896-5020}}% Es obligatorio agregar ORCID del asesor
+
+\date{2026}
+
+\maketitle
+
+\setstretch{1.5}
+
+
+%\input{encabezados/dedicatoria}
+%\input{encabezados/agradecimientos}
+
+\tableofcontents
+
+\newpage
+
+\listoftables
+
+\newpage
+
+\listoffigures
+
+\addtocontents{toc}{\vspace{1.5em}}
+
+%% ============================================================================
+\mainmatter
+\pagestyle{fancy}
+
+\input{secciones/resumen}
+\input{secciones/abstract} 
+\input{secciones/introduccion}
+\input{secciones/cap1-revision-literatura}
+\input{secciones/cap2-marco-teorico}
+\input{secciones/cap3-marco-referencial}
+\input{secciones/cap4-metodologia}
+%\input{secciones/cap5-resultados}
+\input{secciones/cap6-diseno-tecnologico}
+\input{secciones/cap7-pruebas-resultados}
+%\input{secciones/conclusiones}
+%\input{secciones/recomendaciones} % sección opcional
+
+%% ============================================================================
+\renewcommand{\bibname}{\hfill\Large\bf{REFERENCIAS BIBLIOGRÁFICAS}\hfill}
+
+\bibliographystyle{IEEEtran} % Estableciendo el estilo de citas IEEEtram.
+
+\bibliography{referencias} % Recibe las referencias de IEEE
+
+\input{secciones/anexos}
+
+\end{document}

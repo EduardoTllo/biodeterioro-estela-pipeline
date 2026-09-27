@@ -1,0 +1,426 @@
+
+\chapter{MARCO TEÓRICO}
+\label{chap:marco_teorico}
+
+%% ------------------------------------------------------------------
+\section{Biodeterioro microbiano en sustratos graníticos}
+\label{sec:biodeterioro}
+
+El granito es una roca ígnea intrusiva de textura fanerítica compuesta
+principalmente por cuarzo (SiO$_2$), feldespatos potásicos (KAlSi$_3$O$_8$),
+plagioclasas (NaAlSi$_3$O$_8$--CaAl$_2$Si$_2$O$_8$) y micas (biotita,
+moscovita)~\cite{mnaahp2015}. Esta composición lo hace susceptible a la
+biocorrosión química mediada por el microbioma colonizador, que actúa
+a través de dos mecanismos principales: la acidólisis y la
+quelatación iónica ~\cite{dakal2012, yadav2025}. En el primer
+mecanismo, bacterias heterótrofas y hongos secretan ácidos orgánicos de
+bajo peso molecular, incluyendo ácido oxálico, cítrico, glucónico,
+láctico y 2-cetoglucónico, que reducen el pH local del microambiente
+de la biopelícula y disuelven activamente los feldespatos y silicatos
+de la matriz mineral~\cite{yadav2025, gutarowska2015}. En el segundo, estos
+mismos ácidos actúan como agentes quelantes que secuestran cationes
+estructurales esenciales (Fe$^{2+}$, Al$^{3+}$, Mg$^{2+}$, Ca$^{2+}$) de
+la red cristalina, debilitando la cohesión mineral~\cite{yadav2025}.
+Géneros bacterianos como \textit{Bacillus}, \textit{Arthrobacter} y
+\textit{Streptomyces} han sido identificados como productores de ácido
+2-cetoglucónico, un quelante altamente eficiente de la sílice presente
+en monumentos graníticos~\cite{gutarowska2015}.
+
+Adicionalmente, bacterias quimiolitoautotróficas del ciclo del nitrógeno
+(\textit{Nitrosomonas}, \textit{Nitrospira}) y del azufre
+(\textit{Thiobacillus}, \textit{Sulfurimonas}) producen ácido nítrico y
+sulfúrico como subproductos metabólicos, que corroen directamente los
+minerales carbonatados y silicatados de la roca~\cite{dakal2012,
+suchy2024,ding2020}. A nivel físico, las hifas fúngicas ejercen presión mecánica
+de turgencia que les permite penetrar microporos y
+fisuras en proceso casmolítico y criptoendolítico, ampliando
+progresivamente el sistema de poros del granito y facilitando la
+entrada de agua~\cite{yadav2025, gorbushina2007}.
+
+%% ------------------------------------------------------------------
+\section{Biopelículas subaéreas en patrimonio pétreo}
+\label{sec:biopelículas}
+
+Las biopelículas subaéreas (SABs, \textit{Subaerial Biofilms})
+constituyen la forma dominante de vida microbiana en superficies
+líticas expuestas a la atmósfera~\cite{villa2016}. Su formación sigue
+un proceso secuencial regulado molecularmente: (1) adhesión reversible
+mediada por fuerzas de Van der Waals y electrostáticas; (2) adhesión
+irreversible mediante proteínas de adhesión de superficie, pili tipo IV
+y fimbrias; (3) maduración con producción de sustancias poliméricas
+extracelulares (EPS); y (4) dispersión de células al
+entorno~\cite{flemming2010}. La matriz de EPS, que puede representar más del 90\,\% del volumen de la biopelícula madura, es producida
+por operones específicos como \textit{epsA-O} en
+\textit{Bacillus subtilis}, los clusters \textit{pel} y \textit{psl} en
+\textit{Pseudomonas aeruginosa}, y el operón \textit{csgA} responsable
+de la síntesis de fibras de curli en
+enterobacterias~\cite{flemming2010}. Esta matriz actúa como una esponja
+biológica que retiene agua, captura nutrientes orgánicos del aire y
+protege a las células de la desecación y los
+biocidas~\cite{flemming2010, cappitelli2020}.
+
+En el contexto del patrimonio pétreo, Villa et al.~\cite{villa2016}
+proponen un marco ecológico fundamental para este proyecto: las
+biopelículas subaéreas tienen un rol dual. Por un lado, pueden
+inducir biodeterioro activo mediante la producción de ácidos, pigmentos
+y presión mecánica; por el otro, pueden actuar como capa de
+bioprotección que amortigua las fluctuaciones térmicas e hídricas,
+consolida la superficie y limita la disolución química al entrar en
+contacto con agua de lluvia o condensación~\cite{villa2016,
+cappitelli2020}. Esta dualidad funcional implica que la sola
+identificación taxonómica de microorganismos es insuficiente para
+determinar el riesgo real de deterioro; es necesaria la caracterización
+del repertorio funcional, específicamente de los genes accesorios,
+para discernir qué mecanismos se encuentran genómicamente codificados
+en cada linaje~\cite{cappitelli2020, skipper2022}.
+
+Las estrategias de supervivencia en el nicho oligotrófico del granito
+incluyen la esporulación (operón \textit{spo0A}/\textit{spoIIA}
+/\textit{spoIIE} en Firmicutes, altamente prevalentes en ambientes
+líticos), la melanización en hongos meristemáticos negros
+(\textit{Ochroconis}, \textit{Coniosporium}) como escudo contra estrés
+oxidativo y radiación UV, y la síntesis de carotenoides en
+arqueas y bacterias halotolerantes como \textit{Rubrobacter}
+spp.~\cite{zanardini2019, skipper2022, alonso2025, sterflinger2013,Galperin2022,branysova2022}. Estos rasgos
+de supervivencia constituyen los biomarcadores genómicos de mayor
+relevancia para el modelo predictivo de riesgo.
+
+%% ------------------------------------------------------------------
+\section{Metagenómica \textit{shotgun} y ensamblaje de genomas
+  metagenómicos (MAGs)}
+\label{sec:metagenomics}
+
+La metagenómica \textit{shotgun} permite el acceso directo al material
+genómico total de una comunidad microbiana sin necesidad de cultivo
+previo, superando el sesgo de cultivabilidad que limita los estudios
+clásicos al 1--5\,\% de la diversidad real~\cite{skipper2022,li2018deterioration, PitaGaleana2025}. En este enfoque, el ADN extraído de la muestra
+ambiental se fragmenta y secuencia masivamente, generando millones de
+lecturas cortas (\textit{reads}) que representan fragmentos aleatorios
+de todos los genomas presentes en la comunidad~\cite{branysova2022,PitaGaleana2025}.
+
+El proceso de reconstrucción de MAGs sigue tres etapas principales:
+ensamblaje, binning y refinamiento. En la
+etapa de ensamblaje, los \textit{reads} se ensamblan \textit{de novo} en
+contigs mediante ensambladores basados en grafos de De~Bruijn, como
+MEGAHIT~\cite{megahit2015} o SPAdes~\cite{metaspades2017}, que
+fragmentan las lecturas en \textit{k-mers} y reconstruyen las secuencias
+por solapamiento. En la etapa de \textit{binning}, los contigs se
+agrupan en MAGs candidatos mediante dos señales complementarias: la
+composición nucleotídica (frecuencia de tetra-nucleótidos, un
+vector de 256 dimensiones) y el perfil de cobertura
+diferencial (razón de \textit{reads} alineados sobre longitud del
+contig a lo largo de múltiples muestras)~\cite{bowers2017,PitaGaleana2025}. La premisa biológica es que
+contigs del mismo organismo tendrán firmas de composición y coberturas
+similares. MetaBAT~2~\cite{metabat2019} modela esta relación con una
+distribución de probabilidad Gaussiana, mientras que DAS~Tool~\cite{Sieber2018} integra
+las predicciones de múltiples \textit{binners} para maximizar el
+número de MAGs de alta calidad por muestra. El refinamiento manual
+mediante Anvi'o~\cite{bowers2017, Eren2015} permite inspeccionar visualmente la coherencia de cada
+\textit{bin} y eliminar contaminantes.
+
+Esta aproximación supera directamente la limitación del 16S~rRNA
+\textit{amplicon} identificada en la formulación del problema de la
+tesis: mientras la secuenciación de amplicones provee información
+taxonómica a nivel de género o especie, los MAGs reconstruyen el
+genoma completo potencial de cada linaje, habilitando el
+análisis pangenómico y la predicción del potencial
+metabólico~\cite{PitaGaleana2025,dram2020,panaroo2020}.
+
+%% ------------------------------------------------------------------
+\section{Evaluación de calidad genómica}
+\label{sec:quality}
+
+La calidad de un MAG se define por dos métricas fundamentales:
+completitud y contaminación~\cite{bowers2017}. La
+completitud refleja qué fracción del genoma real ha sido capturada en
+el MAG; la contaminación indica la proporción de contigs provenientes
+de organismos distintos al organismo \textit{target}.
+
+Ambas métricas se estiman contando los genes marcadores de
+copia única (SCGs, \textit{Single-Copy Genes}): genes que evolucionaron
+para existir exactamente en copia única en $>$97\,\% de todos los
+procariotas. Un SCG ausente sugiere incompletitud; un SCG presente en
+múltiples copias sugiere contaminación por contigs de otro organismo ~\cite{bowers2017,Parks2015}.
+
+\begin{equation}
+    \text{Completitud} =
+    \frac{\text{SCGs detectados}}{\text{SCGs esperados para el linaje}}
+    \times 100\%
+    \label{eq:completeness}
+\end{equation}
+
+\begin{equation}
+    \text{Contaminación} =
+    \frac{\text{SCGs redundantes}}{\text{SCGs esperados}}
+    \times 100\%
+    \label{eq:contamination}
+\end{equation}
+
+CheckM2~\cite{checkm2} moderniza este cálculo mediante modelos de
+\textit{machine learning} (\textit{gradient boosting} y redes
+neuronales) entrenados sobre cientos de miles de genomas sintéticos simulados a partir de referencias de alta calidad. A diferencia de su predecesor, no requiere asignación
+taxonómica previa y es más preciso en linajes divergentes como
+Patescibacteria o el superphylum CPR~\cite{checkm2}.
+
+El estándar internacional MIMAG~\cite{bowers2017} establece tres
+categorías, resumidas en la tabla~\ref{tab:mimag}: (a) alta calidad
+(HQ): completitud $\geq$90\,\%, contaminación $<$5\,\%, ARNr 16S
+completo; (b) calidad media (MQ): 50--90\,\% completitud, $<$10\,\%
+contaminación; (c) baja calidad: $<$50\,\%. El criterio del OE1
+($>$70\,\%, $<$5\,\%) se posiciona como un umbral intermedio
+conservador, apropiado para análisis pangenómicos que requieren
+representación mínima del \textit{core genome}~\cite{bowers2017,
+checkm2}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Categorías de calidad MIMAG para MAGs bacterianos y
+  arqueales~\cite{bowers2017}.}
+  \label{tab:mimag}
+  \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lccc}
+      \toprule
+      \textbf{Categoría} &
+      \textbf{Completitud (\%)} &
+      \textbf{Contaminación (\%)} &
+      \textbf{Criterios adicionales} \\
+      \midrule
+      Alta calidad (HQ)  & $\geq 90$ & $< 5$      & ARNr + $\geq 18$ ARNt \\
+      Media calidad (MQ) & $\geq 50$ & $< 10$     & ---                    \\
+      Baja calidad (LQ)  & $< 50$    & Cualquiera & Solo referencial       \\
+      \bottomrule
+    \end{tabular}%
+  }
+\end{table}
+
+%% ------------------------------------------------------------------
+\section{Posicionamiento filogenómico y ANI}
+\label{sec:phylogenomics}
+
+La identidad nucleotídica promedio (ANI, \textit{Average Nucleotide
+Identity}) es la métrica estándar actual para la delimitación de
+especies procarióticas a nivel genómico, sustituyendo empíricamente a
+la hibridación ADN-ADN (DDH) con mayor reproducibilidad y escala
+computacional~\cite{fastANI2018}. El ANI se calcula como el promedio
+ponderado de identidad de secuencia de todos los fragmentos ortólogos
+entre dos genomas:
+
+\begin{equation}
+  \mathrm{ANI}(A,B) \;=\;
+  \frac{\displaystyle\sum_{i}\, \mathrm{identity}(f_i^A, f_i^B) \times |f_i|}
+       {\displaystyle\sum_{i}\, |f_i|}
+  \label{eq:ani}
+\end{equation}
+
+\noindent donde $f_i^A$ y $f_i^B$ son fragmentos ortólogos de 3\,kb.
+Un ANI $\geq$95\,\% (con fracción de alineamiento, AF $\geq$65\,\%)
+equivale a un DDH $\geq$70\,\%, el umbral convencional de
+especie~\cite{fastANI2018, gtdbtk2019}. FastANI~\cite{fastANI2018} implementa este
+cálculo mediante \textit{locality-sensitive hashing} sobre
+\textit{k-mers} (\textit{sketching} de MinHash), permitiendo
+comparaciones a escala masiva.
+
+El clasificador GTDB-Tk~\cite{gtdbtk2019} ubica los MAGs en un árbol
+filogenómico de referencia usando 120 genes marcadores bacterianos
+(\textit{bac120}) o 122 arqueales (\textit{arc122}), colocando cada
+genoma en la taxonomía del \textit{Genome Taxonomy Database}
+(GTDB)~\cite{gtdb2022}. GTDB corrige las inconsistencias del NCBI
+normalizando los rangos taxonómicos por divergencia evolutiva relativa 
+(RED, por sus siglas en inglés), siendo
+especialmente relevante para MAGs ambientales que con frecuencia
+representan linajes sin cultivos de referencia~\cite{gtdbtk2019,
+gtdb2022}.
+
+Un problema adicional al de la sola delimitación taxonómica surge
+cuando se aplica el ANI a colecciones completas de MAGs recuperados
+por metagenómica \textit{shotgun}: dado que el ensamblaje y el
+\textit{binning} se realizan de forma independiente por muestra, un
+mismo linaje presente en varios puntos de muestreo puede recuperarse
+varias veces como genomas ligeramente distintos entre sí, debido a
+diferencias en la profundidad de secuenciación o en el proceso de
+ensamblaje de cada muestra. A este proceso de identificar y colapsar
+genomas redundantes se le conoce como \textit{desreplicación}, y la
+herramienta estándar para realizarlo es dRep \cite{olm2017}, que
+agrupa los genomas de una colección en clústeres según su ANI y
+selecciona, dentro de cada clúster, un único genoma representativo.
+
+Internamente, dRep realiza esta comparación en dos pasos. Primero
+ejecuta una comparación rápida entre todos los genomas mediante
+\textit{MinHash} (Mash), que agrupa genomas claramente similares en
+clústeres preliminares de forma poco costosa computacionalmente.
+Luego, dentro de cada clúster preliminar, calcula el ANI de forma
+precisa mediante ANIm o FastANI para confirmar la agrupación final.
+El genoma representativo de cada clúster se escoge según un
+\textit{score} de calidad que pondera completitud, contaminación y
+contigüidad (N50), con criterios análogos a los de calidad descritos
+en la sección 2.4.
+
+El umbral de ANI usado en el segundo paso define qué tan estricta es
+la agrupación: un umbral cercano al 95\,\% agrupa genomas de la
+misma especie, de forma consistente con el umbral de DDH descrito
+previamente, mientras que un umbral cercano al 99\,\% agrupa solo
+genomas de la misma cepa. Este último valor representa además el
+límite práctico de detección del método, ya que dos copias idénticas
+de un mismo genoma comparadas entre sí suelen rendir valores de ANI
+de aproximadamente 99.99\,\%, por lo que exigir una identidad mayor
+ya no aporta resolución real \cite{olm2017, fastANI2018}. De este
+modo, la desreplicación cumple dos funciones: elimina la redundancia
+técnica generada por el ensamblaje independiente de cada muestra, y
+define operativamente la unidad de análisis, el linaje, sobre la
+cual se construye posteriormente el pangenoma comparativo descrito
+en la siguiente sección.
+
+IQ-TREE \cite{minh2020} es un programa de inferencia filogenética que reconstruye árboles mediante el criterio de máxima verosimilitud. Su algoritmo de búsqueda combina perturbaciones de tipo \textit{nearest neighbor interchange} estocástico con una estrategia de hill-climbing eficiente, lo que le permite explorar un espacio amplio de topologías sin caer prematuramente en óptimos locales, un problema frecuente en métodos de búsqueda heurística más simples. Antes de la búsqueda del árbol, IQ-TREE incorpora ModelFinder \cite{kalyaanamoorthy2017modelfinder}, un procedimiento que evalúa de forma automática el ajuste estadístico de distintos modelos de sustitución de aminoácidos o nucleótidos sobre el alineamiento de entrada y selecciona el más adecuado según criterios de información (AIC, BIC), evitando que el usuario deba fijar el modelo de forma arbitraria. El soporte estadístico de cada rama del árbol resultante se estima mediante el ultrafast bootstrap (UFBoot) \cite{hoang2018ufboot}, una aproximación computacionalmente eficiente al remuestreo bootstrap tradicional que aproxima de forma no sesgada los valores de soporte con un costo varios órdenes de magnitud menor, permitiendo ejecutar miles de réplicas en una fracción del tiempo que requeriría el bootstrap clásico de Felsenstein. Por estas características, IQ-TREE es ampliamente utilizado en filogenómica bacteriana para construir árboles focalizados a partir de alineamientos concatenados de genes marcadores, como los conjuntos bac120 y ar122 empleados por el GTDB \cite{gtdbtk2019}, en escenarios donde se requiere no solo inferir la topología del árbol, sino cuantificar la confianza estadística de cada agrupamiento, como la monofilia de un linaje frente a sus genomas de referencia.
+
+\subsection{La jerarquía taxonómica}  
+
+La clasificación taxonómica organiza a los organismos en diferentes niveles jerárquicos según sus características y relaciones evolutivas. El \textbf{filo} agrupa organismos que comparten características estructurales y evolutivas generales, mientras que la \textbf{clase} reúne grupos más específicos dentro de un mismo filo. El \textbf{orden} subdivide las clases de acuerdo con características adicionales compartidas entre los organismos, y la \textbf{familia} agrupa géneros que presentan una relación evolutiva cercana. El \textbf{género} reúne especies estrechamente relacionadas y constituye la primera parte del nombre científico de un organismo. Finalmente, la \textbf{especie} representa el nivel taxonómico más específico y permite identificar grupos de organismos con características genéticas y biológicas altamente similares. En conjunto, estos niveles siguen una jerarquía de mayor a menor amplitud: \textbf{filo $\rightarrow$ clase $\rightarrow$ orden $\rightarrow$ familia $\rightarrow$ género $\rightarrow$ especie}.
+
+%% ------------------------------------------------------------------
+\section{Análisis pangenómico comparativo}
+\label{sec:pangenomics}
+
+El pangenoma de una especie o linaje bacteriano representa el
+conjunto total de genes presentes en todos los miembros del
+grupo~\cite{tettelin2005}. Introducido formalmente por Tettelin et
+al.~\cite{tettelin2005} con una división inicial entre genes núcleo y accesorios, 
+la genómica computacional moderna lo estructura algorítmicamente en tres 
+compartimentos principales~\cite{Page2015, panaroo2020}:
+(a) el \textbf{\textit{core genome}} ($G_c$): genes presentes en
+$\geq$95\,\% de los genomas; codifican funciones esenciales
+conservadas (metabolismo central, replicación, traducción);
+(b) el \textbf{\textit{shell genome}}: genes en el 15--95\,\% de los
+genomas; representan adaptaciones frecuentes en el nicho; y
+(c) el \textbf{\textit{cloud genome}} (o \textit{dispensable}): genes
+presentes en $<$15\,\%; incluyen genes singulares (\textit{singletons})
+posiblemente adquiridos por HGT para nichos específicos.
+
+Los genes accesorios son el producto directo de la
+transferencia horizontal de genes (HGT, \textit{Horizontal
+Gene Transfer}): el mecanismo por el cual las bacterias adquieren
+genes de organismos filogenéticamente distantes mediante conjugación,
+transformación o transducción~\cite{soucy2015}. Este proceso permite la
+rápida adquisición de rasgos fenotípicos, incluyendo la capacidad de
+producir ácidos orgánicos o \textit{biopelículas}, sin necesidad de
+mutaciones secuenciales, lo que lo convierte en el principal motor de
+adaptación ecológica en procariotas~\cite{soucy2015}. En este microambiente, 
+la propia matriz de la \textit{biopelícula} actúa como un reservorio de ADN 
+extracelular que facilita y potencia estos eventos de transferencia 
+génica~\cite{flemming2010}. Herramientas recientes como PPanGGOLiN~\cite{ppanggolin2020} han introducido modelos estadísticos basados en grafos para particionar 
+el pangenoma en sus componentes de manera probabilística. Sin embargo, 
+en colecciones de MAGs, la fragmentación intrínseca de los ensamblajes 
+sigue provocando una sobreestimación de genes accesorios. Para superar 
+esta limitación, Panaroo~\cite{panaroo2020} emplea una representación 
+gráfica del pangenoma que corrige activamente los errores de anotación 
+y ensamblaje mediante la propagación del contexto genómico vecino, 
+lo que reduce de manera drástica la inflación artificial del genoma 
+accesorio debida a la fragmentación.
+
+%% ------------------------------------------------------------------
+\section{Anotación funcional y predicción del potencial metabólico}
+\label{sec:annotation}
+
+La anotación funcional de MAGs sigue un proceso jerárquico 
+descrito en la metagenómica computacional~\cite{PitaGaleana2025}, 
+el cual inicia con la predicción de ORFs (\textit{Open Reading Frames}) 
+mediante algoritmos como Prodigal~\cite{Hyatt2010} (frecuentemente 
+integrado en \textit{pipelines} como Prokka~\cite{prokka2014}). 
+
+Bakta~\cite{schwengers2021} constituye una evolución de este enfoque
+de anotación estructural y funcional. A diferencia de \textit{pipelines}
+anteriores como Prokka, que dependen de alineamientos de secuencias
+contra bases de datos de referencia limitadas, Bakta incorpora un
+módulo de identificación de secuencias sin alineamiento
+(\textit{alignment-free sequence identification}, AFSI), el cual
+calcula \textit{hashes} MD5 a partir de secuencias proteicas completas
+para acelerar la asignación de homología. Al emplear una base de datos
+taxonómicamente independiente, esta característica resulta
+especialmente relevante para MAGs ambientales, donde la especie o el
+género del organismo colonizador con frecuencia pertenece a linajes
+raros o carece de representación cercana en las bases de datos
+curadas. Para las secuencias no identificadas por AFSI, Bakta integra
+fuentes complementarias como RefSeq y PSC (\textit{Protein Sequence
+Clusters} derivados de UniRef90), así como modelos de covarianza de
+Rfam para ARN no codificante. 
+
+A continuación, se realiza una búsqueda de homología contra bases 
+de datos de referencia y la posterior asignación a categorías 
+funcionales, para culminar finalmente con la reconstrucción de 
+rutas metabólicas~\cite{dram2020}.
+
+Las principales bases de datos funcionales utilizadas en este tipo de
+análisis son:
+
+\begin{itemize}
+  \item \textbf{KEGG Orthology (KO)}~\cite{kegg2023}: organiza genes
+    en módulos metabólicos y rutas de señalización; la completitud de
+    una ruta se calcula como la fracción de KOs esenciales detectados
+    en el genoma.
+  \item \textbf{COG} (\textit{Clusters of Orthologous Groups})~\cite{Galperin2022}:
+    categorías funcionales de alto nivel (metabolismo, transporte,
+    regulación de transcripción).
+  \item \textbf{dbCAN/CAZy}~\cite{cantarel2009,zhang2018}: enzimas activas sobre carbohidratos,
+    relevantes para la degradación de EPS y polisacáridos de la
+    biopelícula.
+  \item \textbf{CARD} (\textit{Comprehensive Antibiotic Resistance
+    Database})~\cite{Alcock2020}: genes de resistencia antimicrobiana, útil para evaluar
+    persistencia bajo tratamientos biocidas.
+\end{itemize}
+
+DRAM (\textit{Distilled and Refined Annotation of
+Metabolism})~\cite{dram2020} integra estas bases de datos en un sistema
+de anotación que produce tablas de completitud por módulo metabólico y
+resúmenes de los principales ciclos biogeoquímicos (nitrógeno, azufre y 
+carbono), así como del inventario de enzimas activas sobre 
+carbohidratos (CAZymes)~\cite{dram2020}. Esta herramienta es especialmente
+apropiada para el presente estudio dado que el mapeo de estas rutas 
+metabólicas permite inferir el potencial de biodeterioro de la comunidad: 
+los ciclos inorgánicos (N y S) están directamente vinculados a la disolución de 
+minerales por acidólisis y biocorrosión~\cite{zanardini2019, dakal2012}, mientras 
+que la síntesis de polisacáridos se relaciona con la producción de EPS para 
+la biopelícula. De este modo, la destilación metabólica se alinea 
+perfectamente con la identificación de factores de riesgo exigida en los 
+objetivos del OE4.
+
+La completitud de una vía metabólica se expresa formalmente en la
+metodología de DRAM~\cite{dram2020} como:
+
+\begin{equation}
+    \text{Completitud}_{\text{vía}} =
+    \frac{\text{módulos KO detectados}}
+         {\text{módulos KO totales en la vía}}
+    \times 100\%
+    \label{eq:pathway}
+\end{equation}
+
+Los biomarcadores genómicos de mayor relevancia para el modelo
+predictivo de riesgo ecológico incluyen: genes del ciclo TCA
+(\textit{acnA}, \textit{sdhA}, \textit{fumA}) asociados a la producción de
+ácidos orgánicos biocorrosivos~\cite{cappitelli2020, zanardini2019}; la
+gluconato deshidrogenasa (\textit{gcd}) responsable de la síntesis
+del ácido 2-cetoglucónico, un potente quelante de silicatos~\cite{gutarowska2015};
+genes de biosíntesis de EPS (como el operón \textit{pel}) cruciales
+para la arquitectura de la \textit{biopelícula}~\cite{flemming2010}; y los
+operones de esporulación (con reguladores maestros como \textit{spo0A})
+como marcadores de persistencia y resistencia extrema~\cite{Galperin2022}.
+
+%% ------------------------------------------------------------------
+\section{Limitaciones de la inferencia funcional basada en datos
+  genómicos}
+\label{sec:limitations}
+
+La caracterización del potencial metabólico mediante análisis genómico
+de MAGs representa una aproximación de alto poder inferencial, pero
+con una limitación intrínseca en ausencia de datos de
+metatranscriptómica. Dado que los MAGs analizados en esta tesis se
+recuperaron a partir de la fracción cultivable (hisopo B), los
+organismos representados demostraron ser metabólicamente viables al
+proliferar bajo las condiciones de cultivo empleadas; sin embargo, el
+propio cultivo constituye un filtro selectivo cuyas condiciones
+(medio, temperatura, tiempo de incubación) no reproducen el ambiente
+real del monumento (radiación UV, desecación, escasez de nutrientes).
+Por ello, la detección de un gen no garantiza que su función se
+exprese de la misma forma \textit{in situ}, y los resultados de este
+proyecto describen el potencial metabólico codificado en los linajes
+colonizadores, no la actividad biológica real sobre la piedra, tal
+como se declara en el alcance de la tesis.
