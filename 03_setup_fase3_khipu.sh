@@ -110,7 +110,7 @@ crear_env bakta   bakta   "$BAKTA_VERSION"   "bakta=$BAKTA_VERSION" "python=$PYT
 crear_env panaroo panaroo "$PANAROO_VERSION" "panaroo=$PANAROO_VERSION" "python=$PYTHON_VERSION"
 crear_env iqtree  iqtree  "$IQTREE_VERSION"  "iqtree=$IQTREE_VERSION" "snp-sites=$SNPSITES_VERSION" "python=$PYTHON_VERSION"
 crear_env blast   blast   "$BLAST_VERSION"   "blast=$BLAST_VERSION" "taxonkit=$TAXONKIT_VERSION" "python=$PYTHON_VERSION"
-if ! conda run -n drep dRep --version >/dev/null 2>&1; then
+if ! conda run -n drep dRep -h >/dev/null 2>&1; then
   echo "    AVISO: no se encontro el entorno 'drep' de la Fase 2. Corre 02_setup_fase2_khipu.sh." >&2
 fi
 

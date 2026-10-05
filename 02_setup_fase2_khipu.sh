@@ -105,7 +105,7 @@ fi
 
 # Entorno dRep
 echo "==> [3/4] Creando entorno 'drep'"
-if conda run -n drep dRep --version >/dev/null 2>&1; then
+if conda run -n drep dRep -h >/dev/null 2>&1; then
   echo "    El entorno 'drep' ya existe y funciona. Se omite."
 else
   if conda env list | grep -qE '^\s*drep\s'; then
