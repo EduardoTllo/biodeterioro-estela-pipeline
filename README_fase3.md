@@ -348,7 +348,7 @@ pangenoma, arbol del core por especie y embudo de genes exclusivos.
 | Exclusiones manuales | Genomas del cluster GTDB cuyo nombre en NCBI pertenece a otro filo (riesgo de ensamblaje quimerico o contaminado); listados con su motivo en `metadata/exclusiones.tsv` | |
 | Desreplicacion | dRep, ANI >= 99 % (fastANI), solo sobre referencias | |
 | Viabilidad | >= 15 genomas no redundantes por especie; se toman las 3 especies con mas genomas | Gautreau et al. 2020; Guerra 2026 |
-| Tope por especie | 50 referencias. Prioridad: representante de GTDB y cepa tipo; luego aislados de Latinoamerica y de sustratos petreos o aridos; el resto se reparte entre habitats y continentes | |
+| Tope por especie | 50 referencias. Entran primero el representante de GTDB y la cepa tipo (peso +1000 en dRep), luego los aislados de sustratos petreos o aridos (+500); el resto se reparte rotando entre habitats y, dentro de cada habitat, entre continentes en orden alfabetico. Sin preferencia por region | |
 | Anotacion | Bakta 1.12.1, BD v6.0, mismas opciones para todos los genomas; no se usan anotaciones de NCBI | Schwengers et al. 2021 |
 | Pangenoma | Panaroo 1.8.0, `--clean-mode moderate`, demas parametros por defecto | Tonkin-Hill et al. 2020 |
 | Particion | Frecuencias calculadas solo con referencias: core >= 95 % (sensibilidad 90 %), shell 15-95 %, cloud < 15 %, exclusivo = ausente en todas las referencias | Tettelin et al. 2005 |

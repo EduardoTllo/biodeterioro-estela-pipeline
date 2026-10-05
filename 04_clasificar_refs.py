@@ -18,20 +18,21 @@ Subcomandos, en el orden en que se usan:
                longitud total coincida con genome_size de GTDB (+/- 1 %).
                Aplica las exclusiones manuales (--exclusiones) y recalcula la
                viabilidad con los genomas que quedan.
-  clasificar   Nivel de prioridad (T0-T3), categoria de habitat y continente de
+  clasificar   Nivel de prioridad (T0-T2), categoria de habitat y continente de
                cada genoma. Prepara la entrada de dRep (lista de genomas,
                genomeInfo con CheckM2 del metadata y tabla de pesos extra).
   seleccionar  Tras dRep: numero de genomas no redundantes por especie,
                ranking definitivo, top-N y seleccion de hasta 50 referencias.
                Emite el manifiesto de Bakta (referencias + bins propios).
 
-Niveles de prioridad (decision D23):
+Niveles de prioridad (decisiones D23 y D31):
   T0  representante de especie de GTDB o cepa tipo de la especie (siempre entra)
-  T1  aislado de Latinoamerica y el Caribe (ncbi_country)
-  T2  aislado de sustrato petreo o ambiente arido (ncbi_isolation_source)
-  T3  el resto; completa los cupos por rotacion entre habitats y continentes
+  T1  aislado de sustrato petreo o ambiente arido (ncbi_isolation_source)
+  T2  el resto; completa los cupos por rotacion entre habitats y continentes
+No hay preferencia por region: el pais solo se usa para la rotacion entre
+continentes, que recorre los continentes en orden alfabetico.
 Dentro de cada cluster de dRep al 99 % gana el genoma prioritario gracias a la
-tabla de pesos extra (-extraW): T0 +1000, T1/T2 +500, T3 0.
+tabla de pesos extra (-extraW): T0 +1000, T1 +500, T2 0.
 """
 
 import argparse
@@ -52,15 +53,17 @@ DEF_TOP = 3              # especies que pasan al pangenoma (D10, D25)
 DEF_TOLERANCIA = 0.01    # diferencia relativa maxima de longitud vs GTDB (D29)
 
 PESO_T0 = 1000
-PESO_T1_T2 = 500
+PESO_T1 = 500
 
-# Orden fijo de la rotacion de T3 entre categorias de habitat: primero los
+# Orden fijo de la rotacion de T2 entre categorias de habitat: primero los
 # ambientes mas cercanos al nicho del monumento.
 ORDEN_HABITAT = ["suelo", "agua_sedimento", "planta", "otro_ambiental",
                  "petreo_arido", "animal", "alimento_industrial",
                  "clinico_humano", "sin_clasificar", "desconocido"]
-ORDEN_CONTINENTE = ["America_Latina_Caribe", "America_del_Norte", "Europa",
-                    "Asia", "Africa", "Oceania", "Antartida", "Oceano",
+# Continentes en orden alfabetico (sin preferencia regional, D31); los genomas
+# sin pais van al final.
+ORDEN_CONTINENTE = ["Africa", "America_Latina_Caribe", "America_del_Norte",
+                    "Antartida", "Asia", "Europa", "Oceania", "Oceano",
                     "sin_mapear", "desconocido"]
 ORDEN_ENSAMBLAJE = {"Complete Genome": 0, "Chromosome": 1, "Scaffold": 2, "Contig": 3}
 
@@ -392,14 +395,10 @@ def cmd_clasificar(args):
             es_tipo = (c.get("tipo_designacion") or "").strip().lower() == "type strain of species"
             if es_rep or es_tipo:
                 nivel, peso = "T0", PESO_T0
-            elif latam and habitat == "petreo_arido":
-                nivel, peso = "T1_T2", PESO_T1_T2
-            elif latam:
-                nivel, peso = "T1", PESO_T1_T2
             elif habitat == "petreo_arido":
-                nivel, peso = "T2", PESO_T1_T2
+                nivel, peso = "T1", PESO_T1
             else:
-                nivel, peso = "T3", 0
+                nivel, peso = "T2", 0
             fuentes[fuente or "(vacio)"][(habitat, patron)] += 1
             filas.append({
                 "slug": slug, "linaje_id": lid, "id": gid,
@@ -431,7 +430,7 @@ def cmd_clasificar(args):
             w.writeheader()
             for g in ginfo:
                 w.writerow(g)
-        # Todos los genomas van en la tabla (T3 con peso 0): si dRep no pudiera
+        # Todos los genomas van en la tabla (T2 con peso 0): si dRep no pudiera
         # leerla, seguiria sin pesos y sin avisar; seleccionar lo verifica en Sdb.
         with open(os.path.join(dir_in, "extraW.tsv"), "w", encoding="utf-8",
                   newline="\n") as fh:
@@ -479,7 +478,7 @@ def clave_calidad(r):
 
 
 def seleccionar_tope(ganadores, tope):
-    """Aplica D23 sobre los ganadores de dRep de una especie."""
+    """Aplica D23/D31 sobre los ganadores de dRep de una especie."""
     if len(ganadores) <= tope:
         return [(r, "todos (N_nr <= tope)") for r in sorted(ganadores, key=clave_calidad)]
 
@@ -487,18 +486,15 @@ def seleccionar_tope(ganadores, tope):
     t0 = sorted([r for r in ganadores if r["nivel"] == "T0"], key=clave_calidad)
     for r in t0:
         elegidos.append((r, "T0 representante/cepa tipo"))
-    prio = sorted([r for r in ganadores if r["nivel"] in ("T1", "T2", "T1_T2")],
-                  key=clave_calidad)
-    for r in prio:
+    t1 = sorted([r for r in ganadores if r["nivel"] == "T1"], key=clave_calidad)
+    for r in t1:
         if len(elegidos) >= tope:
             break
-        motivo = {"T1": "T1 Latinoamerica", "T2": "T2 petreo/arido",
-                  "T1_T2": "T1+T2 Latinoamerica y petreo/arido"}[r["nivel"]]
-        elegidos.append((r, motivo))
+        elegidos.append((r, "T1 petreo/arido"))
 
-    # T3: rotacion por habitat y, dentro de cada habitat, por continente.
+    # T2: rotacion por habitat y, dentro de cada habitat, por continente.
     celdas = defaultdict(lambda: defaultdict(deque))
-    for r in sorted([r for r in ganadores if r["nivel"] == "T3"], key=clave_calidad):
+    for r in sorted([r for r in ganadores if r["nivel"] == "T2"], key=clave_calidad):
         celdas[r["habitat"]][r["continente"]].append(r)
     orden_hab = ORDEN_HABITAT + sorted(h for h in celdas if h not in ORDEN_HABITAT)
     puntero = Counter()
@@ -512,7 +508,7 @@ def seleccionar_tope(ganadores, tope):
                 continue
             c = conts[puntero[hab] % len(conts)]
             puntero[hab] += 1
-            elegidos.append((celdas[hab][c].popleft(), "T3 rotacion habitat/continente"))
+            elegidos.append((celdas[hab][c].popleft(), "T2 rotacion habitat/continente"))
     return elegidos
 
 
@@ -555,7 +551,7 @@ def cmd_seleccionar(args):
         ganadores = []
         for r in leer_csv(p_w):
             gid = os.path.splitext(r["genome"])[0]
-            info = dict(clasif[slug].get(gid, {"id": gid, "nivel": "T3",
+            info = dict(clasif[slug].get(gid, {"id": gid, "nivel": "T2",
                                                 "habitat": "desconocido",
                                                 "continente": "desconocido"}))
             info["cluster_drep"] = cluster.get(gid, r.get("cluster", ""))
