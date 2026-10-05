@@ -111,6 +111,18 @@ a mano en otro cluster:
 - las lineas `module purge` / `module load miniconda/3.0` de cada script, si tu
   cluster carga conda de otra forma.
 
+**Cuenta y limites de cola.** Si tu usuario tiene varias cuentas de SLURM,
+indica la correcta en cada envio con `--account=<cuenta>` (en Khipu,
+`--account=tesis`). Muchos clusters limitan cuantos trabajos puede tener un
+usuario en cola; en un *job array* cada tarea cuenta como un trabajo. Los
+limites de tu cuenta se consultan con
+`sacctmgr -n show qos format=Name%20,MaxSubmitPU,MaxJobsPU,MaxTRESPU%40,MaxWall`.
+Los comandos de abajo estan pensados para un limite de 5 trabajos enviados,
+3 corriendo, 32 CPU y 98 GB en total, y 24 h por trabajo (cuenta tesis de
+Khipu). Si al enviar aparece `QOSMaxSubmitJobPerUserLimit`, el array es mas
+grande que tu limite: envialo por tramos (por ejemplo `--array=1-5` y, cuando
+termine, `--array=6-7`).
+
 **Aviso:** `03_setup_fase3_khipu.sh` reescribe `~/.condarc` para usar solo
 conda-forge y bioconda si encuentra el canal `defaults`. Antes guarda una copia
 como `~/.condarc.bak.<fecha>`.
@@ -208,8 +220,23 @@ y `results/02_drep/paises_sin_mapear.tsv`.
 
 ### 4. Desreplicacion (SLURM)
 
+Una tarea por especie (16 CPU y 32 GB cada una):
+
 ```bash
-N=$(tail -n +2 results/01_descarga/especies_para_drep.tsv | wc -l); sbatch --array=1-$N scripts/04_drep_refs.slurm
+N=$(tail -n +2 results/01_descarga/especies_para_drep.tsv | wc -l); echo "$N especies"; sbatch --array=1-$N scripts/04_drep_refs.slurm
+```
+
+Si hay mas especies que el limite de trabajos en cola, se envia por tramos. Por
+ejemplo, con 7 especies y un limite de 5, primero:
+
+```bash
+sbatch --array=1-5%2 scripts/04_drep_refs.slurm
+```
+
+y cuando terminen:
+
+```bash
+sbatch --array=6-7 scripts/04_drep_refs.slurm
 ```
 
 ### 5. Ranking y seleccion de referencias (login)
@@ -224,22 +251,30 @@ no aplico la tabla de pesos (`extraW.tsv`) o si ninguna especie es viable.
 
 ### 6. Anotacion (SLURM)
 
+`05_bakta_all.slurm` trabaja por lotes: cada tarea del array anota varios
+genomas seguidos (la tarea k toma las filas k, k+LOTES, k+2*LOTES... del
+manifiesto), con 10 CPU y 30 GB. El numero de tareas del array debe ser igual a
+`LOTES`. Los genomas ya anotados se saltan, asi que si una tarea llega al limite
+de tiempo basta con volver a enviarla; si un genoma falla, el lote sigue con los
+demas y el fallo queda en el registro.
+
 Se recomienda una prueba piloto antes de la corrida completa: Bakta y Panaroo
 sobre 3 referencias y el bin de la primera especie
-(`results/03_seleccion/piloto_manifest.tsv`).
+(`results/03_seleccion/piloto_manifest.tsv`), en un solo lote:
 
 ```bash
-N=$(tail -n +2 results/03_seleccion/piloto_manifest.tsv | wc -l); sbatch --array=1-$N --export=ALL,MANIFEST=results/03_seleccion/piloto_manifest.tsv scripts/05_bakta_all.slurm
+sbatch --array=1 --export=ALL,LOTES=1,MANIFEST=results/03_seleccion/piloto_manifest.tsv scripts/05_bakta_all.slurm
 ```
 
 ```bash
 sbatch --export=ALL,PILOTO=1 scripts/06_panaroo.slurm
 ```
 
-Corrida completa (como maximo 4 genomas a la vez; los ya anotados se omiten):
+Corrida completa en 3 lotes en paralelo (30 CPU y 90 GB en total; los genomas
+del piloto se saltan):
 
 ```bash
-N=$(tail -n +2 results/03_seleccion/bakta_manifest.tsv | wc -l); sbatch --array=1-$N%4 scripts/05_bakta_all.slurm
+sbatch --array=1-3 --export=ALL,LOTES=3 scripts/05_bakta_all.slurm
 ```
 
 Resumen de las anotaciones:
@@ -385,6 +420,7 @@ Referencias:
 | IQ-TREE con estado `TIMEOUT` | Repetir esa especie con `MODO=snps` |
 
 Todos los scripts omiten lo que ya esta hecho, asi que un paso fallido se puede
-reenviar sin repetir el trabajo anterior. Para reenviar una sola especie o un
-solo genoma, se usa `--array=<n>` con el numero de fila del archivo
-correspondiente.
+reenviar sin repetir el trabajo anterior. Para reenviar una sola especie se usa
+`--array=<n>` con su numero de fila en el archivo correspondiente. En Bakta se
+reenvia el lote completo (`--array=<k> --export=ALL,LOTES=3`): los genomas que
+ya estan anotados se saltan.
