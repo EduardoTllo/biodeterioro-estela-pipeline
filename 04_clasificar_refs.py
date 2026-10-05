@@ -16,7 +16,8 @@ Subcomandos, en el orden en que se usan:
                accesiones a descargar (entrada de 04_fetch_refs.sh).
   verificar    Tras la descarga: controla que cada FASTA exista y que su
                longitud total coincida con genome_size de GTDB (+/- 1 %).
-               Recalcula la viabilidad con los genomas realmente descargados.
+               Aplica las exclusiones manuales (--exclusiones) y recalcula la
+               viabilidad con los genomas que quedan.
   clasificar   Nivel de prioridad (T0-T3), categoria de habitat y continente de
                cada genoma. Prepara la entrada de dRep (lista de genomas,
                genomeInfo con CheckM2 del metadata y tabla de pesos extra).
@@ -217,9 +218,25 @@ def cmd_listas(args):
 
 # --------------------------------------------------------- subcomando verificar
 
+def leer_exclusiones(path):
+    """accesion -> motivo. TSV con columnas accession, linaje_id, motivo."""
+    if not path:
+        return {}
+    if not os.path.exists(path):
+        die("no existe el archivo de exclusiones %s" % path)
+    excl = {}
+    for f in leer_tsv(path):
+        acc = (f.get("accession") or "").strip()
+        if acc and not acc.startswith("#"):
+            excl[acc] = (f.get("motivo") or "").strip() or "sin motivo"
+    return excl
+
+
 def cmd_verificar(args):
     especies = leer_especies(os.path.join(args.descarga_dir, "especies_viables.tsv"))
     candidatos = leer_candidatos(args.censo_dir)
+    exclusiones = leer_exclusiones(args.exclusiones)
+    usadas = set()
 
     estado_filas, resumen, para_drep = [], [], []
     for e in especies:
@@ -234,8 +251,14 @@ def cmd_verificar(args):
             esperado = a_int(c.get("genome_size"))
             fila = {"slug": slug, "linaje_id": lid, "accession": acc, "id": gid,
                     "longitud_fasta": "NA", "genome_size_gtdb": esperado or "NA",
-                    "dif_relativa": "NA"}
-            if not os.path.exists(path):
+                    "dif_relativa": "NA", "motivo_exclusion": ""}
+            if acc in exclusiones:
+                # Exclusion manual documentada (metadata/exclusiones.tsv): el
+                # genoma no entra al dRep, al pangenoma ni a la BD del filtro F4.
+                fila["estado"] = "excluido"
+                fila["motivo_exclusion"] = exclusiones[acc]
+                usadas.add(acc)
+            elif not os.path.exists(path):
                 base = id_genoma(acc.rsplit(".", 1)[0])
                 otras = glob.glob(os.path.join(carpeta, base + "_*.fna"))
                 fila["estado"] = "version_distinta" if otras else "no_descargado"
@@ -263,6 +286,7 @@ def cmd_verificar(args):
             "version_distinta": conteo["version_distinta"],
             "tamano_discrepante": conteo["tamano_discrepante"],
             "vacio": conteo["vacio"], "sin_tamano_gtdb": conteo["sin_tamano_gtdb"],
+            "excluido": conteo["excluido"],
             "viable_tras_descarga": "si" if viable else "no",
         })
         with open(os.path.join(args.descarga_dir, "genomas_ok_%s.txt" % slug), "w",
@@ -277,11 +301,15 @@ def cmd_verificar(args):
 
     escribir_tsv(os.path.join(args.descarga_dir, "descarga_estado.tsv"), estado_filas,
                  ["slug", "linaje_id", "accession", "id", "estado", "longitud_fasta",
-                  "genome_size_gtdb", "dif_relativa"])
+                  "genome_size_gtdb", "dif_relativa", "motivo_exclusion"])
     escribir_tsv(os.path.join(args.descarga_dir, "descarga_resumen.tsv"), resumen,
                  ["slug", "linaje_id", "especie_gtdb", "solicitados", "ok",
                   "no_descargado", "version_distinta", "tamano_discrepante", "vacio",
-                  "sin_tamano_gtdb", "viable_tras_descarga"])
+                  "sin_tamano_gtdb", "excluido", "viable_tras_descarga"])
+    for acc in sorted(set(exclusiones) - usadas):
+        warn("la exclusion %s no corresponde a ningun candidato de las especies viables" % acc)
+    if exclusiones:
+        print("[info] genomas excluidos a mano: %d" % len(usadas))
     escribir_tsv(os.path.join(args.descarga_dir, "especies_para_drep.tsv"), para_drep,
                  ["slug", "linaje_id", "especie_gtdb", "n_ok"])
     print("\n[ok] %d especies pasan al dRep -> %s"
@@ -667,6 +695,8 @@ def main():
     p.add_argument("--refs-dir", required=True)
     p.add_argument("--umbral", type=int, default=DEF_UMBRAL)
     p.add_argument("--tolerancia", type=float, default=DEF_TOLERANCIA)
+    p.add_argument("--exclusiones", default="",
+                   help="TSV (accession, linaje_id, motivo) de genomas excluidos a mano")
     p.set_defaults(func=cmd_verificar)
 
     p = sub.add_parser("clasificar", help="prioridad, habitat, continente + entrada de dRep")

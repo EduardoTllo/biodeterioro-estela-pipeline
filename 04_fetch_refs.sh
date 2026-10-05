@@ -11,7 +11,8 @@
 #   4. Verifica la descarga (04_clasificar_refs.py verificar): cada FASTA debe
 #      existir y su longitud total debe coincidir con genome_size de GTDB (+/- 1 %).
 #      No hay sustituciones: una accesion que no baja o que no coincide queda fuera
-#      y se registra (decision D29).
+#      y se registra (decision D29). Tambien se aplican las exclusiones
+#      manuales de metadata/exclusiones.tsv.
 #
 # Se descargan TODAS las candidatas post-QC de cada especie viable, no solo las
 # <= 50 que entraran al pangenoma: el conjunto completo se usa luego en el filtro
@@ -35,6 +36,8 @@ DESCARGA_DIR="$WORKDIR/results/01_descarga"
 REFS_DIR="$WORKDIR/data/refs"
 UMBRAL=15
 TOLERANCIA=0.01
+# Genomas excluidos a mano, con su motivo (accession, linaje_id, motivo).
+EXCLUSIONES="$SCRIPTS_DIR/metadata/exclusiones.tsv"
 
 # No editar debajo salvo que sepas lo que haces
 TMP_DIR="$WORKDIR/tmp/descarga"
@@ -112,7 +115,7 @@ echo
 echo "---> Verificacion de la descarga (existencia y longitud vs GTDB)"
 python "$SCRIPTS_DIR/04_clasificar_refs.py" verificar \
     --censo-dir "$CENSO_DIR" --descarga-dir "$DESCARGA_DIR" --refs-dir "$REFS_DIR" \
-    --umbral "$UMBRAL" --tolerancia "$TOLERANCIA"
+    --umbral "$UMBRAL" --tolerancia "$TOLERANCIA" --exclusiones "$EXCLUSIONES"
 
 echo
 echo "======================================================================"

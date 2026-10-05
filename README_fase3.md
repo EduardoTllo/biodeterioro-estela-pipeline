@@ -184,6 +184,16 @@ Descarga todas las referencias de las especies viables y verifica que la
 longitud de cada FASTA coincida con la de GTDB. Resumen:
 `results/01_descarga/descarga_resumen.tsv`.
 
+Tambien aplica la lista de exclusiones manuales `metadata/exclusiones.tsv`
+(columnas `accession`, `linaje_id`, `motivo`): esos genomas quedan con estado
+`excluido` y no entran a la desreplicacion, al pangenoma ni a la busqueda del
+filtro F4. Si se edita la lista despues de descargar, basta con repetir la
+verificacion:
+
+```bash
+python scripts/04_clasificar_refs.py verificar --censo-dir results/00_censo --descarga-dir results/01_descarga --refs-dir data/refs --exclusiones scripts/metadata/exclusiones.tsv
+```
+
 ### 3. Clasificacion de referencias (login)
 
 ```bash
@@ -335,6 +345,7 @@ pangenoma, arbol del core por especie y embudo de genes exclusivos.
 | Especies censadas | Solo linajes con nombre de especie en GTDB; se excluyen los sin especie y los de nombre provisional (`sp<digitos>`) | |
 | QC de referencias | Completitud >= 95 %, contaminacion <= 5 % (CheckM2), <= 300 contigs, solo aislados (sin MAGs) | |
 | Fuente | Genomas listados en GTDB R220 y descargados de NCBI por accesion con version exacta; sin sustituciones | |
+| Exclusiones manuales | Genomas del cluster GTDB cuyo nombre en NCBI pertenece a otro filo (riesgo de ensamblaje quimerico o contaminado); listados con su motivo en `metadata/exclusiones.tsv` | |
 | Desreplicacion | dRep, ANI >= 99 % (fastANI), solo sobre referencias | |
 | Viabilidad | >= 15 genomas no redundantes por especie; se toman las 3 especies con mas genomas | Gautreau et al. 2020; Guerra 2026 |
 | Tope por especie | 50 referencias. Prioridad: representante de GTDB y cepa tipo; luego aislados de Latinoamerica y de sustratos petreos o aridos; el resto se reparte entre habitats y continentes | |
