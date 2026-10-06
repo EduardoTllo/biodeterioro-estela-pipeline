@@ -70,7 +70,7 @@ Ademas descarga:
 - el metadata de GTDB R220 (`bac120_metadata_r220.tsv`).
 
 Las figuras se generan en R (>= 4.5) con los paquetes de
-[figuras/README.md](figuras/README.md), mas `micropan` y `phangorn`.
+[figuras/README.md](figuras/README.md), mas `phangorn`.
 
 ### Entradas de las fases anteriores
 
@@ -387,7 +387,7 @@ pangenoma, arbol del core por especie y embudo de genes exclusivos.
 | Anotacion | Bakta 1.12.1, BD v6.0, mismas opciones para todos los genomas; no se usan anotaciones de NCBI | Schwengers et al. 2021 |
 | Pangenoma | Panaroo 1.8.0, `--clean-mode moderate`, demas parametros por defecto | Tonkin-Hill et al. 2020 |
 | Particion | Frecuencias calculadas solo con referencias: core >= 95 % (sensibilidad 90 %), shell 15-95 %, cloud < 15 %, exclusivo = ausente en todas las referencias | Tettelin et al. 2005 |
-| Apertura del pangenoma | Ley de Heaps (`micropan::heaps`); alpha < 1 indica pangenoma abierto | Tettelin et al. 2008 |
+| Apertura del pangenoma | Ley de Heaps (misma implementacion que `micropan::heaps`, vectorizada); alpha < 1 indica pangenoma abierto. Diagnosticos de inflacion: genes unicos vs. contigs, genomas atipicos, alpha solo con genomas completos, rango jackknife y fraccion de hipoteticas por categoria | Tettelin et al. 2008; Snipen y Liland 2015 |
 | Arbol | IQ-TREE 3, ModelFinder, 1000 replicas UFBoot, sobre el alineamiento del core | |
 | Genes exclusivos | F1: descarta pseudogenes, < 100 aa y CDS a < 100 pb del borde de contig. F4: descarta si aparece (>= 80 % identidad y cobertura) en cualquier genoma de la especie. F2/F6: contigs sin genes de la especie se contrastan con core_nt y se descartan si su mejor hit es de otro genero. F3: marca genes presentes en otro bin de la misma muestra. F5: BLASTp contra nr para el origen probable | |
 

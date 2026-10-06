@@ -5,7 +5,8 @@
 # (pangenoma_refs.Rtab, decision D22): el bin incompleto no entra en la curva.
 #   - Curvas del pan (familias acumuladas) y del core (familias presentes en
 #     todos los genomas anadidos) con N_PERM_CURVA ordenes aleatorios.
-#   - Ley de Heaps con micropan::heaps() (Tettelin et al. 2008): alpha < 1
+#   - Ley de Heaps con heaps_rapido() (f3_00_setup.R; equivalente exacto de
+#     micropan::heaps, modelo de Tettelin et al. 2008): alpha < 1
 #     indica un pangenoma abierto; alpha > 1, cerrado.
 # =============================================================================
 
@@ -21,12 +22,11 @@ for (slug in especies_f3$slug) {
   colnames(pm) <- rtab$Gene
   n <- nrow(pm)
 
+  pm <- (pm > 0) * 1L
+  pm <- pm[, colSums(pm) > 0, drop = FALSE]
   res <- map_dfr(seq_len(N_PERM_CURVA), function(p) {
-    pres <- pm[sample(n), , drop = FALSE]
-    acum_pan  <- apply(pres, 2, cummax)
-    acum_core <- apply(pres, 2, cummin)
-    tibble(perm = p, n_genomas = seq_len(n),
-           pan = rowSums(acum_pan > 0), core = rowSums(acum_core > 0))
+    cur <- curva_acumulacion(pm[sample(n), , drop = FALSE])
+    tibble(perm = p, n_genomas = seq_len(n), pan = cur$pan, core = cur$core)
   })
   curvas[[slug]] <- res |>
     pivot_longer(c(pan, core), names_to = "curva", values_to = "familias") |>
@@ -35,8 +35,7 @@ for (slug in especies_f3$slug) {
               q3 = quantile(familias, 0.75), .groups = "drop") |>
     mutate(slug = slug)
 
-  # heaps() imprime una linea de progreso por permutacion; se silencia.
-  invisible(capture.output(h <- micropan::heaps(pm, n.perm = N_PERM_HEAPS)))
+  h <- heaps_rapido(pm, n.perm = N_PERM_HEAPS)   # equivalente a micropan::heaps
   heaps_tab[[slug]] <- tibble(
     slug = slug, n_referencias = n, familias_refs = ncol(pm),
     heaps_intercepto = unname(h["Intercept"]), heaps_alpha = unname(h["alpha"]),

@@ -10,10 +10,48 @@ suppressPackageStartupMessages({
   library(ape)
   library(ggtree)
 })
-for (p in c("micropan", "phangorn")) {
+for (p in c("phangorn")) {
   if (!requireNamespace(p, quietly = TRUE)) {
     stop("Falta el paquete '", p, "'. Instalalo con install.packages('", p, "').")
   }
+}
+
+# --- Ley de Heaps ----------------------------------------------------------------
+# Reproduce exactamente micropan::heaps() (Snipen & Liland 2015; modelo de
+# Tettelin et al. 2008): familias nuevas al agregar el genoma N ~ k * N^(-alpha),
+# ajustado con optim (L-BFGS-B) sobre n.perm ordenes aleatorios. Misma formula,
+# mismas permutaciones y mismo ajuste; da el mismo resultado que micropan con la
+# misma semilla (verificado), pero es vectorizada: micropan recorre columna por
+# columna y es demasiado lenta para el jackknife de f3_05.
+# pm: matriz genomas x familias (0/1). alpha < 1 indica pangenoma abierto.
+heaps_rapido <- function(pm, n.perm = 100) {
+  pm <- (pm > 0) * 1L
+  pm <- pm[, colSums(pm) > 0, drop = FALSE]
+  ng <- nrow(pm)
+  nmat <- matrix(0, nrow = ng - 1, ncol = n.perm)
+  for (i in seq_len(n.perm)) {
+    p <- pm[sample(ng), , drop = FALSE]
+    primero <- max.col(t(p), ties.method = "first")   # genoma donde aparece cada familia
+    nmat[, i] <- tabulate(primero, nbins = ng)[2:ng]
+  }
+  x <- rep(2:ng, times = n.perm)
+  y <- as.numeric(nmat)
+  obj <- function(p, x, y) sqrt(sum((y - p[1] * x^(-p[2]))^2)) / length(x)
+  fit <- optim(c(mean(y[x == 2]), 1), obj, gr = NULL, x, y, method = "L-BFGS-B",
+               lower = c(0, 0), upper = c(10000, 2))
+  setNames(fit$par, c("Intercept", "alpha"))
+}
+
+# Curvas de acumulacion del pan y del core para un orden de genomas.
+# pan[k]: familias vistas en los primeros k genomas; core[k]: familias presentes
+# en todos los primeros k genomas.
+curva_acumulacion <- function(p) {
+  n <- nrow(p)
+  primero <- max.col(t(p), ties.method = "first")
+  primer_cero <- max.col(t(1L - p), ties.method = "first")
+  primer_cero[colSums(p) == n] <- n + 1L                # presentes en todos
+  list(pan = cumsum(tabulate(primero, nbins = n)),
+       core = ncol(p) - cumsum(tabulate(primer_cero, nbins = n + 1))[seq_len(n)])
 }
 
 RES_F3 <- file.path("results", "fase3")

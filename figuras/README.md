@@ -80,11 +80,11 @@ Las figuras de la Fase 3 leen `results/fase3/`, que se trae de Khipu con
 Rscript figuras/R/f3_run_all.R
 ```
 
-Requieren ademas `micropan` (ley de Heaps) y `phangorn` (enraizado en el punto
+Requieren ademas `phangorn` (enraizado en el punto
 medio):
 
 ```r
-install.packages(c("micropan", "phangorn"))
+install.packages("phangorn")
 ```
 
 | Script | Produce |
@@ -94,3 +94,4 @@ install.packages(c("micropan", "phangorn"))
 | `f3_02_posicion_bin.R` | `fig_f3_posicion_bin` (genes del bin por categoria; recuperacion del core vs completitud) y `tab_f3_resumen_pangenoma.tsv` |
 | `f3_03_arbol_core.R` | `fig_f3_arbol_core_<especie>` (arbol ML del core con el habitat de cada referencia y el bin destacado) |
 | `f3_04_exclusivos.R` | `fig_f3_exclusivos` (embudo F1-F6 y origen segun nr) y `tab_f3_embudo_exclusivos.tsv` |
+| `f3_05_diagnostico_heaps.R` | `fig_f3_diagnostico_heaps` (genes unicos por genoma vs. contigs, alpha con todas las referencias vs. solo genomas completos con rango jackknife, hipoteticas por categoria) y `tab_f3_diagnostico_heaps.tsv`, `tab_f3_genes_unicos_por_genoma.tsv`, `tab_f3_hipoteticas_por_categoria.tsv` |
