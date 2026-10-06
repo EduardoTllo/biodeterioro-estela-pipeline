@@ -46,7 +46,7 @@ el nodo de login. Los pasos 4, 6, 7, 8 y la parte local del 9 se envian a SLURM.
   programas, descargar bases de datos y consultar NCBI. Los nodos de computo
   pueden no tener internet.
 - Recursos por trabajo: hasta 32 nucleos, 90 GB de RAM y 24 h (Panaroo e
-  IQ-TREE). Bakta usa 8 nucleos y 24 GB por genoma.
+  IQ-TREE). Bakta usa 10 nucleos y 32 GB por lote.
 - Disco: ~130 GB libres para la base de datos de Bakta, mas ~30 GB para
   genomas y resultados.
 
