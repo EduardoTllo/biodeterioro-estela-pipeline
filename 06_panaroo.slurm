@@ -122,7 +122,7 @@ else
       --core_threshold "$CORE_ALN_THRESHOLD" \
       -t "$THREADS"
 fi
-cat "$OUT/summary_statistics.txt"
+cat "$OUT/summary_statistics.txt"; echo
 
 # 3) Particion solo con referencias + posicion del bin
 python "$SCRIPTS_DIR/07_particion.py" particion \
