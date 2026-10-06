@@ -26,7 +26,7 @@
 # tareas del array debe ser igual a LOTES:
 #   Piloto P0 (3 referencias + bins de la especie n.o 1, un solo lote):
 #     sbatch --account=tesis --array=1 --export=ALL,LOTES=1,MANIFEST=results/03_seleccion/piloto_manifest.tsv scripts/05_bakta_all.slurm
-#   Corrida completa (3 lotes en paralelo = 30 CPU, 90 GB):
+#   Corrida completa (3 lotes en paralelo = 30 CPU, 96 GB):
 #     sbatch --account=tesis --array=1-3 --export=ALL,LOTES=3 scripts/05_bakta_all.slurm
 
 #SBATCH --job-name=f3_bakta
@@ -34,7 +34,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=10
-#SBATCH --mem=30G
+#SBATCH --mem=32G
 #SBATCH --time=24:00:00
 #SBATCH --output=logs/fase3_bakta_%A_%a.out
 #SBATCH --error=logs/fase3_bakta_%A_%a.err

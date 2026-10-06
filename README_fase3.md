@@ -253,7 +253,7 @@ no aplico la tabla de pesos (`extraW.tsv`) o si ninguna especie es viable.
 
 `05_bakta_all.slurm` trabaja por lotes: cada tarea del array anota varios
 genomas seguidos (la tarea k toma las filas k, k+LOTES, k+2*LOTES... del
-manifiesto), con 10 CPU y 30 GB. El numero de tareas del array debe ser igual a
+manifiesto), con 10 CPU y 32 GB (en el piloto, un lote uso 30 GB). El numero de tareas del array debe ser igual a
 `LOTES`. Los genomas ya anotados se saltan, asi que si una tarea llega al limite
 de tiempo basta con volver a enviarla; si un genoma falla, el lote sigue con los
 demas y el fallo queda en el registro.
@@ -270,7 +270,7 @@ sbatch --array=1 --export=ALL,LOTES=1,MANIFEST=results/03_seleccion/piloto_manif
 sbatch --export=ALL,PILOTO=1 scripts/06_panaroo.slurm
 ```
 
-Corrida completa en 3 lotes en paralelo (30 CPU y 90 GB en total; los genomas
+Corrida completa en 3 lotes en paralelo (30 CPU y 96 GB en total; los genomas
 del piloto se saltan):
 
 ```bash
