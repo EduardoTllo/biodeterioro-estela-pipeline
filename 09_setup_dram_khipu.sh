@@ -85,7 +85,15 @@ fi
 echo "    OK: $(conda list --export | grep -iE '^dram-bio=')"
 
 echo "==> [2/3] Bases de datos de DRAM en $DRAM_DB (solo las de la Fase 4)"
-if DRAM-setup.py print_config 2>/dev/null | grep -qE "KOfam db: .*kofam"; then
+# Listas solo si KOfam, dbCAN y MEROPS figuran en la configuracion y ningun
+# .txt descargado es una pagina HTML (un intento fallido deja KOfam registrado).
+bases_listas() {
+  local cfg; cfg="$(DRAM-setup.py print_config 2>/dev/null)" || return 1
+  grep -qE "^KOfam db: /" <<<"$cfg" && grep -qE "^dbCAN db: /" <<<"$cfg" \
+    && grep -qE "^MEROPS peptidase db: /" <<<"$cfg" \
+    && ! grep -qs '<!DOCTYPE' "$DRAM_DB"/*.txt
+}
+if bases_listas; then
   echo "    Ya configuradas (ver print_config abajo). Se omite."
 else
   # Un intento anterior incompleto deja archivos a medias y una carpeta
