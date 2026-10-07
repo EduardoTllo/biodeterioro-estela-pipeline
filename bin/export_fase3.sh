@@ -74,5 +74,14 @@ for d in "$R"/07_exclusivos/*/; do
   done
 done
 
+# Exclusivos con F5 por el EBI (MOTOR=ebi), si se corrio: en <especie>/ebi/
+for d in "$R"/07_exclusivos_ebi/*/; do
+  [[ -d "$d" ]] || continue
+  s="$(basename "$d")"
+  for f in exclusivos_verificados.tsv embudo_exclusivos.tsv exclusivos_report.md            versions_remoto.txt; do
+    cp_si "$d/$f" "$E/$s/ebi/$f"
+  done
+done
+
 echo "Exportado a $E:"
 find "$E" -type f | sed "s|$E/||" | sort

@@ -35,6 +35,8 @@ Subcomandos:
   preparar  F1 + F2; escribe las consultas para F4 y F3.       (SLURM, local)
   evaluar   lee F4 y F3; escribe las consultas para F5 y F6.    (SLURM, local)
   integrar  lee F5 y F6 (+ linajes de taxonkit); clase final.   (login/laptop)
+  ebi       F5 por el REST del EBI (blastp contra UniProtKB), alternativa
+            cuando la cola de NCBI no avanza. Salida en el mismo tabular.
 """
 
 import argparse
@@ -359,6 +361,103 @@ def cmd_integrar(args):
     print("[ok] embudo: " + " -> ".join("%s=%d" % (p, embudo[p]) for p in pasos))
 
 
+# --------------------------------------------------------------- subcomando ebi
+
+EBI_URL = "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast"
+
+
+def ebi_http(url, datos=None, intentos=5):
+    """GET (datos=None) o POST al REST del EBI, con reintentos."""
+    import time
+    import urllib.parse
+    import urllib.request
+    cuerpo = urllib.parse.urlencode(datos).encode() if datos is not None else None
+    for i in range(1, intentos + 1):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, data=cuerpo),
+                                        timeout=120) as r:
+                return r.read().decode("utf-8")
+        except Exception as e:
+            if i == intentos:
+                raise
+            warn("EBI %s (intento %d): %s; reintento en 60 s" % (url.split("/")[-2], i, e))
+            time.sleep(60)
+
+
+def ebi_a_tabular(qseqid, qlen, res):
+    """Hits del JSON del EBI -> filas outfmt 6 (OUTFMT_CAMPOS)."""
+    filas = []
+    for h in res.get("hits", []):
+        hsps = h.get("hit_hsps") or []
+        if not hsps:
+            continue
+        mejor = max(hsps, key=lambda s: s.get("hsp_bit_score", 0))
+        # cobertura de la consulta: union de los tramos de todas las HSP (como qcovs)
+        cubiertas = set()
+        for s in hsps:
+            a, b = sorted((s["hsp_query_from"], s["hsp_query_to"]))
+            cubiertas.update(range(a, b + 1))
+        qcov = 100.0 * len(cubiertas) / qlen if qlen else 0.0
+        filas.append([qseqid, "%s|%s" % (h.get("hit_db", ""), h.get("hit_acc", "")),
+                      "%.3f" % mejor["hsp_identity"], str(mejor["hsp_align_len"]),
+                      "%.0f" % min(qcov, 100.0), "%g" % mejor["hsp_expect"],
+                      "%.1f" % mejor["hsp_bit_score"], str(h.get("hit_uni_ox", ""))])
+    return filas
+
+
+def cmd_ebi(args):
+    """blastp en el EBI (una secuencia por trabajo, hasta --paralelo a la vez).
+    Cada resultado queda en <estado>/<consulta>.json: si se corta, al relanzar
+    solo se envia lo que falta."""
+    import json
+    import time
+    seqs = leer_fasta(args.query)
+    os.makedirs(args.estado, exist_ok=True)
+    def ruta(q):
+        return os.path.join(args.estado, re.sub(r"[^A-Za-z0-9_.-]", "_", q))
+    pendientes = [q for q in seqs if not os.path.exists(ruta(q) + ".json")]
+    print("[ebi] %d consultas, %d pendientes (db %s)" % (len(seqs), len(pendientes), args.db))
+    en_curso = {}
+    for q in list(pendientes):
+        if os.path.exists(ruta(q) + ".job"):
+            en_curso[q] = open(ruta(q) + ".job").read().strip()
+            pendientes.remove(q)
+    t0 = time.time()
+    while pendientes or en_curso:
+        while pendientes and len(en_curso) < args.paralelo:
+            q = pendientes.pop(0)
+            job = ebi_http(EBI_URL + "/run", {
+                "email": args.email, "program": "blastp", "stype": "protein",
+                "database": args.db, "exp": args.evalue, "alignments": args.hits,
+                "scores": args.hits, "sequence": ">%s\n%s\n" % (q, seqs[q])}).strip()
+            if not job.startswith("ncbiblast-"):
+                die("el EBI no acepto %s: %s" % (q, job[:300]))
+            open(ruta(q) + ".job", "w").write(job)
+            en_curso[q] = job
+        time.sleep(15)
+        for q, job in list(en_curso.items()):
+            st = ebi_http("%s/status/%s" % (EBI_URL, job)).strip()
+            if st == "FINISHED":
+                with open(ruta(q) + ".json", "w", encoding="utf-8") as fh:
+                    fh.write(ebi_http("%s/result/%s/json" % (EBI_URL, job)))
+                os.remove(ruta(q) + ".job")
+                del en_curso[q]
+                print("[ebi] %s listo (%d min)" % (q, (time.time() - t0) // 60))
+            elif st in ("ERROR", "FAILURE", "NOT_FOUND"):
+                os.remove(ruta(q) + ".job")
+                del en_curso[q]
+                pendientes.append(q)
+                warn("%s termino en %s; se reenvia" % (q, st))
+    filas = []
+    for q, seq in seqs.items():
+        with open(ruta(q) + ".json", encoding="utf-8") as fh:
+            filas += ebi_a_tabular(q, len(seq), json.load(fh))
+    with open(args.out, "w", encoding="utf-8", newline="\n") as fh:
+        for f in filas:
+            fh.write("\t".join(f) + "\n")
+    print("[ok] %d hits de %d consultas -> %s" % (len(filas), len(seqs), args.out))
+
+
 # ------------------------------------------------------------------------ main
 
 def main():
@@ -392,6 +491,17 @@ def main():
     p.add_argument("--f5-id", type=float, default=DEF_F5_ID)
     p.add_argument("--f5-cov", type=float, default=DEF_F5_COV)
     p.set_defaults(func=cmd_integrar)
+
+    p = sub.add_parser("ebi", help="F5 por el BLAST del EBI (alternativa a NCBI)")
+    p.add_argument("--query", required=True, help="FASTA de proteinas (f5_query.faa)")
+    p.add_argument("--out", required=True, help="tabular outfmt 6 de salida")
+    p.add_argument("--estado", required=True, help="carpeta con un .json por consulta")
+    p.add_argument("--email", required=True, help="correo exigido por el EBI")
+    p.add_argument("--db", default="uniprotkb")
+    p.add_argument("--evalue", default="1e-5")
+    p.add_argument("--hits", type=int, default=10)
+    p.add_argument("--paralelo", type=int, default=5, help="trabajos simultaneos (EBI: <= 30)")
+    p.set_defaults(func=cmd_ebi)
 
     args = ap.parse_args()
     if not getattr(args, "func", None):

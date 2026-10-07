@@ -413,6 +413,18 @@ puede tardar de minutos a horas; mientras espera, el registro escribe
 comando: los lotes terminados no se repiten y las busquedas en curso se
 retoman por su numero (RID). Al final imprime `[ok] embudo: ...` por especie.
 
+Si la cola de NCBI no avanza (puede pasar horas en `WAITING`), F5 se puede
+correr en el servicio BLAST del EBI contra UniProtKB, que suele responder en
+minutos. Usa la misma tabla de resultados y la misma clasificacion (los taxid
+de UniProt son los de NCBI) y escribe en `results/07_exclusivos_ebi/`, sin
+tocar la corrida de NCBI, asi que ambas pueden correr a la vez en ventanas
+distintas de `tmux`. El EBI exige un correo; se toma de `$CORREO`. No cubre
+F6 (contigs huerfanos contra `core_nt`):
+
+```bash
+MOTOR=ebi bash scripts/08_exclusivos_remoto.sh 2>&1 | tee logs/fase3_exclusivos_remoto_ebi.log
+```
+
 Si `core_nt` no estuviera disponible, se usa `nt`:
 
 ```bash

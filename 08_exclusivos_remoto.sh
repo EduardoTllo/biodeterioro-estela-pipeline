@@ -25,6 +25,14 @@
 # blast+, taxonkit y python instalados: el BLAST remoto solo necesita internet.
 #   Uso:   bash 08_exclusivos_remoto.sh              (todas las especies)
 #          bash 08_exclusivos_remoto.sh <slug>       (una especie)
+#
+# Alternativa si la cola de NCBI no avanza (MOTOR=ebi): F5 con el blastp del
+# EBI contra UniProtKB (REST, un trabajo por proteina, 5 a la vez; 08_exclusivos.py
+# ebi). Mismo tabular y misma integracion; los taxid de UniProt (OX) son los de
+# NCBI. Escribe en results/07_exclusivos_ebi/<especie>/ para no mezclarse con la
+# corrida de NCBI. El EBI exige un correo: EBI_EMAIL (por defecto $CORREO).
+# F6 no tiene equivalente aqui: si hay contigs huerfanos, usar MOTOR=ncbi.
+#   Uso:   MOTOR=ebi bash 08_exclusivos_remoto.sh
 
 # No usamos 'set -u' por compatibilidad con Lmod en Khipu.
 set -eo pipefail
@@ -43,6 +51,16 @@ PAUSA_S=15
 OUTFMT="6 qseqid sseqid pident length qcovs evalue bitscore staxids"
 BLAST_URL="https://blast.ncbi.nlm.nih.gov/Blast.cgi"
 ESPERA_MAX_H="${ESPERA_MAX_H:-24}"   # horas maximas de espera por busqueda
+MOTOR="${MOTOR:-ncbi}"               # ncbi | ebi
+EBI_EMAIL="${EBI_EMAIL:-$CORREO}"
+EBI_DB="${EBI_DB:-uniprotkb}"
+if [[ "$MOTOR" == "ebi" ]]; then
+  [[ -n "$EBI_EMAIL" ]] || { echo "ERROR: MOTOR=ebi necesita EBI_EMAIL (o CORREO)" >&2; exit 1; }
+  EXCL_LOCAL="$EXCL_OUT"
+  EXCL_OUT="$WORKDIR/results/07_exclusivos_ebi"
+elif [[ "$MOTOR" != "ncbi" ]]; then
+  echo "ERROR: MOTOR debe ser ncbi o ebi" >&2; exit 1
+fi
 
 # No editar debajo salvo que sepas lo que haces
 if command -v module >/dev/null 2>&1; then
@@ -108,6 +126,15 @@ SOLO="$1"
 tail -n +2 "$SEL_DIR/especies_seleccionadas.tsv" | while IFS=$'\t' read -r RANGO SLUG LID ESP NCBI_ESP TAXID RESTO; do
   [[ -n "$SOLO" && "$SLUG" != "$SOLO" ]] && continue
   OUT="$EXCL_OUT/$SLUG"
+  if [[ "$MOTOR" == "ebi" ]]; then
+    mkdir -p "$OUT"
+    for f in candidatos_local.tsv f5_query.faa f6_query.fna versions_local.txt; do
+      [[ -f "$EXCL_LOCAL/$SLUG/$f" ]] && cp -f "$EXCL_LOCAL/$SLUG/$f" "$OUT/$f"
+    done
+    if [[ -s "$OUT/f6_query.fna" ]]; then
+      echo "ERROR: $SLUG tiene contigs huerfanos (F6); el EBI no cubre core_nt. Usa MOTOR=ncbi." >&2; exit 1
+    fi
+  fi
   if [[ ! -s "$OUT/candidatos_local.tsv" ]]; then
     echo "ERROR: falta $OUT/candidatos_local.tsv (corre 08_exclusivos_local.slurm)." >&2; exit 1
   fi
@@ -116,15 +143,22 @@ tail -n +2 "$SEL_DIR/especies_seleccionadas.tsv" | while IFS=$'\t' read -r RANGO
   {
     echo "Fase 3 - Exclusivos (remoto) - $SLUG"
     echo "Fecha: $(date)   Host: $(hostname)"
-    echo "F5: blastp (URL API de NCBI + blast_formatter -rid) -db $NR_DB -evalue 1e-5, 10 hits (lotes de $LOTE)"
+    if [[ "$MOTOR" == "ebi" ]]; then
+      echo "F5: blastp en el EBI (REST ncbiblast) -db $EBI_DB -evalue 1e-5, 10 hits, una proteina por trabajo"
+    else
+      echo "F5: blastp (URL API de NCBI + blast_formatter -rid) -db $NR_DB -evalue 1e-5, 10 hits (lotes de $LOTE)"
+    fi
     echo "F6: blastn megablast (URL API de NCBI) -db $NT_DB -evalue 1e-10, 10 hits"
     echo "blast: $(blastp -version | head -n1) | taxonkit: $(taxonkit version 2>&1 | head -n1)"
     echo "taxdump: $TAXDUMP_DIR ($(cat "$TAXDUMP_DIR/fecha_descarga.txt" 2>/dev/null || echo NA))"
   } > "$OUT/versions_remoto.txt"
 
-  # F5: lotes de LOTE proteinas
+  # F5: lotes de LOTE proteinas (NCBI) o una por trabajo (EBI)
   mkdir -p "$OUT/f5_lotes"
-  if [[ -s "$OUT/f5_query.faa" ]]; then
+  if [[ "$MOTOR" == "ebi" && -s "$OUT/f5_query.faa" ]]; then
+    echo "     F5 EBI: $(grep -c '^>' "$OUT/f5_query.faa") proteinas ($(date +%H:%M))"
+    python "$SCRIPTS_DIR/08_exclusivos.py" ebi --query "$OUT/f5_query.faa"         --out "$OUT/f5_blastp_nr.tsv" --estado "$OUT/f5_lotes" --email "$EBI_EMAIL" --db "$EBI_DB"
+  elif [[ -s "$OUT/f5_query.faa" ]]; then
     awk -v n="$LOTE" -v d="$OUT/f5_lotes" '/^>/{if(c%n==0){f=sprintf("%s/lote_%04d.faa",d,int(c/n)+1)} c++} {print > f}' \
         "$OUT/f5_query.faa"
     for Q in "$OUT"/f5_lotes/lote_*.faa; do
