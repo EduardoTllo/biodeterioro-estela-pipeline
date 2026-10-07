@@ -116,7 +116,7 @@ if (length(diag_tab) > 0) {
                         labels = c("normal", "atipico (> mediana + 3 MAD)"), name = NULL) +
     labs(x = "Contigs del ensamblaje (escala log)", y = "Familias unicas del genoma",
          tag = "a") +
-    theme(legend.position = "bottom")
+    theme(legend.position = "bottom", strip.text = element_text(size = 8))
 
   # (b) alpha: todos (con rango jackknife) vs solo completos
   df_b <- bind_rows(
@@ -131,7 +131,8 @@ if (length(diag_tab) > 0) {
     geom_errorbarh(aes(xmin = lo, xmax = hi), height = 0.2, na.rm = TRUE,
                    position = position_dodge(width = 0.5)) +
     geom_point(size = 2.5, na.rm = TRUE, position = position_dodge(width = 0.5)) +
-    geom_text(aes(label = paste0("n=", n)), size = 2.6, vjust = -1.1, na.rm = TRUE,
+    geom_text(aes(x = if_else(is.na(hi), alpha, hi), label = paste0("n=", n)), size = 2.6,
+              hjust = -0.3, na.rm = TRUE,
               position = position_dodge(width = 0.5), show.legend = FALSE) +
     scale_colour_manual(values = c("Todas las referencias" = "#2166AC",
                                    "Solo genomas completos" = "#E08214"), name = NULL) +
@@ -146,7 +147,7 @@ if (length(diag_tab) > 0) {
     graficos[[3]] <- ggplot(df_h, aes(categoria_95, pct_hipoteticas, fill = categoria_95)) +
       geom_col(width = 0.6, colour = "grey30", linewidth = 0.2) +
       geom_text(aes(label = familias), vjust = -0.4, size = 2.6) +
-      facet_wrap(~ etiqueta) +
+      facet_wrap(~ etiqueta) + theme(strip.text = element_text(size = 8)) +
       scale_fill_manual(values = PAL_CATEGORIA, guide = "none") +
       scale_y_continuous(limits = c(0, 100), expand = expansion(mult = c(0, 0.05))) +
       labs(x = NULL, y = "Familias hipoteticas (%)", tag = "c",

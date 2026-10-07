@@ -1,0 +1,7 @@
+Fase 3 - dRep referencias - L14_Bacillus_licheniformis
+Fecha: Sun Oct  4 22:17:33 -05 2026   Job: 54474_1   Nodo: n006
+Parametros: -pa 0.90 -sa 0.99 --S_algorithm fastANI -comp 0 -con 100
+drep=3.7.1=pyhdfd78af_0
+fastani=1.34=hb66fcc3_7
+mash=2.3=hf85e966_11
+python=3.11.15=h8ab3286_2_cpython

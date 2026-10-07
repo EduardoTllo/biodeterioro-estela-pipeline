@@ -1,0 +1,4 @@
+linaje_id	especie_gtdb	n_refs	n_bins	familias_refs	core_95	shell_95	cloud_95	core_90	familias_exclusivas
+L16	Bacillus altitudinis	50	1	7059	3303	847	2909	3391	14
+L12	Peribacillus frigoritolerans	42	1	16125	3961	2142	10022	4078	34
+L8	Acinetobacter schindleri	23	1	7599	2389	1114	4096	2409	70

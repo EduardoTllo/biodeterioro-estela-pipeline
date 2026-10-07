@@ -1,0 +1,8 @@
+slug	linaje_id	especie_gtdb	solicitados	ok	no_descargado	version_distinta	tamano_discrepante	vacio	sin_tamano_gtdb	excluido	viable_tras_descarga
+L14_Bacillus_licheniformis	L14	Bacillus licheniformis	279	279	0	0	0	0	0	0	si
+L16_Bacillus_altitudinis	L16	Bacillus altitudinis	209	208	0	0	0	0	0	1	si
+L12_Peribacillus_frigoritolerans	L12	Peribacillus frigoritolerans	72	69	0	0	0	0	0	3	si
+L8_Acinetobacter_schindleri	L8	Acinetobacter schindleri	29	29	0	0	0	0	0	0	si
+L9_Priestia_flexa	L9	Priestia flexa	29	29	0	0	0	0	0	0	si
+L11_Staphylococcus_warneri_A	L11	Staphylococcus warneri_A	24	24	0	0	0	0	0	0	si
+L18_Cytobacillus_firmus_B	L18	Cytobacillus firmus_B	18	18	0	0	0	0	0	0	si

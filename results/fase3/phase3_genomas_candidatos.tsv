@@ -1,0 +1,682 @@
+linaje_id	especie_gtdb	accession_gtdb	accession_ncbi	organismo	assembly_level	completitud	contaminacion	contigs	n50	genome_size	isolation_source	representante_gtdb	fuente	ncbi_country	tipo_designacion	ncbi_date
+L1	Telluria timonae	RS_GCF_019443485.1	GCF_019443485.1	Massilia sp. NP310	Complete Genome	100.0	0.51	1	6070534	6070534	none	f	RefSeq	Nepal	not type material	2021-08-03
+L1	Telluria timonae	RS_GCF_001866515.1	GCF_001866515.1	Massilia timonae	Contig	100.0	0.48	1	5969261	5969261	forest soil	f	RefSeq	Switzerland: Neuchatel	not type material	2016-11-04
+L1	Telluria timonae	RS_GCF_000315425.1	GCF_000315425.1	Massilia timonae CCUG 45783	Scaffold	100.0	0.2	76	179428	6136500	none	t	RefSeq	none	type strain of species	2012-11-30
+L3	Bacillus_AB infantis	RS_GCF_000153365.1	GCF_000153365.1	Bacillus sp. NRRL B-14911	Scaffold	100.0	0.86	109	142379	5116500	none	f	RefSeq	none	not type material	2006-03-31
+L3	Bacillus_AB infantis	RS_GCF_020172065.1	GCF_020172065.1	Bacillus infantis	Contig	100.0	0.76	29	543134	4973253	sediment	f	RefSeq	China: Shenzhen	not type material	2021-09-28
+L3	Bacillus_AB infantis	RS_GCF_008180695.1	GCF_008180695.1	Bacillus infantis	Scaffold	100.0	0.59	29	808136	5168596	sediment	f	RefSeq	Mexico: desert of Cuatro Cienegas; Coahuila	not type material	2019-09-01
+L3	Bacillus_AB infantis	RS_GCF_024159185.1	GCF_024159185.1	Bacillus infantis	Contig	100.0	2.67	3	5043971	5356151	Clean room	f	RefSeq	USA: Texas	not type material	2022-07-05
+L3	Bacillus_AB infantis	RS_GCF_000473245.1	GCF_000473245.1	Bacillus infantis NRRL B-14911	Complete Genome	100.0	0.46	1	4884713	4884713	open ocean	t	RefSeq	USA:Gulf of Mexico	not type material	2013-09-30
+L3	Bacillus_AB infantis	RS_GCF_030733525.1	GCF_030733525.1	Bacillus sp. MMSF_3328	Contig	100.0	0.66	43	233607	5159563	Symbiodiniaceae culture	f	RefSeq	none	not type material	2023-08-15
+L3	Bacillus_AB infantis	RS_GCF_023148655.1	GCF_023148655.1	Bacillus infantis	Scaffold	100.0	1.52	49	240135	5172245	ocular surface of healthy person	f	RefSeq	China: Shanxi	not type material	2022-04-27
+L3	Bacillus_AB infantis	RS_GCF_004146125.1	GCF_004146125.1	Bacillus infantis	Contig	100.0	1.31	40	339378	5001688	marine sediment	f	RefSeq	Philippines: Philippine Rise	not type material	2019-02-06
+L3	Bacillus_AB infantis	RS_GCF_002858875.1	GCF_002858875.1	Bacillus sp. UMB0728	Scaffold	100.0	3.47	39	344979	5204311	none	f	RefSeq	USA: Maywood; IL	not type material	2018-01-03
+L8	Acinetobacter schindleri	RS_GCF_025514435.1	GCF_025514435.1	Acinetobacter schindleri	Contig	99.99	1.48	106	83787	3433592	Endovascular	f	RefSeq	USA: St. Louis	not type material	2022-09-30
+L8	Acinetobacter schindleri	RS_GCF_010919095.1	GCF_010919095.1	Acinetobacter schindleri	Complete Genome	99.99	0.45	9	3131572	3320700	stool	f	RefSeq	China:Huizhou City; Guangdong Province	not type material	2020-02-21
+L8	Acinetobacter schindleri	RS_GCF_010918895.1	GCF_010918895.1	Acinetobacter schindleri	Complete Genome	99.98	0.19	9	3097067	3337186	stool	f	RefSeq	China:Huizhou City; Guangdong Province	not type material	2020-02-21
+L8	Acinetobacter schindleri	RS_GCF_001077515.1	GCF_001077515.1	Acinetobacter sp. VT 511	Contig	99.99	0.77	121	141438	3416321	stomach	f	RefSeq	Russia	not type material	2015-07-14
+L8	Acinetobacter schindleri	RS_GCF_007833615.1	GCF_007833615.1	Acinetobacter schindleri	Complete Genome	100.0	0.19	5	2973544	3258703	the condensate water of the Shenzhou-9 spacecraft	f	RefSeq	China: Neimenggu	not type material	2019-08-05
+L8	Acinetobacter schindleri	GB_GCA_022832955.1	GCA_022832955.1	Acinetobacter schindleri	Complete Genome	99.93	1.2	7	3135005	3443157	chicken fecal	f	GenBank	China:yulin	not type material	2022-04-07
+L8	Acinetobacter schindleri	RS_GCF_000301815.1	GCF_000301815.1	Acinetobacter schindleri TG19614	Contig	99.99	0.09	159	65440	3197027	urine	f	RefSeq	none	not type material	2012-10-02
+L8	Acinetobacter schindleri	RS_GCF_002919885.1	GCF_002919885.1	Acinetobacter sp. ACNIH4	Contig	99.99	0.94	197	46806	3446532	none	f	RefSeq	USA	not type material	2018-02-06
+L8	Acinetobacter schindleri	RS_GCF_000368465.1	GCF_000368465.1	Acinetobacter schindleri NIPH 900	Scaffold	99.98	0.57	25	315976	3414896	Conjunctiva	f	RefSeq	Czech Republic: Sedlcany	not type material	2013-04-19
+L8	Acinetobacter schindleri	RS_GCF_003289665.1	GCF_003289665.1	Acinetobacter sp. SM1B	Scaffold	100.0	0.02	118	71050	2969145	Isolated as endophyte from capsules of field grown Papaver somniferum plants of cv. Sampada	f	RefSeq	India	not type material	2018-07-06
+L8	Acinetobacter schindleri	RS_GCF_000264725.1	GCF_000264725.1	Acinetobacter sp. HA	Contig	99.46	3.29	102	68401	3125085	gut	f	RefSeq	none	not type material	2012-05-30
+L8	Acinetobacter schindleri	RS_GCF_003069395.1	GCF_003069395.1	Acinetobacter schindleri	Contig	99.99	0.28	105	56503	3157970	Freshwater creek	f	RefSeq	USA: Pennsylvania	not type material	2018-04-23
+L8	Acinetobacter schindleri	RS_GCF_014204595.1	GCF_014204595.1	Acinetobacter schindleri	Scaffold	99.99	0.18	66	113477	3171976	none	f	RefSeq	USA: Texas	not type material	2020-08-14
+L8	Acinetobacter schindleri	RS_GCF_028657965.1	GCF_028657965.1	Acinetobacter schindleri	Complete Genome	99.94	0.26	2	3165552	3332387	marine mud	f	RefSeq	China:Lianyungang City; Yanwei Harbor	not type material	2023-02-16
+L8	Acinetobacter schindleri	RS_GCF_002918965.1	GCF_002918965.1	Acinetobacter sp. ACNIH3	Contig	99.99	0.88	161	66687	3463366	none	f	RefSeq	USA	not type material	2018-02-06
+L8	Acinetobacter schindleri	RS_GCF_000368625.1	GCF_000368625.1	Acinetobacter schindleri CIP 107287	Scaffold	99.99	0.07	33	547262	3394558	urine	t	RefSeq	Czech Republic: Pribram	type strain of species	2013-04-19
+L8	Acinetobacter schindleri	RS_GCF_030973565.1	GCF_030973565.1	Acinetobacter schindleri	Scaffold	99.99	0.3	141	93667	3333112	sputum	f	RefSeq	Thailand	not type material	2023-08-29
+L8	Acinetobacter schindleri	RS_GCF_010918635.1	GCF_010918635.1	Acinetobacter schindleri	Complete Genome	99.99	0.87	11	3135167	3376106	stool	f	RefSeq	China:Huizhou City; Guangdong Province	not type material	2020-02-21
+L8	Acinetobacter schindleri	RS_GCF_003072585.2	GCF_003072585.2	Acinetobacter schindleri	Complete Genome	100.0	0.09	2	3088433	3244663	air	f	RefSeq	Singapore	not type material	2018-12-06
+L8	Acinetobacter schindleri	GB_GCA_013420325.1	GCA_013420325.1	Acinetobacter sp. YH01015	Contig	99.95	0.53	70	247441	3419192	feces	f	GenBank	China: Jiangsu	not type material	2020-07-16
+L8	Acinetobacter schindleri	RS_GCF_023218135.1	GCF_023218135.1	Acinetobacter schindleri	Contig	99.99	1.29	101	117054	3262646	lake	f	RefSeq	United Kingdom: University of Surrey	not type material	2022-05-02
+L8	Acinetobacter schindleri	RS_GCF_000369585.1	GCF_000369585.1	Acinetobacter sp. CIP 101934	Scaffold	99.98	0.15	41	285287	3205996	blood	f	RefSeq	France: Rochefort sur mer	not type material	2013-04-19
+L8	Acinetobacter schindleri	RS_GCF_030678615.1	GCF_030678615.1	Acinetobacter schindleri	Contig	100.0	0.07	138	90150	3117264	Environment	f	RefSeq	Portugal: Lisbon	not type material	2023-08-07
+L8	Acinetobacter schindleri	RS_GCF_025513595.1	GCF_025513595.1	Acinetobacter schindleri	Contig	99.99	0.93	86	95813	3383251	Endovascular	f	RefSeq	USA: St. Louis	not type material	2022-09-30
+L8	Acinetobacter schindleri	RS_GCF_024129565.1	GCF_024129565.1	Acinetobacter schindleri	Contig	99.98	0.09	39	281186	3140937	none	f	RefSeq	Czech Republic: Moravia	not type material	2022-07-03
+L8	Acinetobacter schindleri	RS_GCF_001866125.1	GCF_001866125.1	Acinetobacter sp. LCT-H3	Scaffold	100.0	0.03	107	101119	3134118	Chinese spacecraft Shenzhou X	f	RefSeq	China: Beijing; Space Centre	not type material	2016-11-03
+L8	Acinetobacter schindleri	RS_GCF_001485065.1	GCF_001485065.1	Acinetobacter schindleri	Contig	99.99	0.08	98	93578	3244085	none	f	RefSeq	none	not type material	2015-12-08
+L8	Acinetobacter schindleri	RS_GCF_001971565.1	GCF_001971565.1	Acinetobacter schindleri	Complete Genome	100.0	0.29	7	3001209	3268053	none	f	RefSeq	Mexico: Cuernavaca Morelos	not type material	2017-01-26
+L8	Acinetobacter schindleri	RS_GCF_027942235.1	GCF_027942235.1	Acinetobacter schindleri	Complete Genome	99.99	3.17	1	3265024	3265024	estuarine mud [ENVO:00002160]	f	RefSeq	China:Shibing	not type material	2023-01-23
+L9	Priestia flexa	RS_GCF_020176725.1	GCF_020176725.1	Priestia flexa	Contig	100.0	0.0	63	206049	3963276	sediment	f	RefSeq	China: Shenzhen	not type material	2021-09-29
+L9	Priestia flexa	RS_GCF_030122985.1	GCF_030122985.1	Priestia flexa	Complete Genome	99.99	0.01	1	3817052	3817052	marine or sediment	f	RefSeq	India: Kochi; Kerala	not type material	2023-05-27
+L9	Priestia flexa	RS_GCF_000612165.1	GCF_000612165.1	Priestia flexa T6186-2	Contig	100.0	0.21	206	42740	4254248	none	f	RefSeq	China: Hangzhou	not type material	2014-04-02
+L9	Priestia flexa	RS_GCF_900156115.1	GCF_900156115.1	Priestia flexa	Scaffold	100.0	0.05	54	210751	3903958	none	f	RefSeq	none	not type material	2017-01-14
+L9	Priestia flexa	RS_GCF_021441905.1	GCF_021441905.1	Priestia flexa	Complete Genome	100.0	0.04	1	3999911	3999911	kimchi	f	RefSeq	South Korea	not type material	2022-01-12
+L9	Priestia flexa	RS_GCF_020171645.1	GCF_020171645.1	Priestia flexa	Contig	100.0	0.01	37	202373	3946942	sediment	f	RefSeq	China: Shenzhen	not type material	2021-09-28
+L9	Priestia flexa	RS_GCF_002024265.1	GCF_002024265.1	Priestia flexa	Complete Genome	99.99	0.56	3	3960308	4104242	local geographical source	f	RefSeq	China:Jiangsu Province	not type material	2017-03-09
+L9	Priestia flexa	RS_GCF_947499335.1	GCF_947499335.1	Priestia flexa	Contig	100.0	0.01	165	58949	4078168	none	f	RefSeq	none	not type material	2023-01-28
+L9	Priestia flexa	RS_GCF_022346455.1	GCF_022346455.1	Priestia flexa	Contig	100.0	0.03	53	210999	3977206	skin	f	RefSeq	USA	not type material	2022-02-20
+L9	Priestia flexa	RS_GCF_010577965.1	GCF_010577965.1	Priestia flexa	Scaffold	99.99	0.0	112	50935	3696499	none	f	RefSeq	China	not type material	2020-02-13
+L9	Priestia flexa	RS_GCF_003583265.1	GCF_003583265.1	Priestia flexa	Contig	99.99	0.57	189	44375	3463842	Marine	f	RefSeq	India	not type material	2018-09-20
+L9	Priestia flexa	RS_GCF_020524795.1	GCF_020524795.1	Priestia flexa	Contig	100.0	0.12	43	221726	4015385	sediment	f	RefSeq	China: Shenzhen	not type material	2021-10-18
+L9	Priestia flexa	RS_GCF_007678225.1	GCF_007678225.1	Priestia flexa	Scaffold	100.0	0.44	177	47815	3862788	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L9	Priestia flexa	RS_GCF_947503185.1	GCF_947503185.1	Priestia flexa	Contig	100.0	0.0	156	61016	4076396	none	f	RefSeq	none	not type material	2023-01-28
+L9	Priestia flexa	RS_GCF_019801725.1	GCF_019801725.1	Priestia flexa	Contig	100.0	0.0	65	159979	3994729	sediment	f	RefSeq	China: Shenzhen	not type material	2021-08-30
+L9	Priestia flexa	RS_GCF_007678245.1	GCF_007678245.1	Priestia flexa	Scaffold	100.0	0.43	179	46991	3860945	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L9	Priestia flexa	RS_GCF_947495185.1	GCF_947495185.1	Priestia flexa	Contig	100.0	0.05	129	63057	3822694	none	f	RefSeq	none	not type material	2023-01-28
+L9	Priestia flexa	RS_GCF_001614195.1	GCF_001614195.1	Bacillus sp. VT 712	Contig	99.98	0.05	124	104893	3921583	Duodenum	f	RefSeq	Russia	not type material	2016-04-07
+L9	Priestia flexa	RS_GCF_001457055.1	GCF_001457055.1	Priestia veravalensis	Scaffold	100.0	0.04	158	47093	4114189	marine sediment	f	RefSeq	India: Veraval coast	type strain of species	2015-12-04
+L9	Priestia flexa	RS_GCF_017303205.1	GCF_017303205.1	Priestia flexa	Contig	100.0	0.01	36	357465	3949664	sediment	f	RefSeq	China: Shenzhen	not type material	2021-03-08
+L9	Priestia flexa	RS_GCF_017303255.1	GCF_017303255.1	Priestia flexa	Contig	100.0	0.0	26	379402	4074398	sediment	f	RefSeq	China: Shenzhen	not type material	2021-03-08
+L9	Priestia flexa	RS_GCF_023714855.1	GCF_023714855.1	Priestia flexa	Contig	100.0	0.0	254	62929	3866902	Cleanroom	f	RefSeq	USA	not type material	2022-06-13
+L9	Priestia flexa	RS_GCF_024159305.1	GCF_024159305.1	Priestia flexa	Contig	100.0	0.05	6	3935672	4111671	Clean room	f	RefSeq	USA: Texas	not type material	2022-07-05
+L9	Priestia flexa	RS_GCF_005577315.1	GCF_005577315.1	Priestia flexa	Complete Genome	100.0	0.07	4	3892082	4018990	ocean sediment	f	RefSeq	Atlantic Ocean	not type material	2019-05-22
+L9	Priestia flexa	RS_GCF_947496585.1	GCF_947496585.1	Priestia flexa	Contig	100.0	0.0	161	61702	4071111	none	f	RefSeq	none	not type material	2023-01-28
+L9	Priestia flexa	RS_GCF_001591565.1	GCF_001591565.1	Priestia flexa NBRC 15715	Contig	99.87	0.41	259	25637	3906163	none	t	RefSeq	none	type strain of species	2016-02-27
+L9	Priestia flexa	RS_GCF_022559225.1	GCF_022559225.1	Priestia flexa	Chromosome	100.0	0.0	50	359131	4131040	sediment sample	f	RefSeq	India: Tuem; Goa	not type material	2022-03-14
+L9	Priestia flexa	RS_GCF_900094875.1	GCF_900094875.1	Priestia flexa	Scaffold	100.0	0.04	158	47093	4114189	none	f	RefSeq	none	not type material	2016-08-04
+L9	Priestia flexa	RS_GCF_029536875.1	GCF_029536875.1	Priestia flexa	Complete Genome	99.99	0.0	8	3913244	3993637	Maari	f	RefSeq	Burkina Faso: Mansila	not type material	2023-04-02
+L11	Staphylococcus warneri_A	RS_GCF_003578955.1	GCF_003578955.1	Staphylococcus warneri	Contig	99.96	0.01	194	24656	2444080	Herd 220	f	RefSeq	Canada: Ontario	not type material	2018-09-20
+L11	Staphylococcus warneri_A	RS_GCF_003850105.1	GCF_003850105.1	Staphylococcus warneri	Contig	100.0	1.56	25	480873	2466813	blood	f	RefSeq	Kenya	not type material	2018-11-28
+L11	Staphylococcus warneri_A	RS_GCF_003491325.1	GCF_003491325.1	Staphylococcus sp. M0911	Complete Genome	99.99	0.05	1	2438350	2438350	none	t	RefSeq	Switzerland: Bern	not type material	2018-09-07
+L11	Staphylococcus warneri_A	RS_GCF_022688765.1	GCF_022688765.1	Staphylococcus warneri	Contig	100.0	0.23	27	479222	2523508	skin	f	RefSeq	USA	not type material	2022-03-23
+L11	Staphylococcus warneri_A	RS_GCF_003041335.1	GCF_003041335.1	Staphylococcus warneri	Contig	99.99	0.0	70	75368	2386157	Herd 408	f	RefSeq	Canada: Atlantic	not type material	2018-04-06
+L11	Staphylococcus warneri_A	RS_GCF_030177215.1	GCF_030177215.1	Staphylococcus warneri	Contig	99.99	0.25	44	417035	2433960	water	f	RefSeq	India: Nagpur	not type material	2023-06-05
+L11	Staphylococcus warneri_A	RS_GCF_017315555.1	GCF_017315555.1	Staphylococcus warneri	Contig	100.0	0.23	54	113425	2506006	skin	f	RefSeq	Germany: Hamburg	not type material	2021-03-10
+L11	Staphylococcus warneri_A	RS_GCF_003041355.1	GCF_003041355.1	Staphylococcus warneri	Contig	99.99	0.17	128	45398	2603562	Herd 321	f	RefSeq	Canada: Quebec	not type material	2018-04-06
+L11	Staphylococcus warneri_A	RS_GCF_017086425.1	GCF_017086425.1	Staphylococcus sp. SB1-57	Complete Genome	100.0	0.09	4	2384298	2438595	human skin	f	RefSeq	South Korea: Changwon	not type material	2021-03-01
+L11	Staphylococcus warneri_A	RS_GCF_021189295.1	GCF_021189295.1	Staphylococcus warneri	Contig	100.0	0.09	33	1252428	2446622	nasal swab	f	RefSeq	India: Assam; Guwahati	not type material	2021-12-15
+L11	Staphylococcus warneri_A	RS_GCF_003850145.1	GCF_003850145.1	Staphylococcus warneri	Contig	100.0	0.32	67	539436	2555201	blood	f	RefSeq	Kenya	not type material	2018-11-28
+L11	Staphylococcus warneri_A	GB_GCA_001940625.1	GCA_001940625.1	Staphylococcus epidermidis	Contig	99.98	0.34	138	55607	2443396	lechera	f	GenBank	Colombia: Cundinamarca; Mosquera	not type material	2017-01-09
+L11	Staphylococcus warneri_A	RS_GCF_003043235.1	GCF_003043235.1	Staphylococcus warneri	Contig	99.99	0.81	162	31274	2599545	Herd 321	f	RefSeq	Canada: Quebec	not type material	2018-04-06
+L11	Staphylococcus warneri_A	RS_GCF_022815285.1	GCF_022815285.1	Staphylococcus warneri	Contig	100.0	0.03	35	206179	2466249	Blood culture medium	f	RefSeq	China: Nan Jing	not type material	2022-04-04
+L11	Staphylococcus warneri_A	RS_GCF_003041575.1	GCF_003041575.1	Staphylococcus warneri	Contig	99.99	0.04	123	49515	2538016	Herd 214	f	RefSeq	Canada: Ontario	not type material	2018-04-06
+L11	Staphylococcus warneri_A	RS_GCF_001074135.1	GCF_001074135.1	Staphylococcus warneri	Contig	99.99	0.04	112	46840	2317616	none	f	RefSeq	USA: WA	not type material	2015-07-10
+L11	Staphylococcus warneri_A	RS_GCF_021189315.1	GCF_021189315.1	Staphylococcus warneri	Contig	100.0	0.09	28	1274971	2446223	nasal swab	f	RefSeq	India: Assam; Guwahati	not type material	2021-12-15
+L11	Staphylococcus warneri_A	RS_GCF_003043215.1	GCF_003043215.1	Staphylococcus warneri	Contig	99.99	0.01	97	52467	2486626	Herd 202	f	RefSeq	Canada: Ontario	not type material	2018-04-06
+L11	Staphylococcus warneri_A	RS_GCF_003042745.1	GCF_003042745.1	Staphylococcus warneri	Contig	99.99	0.01	82	74392	2489181	Herd 202	f	RefSeq	Canada: Ontario	not type material	2018-04-06
+L11	Staphylococcus warneri_A	RS_GCF_000175175.1	GCF_000175175.1	Staphylococcus warneri L37603	Contig	100.0	0.02	77	120673	2425653	biological product [ENVO:02000043]	f	RefSeq	none	not type material	2009-06-09
+L11	Staphylococcus warneri_A	RS_GCF_003041375.1	GCF_003041375.1	Staphylococcus warneri	Contig	99.99	0.0	99	46507	2382207	Herd 417	f	RefSeq	Canada: Atlantic	not type material	2018-04-06
+L11	Staphylococcus warneri_A	RS_GCF_013267715.1	GCF_013267715.1	Staphylococcus warneri	Complete Genome	100.0	0.03	2	2417432	2460001	normal skin of the right arm	f	RefSeq	USA: VA	not type material	2020-06-04
+L11	Staphylococcus warneri_A	RS_GCF_003579215.1	GCF_003579215.1	Staphylococcus warneri	Contig	99.98	0.28	185	31659	2597906	Herd 321	f	RefSeq	Canada: Quebec	not type material	2018-09-20
+L11	Staphylococcus warneri_A	RS_GCF_003579165.1	GCF_003579165.1	Staphylococcus warneri	Contig	99.99	0.24	96	49659	2603290	Herd 321	f	RefSeq	Canada: Quebec	not type material	2018-09-20
+L12	Peribacillus frigoritolerans	RS_GCF_021537535.1	GCF_021537535.1	Peribacillus frigoritolerans	Complete Genome	100.0	0.93	2	5586945	5892443	snow	f	RefSeq	Antarctica	not type material	2022-01-20
+L12	Peribacillus frigoritolerans	GB_GCA_002553175.1	GCA_002553175.1	Bacillus sp. AFS094228	Scaffold	100.0	1.87	159	123399	5402759	core	f	GenBank	USA: IL	not type material	2017-10-13
+L12	Peribacillus frigoritolerans	RS_GCF_022394675.1	GCF_022394675.1	Peribacillus frigoritolerans	Complete Genome	100.0	0.58	2	5552463	5568581	soil from tomato plants	f	RefSeq	Germany	not type material	2022-02-25
+L12	Peribacillus frigoritolerans	RS_GCF_029222345.1	GCF_029222345.1	Peribacillus frigoritolerans	Contig	100.0	0.87	90	407114	5575529	soil	f	RefSeq	Greece	not type material	2023-03-15
+L12	Peribacillus frigoritolerans	GB_GCA_014841365.1	GCA_014841365.1	Peribacillus simplex	Contig	100.0	3.39	187	80543	5965991	Seed	f	GenBank	France	not type material	2020-10-04
+L12	Peribacillus frigoritolerans	RS_GCF_004525735.1	GCF_004525735.1	Peribacillus frigoritolerans	Contig	100.0	0.56	56	525480	5471331	none	f	RefSeq	China: Xinjiang	not type material	2019-03-30
+L12	Peribacillus frigoritolerans	RS_GCF_018613455.1	GCF_018613455.1	Bacillus sp. ISL-78	Scaffold	100.0	2.0	64	249273	5670869	steppe soil[ENVO:00005777]|soil organic matter[ENVO:04000008]	f	RefSeq	Chile: Atacama Desert; between Atacama Salar and Lajia lagoon	not type material	2021-06-01
+L12	Peribacillus frigoritolerans	RS_GCF_023502825.1	GCF_023502825.1	Peribacillus frigoritolerans	Scaffold	100.0	1.39	231	144974	5820098	soil	f	RefSeq	Israel	not type material	2022-05-18
+L12	Peribacillus frigoritolerans	RS_GCF_026795095.1	GCF_026795095.1	Peribacillus frigoritolerans	Scaffold	100.0	1.04	264	65494	5339825	none	f	RefSeq	none	not type material	2022-12-09
+L12	Peribacillus frigoritolerans	GB_GCA_001429835.1	GCA_001429835.1	Bacillus sp. Soil745	Scaffold	100.0	0.5	60	300665	5433739	soil	f	GenBank	Germany: Cologne	not type material	2015-11-02
+L12	Peribacillus frigoritolerans	GB_GCA_002351505.1	GCA_002351505.1	Peribacillus simplex	Scaffold	100.0	0.76	91	266118	5516951	soil	f	GenBank	USA: Cheyenne; Wyoming	not type material	2017-09-24
+L12	Peribacillus frigoritolerans	RS_GCF_023714145.1	GCF_023714145.1	Peribacillus frigoritolerans	Contig	100.0	2.52	153	261737	5714308	Cleanroom	f	RefSeq	USA	not type material	2022-06-13
+L12	Peribacillus frigoritolerans	RS_GCF_023502945.1	GCF_023502945.1	Peribacillus frigoritolerans	Scaffold	100.0	2.07	212	166428	5830871	soil	f	RefSeq	Israel	not type material	2022-05-18
+L12	Peribacillus frigoritolerans	GB_GCA_030804025.1	GCA_030804025.1	Bacillus sp. B2I3	Contig	100.0	0.55	1	5587248	5587248	none	f	GenBank	USA: Washington; Lind Dryland Research Station	not type material	2023-08-18
+L12	Peribacillus frigoritolerans	GB_GCA_016757415.1	GCA_016757415.1	Bacillus sp. RHFB	Contig	100.0	0.45	136	187761	5645431	sea coast [ENVO:00000303]|shoreline [ENVO:00000486]	f	GenBank	Spain: Formentera; Pityuses; Balearic Islands	not type material	2021-01-26
+L12	Peribacillus frigoritolerans	RS_GCF_004006475.1	GCF_004006475.1	Peribacillus frigoritolerans	Complete Genome	100.0	0.84	1	5475560	5475560	none	f	RefSeq	China	not type material	2019-01-09
+L12	Peribacillus frigoritolerans	RS_GCF_001636405.1	GCF_001636405.1	Peribacillus frigoritolerans	Scaffold	100.0	0.56	6	1809189	5460250	soil	t	RefSeq	Germany	not type material	2016-05-04
+L12	Peribacillus frigoritolerans	RS_GCF_024758165.1	GCF_024758165.1	Peribacillus frigoritolerans	Complete Genome	100.0	1.23	1	5539937	5539937	regolith	f	RefSeq	China: Qaidam Basin	not type material	2022-08-29
+L12	Peribacillus frigoritolerans	RS_GCF_030292075.1	GCF_030292075.1	Peribacillus frigoritolerans	Complete Genome	100.0	0.36	2	5513809	5525235	rhizosphere soil	f	RefSeq	China: Longnan; Gansu Province	not type material	2023-06-20
+L12	Peribacillus frigoritolerans	GB_GCA_001277355.1	GCA_001277355.1	Bacillus sp. FJAT-21352	Scaffold	100.0	0.58	11	3704817	5537020	soil	f	GenBank	China:Jiangxi	not type material	2015-09-01
+L12	Peribacillus frigoritolerans	GB_GCA_002998155.1	GCA_002998155.1	Bacillus sp. RJGP41	Scaffold	100.0	0.43	65	228291	5459791	Dandelian soil	f	GenBank	China: Tibet; Xigaze (Shigatse)	not type material	2018-03-14
+L12	Peribacillus frigoritolerans	RS_GCF_014876615.1	GCF_014876615.1	Peribacillus frigoritolerans	Scaffold	100.0	0.57	42	264146	5521524	none	f	RefSeq	China: Malan	not type material	2020-10-10
+L12	Peribacillus frigoritolerans	RS_GCF_014876505.1	GCF_014876505.1	Peribacillus frigoritolerans	Scaffold	99.99	0.54	12	1217941	5479397	none	f	RefSeq	China: Malan	not type material	2020-10-10
+L12	Peribacillus frigoritolerans	RS_GCF_024169475.1	GCF_024169475.1	Peribacillus frigoritolerans	Contig	100.0	0.2	2	5488220	5498187	none	f	RefSeq	Morocco	type strain of species	2022-07-06
+L12	Peribacillus frigoritolerans	GB_GCA_001636485.1	GCA_001636485.1	Bacillus sp. FJAT-20673	Scaffold	100.0	1.94	7	4413263	5713881	soil	f	GenBank	China: Xinjiang	not type material	2016-05-04
+L12	Peribacillus frigoritolerans	RS_GCF_030348785.1	GCF_030348785.1	Peribacillus frigoritolerans	Contig	100.0	0.5	8	5448059	5623000	rhizosphere soil	f	RefSeq	China: Chifeng; Inner Mongolia	not type material	2023-06-27
+L12	Peribacillus frigoritolerans	RS_GCF_025142885.1	GCF_025142885.1	Peribacillus frigoritolerans	Contig	100.0	0.95	201	97885	5771871	Alar crease Swab	f	RefSeq	USA: Wisconsin; Madison	not type material	2022-09-12
+L12	Peribacillus frigoritolerans	GB_GCA_021012855.1	GCA_021012855.1	Peribacillus castrilensis	Scaffold	100.0	0.2	91	246125	5743707	feces	f	GenBank	Spain: Castril Natural Park; Granada	type strain of species	2021-11-29
+L12	Peribacillus frigoritolerans	RS_GCF_021728995.1	GCF_021728995.1	Peribacillus frigoritolerans	Contig	100.0	0.87	123	99166	5798260	arable land	f	RefSeq	Germany: Dresden; Ockerwitz	not type material	2022-01-30
+L12	Peribacillus frigoritolerans	RS_GCF_018613475.1	GCF_018613475.1	Bacillus sp. ISL-101	Scaffold	100.0	2.3	128	210643	5824562	steppe soil[ENVO:00005777]|soil organic matter[ENVO:04000008]	f	RefSeq	Chile: Atacama Desert; between Atacama Salar and Lajia lagoon	not type material	2021-06-01
+L12	Peribacillus frigoritolerans	GB_GCA_002581115.1	GCA_002581115.1	Bacillus sp. AFS043905	Scaffold	100.0	1.17	92	101502	5358715	Core; Corn	f	GenBank	USA: IL	not type material	2017-10-18
+L12	Peribacillus frigoritolerans	GB_GCA_001277335.1	GCA_001277335.1	Bacillus sp. FJAT-22058	Scaffold	100.0	0.38	23	1643036	5479501	soil	f	GenBank	China: Jiangxi	not type material	2015-09-01
+L12	Peribacillus frigoritolerans	RS_GCF_029625965.1	GCF_029625965.1	Peribacillus frigoritolerans	Contig	100.0	0.38	288	54923	5501241	chicken manure	f	RefSeq	Russia: Belgorod	not type material	2023-04-09
+L12	Peribacillus frigoritolerans	RS_GCF_023823995.1	GCF_023823995.1	Peribacillus frigoritolerans	Complete Genome	100.0	0.37	3	5339772	5517519	soil	f	RefSeq	China	not type material	2022-06-21
+L12	Peribacillus frigoritolerans	RS_GCF_030122905.1	GCF_030122905.1	Peribacillus frigoritolerans	Complete Genome	100.0	0.58	1	5501225	5501225	rhizosphere soil	f	RefSeq	China: Chifeng; Inner Mongolia	not type material	2023-05-27
+L12	Peribacillus frigoritolerans	RS_GCF_025548515.1	GCF_025548515.1	Peribacillus frigoritolerans	Contig	100.0	0.68	66	232713	5609273	soil	f	RefSeq	Greece	not type material	2022-10-03
+L12	Peribacillus frigoritolerans	GB_GCA_019443385.1	GCA_019443385.1	Brevibacterium sp. PAMC21349	Complete Genome	100.0	1.02	1	5836179	5836179	none	f	GenBank	Antarctica	not type material	2021-08-03
+L12	Peribacillus frigoritolerans	GB_GCA_002287755.1	GCA_002287755.1	Peribacillus simplex	Contig	100.0	0.59	100	229249	5443754	soil	f	GenBank	Denmark	not type material	2017-09-08
+L12	Peribacillus frigoritolerans	GB_GCA_900000145.1	GCA_900000145.1	Peribacillus simplex	Scaffold	100.0	1.32	9	3508438	5983568	none	f	GenBank	none	not type material	2014-11-02
+L12	Peribacillus frigoritolerans	RS_GCF_018613135.1	GCF_018613135.1	Bacillus sp. ISL-57	Scaffold	100.0	0.5	53	360426	5478944	steppe soil[ENVO:00005777]|soil organic matter[ENVO:04000008]	f	RefSeq	Chile: Atacama Desert; between Atacama Salar and Lajia lagoon	not type material	2021-06-01
+L12	Peribacillus frigoritolerans	GB_GCA_014839555.1	GCA_014839555.1	Bacillus sp. CFBP 13597	Contig	100.0	1.22	63	260351	5441368	Seed	f	GenBank	France	not type material	2020-10-02
+L12	Peribacillus frigoritolerans	RS_GCF_007828935.1	GCF_007828935.1	Peribacillus frigoritolerans	Scaffold	100.0	0.82	23	576253	5331395	none	f	RefSeq	none	not type material	2019-08-02
+L12	Peribacillus frigoritolerans	RS_GCF_026013865.1	GCF_026013865.1	Peribacillus frigoritolerans	Complete Genome	100.0	0.57	1	5461205	5461205	none	f	RefSeq	China: Baoding	not type material	2022-11-06
+L12	Peribacillus frigoritolerans	RS_GCF_024733505.1	GCF_024733505.1	Peribacillus frigoritolerans	Scaffold	100.0	0.4	84	142460	5332774	frozen soil [ENVO_01001526]|leafy wood soil [ENVO_00005783]	f	RefSeq	USA: Thompson trail; Siena College campus; Loudonville; New York	not type material	2022-08-22
+L12	Peribacillus frigoritolerans	RS_GCF_023502885.1	GCF_023502885.1	Peribacillus frigoritolerans	Scaffold	100.0	0.15	170	215258	5452963	soil	f	RefSeq	Israel	not type material	2022-05-18
+L12	Peribacillus frigoritolerans	RS_GCF_014876555.1	GCF_014876555.1	Peribacillus frigoritolerans	Scaffold	100.0	0.55	34	601314	5522377	none	f	RefSeq	China: Malan	not type material	2020-10-10
+L12	Peribacillus frigoritolerans	GB_GCA_004358745.1	GCA_004358745.1	Vibrio vulnificus	Contig	100.0	1.43	31	849468	5792187	Coalvale silty clay	f	GenBank	USA: Kansas	not type material	2019-03-20
+L12	Peribacillus frigoritolerans	RS_GCF_024159205.1	GCF_024159205.1	Peribacillus frigoritolerans	Contig	100.0	0.97	3	5505279	5795782	Clean room	f	RefSeq	USA: Texas	not type material	2022-07-05
+L12	Peribacillus frigoritolerans	GB_GCA_001636475.1	GCA_001636475.1	Peribacillus simplex	Scaffold	100.0	1.1	129	110832	6494937	soil	f	GenBank	Germany	not type material	2016-05-04
+L12	Peribacillus frigoritolerans	RS_GCF_030122925.1	GCF_030122925.1	Peribacillus frigoritolerans	Complete Genome	100.0	0.49	1	5436505	5436505	rhizosphere soil	f	RefSeq	China: Chifeng; Inner Mongolia	not type material	2023-05-27
+L12	Peribacillus frigoritolerans	RS_GCF_030348515.1	GCF_030348515.1	Peribacillus frigoritolerans	Contig	100.0	2.38	3	5767210	6015255	pine forrest soil between two spruce trees	f	RefSeq	Germany: near Munchenroda; Jena	not type material	2023-06-27
+L12	Peribacillus frigoritolerans	GB_GCA_002557105.1	GCA_002557105.1	Bacillus sp. AFS026049	Scaffold	100.0	1.35	146	87041	5403429	Core; Corn	f	GenBank	USA: IL	not type material	2017-10-16
+L12	Peribacillus frigoritolerans	RS_GCF_030348775.1	GCF_030348775.1	Peribacillus frigoritolerans	Contig	100.0	0.74	3	5579326	5595385	rhizosphere soil	f	RefSeq	China: Chifeng; Inner Mongolia	not type material	2023-06-27
+L12	Peribacillus frigoritolerans	RS_GCF_023823955.1	GCF_023823955.1	Peribacillus frigoritolerans	Complete Genome	100.0	0.35	1	5654626	5654626	soil	f	RefSeq	China	not type material	2022-06-21
+L12	Peribacillus frigoritolerans	RS_GCF_023502905.1	GCF_023502905.1	Peribacillus frigoritolerans	Scaffold	100.0	0.2	124	244345	5428478	soil	f	RefSeq	Israel	not type material	2022-05-18
+L12	Peribacillus frigoritolerans	GB_GCA_019748875.1	GCA_019748875.1	Peribacillus simplex	Contig	100.0	0.54	166	93834	5502680	Air filter	f	GenBank	USA	not type material	2021-08-24
+L12	Peribacillus frigoritolerans	RS_GCF_026794285.1	GCF_026794285.1	Peribacillus frigoritolerans	Scaffold	100.0	0.65	206	65168	5457394	soil	f	RefSeq	none	not type material	2022-12-09
+L12	Peribacillus frigoritolerans	RS_GCF_022603155.1	GCF_022603155.1	Peribacillus frigoritolerans	Scaffold	100.0	0.45	54	405431	5521551	Roman amphora	f	RefSeq	Italy	not type material	2022-03-16
+L12	Peribacillus frigoritolerans	GB_GCA_002979275.1	GCA_002979275.1	Peribacillus simplex	Scaffold	100.0	0.86	155	83445	5863830	Rotting apple	f	GenBank	Germany: Kiel	not type material	2018-03-07
+L12	Peribacillus frigoritolerans	RS_GCF_014876545.1	GCF_014876545.1	Peribacillus frigoritolerans	Scaffold	100.0	0.56	103	273205	5486174	none	f	RefSeq	China: Malan	not type material	2020-10-10
+L12	Peribacillus frigoritolerans	RS_GCF_023823915.1	GCF_023823915.1	Peribacillus frigoritolerans	Complete Genome	100.0	1.61	2	6078688	6294968	soil	f	RefSeq	China	not type material	2022-06-21
+L12	Peribacillus frigoritolerans	GB_GCA_014303195.1	GCA_014303195.1	Brevibacterium sp. PAMC23299	Complete Genome	100.0	2.03	1	5627646	5627646	soil	f	GenBank	Antarctica	not type material	2020-08-26
+L12	Peribacillus frigoritolerans	GB_GCA_018613485.1	GCA_018613485.1	Bacillus sp. ISL-53	Scaffold	100.0	1.95	166	56985	5629610	steppe soil[ENVO:00005777]|soil organic matter[ENVO:04000008]	f	GenBank	Chile: Atacama Desert; between Atacama Salar and Lajia lagoon	not type material	2021-06-01
+L12	Peribacillus frigoritolerans	RS_GCF_030123165.1	GCF_030123165.1	Peribacillus frigoritolerans	Complete Genome	100.0	0.23	1	5451292	5451292	rhizosphere soil	f	RefSeq	China: Liaocheng; Shangdong Province	not type material	2023-05-27
+L12	Peribacillus frigoritolerans	RS_GCF_026891895.1	GCF_026891895.1	Peribacillus sp. AS_2	Contig	100.0	0.57	43	360633	5482853	medicinal plant	f	RefSeq	South Africa: Eisleben; Botlokwa; Limpopo	not type material	2022-12-13
+L12	Peribacillus frigoritolerans	RS_GCF_025960625.1	GCF_025960625.1	Peribacillus frigoritolerans	Complete Genome	100.0	0.19	4	5703943	5781076	Three year continuous cropping of potato root	f	RefSeq	China: Inner Mongolia	not type material	2022-11-02
+L12	Peribacillus frigoritolerans	GB_GCA_024160055.1	GCA_024160055.1	Bacillaceae bacterium OS4b	Scaffold	100.0	0.74	81	117816	5490412	soil	f	GenBank	South Korea	not type material	2022-07-05
+L12	Peribacillus frigoritolerans	RS_GCF_014876495.1	GCF_014876495.1	Peribacillus frigoritolerans	Scaffold	100.0	0.57	42	264146	5574407	none	f	RefSeq	China: Malan	not type material	2020-10-10
+L12	Peribacillus frigoritolerans	GB_GCA_002276655.1	GCA_002276655.1	Peribacillus simplex	Contig	100.0	1.24	215	113116	5852461	kefir	f	GenBank	Germany	not type material	2017-08-29
+L12	Peribacillus frigoritolerans	GB_GCA_000785385.1	GCA_000785385.1	Peribacillus simplex BA2H3	Scaffold	100.0	2.53	34	339104	5542549	potato rhizosphere	f	GenBank	France: Pas De Calais	not type material	2014-11-18
+L12	Peribacillus frigoritolerans	RS_GCF_026794655.1	GCF_026794655.1	Peribacillus frigoritolerans	Scaffold	100.0	1.43	123	124397	5554127	none	f	RefSeq	none	not type material	2022-12-09
+L12	Peribacillus frigoritolerans	RS_GCF_014876535.1	GCF_014876535.1	Peribacillus frigoritolerans	Scaffold	100.0	1.09	96	539757	5513455	none	f	RefSeq	China: Malan	not type material	2020-10-10
+L13	Rossellomorea marisflavi	RS_GCF_023703245.1	GCF_023703245.1	Rossellomorea marisflavi	Contig	99.75	0.47	41	313645	4310293	Dumpsite	f	RefSeq	India: Pirana landfill site; Ahmedabad; Gujarat	not type material	2022-06-12
+L13	Rossellomorea marisflavi	RS_GCF_902506085.1	GCF_902506085.1	Bacillus sp. 349Y	Scaffold	99.99	0.09	85	120075	4454910	none	f	RefSeq	none	not type material	2020-01-03
+L13	Rossellomorea marisflavi	GB_GCA_009935585.1	GCA_009935585.1	Bacillus infantis	Scaffold	99.97	0.41	52	139775	4348404	none	f	GenBank	China	not type material	2020-01-27
+L13	Rossellomorea marisflavi	RS_GCF_001274775.1	GCF_001274775.1	Rossellomorea marisflavi	Scaffold	99.94	0.35	12	1039146	4312088	a tidal flat	t	RefSeq	South Korea	type strain of species	2015-08-26
+L14	Bacillus licheniformis	RS_GCF_021045185.1	GCF_021045185.1	Bacillus licheniformis	Scaffold	100.0	0.05	191	36462	4110075	none	f	RefSeq	South Africa	not type material	2021-12-05
+L14	Bacillus licheniformis	RS_GCF_002271465.1	GCF_002271465.1	Bacillus licheniformis	Contig	100.0	0.16	112	145278	4288329	uncut heroin sample	f	RefSeq	none	not type material	2017-08-28
+L14	Bacillus licheniformis	RS_GCF_001587315.1	GCF_001587315.1	Bacillus licheniformis	Scaffold	100.0	0.04	82	93448	4288014	Mushroom soup (12h 60 C degree)	f	RefSeq	Netherlands	not type material	2016-03-11
+L14	Bacillus licheniformis	RS_GCF_001914255.1	GCF_001914255.1	Bacillus licheniformis	Chromosome	100.0	0.15	39	253807	4275585	heated water in contact with grass/sediment layer	f	RefSeq	USA: Yellowstone National Park; WY	not type material	2016-12-28
+L14	Bacillus licheniformis	RS_GCF_003583315.1	GCF_003583315.1	Bacillus licheniformis	Contig	100.0	0.1	24	662416	4265203	Marine	f	RefSeq	India	not type material	2018-09-20
+L14	Bacillus licheniformis	RS_GCF_002272365.1	GCF_002272365.1	Bacillus licheniformis	Contig	100.0	0.29	99	133452	4350557	uncut heroin sample	f	RefSeq	none	not type material	2017-08-28
+L14	Bacillus licheniformis	RS_GCF_944993355.1	GCF_944993355.1	Bacillus licheniformis	Contig	99.99	0.05	42	182134	4122964	Alpha-amylase enzym 4g (Coobra)	f	RefSeq	none	not type material	2022-12-15
+L14	Bacillus licheniformis	RS_GCF_018274685.1	GCF_018274685.1	Bacillus licheniformis	Contig	100.0	0.15	38	744212	4342458	geothermal lake	f	RefSeq	Philippines: Nag-aso Hot Spring; Manito; Albay	not type material	2021-05-04
+L14	Bacillus licheniformis	RS_GCF_002271715.1	GCF_002271715.1	Bacillus licheniformis	Contig	100.0	0.04	127	115453	4220124	uncut heroin sample	f	RefSeq	none	not type material	2017-08-28
+L14	Bacillus licheniformis	RS_GCF_028857455.1	GCF_028857455.1	Bacillus licheniformis	Contig	100.0	0.03	40	378984	4122687	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_019036885.1	GCF_019036885.1	Bacillus licheniformis	Contig	100.0	0.08	21	697462	4203797	cleanroom floor	f	RefSeq	USA: California; Pasadena; JPL; Building 179	not type material	2021-06-25
+L14	Bacillus licheniformis	RS_GCF_030520185.1	GCF_030520185.1	Bacillus licheniformis	Complete Genome	100.0	0.21	1	4296212	4296212	soil	f	RefSeq	Russia: republic of Tatarstan	not type material	2023-07-24
+L14	Bacillus licheniformis	RS_GCF_004119755.1	GCF_004119755.1	Bacillus licheniformis	Complete Genome	100.0	0.04	1	4419047	4419047	food	f	RefSeq	South Korea	not type material	2019-01-30
+L14	Bacillus licheniformis	RS_GCF_020686805.1	GCF_020686805.1	Bacillus licheniformis	Contig	100.0	0.07	43	392589	4173111	leaf	f	RefSeq	Tunisia: Bulla-Regia	not type material	2021-10-31
+L14	Bacillus licheniformis	RS_GCF_000186125.1	GCF_000186125.1	Bacillus sp. BT1B_CT2	Scaffold	100.0	0.95	49	348402	4369552	oral swab from a patient with Crohn s disease	f	RefSeq	none	not type material	2011-01-18
+L14	Bacillus licheniformis	RS_GCF_000011645.1	GCF_000011645.1	Bacillus licheniformis DSM 13 = ATCC 14580	Complete Genome	100.0	0.15	1	4222597	4222597	none	t	RefSeq	none	type strain of species	2007-04-26
+L14	Bacillus licheniformis	RS_GCF_007831215.1	GCF_007831215.1	Bacillus licheniformis	Scaffold	100.0	0.15	27	296546	4148986	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007994285.1	GCF_007994285.1	Bacillus licheniformis	Scaffold	100.0	0.05	30	291263	4386821	none	f	RefSeq	Germany	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_028857235.1	GCF_028857235.1	Bacillus licheniformis	Contig	100.0	0.11	43	1097076	4293449	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_009905595.1	GCF_009905595.1	Bacillus sp. y1(2019)	Contig	100.0	0.14	35	605518	4171111	sediment soil	f	RefSeq	China: Huanghe River	not type material	2020-01-19
+L14	Bacillus licheniformis	RS_GCF_003474315.1	GCF_003474315.1	Bacillus licheniformis	Scaffold	100.0	2.85	25	430273	4566820	feces	f	RefSeq	China: Shenzhen	not type material	2018-09-06
+L14	Bacillus licheniformis	RS_GCF_007832035.1	GCF_007832035.1	Bacillus licheniformis	Scaffold	100.0	0.16	29	240443	4169128	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007832345.1	GCF_007832345.1	Bacillus licheniformis	Contig	100.0	0.03	39	243153	4269373	none	f	RefSeq	Denmark	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_004362235.1	GCF_004362235.1	Bacillus licheniformis	Scaffold	100.0	0.12	20	1002259	4115730	none	f	RefSeq	USA: Texas	not type material	2019-03-22
+L14	Bacillus licheniformis	RS_GCF_007832425.1	GCF_007832425.1	Bacillus licheniformis	Scaffold	100.0	0.12	47	180482	4078218	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_023713045.1	GCF_023713045.1	Bacillus licheniformis	Contig	100.0	0.26	80	583595	4368190	Cleanroom	f	RefSeq	USA	not type material	2022-06-13
+L14	Bacillus licheniformis	RS_GCF_007831815.1	GCF_007831815.1	Bacillus licheniformis	Contig	100.0	0.12	31	262026	4202992	none	f	RefSeq	Denmark	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_000603965.1	GCF_000603965.1	Bacillus licheniformis F1-1	Scaffold	100.0	0.11	37	528145	4112350	concentrated milk	f	RefSeq	Australia: Victoria	not type material	2014-03-28
+L14	Bacillus licheniformis	RS_GCF_020686845.1	GCF_020686845.1	Bacillus licheniformis	Contig	100.0	0.07	46	392589	4178715	leaf	f	RefSeq	Tunisia: Bulla-Regia	not type material	2021-10-31
+L14	Bacillus licheniformis	RS_GCF_903970875.1	GCF_903970875.1	Bacillus licheniformis	Contig	100.0	0.06	80	238213	4252220	Terminalia bellirica leaf	f	RefSeq	none	not type material	2020-07-30
+L14	Bacillus licheniformis	RS_GCF_028857565.1	GCF_028857565.1	Bacillus licheniformis	Contig	100.0	0.03	49	444109	4261254	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_029857595.1	GCF_029857595.1	Bacillus licheniformis	Contig	100.0	0.26	2	4229796	4235446	none	f	RefSeq	none	type strain of species	2023-04-24
+L14	Bacillus licheniformis	RS_GCF_023713785.1	GCF_023713785.1	Bacillus licheniformis	Contig	100.0	0.21	55	2240388	4282357	Cleanroom	f	RefSeq	USA	not type material	2022-06-13
+L14	Bacillus licheniformis	RS_GCF_002504325.1	GCF_002504325.1	Bacillus licheniformis	Complete Genome	100.0	0.02	1	4260287	4260287	milk;soil	f	RefSeq	China	not type material	2017-10-10
+L14	Bacillus licheniformis	RS_GCF_019880595.1	GCF_019880595.1	Bacillus licheniformis	Contig	100.0	0.07	80	106510	4208724	none	f	RefSeq	Malaysia: Johor	not type material	2021-09-05
+L14	Bacillus licheniformis	RS_GCF_028857435.1	GCF_028857435.1	Bacillus licheniformis	Contig	100.0	0.1	51	511798	4177733	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_001726125.1	GCF_001726125.1	Bacillus licheniformis	Complete Genome	100.0	0.03	1	4422181	4422181	soybean paste	f	RefSeq	South Korea	not type material	2016-09-15
+L14	Bacillus licheniformis	RS_GCF_026789185.1	GCF_026789185.1	Bacillus licheniformis	Scaffold	100.0	0.11	19	998507	4132395	none	f	RefSeq	none	not type material	2022-12-09
+L14	Bacillus licheniformis	RS_GCF_026796095.1	GCF_026796095.1	Bacillus licheniformis	Scaffold	99.99	0.14	65	128196	4269737	none	f	RefSeq	none	not type material	2022-12-09
+L14	Bacillus licheniformis	RS_GCF_015557885.1	GCF_015557885.1	Bacillus licheniformis	Scaffold	100.0	0.14	53	215644	4389082	stool	f	RefSeq	USA	not type material	2020-11-17
+L14	Bacillus licheniformis	RS_GCF_008368515.1	GCF_008368515.1	Bacillus licheniformis	Scaffold	100.0	0.1	30	302781	4162590	Gergoush (Sudanese Bread snack) primary fermentation step	f	RefSeq	Sudan	not type material	2019-09-10
+L14	Bacillus licheniformis	RS_GCF_944993295.1	GCF_944993295.1	Bacillus licheniformis	Contig	100.0	0.06	27	709205	4153584	Alpha-amylase enzym 4g (Coobra)	f	RefSeq	none	not type material	2022-12-15
+L14	Bacillus licheniformis	RS_GCF_026788135.1	GCF_026788135.1	Bacillus licheniformis	Scaffold	100.0	0.19	109	309364	4482229	none	f	RefSeq	USA: Phoenix	not type material	2022-12-09
+L14	Bacillus licheniformis	RS_GCF_001896025.1	GCF_001896025.1	Bacillus sp. H15-1	Complete Genome	100.0	0.06	1	4162101	4162101	rusted steel wire rope	f	RefSeq	China: Jiaozhou Bay	not type material	2016-12-09
+L14	Bacillus licheniformis	RS_GCF_002272455.1	GCF_002272455.1	Bacillus licheniformis	Contig	100.0	0.05	70	159644	4255145	uncut heroin sample	f	RefSeq	none	not type material	2017-08-28
+L14	Bacillus licheniformis	RS_GCF_009965255.1	GCF_009965255.1	Bacillus licheniformis	Contig	100.0	0.14	34	317403	4292816	soil	f	RefSeq	Brazil: Rio de Janiero	not type material	2020-01-29
+L14	Bacillus licheniformis	RS_GCF_026793035.1	GCF_026793035.1	Bacillus licheniformis	Scaffold	100.0	0.31	30	687461	4280557	none	f	RefSeq	none	not type material	2022-12-09
+L14	Bacillus licheniformis	RS_GCF_007831795.1	GCF_007831795.1	Bacillus licheniformis	Scaffold	100.0	0.28	53	155032	4286588	none	f	RefSeq	Philippines	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_945957275.1	GCF_945957275.1	Bacillus licheniformis	Contig	100.0	0.11	38	382110	4256127	none	f	RefSeq	none	not type material	2022-09-11
+L14	Bacillus licheniformis	RS_GCF_018332815.1	GCF_018332815.1	Bacillus licheniformis	Scaffold	100.0	0.48	98	605353	4389442	honey	f	RefSeq	Japan	not type material	2021-03-26
+L14	Bacillus licheniformis	RS_GCF_007831745.1	GCF_007831745.1	Bacillus licheniformis	Scaffold	100.0	0.03	36	193398	4130810	none	f	RefSeq	Sudan	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_028857255.1	GCF_028857255.1	Bacillus licheniformis	Contig	100.0	0.19	48	405549	4623884	Skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_002074135.1	GCF_002074135.1	Bacillus licheniformis	Complete Genome	100.0	0.18	1	4405338	4405338	Korean soybean paste	f	RefSeq	South Korea:Sunchang County	not type material	2017-03-29
+L14	Bacillus licheniformis	RS_GCF_007831615.1	GCF_007831615.1	Bacillus licheniformis	Scaffold	100.0	0.28	27	244055	4334832	none	f	RefSeq	Denmark: Hvidovre	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_016629635.1	GCF_016629635.1	Bacillus licheniformis	Contig	100.0	0.07	5	3385269	4282796	mining drainage	f	RefSeq	Peru: Lima	not type material	2021-01-13
+L14	Bacillus licheniformis	RS_GCF_030348625.1	GCF_030348625.1	Bacillus licheniformis	Contig	100.0	0.14	9	4291760	4378208	grassland soil	f	RefSeq	Denmark: Jaegersborg Dyrehave	not type material	2023-06-27
+L14	Bacillus licheniformis	RS_GCF_007994275.1	GCF_007994275.1	Bacillus licheniformis	Contig	100.0	0.03	31	310299	4195732	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_015689075.1	GCF_015689075.1	Bacillus licheniformis	Complete Genome	100.0	0.29	1	4268296	4268296	ENVO:00010483	f	RefSeq	China:Taian	not type material	2020-11-25
+L14	Bacillus licheniformis	RS_GCF_944993385.1	GCF_944993385.1	Bacillus licheniformis	Contig	100.0	0.06	25	841559	4153936	Alpha-amylase enzym 4g (Coobra)	f	RefSeq	none	not type material	2022-12-15
+L14	Bacillus licheniformis	RS_GCF_028857445.1	GCF_028857445.1	Bacillus licheniformis	Contig	100.0	0.13	41	989612	4262610	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_007831245.1	GCF_007831245.1	Bacillus licheniformis	Scaffold	100.0	0.31	29	222916	4308622	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007831835.1	GCF_007831835.1	Bacillus licheniformis	Scaffold	100.0	0.21	69	124830	4325136	none	f	RefSeq	Sudan	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_000477395.2	GCF_000477395.2	Bacillus licheniformis CG-B52	Contig	100.0	0.18	50	217730	4396552	shrimp hemolymph from Caribbean coast	f	RefSeq	Colombia	not type material	2013-08-23
+L14	Bacillus licheniformis	RS_GCF_003254235.1	GCF_003254235.1	Bacillus sp. AG442	Scaffold	100.0	0.18	23	303393	4321619	none	f	RefSeq	Italy	not type material	2018-06-19
+L14	Bacillus licheniformis	RS_GCF_002953475.1	GCF_002953475.1	Bacillus licheniformis	Chromosome	100.0	0.17	10	2269649	4223986	Excreta	f	RefSeq	India: Zoological Park; New Delhi	not type material	2018-02-06
+L14	Bacillus licheniformis	RS_GCF_004103575.1	GCF_004103575.1	Bacillus licheniformis	Complete Genome	100.0	0.17	2	4420863	4516868	food	f	RefSeq	South Korea	not type material	2019-01-23
+L14	Bacillus licheniformis	RS_GCF_000603985.1	GCF_000603985.1	Bacillus licheniformis F2-1	Scaffold	100.0	0.22	60	216474	4240430	concentrated milk	f	RefSeq	Australia: Victoria	not type material	2014-03-28
+L14	Bacillus licheniformis	RS_GCF_019037225.1	GCF_019037225.1	Bacillus licheniformis	Scaffold	100.0	0.23	30	560056	4337844	cleanroom floor	f	RefSeq	USA: California; Pasadena; JPL; Building 179	not type material	2021-06-25
+L14	Bacillus licheniformis	RS_GCF_008368505.1	GCF_008368505.1	Bacillus licheniformis	Scaffold	100.0	0.18	30	603341	4338651	Gergoush (Sudanese Bread snack) primary fermentation step	f	RefSeq	Sudan	not type material	2019-09-10
+L14	Bacillus licheniformis	RS_GCF_026241355.1	GCF_026241355.1	Bacillus sp. AR11	Contig	100.0	0.07	44	392589	4175500	Plant	f	RefSeq	Tunisia: Nabeul	not type material	2022-11-20
+L14	Bacillus licheniformis	RS_GCF_007831235.1	GCF_007831235.1	Bacillus licheniformis	Scaffold	100.0	0.06	82	80176	4157748	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_000260555.1	GCF_000260555.1	Bacillus licheniformis 10-1-A	Contig	100.0	0.2	31	508509	4317010	soil	f	RefSeq	China	not type material	2012-04-30
+L14	Bacillus licheniformis	RS_GCF_024134745.1	GCF_024134745.1	Bacillus licheniformis	Chromosome	100.0	0.14	1	4180554	4180654	Clean room	f	RefSeq	USA: Texas	not type material	2022-07-04
+L14	Bacillus licheniformis	RS_GCF_007831465.1	GCF_007831465.1	Bacillus licheniformis	Scaffold	100.0	0.18	44	233241	4380962	none	f	RefSeq	Germany	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_944993445.1	GCF_944993445.1	Bacillus licheniformis	Contig	100.0	0.06	31	438717	4153669	Alpha-amylase enzym 4g (Coobra)	f	RefSeq	none	not type material	2022-12-15
+L14	Bacillus licheniformis	RS_GCF_007830935.1	GCF_007830935.1	Bacillus licheniformis	Scaffold	100.0	0.13	35	352909	4149080	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_028857215.1	GCF_028857215.1	Bacillus licheniformis	Contig	100.0	0.32	98	252913	4451921	Skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_007994355.1	GCF_007994355.1	Bacillus licheniformis	Contig	100.0	0.16	24	494595	4170638	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_024463755.1	GCF_024463755.1	Bacillus licheniformis	Contig	100.0	0.19	72	458910	4253209	fecal sample	f	RefSeq	USA: Chicago	not type material	2022-07-27
+L14	Bacillus licheniformis	RS_GCF_023713085.1	GCF_023713085.1	Bacillus licheniformis	Contig	100.0	1.2	142	612391	4398042	Cleanroom	f	RefSeq	USA	not type material	2022-06-13
+L14	Bacillus licheniformis	RS_GCF_007830835.1	GCF_007830835.1	Bacillus licheniformis	Scaffold	100.0	0.11	28	221313	4225452	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_030222455.1	GCF_030222455.1	Bacillus licheniformis	Contig	100.0	0.09	47	466554	4298210	Urine	f	RefSeq	USA: Maywood; IL	not type material	2023-06-07
+L14	Bacillus licheniformis	RS_GCF_007832195.1	GCF_007832195.1	Bacillus licheniformis	Scaffold	100.0	0.05	75	84653	4276695	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007831705.1	GCF_007831705.1	Bacillus licheniformis	Scaffold	100.0	0.1	40	241763	4280186	none	f	RefSeq	Denmark: Hvidovre	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007831975.1	GCF_007831975.1	Bacillus licheniformis	Scaffold	100.0	0.12	32	251160	4393159	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_008368405.1	GCF_008368405.1	Bacillus licheniformis	Scaffold	100.0	0.19	28	1014958	4340335	Gergoush (Sudanese Bread snack) primary fermentation step	f	RefSeq	Sudan	not type material	2019-09-10
+L14	Bacillus licheniformis	RS_GCF_008368415.1	GCF_008368415.1	Bacillus licheniformis	Scaffold	100.0	0.1	34	302781	4161044	Gergoush (Sudanese Bread snack) primary fermentation step	f	RefSeq	Sudan	not type material	2019-09-10
+L14	Bacillus licheniformis	RS_GCF_007832295.1	GCF_007832295.1	Bacillus licheniformis	Scaffold	100.0	0.03	82	101896	4365374	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_016026835.1	GCF_016026835.1	Bacillus licheniformis	Complete Genome	100.0	0.51	5	4534328	4693369	none	f	RefSeq	none	not type material	2020-12-14
+L14	Bacillus licheniformis	RS_GCF_002173675.1	GCF_002173675.1	Bacillus licheniformis	Complete Genome	100.0	3.54	3	4544416	4824459	food	f	RefSeq	South Korea	not type material	2017-06-06
+L14	Bacillus licheniformis	RS_GCF_003339545.1	GCF_003339545.1	Bacillus licheniformis	Complete Genome	100.0	0.18	1	4405373	4405373	Doejnang; high-salt fermented food	f	RefSeq	South Korea: Suwon	not type material	2018-07-25
+L14	Bacillus licheniformis	RS_GCF_002860295.1	GCF_002860295.1	Bacillus licheniformis	Contig	100.0	0.02	27	404327	4160522	spacecraft hardware	f	RefSeq	USA	not type material	2018-01-04
+L14	Bacillus licheniformis	RS_GCF_007832155.1	GCF_007832155.1	Bacillus licheniformis	Scaffold	100.0	0.08	37	175292	4244353	none	f	RefSeq	Germany	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_022700915.1	GCF_022700915.1	Bacillus licheniformis	Complete Genome	100.0	0.16	1	4294269	4294269	none	f	RefSeq	China:Beijing	not type material	2022-03-28
+L14	Bacillus licheniformis	RS_GCF_002933795.1	GCF_002933795.1	Bacillus licheniformis	Contig	100.0	0.11	76	123759	4088978	Fermented food	f	RefSeq	Japan:Fukui prefecture	not type material	2018-01-25
+L14	Bacillus licheniformis	RS_GCF_001507775.1	GCF_001507775.1	Bacillus licheniformis LMG 17339	Contig	100.0	0.08	53	654545	4138656	none	f	RefSeq	none	not type material	2016-01-08
+L14	Bacillus licheniformis	RS_GCF_028857335.1	GCF_028857335.1	Bacillus licheniformis	Contig	100.0	0.12	66	214880	4222732	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_944993205.1	GCF_944993205.1	Bacillus licheniformis	Contig	100.0	0.07	35	841559	4153950	Alpha-amylase enzym 4g (Coobra)	f	RefSeq	none	not type material	2022-12-15
+L14	Bacillus licheniformis	RS_GCF_019037245.1	GCF_019037245.1	Bacillus licheniformis	Scaffold	100.0	0.16	16	2232824	4251134	cleanroom floor	f	RefSeq	USA: California; Pasadena; JPL; Building 179	not type material	2021-06-25
+L14	Bacillus licheniformis	RS_GCF_007832395.1	GCF_007832395.1	Bacillus licheniformis	Scaffold	100.0	0.68	96	78967	4206559	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_001642595.1	GCF_001642595.1	Bacillus licheniformis	Scaffold	100.0	0.06	28	490745	4154962	soil	f	RefSeq	Czech Republic: Nerartovice	not type material	2016-05-12
+L14	Bacillus licheniformis	GB_GCA_900637645.1	GCA_900637645.1	Bacillus licheniformis	Complete Genome	99.99	0.3	1	4226784	4226784	not available: to be reported later	f	GenBank	none	type strain of species	2018-12-20
+L14	Bacillus licheniformis	RS_GCF_024722355.1	GCF_024722355.1	Bacillus sp. BAC	Complete Genome	100.0	0.19	1	4226888	4226888	soil	f	RefSeq	China:Gansu	not type material	2022-08-21
+L14	Bacillus licheniformis	RS_GCF_000008425.1	GCF_000008425.1	Bacillus licheniformis DSM 13 = ATCC 14580	Complete Genome	100.0	0.15	1	4222645	4222645	none	f	RefSeq	none	type strain of species	2004-09-20
+L14	Bacillus licheniformis	RS_GCF_001925115.1	GCF_001925115.1	Bacillus licheniformis	Scaffold	100.0	0.05	36	291869	4336988	none	f	RefSeq	Netherlands	not type material	2016-12-30
+L14	Bacillus licheniformis	RS_GCF_013520855.1	GCF_013520855.1	Bacillus licheniformis	Scaffold	100.0	0.19	32	1011978	4280093	Waste water	f	RefSeq	India	not type material	2020-07-23
+L14	Bacillus licheniformis	RS_GCF_000315975.1	GCF_000315975.1	Bacillus licheniformis CGMCC 3963	Contig	100.0	0.1	152	221212	4514887	Chinese Maotai-flavor liquor making process	f	RefSeq	China: Jiangsu	not type material	2012-11-29
+L14	Bacillus licheniformis	RS_GCF_028857325.1	GCF_028857325.1	Bacillus licheniformis	Contig	100.0	0.44	116	438762	4266218	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_004078545.1	GCF_004078545.1	Bacillus licheniformis	Contig	99.99	0.03	4	2627529	4350200	food	f	RefSeq	South Korea	not type material	2019-01-20
+L14	Bacillus licheniformis	RS_GCF_001896305.1	GCF_001896305.1	Bacillus licheniformis	Contig	100.0	0.61	46	706022	4517330	imperial geyser; near vegetative/sediment and waters edge	f	RefSeq	USA: Yellowstone National Park; WY	not type material	2016-12-09
+L14	Bacillus licheniformis	RS_GCF_006974025.1	GCF_006974025.1	Bacillus licheniformis	Complete Genome	99.97	0.15	1	4341076	4341076	soil	f	RefSeq	none	not type material	2019-07-15
+L14	Bacillus licheniformis	RS_GCF_003952865.1	GCF_003952865.1	Bacillus licheniformis	Complete Genome	100.0	0.05	1	4193958	4193958	Korean adult feces	f	RefSeq	South Korea: Seoul	not type material	2018-12-18
+L14	Bacillus licheniformis	RS_GCF_028857225.1	GCF_028857225.1	Bacillus licheniformis	Contig	100.0	0.13	59	1084832	4204342	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_028857245.1	GCF_028857245.1	Bacillus licheniformis	Contig	100.0	0.06	44	477115	4201136	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_000948275.1	GCF_000948275.1	Bacillus licheniformis	Contig	100.0	0.03	4	2846116	4173713	Water	f	RefSeq	Greece: Thessaloniki; Nea Apollonia	not type material	2015-03-05
+L14	Bacillus licheniformis	RS_GCF_001901555.1	GCF_001901555.1	Bacillus licheniformis	Contig	100.0	0.16	33	295756	4167083	sheep	f	RefSeq	Israel	not type material	2016-12-12
+L14	Bacillus licheniformis	RS_GCF_944993405.1	GCF_944993405.1	Bacillus licheniformis	Contig	99.99	0.12	55	145031	4115715	Alpha-amylase enzym 4g (Coobra)	f	RefSeq	none	not type material	2022-12-15
+L14	Bacillus licheniformis	RS_GCF_007831965.1	GCF_007831965.1	Bacillus licheniformis	Scaffold	100.0	0.32	48	216983	4247264	none	f	RefSeq	Spain	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_944993315.1	GCF_944993315.1	Bacillus licheniformis	Contig	100.0	0.06	40	221882	4134200	Alpha-amylase enzym 4g (Coobra)	f	RefSeq	none	not type material	2022-12-15
+L14	Bacillus licheniformis	RS_GCF_006094335.1	GCF_006094335.1	Bacillus licheniformis	Complete Genome	100.0	0.15	1	4239205	4239205	none	f	RefSeq	none	type strain of species	2019-06-06
+L14	Bacillus licheniformis	RS_GCF_007832175.1	GCF_007832175.1	Bacillus licheniformis	Scaffold	100.0	0.09	19	490677	4260596	none	f	RefSeq	Germany	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_031157615.1	GCF_031157615.1	Bacillus licheniformis	Contig	100.0	0.24	48	301539	4427478	Garden soil	f	RefSeq	India: Maharashtra	not type material	2023-09-05
+L14	Bacillus licheniformis	RS_GCF_004101525.1	GCF_004101525.1	Bacillus licheniformis	Complete Genome	100.0	0.11	3	4231149	4471280	food	f	RefSeq	South Korea	not type material	2019-01-22
+L14	Bacillus licheniformis	RS_GCF_007831385.1	GCF_007831385.1	Bacillus licheniformis	Scaffold	100.0	0.16	56	153391	4161633	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_027685585.1	GCF_027685585.1	Bacillus licheniformis	Scaffold	100.0	0.05	24	310728	4350181	fecal material [ENVO:00002003]	f	RefSeq	China: Shenzhen	not type material	2023-01-12
+L14	Bacillus licheniformis	RS_GCF_002272305.1	GCF_002272305.1	Bacillus licheniformis	Contig	100.0	0.02	110	71923	4135285	uncut heroin sample	f	RefSeq	none	not type material	2017-08-28
+L14	Bacillus licheniformis	RS_GCF_000260535.1	GCF_000260535.1	Bacillus licheniformis 5-2-D	Contig	100.0	0.15	46	210776	4161258	soil	f	RefSeq	none	not type material	2012-04-30
+L14	Bacillus licheniformis	RS_GCF_001662975.1	GCF_001662975.1	Bacillus licheniformis	Contig	100.0	0.03	17	1051294	4129555	cheonggukjang	f	RefSeq	South Korea	not type material	2016-06-15
+L14	Bacillus licheniformis	RS_GCF_902386215.1	GCF_902386215.1	Bacillus licheniformis	Complete Genome	100.0	0.07	1	4208157	4208157	human gut	f	RefSeq	none	not type material	2019-08-10
+L14	Bacillus licheniformis	RS_GCF_007831115.1	GCF_007831115.1	Bacillus licheniformis	Scaffold	100.0	0.26	24	501477	4424246	none	f	RefSeq	Egypt	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_002272395.1	GCF_002272395.1	Bacillus licheniformis	Contig	100.0	0.04	280	86621	4255506	uncut heroin sample	f	RefSeq	none	not type material	2017-08-28
+L14	Bacillus licheniformis	RS_GCF_028857645.1	GCF_028857645.1	Bacillus licheniformis	Contig	100.0	0.37	70	303315	4191660	Skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_002174255.1	GCF_002174255.1	Bacillus licheniformis	Complete Genome	100.0	1.08	3	4326347	4438492	food	f	RefSeq	South Korea	not type material	2017-06-06
+L14	Bacillus licheniformis	RS_GCF_001587195.1	GCF_001587195.1	Bacillus licheniformis	Scaffold	100.0	0.09	129	103073	4521337	Buttermilk powder	f	RefSeq	Netherlands	not type material	2016-03-11
+L14	Bacillus licheniformis	RS_GCF_017338795.1	GCF_017338795.1	Bacillus licheniformis	Complete Genome	100.0	0.22	1	4316909	4316909	seawater	f	RefSeq	South Korea: 86; Jungnim 3-ro; Gwangdo-myeon; Tongyeong-si; Gyeongsangnam-do	not type material	2021-03-12
+L14	Bacillus licheniformis	RS_GCF_001596055.1	GCF_001596055.1	Bacillus licheniformis	Complete Genome	100.0	0.04	1	4252398	4252398	Doenjang	f	RefSeq	South Korea: Sunchang	not type material	2016-03-22
+L14	Bacillus licheniformis	RS_GCF_001876655.1	GCF_001876655.1	Bacillus licheniformis	Contig	100.0	0.31	209	76140	4441195	Rice seed	f	RefSeq	India: Punjab	not type material	2016-11-10
+L14	Bacillus licheniformis	RS_GCF_944993425.1	GCF_944993425.1	Bacillus licheniformis	Contig	100.0	0.06	29	449313	4153643	Alpha-amylase enzym 4g (Coobra)	f	RefSeq	none	not type material	2022-12-15
+L14	Bacillus licheniformis	RS_GCF_007831655.1	GCF_007831655.1	Bacillus licheniformis	Contig	100.0	0.11	16	581327	4266743	none	f	RefSeq	Denmark: Hvidovre	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_900445385.1	GCF_900445385.1	Bacillus licheniformis	Contig	99.99	0.26	28	400154	4296091	none	f	RefSeq	none	not type material	2018-06-29
+L14	Bacillus licheniformis	RS_GCF_007832465.1	GCF_007832465.1	Bacillus licheniformis	Contig	100.0	0.03	34	237082	4186140	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007832135.1	GCF_007832135.1	Bacillus licheniformis	Scaffold	100.0	0.17	84	101534	4212436	none	f	RefSeq	Germany	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_028857665.1	GCF_028857665.1	Bacillus licheniformis	Contig	100.0	0.07	56	424763	4212123	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_015552545.1	GCF_015552545.1	Bacillus licheniformis	Scaffold	100.0	0.27	27	523648	4141358	stool	f	RefSeq	USA	not type material	2020-11-17
+L14	Bacillus licheniformis	RS_GCF_007831015.1	GCF_007831015.1	Bacillus licheniformis	Scaffold	100.0	0.15	27	271153	4280407	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_029958265.1	GCF_029958265.1	Bacillus licheniformis	Contig	100.0	0.12	17	1039846	4113603	root nodules	f	RefSeq	USA: Florida	not type material	2023-05-08
+L14	Bacillus licheniformis	RS_GCF_003606405.1	GCF_003606405.1	Bacillus licheniformis	Complete Genome	100.0	0.03	2	4440765	4490546	Maotai Daqu	f	RefSeq	China	not type material	2018-10-02
+L14	Bacillus licheniformis	RS_GCF_007830995.1	GCF_007830995.1	Bacillus licheniformis	Contig	100.0	0.06	35	463000	4404822	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007994365.1	GCF_007994365.1	Bacillus licheniformis	Scaffold	99.99	0.19	63	110520	4167381	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007994485.1	GCF_007994485.1	Bacillus licheniformis	Scaffold	100.0	0.09	103	58712	4084014	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_015559765.1	GCF_015559765.1	Bacillus licheniformis	Scaffold	100.0	0.08	22	662475	4141631	stool	f	RefSeq	USA	not type material	2020-11-17
+L14	Bacillus licheniformis	RS_GCF_007831695.1	GCF_007831695.1	Bacillus licheniformis	Scaffold	100.0	0.09	47	214604	4228250	none	f	RefSeq	Denmark: Hvidovre	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007855455.1	GCF_007855455.1	Bacillus licheniformis	Complete Genome	100.0	0.1	1	4201713	4201713	soil	f	RefSeq	South Korea	not type material	2019-08-06
+L14	Bacillus licheniformis	RS_GCF_007831575.1	GCF_007831575.1	Bacillus licheniformis	Scaffold	100.0	0.07	27	293029	4207781	none	f	RefSeq	Denmark: Vigerslev	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_020686825.1	GCF_020686825.1	Bacillus licheniformis	Contig	100.0	0.07	34	392589	4171409	leaf	f	RefSeq	Tunisia: Bulla-Regia	not type material	2021-10-31
+L14	Bacillus licheniformis	RS_GCF_008368435.1	GCF_008368435.1	Bacillus licheniformis	Scaffold	100.0	0.2	36	861902	4337996	Gergoush (Sudanese Bread snack) primary fermentation step	f	RefSeq	Sudan	not type material	2019-09-10
+L14	Bacillus licheniformis	RS_GCF_028857315.1	GCF_028857315.1	Bacillus licheniformis	Contig	100.0	0.17	82	383392	4377533	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_007831295.1	GCF_007831295.1	Bacillus licheniformis	Scaffold	100.0	0.08	68	105019	4095430	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_026791975.1	GCF_026791975.1	Bacillus licheniformis	Scaffold	100.0	0.17	55	191887	4277835	none	f	RefSeq	none	not type material	2022-12-09
+L14	Bacillus licheniformis	RS_GCF_007831455.1	GCF_007831455.1	Bacillus licheniformis	Scaffold	100.0	0.32	20	2333974	4362402	none	f	RefSeq	USA: Pennsylvania	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007830815.1	GCF_007830815.1	Bacillus licheniformis	Scaffold	100.0	0.22	36	294295	4231855	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_001950175.1	GCF_001950175.1	Bacillus sp. CBA7126	Contig	100.0	0.07	2	4209959	4216931	none	f	RefSeq	none	not type material	2016-12-06
+L14	Bacillus licheniformis	RS_GCF_945957445.1	GCF_945957445.1	Bacillus licheniformis	Contig	100.0	0.17	18	2234065	4254074	none	f	RefSeq	none	not type material	2022-09-11
+L14	Bacillus licheniformis	RS_GCF_007831495.1	GCF_007831495.1	Bacillus licheniformis	Scaffold	100.0	0.07	33	259728	4087367	none	f	RefSeq	Denmark: Hvidovre	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007994255.1	GCF_007994255.1	Bacillus licheniformis	Scaffold	100.0	0.38	43	622805	4477636	none	f	RefSeq	Philippines	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_020686785.1	GCF_020686785.1	Bacillus licheniformis	Contig	100.0	0.07	44	392587	4176915	plant leaf	f	RefSeq	Tunisia: Bulla-Regia	not type material	2021-10-31
+L14	Bacillus licheniformis	RS_GCF_021045125.1	GCF_021045125.1	Bacillus licheniformis	Scaffold	100.0	0.04	187	36931	4152826	none	f	RefSeq	South Africa	not type material	2021-12-05
+L14	Bacillus licheniformis	RS_GCF_001876575.1	GCF_001876575.1	Bacillus licheniformis	Contig	100.0	0.51	279	54920	4432724	Rice seed	f	RefSeq	India: Punjab	not type material	2016-11-10
+L14	Bacillus licheniformis	RS_GCF_000258125.2	GCF_000258125.2	Bacillus licheniformis WX-02	Chromosome	100.0	0.15	3	2735904	4286821	soil from Yingcheng Salt Mine	f	RefSeq	China: Hubei Province	not type material	2015-07-16
+L14	Bacillus licheniformis	RS_GCF_003595625.1	GCF_003595625.1	Bacillus licheniformis	Complete Genome	100.0	0.22	3	4367367	4440709	Manure compost	f	RefSeq	Japan: Hyogo	not type material	2018-09-25
+L14	Bacillus licheniformis	RS_GCF_001876545.1	GCF_001876545.1	Bacillus licheniformis	Contig	100.0	1.46	228	60032	4445448	Rice seed	f	RefSeq	India: Punjab	not type material	2016-11-10
+L14	Bacillus licheniformis	RS_GCF_007832515.1	GCF_007832515.1	Bacillus licheniformis	Scaffold	100.0	0.16	31	332971	4134951	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007677765.1	GCF_007677765.1	Bacillus licheniformis	Contig	100.0	0.22	124	214451	4427232	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L14	Bacillus licheniformis	RS_GCF_007679605.1	GCF_007679605.1	Bacillus licheniformis	Scaffold	100.0	0.3	143	214734	4438742	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L14	Bacillus licheniformis	RS_GCF_007673855.1	GCF_007673855.1	Bacillus licheniformis	Contig	100.0	0.22	226	214472	4452774	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L14	Bacillus licheniformis	RS_GCF_001587355.1	GCF_001587355.1	Bacillus licheniformis	Scaffold	100.0	0.06	46	224430	4094914	dairy environment	f	RefSeq	Netherlands	not type material	2016-03-11
+L14	Bacillus licheniformis	RS_GCF_900110715.1	GCF_900110715.1	Bacillus licheniformis	Scaffold	100.0	0.03	24	402560	4084064	none	f	RefSeq	none	not type material	2016-10-31
+L14	Bacillus licheniformis	RS_GCF_007830795.1	GCF_007830795.1	Bacillus licheniformis	Contig	100.0	0.05	19	593873	4142407	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007994305.1	GCF_007994305.1	Bacillus licheniformis	Scaffold	100.0	0.1	17	539449	4149201	none	f	RefSeq	Germany	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_026789605.1	GCF_026789605.1	Bacillus licheniformis	Scaffold	100.0	0.13	29	293889	4165796	none	f	RefSeq	none	not type material	2022-12-09
+L14	Bacillus licheniformis	RS_GCF_002966955.1	GCF_002966955.1	Bacillus licheniformis	Complete Genome	100.0	0.04	1	4332232	4332232	High-salt fermented soybean	f	RefSeq	South Korea: Suwon	not type material	2018-03-02
+L14	Bacillus licheniformis	RS_GCF_007831035.1	GCF_007831035.1	Bacillus licheniformis	Scaffold	100.0	0.14	28	205081	4221553	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_022630555.1	GCF_022630555.1	Bacillus licheniformis	Complete Genome	100.0	0.07	1	4243588	4243588	biocompost	f	RefSeq	Germany: Rostock; Stover Acker	type strain of species	2022-03-19
+L14	Bacillus licheniformis	RS_GCF_002269275.1	GCF_002269275.1	Bacillus sp. 1s-1	Complete Genome	100.0	0.04	1	4166290	4166290	sewage water	f	RefSeq	China: Qingdao	not type material	2017-08-24
+L14	Bacillus licheniformis	RS_GCF_014250415.1	GCF_014250415.1	Bacillus sp. PAMC28748	Complete Genome	100.0	0.04	1	4212838	4212838	soil	f	RefSeq	Antarctica	not type material	2020-08-19
+L14	Bacillus licheniformis	RS_GCF_001896295.1	GCF_001896295.1	Bacillus licheniformis	Contig	100.0	0.4	60	747706	4536032	heated water in contact with grass/sediment layer	f	RefSeq	USA: Yellowstone National Park; WY	not type material	2016-12-09
+L14	Bacillus licheniformis	RS_GCF_030501475.1	GCF_030501475.1	Bacillus licheniformis	Contig	100.0	0.18	45	269834	4194676	none	f	RefSeq	China: Jiangxi	type strain of species	2023-07-17
+L14	Bacillus licheniformis	RS_GCF_007831515.1	GCF_007831515.1	Bacillus licheniformis	Scaffold	100.0	0.14	135	56622	4340407	none	f	RefSeq	Germany	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_028532465.1	GCF_028532465.1	Bacillus licheniformis	Complete Genome	100.0	0.12	1	4252022	4252022	purple soil of Beibei District	f	RefSeq	China: Chongqing	not type material	2023-02-07
+L14	Bacillus licheniformis	RS_GCF_010578005.1	GCF_010578005.1	Bacillus licheniformis	Scaffold	100.0	0.46	22	441837	4178202	none	f	RefSeq	China	not type material	2020-02-13
+L14	Bacillus licheniformis	RS_GCF_003253815.1	GCF_003253815.1	Bacillus licheniformis	Complete Genome	100.0	0.07	1	4208157	4208157	adult feces	f	RefSeq	South Korea: Bundang	not type material	2018-06-18
+L14	Bacillus licheniformis	RS_GCF_019037425.1	GCF_019037425.1	Bacillus licheniformis	Scaffold	100.0	0.09	32	493971	4142746	cleanroom floor	f	RefSeq	USA: California; Pasadena; JPL; Building 179	not type material	2021-06-25
+L14	Bacillus licheniformis	RS_GCF_944993335.1	GCF_944993335.1	Bacillus licheniformis	Contig	100.0	0.06	72	132179	4106118	Alpha-amylase enzym 4g (Coobra)	f	RefSeq	none	not type material	2022-12-15
+L14	Bacillus licheniformis	RS_GCF_028857515.1	GCF_028857515.1	Bacillus licheniformis	Contig	100.0	0.18	57	368842	4342493	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_002074115.1	GCF_002074115.1	Bacillus licheniformis	Complete Genome	100.0	0.12	1	4475542	4475542	Korean soybean paste	f	RefSeq	South Korea:Sunchang county	not type material	2017-03-29
+L14	Bacillus licheniformis	RS_GCF_007994455.1	GCF_007994455.1	Bacillus licheniformis	Scaffold	100.0	0.04	37	237082	4197541	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_004526275.1	GCF_004526275.1	Bacillus licheniformis	Complete Genome	100.0	0.33	1	4230480	4230480	Raw milk	f	RefSeq	India: Mysore; Karnataka	not type material	2019-03-31
+L14	Bacillus licheniformis	RS_GCF_016126875.1	GCF_016126875.1	Bacillus licheniformis	Complete Genome	100.0	0.03	3	4180526	4232501	ileum	f	RefSeq	China:Chengdu	not type material	2020-12-20
+L14	Bacillus licheniformis	RS_GCF_001925055.1	GCF_001925055.1	Bacillus licheniformis	Scaffold	100.0	0.17	20	491944	4206468	none	f	RefSeq	Netherlands	not type material	2016-12-30
+L14	Bacillus licheniformis	RS_GCF_008368425.1	GCF_008368425.1	Bacillus licheniformis	Scaffold	100.0	0.1	34	302780	4163391	Gergoush (Sudanese Bread snack) primary fermentation step	f	RefSeq	Sudan	not type material	2019-09-10
+L14	Bacillus licheniformis	RS_GCF_007830975.1	GCF_007830975.1	Bacillus licheniformis	Scaffold	100.0	0.21	26	241623	4247818	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_002564325.1	GCF_002564325.1	Bacillus sp. CX-1	Contig	100.0	0.69	146	171377	4600757	compost	f	RefSeq	China: Jiangsu Province	not type material	2017-10-17
+L14	Bacillus licheniformis	RS_GCF_948330375.1	GCF_948330375.1	Bacillus licheniformis	Contig	100.0	0.13	208	1050592	4188852	desert sand	f	RefSeq	none	not type material	2023-01-28
+L14	Bacillus licheniformis	RS_GCF_006494795.1	GCF_006494795.1	Bacillus licheniformis	Complete Genome	100.0	0.1	1	4280457	4280457	silt	f	RefSeq	China: Qinghai Province	not type material	2019-06-27
+L14	Bacillus licheniformis	RS_GCF_002074075.1	GCF_002074075.1	Bacillus licheniformis	Complete Genome	100.0	0.05	1	4300706	4300706	Korean soybean paste	f	RefSeq	South Korea: Sunchang County	not type material	2017-03-29
+L14	Bacillus licheniformis	RS_GCF_026796245.1	GCF_026796245.1	Bacillus licheniformis	Scaffold	100.0	0.04	48	398391	4154634	none	f	RefSeq	none	not type material	2022-12-09
+L14	Bacillus licheniformis	RS_GCF_024649545.1	GCF_024649545.1	Bacillus licheniformis	Contig	99.99	0.13	65	100163	4140688	Cultivated from CCT190562S ATCC 14581	f	RefSeq	Brazil: Brasilia	not type material	2022-08-13
+L14	Bacillus licheniformis	RS_GCF_028857415.1	GCF_028857415.1	Bacillus licheniformis	Contig	100.0	0.14	48	303300	4146623	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_007832095.1	GCF_007832095.1	Bacillus licheniformis	Scaffold	100.0	0.03	38	222810	4104231	none	f	RefSeq	Germany	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_019448535.1	GCF_019448535.1	Bacillus licheniformis	Contig	100.0	0.3	92	635816	4566963	thermal water	f	RefSeq	Serbia: Vranje	not type material	2021-08-04
+L14	Bacillus licheniformis	RS_GCF_030284405.1	GCF_030284405.1	Bacillus licheniformis	Complete Genome	100.0	0.07	1	4238379	4238379	rhizosphere soil	f	RefSeq	China:Harbin	not type material	2023-06-17
+L14	Bacillus licheniformis	RS_GCF_026799625.1	GCF_026799625.1	Bacillus licheniformis	Contig	100.0	0.06	9	1085504	4128885	Honey	f	RefSeq	United Kingdom: Surrey	not type material	2022-12-10
+L14	Bacillus licheniformis	RS_GCF_007832275.1	GCF_007832275.1	Bacillus licheniformis LMG 17339	Scaffold	100.0	0.09	13	2128494	4100500	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_944993375.1	GCF_944993375.1	Bacillus licheniformis	Contig	100.0	0.06	64	128657	4109150	Alpha-amylase enzym 4g (Coobra)	f	RefSeq	none	not type material	2022-12-15
+L14	Bacillus licheniformis	RS_GCF_004119795.1	GCF_004119795.1	Bacillus licheniformis	Complete Genome	100.0	0.07	1	4298206	4298206	food	f	RefSeq	South Korea	not type material	2019-01-30
+L14	Bacillus licheniformis	RS_GCF_945957455.1	GCF_945957455.1	Bacillus licheniformis	Contig	100.0	0.23	31	438169	4145137	none	f	RefSeq	none	not type material	2022-09-11
+L14	Bacillus licheniformis	RS_GCF_007832215.1	GCF_007832215.1	Bacillus licheniformis	Scaffold	100.0	0.35	49	155462	4301832	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_910575305.1	GCF_910575305.1	Bacillus licheniformis	Contig	100.0	0.11	22	670290	4226020	Mouse faeces	f	RefSeq	none	not type material	2021-07-07
+L14	Bacillus licheniformis	RS_GCF_900171545.1	GCF_900171545.1	Bacillus licheniformis	Scaffold	100.0	0.14	26	720271	4253681	none	f	RefSeq	none	not type material	2017-04-25
+L14	Bacillus licheniformis	GB_GCA_000952085.1	GCA_000952085.1	Bacillus licheniformis	Contig	99.53	1.28	24	507764	4392282	diesel contaminated soil	f	GenBank	Belgium: Genk	not type material	2015-03-13
+L14	Bacillus licheniformis	RS_GCF_007994175.1	GCF_007994175.1	Bacillus licheniformis	Scaffold	100.0	0.33	68	172450	4447729	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_002272005.1	GCF_002272005.1	Bacillus licheniformis	Contig	100.0	0.29	104	95006	4322140	uncut heroin sample	f	RefSeq	none	not type material	2017-08-28
+L14	Bacillus licheniformis	RS_GCF_007831255.1	GCF_007831255.1	Bacillus licheniformis	Scaffold	100.0	0.32	45	217038	4410515	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007832335.1	GCF_007832335.1	Bacillus licheniformis	Scaffold	100.0	0.24	67	118869	4337340	none	f	RefSeq	Germany	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007676795.1	GCF_007676795.1	Bacillus licheniformis	Scaffold	100.0	0.22	122	214706	4426824	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L14	Bacillus licheniformis	RS_GCF_009662395.1	GCF_009662395.1	Bacillus licheniformis	Complete Genome	100.0	0.04	2	4343379	4352529	none	f	RefSeq	Denmark:Dyrehave	not type material	2019-11-14
+L14	Bacillus licheniformis	RS_GCF_002271725.1	GCF_002271725.1	Bacillus licheniformis	Contig	100.0	0.11	74	159630	4281041	uncut heroin sample	f	RefSeq	none	not type material	2017-08-28
+L14	Bacillus licheniformis	RS_GCF_023714845.1	GCF_023714845.1	Bacillus licheniformis	Contig	100.0	0.01	62	387437	4098880	Cleanroom	f	RefSeq	USA	not type material	2022-06-13
+L14	Bacillus licheniformis	RS_GCF_007832045.1	GCF_007832045.1	Bacillus licheniformis	Scaffold	100.0	0.1	28	379188	4132129	none	f	RefSeq	Spain	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_028857345.1	GCF_028857345.1	Bacillus licheniformis	Contig	100.0	0.34	49	424749	4468995	skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_023713725.1	GCF_023713725.1	Bacillus licheniformis	Contig	100.0	0.53	29	2240383	4271713	Cleanroom	f	RefSeq	USA	not type material	2022-06-13
+L14	Bacillus licheniformis	GB_GCA_019873785.1	GCA_019873785.1	Bacillus sp. PCH94	Contig	99.71	0.42	3	4149074	4167516	compost	f	GenBank	India: Palampur	not type material	2021-09-03
+L14	Bacillus licheniformis	RS_GCF_001896285.1	GCF_001896285.1	Bacillus licheniformis	Contig	100.0	0.94	81	521225	4763591	amphitheater springs near vegetative/sediment and waters edge	f	RefSeq	USA: Yellowstone National Park; WY	not type material	2016-12-09
+L14	Bacillus licheniformis	RS_GCF_007831635.1	GCF_007831635.1	Bacillus licheniformis	Scaffold	100.0	0.09	27	287197	4240896	none	f	RefSeq	Denmark: Hvidovre	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_020177515.1	GCF_020177515.1	Bacillus licheniformis	Scaffold	100.0	0.61	95	345584	4645791	none	f	RefSeq	USA: Arkansas	not type material	2021-09-29
+L14	Bacillus licheniformis	RS_GCF_007994375.1	GCF_007994375.1	Bacillus licheniformis	Scaffold	100.0	0.27	31	411820	4375193	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007831665.1	GCF_007831665.1	Bacillus licheniformis	Scaffold	100.0	0.13	61	115341	4095353	none	f	RefSeq	Denmark: Hvidovre	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_018332835.1	GCF_018332835.1	Bacillus licheniformis	Scaffold	100.0	0.48	98	605353	4389016	honey	f	RefSeq	Japan	not type material	2021-03-26
+L14	Bacillus licheniformis	RS_GCF_007994435.1	GCF_007994435.1	Bacillus licheniformis	Scaffold	99.99	0.4	230	36253	4112747	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_005502515.1	GCF_005502515.1	Bacillus sp. H2N5002	Contig	100.0	0.13	25	578641	4279216	alpine spring water	f	RefSeq	Italy: Trento	not type material	2019-05-17
+L14	Bacillus licheniformis	RS_GCF_000695465.1	GCF_000695465.1	Bacillus licheniformis	Contig	100.0	0.13	40	490798	4194413	soil	f	RefSeq	China	not type material	2014-05-22
+L14	Bacillus licheniformis	RS_GCF_007831755.1	GCF_007831755.1	Bacillus licheniformis	Scaffold	100.0	0.3	97	86695	4325385	none	f	RefSeq	Sudan	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007831735.1	GCF_007831735.1	Bacillus licheniformis	Scaffold	100.0	0.74	62	168662	4244135	none	f	RefSeq	Sudan	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_025685785.1	GCF_025685785.1	Bacillus licheniformis	Contig	100.0	0.32	39	345732	4337697	compost	f	RefSeq	Malaysia	not type material	2022-10-13
+L14	Bacillus licheniformis	RS_GCF_026796135.1	GCF_026796135.1	Bacillus licheniformis	Scaffold	100.0	0.07	36	618329	4177763	none	f	RefSeq	none	not type material	2022-12-09
+L14	Bacillus licheniformis	RS_GCF_026795695.1	GCF_026795695.1	Bacillus licheniformis	Scaffold	99.99	0.05	26	616434	4063869	none	f	RefSeq	none	not type material	2022-12-09
+L14	Bacillus licheniformis	RS_GCF_007831875.1	GCF_007831875.1	Bacillus licheniformis	Scaffold	100.0	0.04	53	186415	4134891	none	f	RefSeq	Germany	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007832495.1	GCF_007832495.1	Bacillus licheniformis	Scaffold	99.99	0.27	199	38345	4145955	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_007831325.1	GCF_007831325.1	Bacillus licheniformis	Scaffold	100.0	0.22	28	372498	4326735	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_018332855.1	GCF_018332855.1	Bacillus licheniformis	Scaffold	100.0	0.22	28	689385	4372147	honey	f	RefSeq	Japan	not type material	2021-03-26
+L14	Bacillus licheniformis	RS_GCF_010578075.1	GCF_010578075.1	Bacillus licheniformis	Scaffold	100.0	0.25	22	290497	4119640	none	f	RefSeq	China	not type material	2020-02-13
+L14	Bacillus licheniformis	RS_GCF_015845325.1	GCF_015845325.1	Bacillus licheniformis	Contig	100.0	0.24	25	496207	4238094	none	f	RefSeq	USA	not type material	2020-12-08
+L14	Bacillus licheniformis	GB_GCA_002457815.1	GCA_002457815.1	Bacillus licheniformis	Contig	100.0	1.47	128	77942	4208275	grape leaf	f	GenBank	Italy: Conegliano-Valdobbiadene; Treviso	not type material	2017-10-05
+L14	Bacillus licheniformis	RS_GCF_001876555.1	GCF_001876555.1	Bacillus licheniformis	Contig	100.0	0.5	143	88085	4448760	Rice seed	f	RefSeq	India: Punjab	not type material	2016-11-10
+L14	Bacillus licheniformis	RS_GCF_007831065.1	GCF_007831065.1	Bacillus licheniformis	Scaffold	100.0	0.21	40	231728	4342592	none	f	RefSeq	Japan	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_002074095.1	GCF_002074095.1	Bacillus licheniformis	Complete Genome	100.0	0.05	2	4136986	4342466	Korean soybean paste	f	RefSeq	South Korea:Sunchang County	not type material	2017-03-29
+L14	Bacillus licheniformis	RS_GCF_002271485.1	GCF_002271485.1	Bacillus licheniformis	Contig	100.0	0.05	69	172952	4132098	uncut heroin sample	f	RefSeq	none	not type material	2017-08-28
+L14	Bacillus licheniformis	RS_GCF_014673515.1	GCF_014673515.1	Bacillus licheniformis	Chromosome	99.99	0.08	126	210351	4222597	Crude salt from Camalti Saltern	f	RefSeq	Turkey: Izmir	not type material	2020-09-21
+L14	Bacillus licheniformis	RS_GCF_014489805.1	GCF_014489805.1	Bacillus sp. Y1	Contig	100.0	0.14	35	605518	4171111	sediment soil	f	RefSeq	China: yellow river	not type material	2020-09-06
+L14	Bacillus licheniformis	RS_GCF_007830775.1	GCF_007830775.1	Bacillus licheniformis	Contig	100.0	0.13	25	228328	4171293	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_001939525.1	GCF_001939525.1	Bacillus licheniformis	Contig	100.0	0.02	26	409007	4299489	none	f	RefSeq	Israel: Kibutz Nirim	not type material	2017-01-09
+L14	Bacillus licheniformis	RS_GCF_007832235.1	GCF_007832235.1	Bacillus licheniformis	Contig	100.0	0.03	59	161703	4083723	none	f	RefSeq	none	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_030177855.1	GCF_030177855.1	Bacillus licheniformis	Complete Genome	100.0	0.1	1	4298205	4298205	tea	f	RefSeq	China: wuhan	not type material	2023-06-06
+L14	Bacillus licheniformis	RS_GCF_007831145.1	GCF_007831145.1	Bacillus licheniformis	Scaffold	100.0	0.35	29	405238	4413589	none	f	RefSeq	Egypt	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_002236895.1	GCF_002236895.1	Bacillus licheniformis	Complete Genome	100.0	0.08	1	4287720	4287720	soil	f	RefSeq	China:Beijing	not type material	2017-07-28
+L14	Bacillus licheniformis	RS_GCF_007673185.1	GCF_007673185.1	Bacillus licheniformis	Contig	100.0	0.27	129	214418	4427912	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L14	Bacillus licheniformis	RS_GCF_002272335.1	GCF_002272335.1	Bacillus licheniformis	Contig	100.0	0.08	76	182452	4162028	uncut heroin sample	f	RefSeq	none	not type material	2017-08-28
+L14	Bacillus licheniformis	RS_GCF_007831435.1	GCF_007831435.1	Bacillus licheniformis	Scaffold	100.0	0.23	72	176255	4444941	none	f	RefSeq	Germany	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_024294685.1	GCF_024294685.1	Bacillus licheniformis	Scaffold	100.0	0.44	27	439600	4294394	spice	f	RefSeq	China:Yaan	not type material	2022-07-16
+L14	Bacillus licheniformis	RS_GCF_007832375.1	GCF_007832375.1	Bacillus licheniformis	Scaffold	100.0	0.04	37	221615	4141642	none	f	RefSeq	Denmark	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_932751165.1	GCF_932751165.1	Bacillus licheniformis	Contig	100.0	0.15	30	477505	4170450	gut content	f	RefSeq	none	not type material	2022-03-23
+L14	Bacillus licheniformis	RS_GCF_007832255.1	GCF_007832255.1	Bacillus licheniformis	Scaffold	100.0	0.27	87	166050	4734703	none	f	RefSeq	Denmark	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_002272315.1	GCF_002272315.1	Bacillus licheniformis	Contig	100.0	0.14	146	118775	4198297	uncut heroin sample	f	RefSeq	none	not type material	2017-08-28
+L14	Bacillus licheniformis	RS_GCF_003024435.1	GCF_003024435.1	Bacillus licheniformis	Scaffold	100.0	0.44	13	2369523	4388335	compost	f	RefSeq	Denmark: Botanical Garden; Aarhus	not type material	2018-03-28
+L14	Bacillus licheniformis	RS_GCF_018587905.1	GCF_018587905.1	Bacillus licheniformis	Contig	99.99	0.1	22	1027215	4098557	leaves	f	RefSeq	Belgium	not type material	2021-05-28
+L14	Bacillus licheniformis	RS_GCF_013421445.1	GCF_013421445.1	Bacillus sp. Gen2	Contig	99.99	0.21	30	309949	4171909	Integrated Science Center elevator button	f	RefSeq	USA: Geneseo; NY	not type material	2020-07-17
+L14	Bacillus licheniformis	RS_GCF_007831885.1	GCF_007831885.1	Bacillus licheniformis	Scaffold	100.0	0.16	62	141890	4363512	none	f	RefSeq	Germany	not type material	2019-08-02
+L14	Bacillus licheniformis	RS_GCF_028857475.1	GCF_028857475.1	Bacillus licheniformis	Contig	100.0	0.1	126	81810	4197465	Skim milk powder (medium heat)	f	RefSeq	Ireland	not type material	2023-02-24
+L14	Bacillus licheniformis	RS_GCF_001587285.1	GCF_001587285.1	Bacillus licheniformis	Scaffold	100.0	0.31	56	301930	4296935	Pea soup (8h 40 C degree)	f	RefSeq	Netherlands	not type material	2016-03-11
+L15	Metabacillus halosaccharovorans	RS_GCF_023713225.1	GCF_023713225.1	Metabacillus halosaccharovorans	Contig	100.0	3.72	137	202899	6017055	Cleanroom	f	RefSeq	USA	not type material	2022-06-13
+L15	Metabacillus halosaccharovorans	RS_GCF_002019635.1	GCF_002019635.1	Metabacillus halosaccharovorans	Scaffold	100.0	0.42	8	2028279	5399367	none	t	RefSeq	China	type strain of species	2017-03-06
+L15	Metabacillus halosaccharovorans	RS_GCF_025841165.1	GCF_025841165.1	Metabacillus halosaccharovorans	Contig	100.0	0.52	52	222429	5204837	High Background radiation area costal sand	f	RefSeq	India: Kerala in Chavara-Neendakara placer deposit	not type material	2022-10-25
+L15	Metabacillus halosaccharovorans	RS_GCF_019013445.1	GCF_019013445.1	Metabacillus halosaccharovorans	Contig	100.0	0.86	9	4096417	5672834	agricultural soil	f	RefSeq	Spain: Almeria	not type material	2021-06-23
+L16	Bacillus altitudinis	RS_GCF_030271235.1	GCF_030271235.1	Bacillus altitudinis	Scaffold	100.0	0.02	17	808791	3634564	soil	f	RefSeq	Morocco: Marrakech	not type material	2023-06-13
+L16	Bacillus altitudinis	RS_GCF_901542325.1	GCF_901542325.1	Bacillus altitudinis	Contig	100.0	0.01	215	202201	3746007	macroalgae	f	RefSeq	none	not type material	2020-01-10
+L16	Bacillus altitudinis	RS_GCF_016767855.1	GCF_016767855.1	Bacillus altitudinis	Complete Genome	100.0	0.0	1	3741767	3741767	soil	f	RefSeq	China:Longyan	not type material	2021-01-28
+L16	Bacillus altitudinis	RS_GCF_023502445.1	GCF_023502445.1	Bacillus altitudinis	Contig	100.0	0.02	17	958318	3788883	feces	f	RefSeq	China: Yunnan	not type material	2022-05-18
+L16	Bacillus altitudinis	RS_GCF_000789425.2	GCF_000789425.2	Bacillus altitudinis	Scaffold	100.0	0.05	19	466626	3743699	Indian meal moth	f	RefSeq	USA	not type material	2016-02-02
+L16	Bacillus altitudinis	RS_GCF_026787805.1	GCF_026787805.1	Bacillus altitudinis	Scaffold	100.0	0.0	84	90826	3702556	soil	f	RefSeq	Cote d Ivoire: Africa	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_900119345.1	GCF_900119345.1	Bacillus altitudinis	Scaffold	100.0	0.0	47	120603	3706009	none	f	RefSeq	none	not type material	2016-11-18
+L16	Bacillus altitudinis	GB_GCA_029916775.1	GCA_029916775.1	Micromonospora sp. 1209	Contig	100.0	0.02	12	952358	3642573	none	f	GenBank	none	not type material	2023-05-02
+L16	Bacillus altitudinis	RS_GCF_029478555.1	GCF_029478555.1	Bacillus altitudinis	Contig	100.0	0.03	41	982708	3756051	none	f	RefSeq	Norway	not type material	2023-03-29
+L16	Bacillus altitudinis	RS_GCF_030016235.1	GCF_030016235.1	Bacillus altitudinis	Contig	100.0	0.04	174	996873	3862186	none	f	RefSeq	Slovenia: Domzale	not type material	2023-05-15
+L16	Bacillus altitudinis	RS_GCF_016785155.1	GCF_016785155.1	Bacillus altitudinis	Contig	100.0	0.01	14	1830586	3643183	soil	f	RefSeq	China: Zhejiang Taizhou	not type material	2021-02-01
+L16	Bacillus altitudinis	RS_GCF_023373945.1	GCF_023373945.1	Bacillus altitudinis	Contig	100.0	0.01	55	1039702	3700056	Compost	f	RefSeq	Malaysia	not type material	2022-05-16
+L16	Bacillus altitudinis	RS_GCF_031199195.1	GCF_031199195.1	Bacillus aerius	Complete Genome	99.96	0.03	1	3506943	3506943	cell culture	f	RefSeq	none	not type material	2023-09-06
+L16	Bacillus altitudinis	RS_GCF_019355135.1	GCF_019355135.1	Bacillus altitudinis	Complete Genome	100.0	0.02	1	3755290	3755290	Soil for garbage dump	f	RefSeq	China: Chengdu	not type material	2021-07-27
+L16	Bacillus altitudinis	RS_GCF_030016265.1	GCF_030016265.1	Bacillus altitudinis	Contig	100.0	0.04	110	996531	3844812	none	f	RefSeq	Slovenia: Domzale	not type material	2023-05-15
+L16	Bacillus altitudinis	RS_GCF_008180475.1	GCF_008180475.1	Bacillus altitudinis	Scaffold	100.0	0.38	57	161907	3826387	sediment	f	RefSeq	Mexico: desert of Cuatro Cienegas; Coahuila	not type material	2019-09-01
+L16	Bacillus altitudinis	GB_GCA_001420655.1	GCA_001420655.1	Bacillus sp. FJAT-21955	Contig	100.0	0.08	37	377802	3793858	soil	f	GenBank	China: Xinjiang	not type material	2015-10-30
+L16	Bacillus altitudinis	RS_GCF_001548215.1	GCF_001548215.1	Bacillus pumilus	Complete Genome	100.0	0.03	1	3723433	3723433	Soil	f	RefSeq	Japan:Tokyo; Fuchu	not type material	2015-11-11
+L16	Bacillus altitudinis	RS_GCF_008764185.1	GCF_008764185.1	Bacillus altitudinis	Scaffold	100.0	1.08	28	604949	3703847	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-10-01
+L16	Bacillus altitudinis	RS_GCF_007676515.1	GCF_007676515.1	Bacillus altitudinis	Scaffold	100.0	0.32	112	514263	3731520	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L16	Bacillus altitudinis	RS_GCF_030433755.1	GCF_030433755.1	Bacillus sp. PsM16	Contig	100.0	0.0	190	516346	3729660	leaf samples	f	RefSeq	USA: New York; Ithaca	not type material	2023-07-11
+L16	Bacillus altitudinis	RS_GCF_001043535.1	GCF_001043535.1	Bacillus stratosphericus	Contig	100.0	0.02	65	184419	3696916	Plant	f	RefSeq	Malaysia: Malacca	not type material	2015-06-30
+L16	Bacillus altitudinis	GB_GCA_020218135.1	GCA_020218135.1	Bacillus stratosphericus	Contig	100.0	0.04	14	876881	3675078	sediment	f	GenBank	China: Shenzhen	not type material	2021-10-03
+L16	Bacillus altitudinis	RS_GCF_021654595.1	GCF_021654595.1	Bacillus altitudinis	Complete Genome	100.0	0.02	2	3674367	3681563	spider	f	RefSeq	Japan	not type material	2021-11-19
+L16	Bacillus altitudinis	RS_GCF_015160895.1	GCF_015160895.1	Bacillus altitudinis	Complete Genome	100.0	0.01	1	3763717	3763717	grapevine phylloplane	f	RefSeq	Belarus: Minsk Region	not type material	2020-11-01
+L16	Bacillus altitudinis	RS_GCF_026787255.1	GCF_026787255.1	Bacillus altitudinis	Scaffold	100.0	0.01	112	94234	3701442	soil	f	RefSeq	Greenland	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_030014895.1	GCF_030014895.1	Bacillus altitudinis	Contig	100.0	0.04	27	495855	3823198	none	f	RefSeq	China: Haikou	not type material	2023-05-12
+L16	Bacillus altitudinis	RS_GCF_019149285.1	GCF_019149285.1	Bacillus altitudinis	Contig	100.0	0.03	30	420856	3704300	Dye pond	f	RefSeq	Nigeria: Lagos	not type material	2021-07-06
+L16	Bacillus altitudinis	RS_GCF_003946835.1	GCF_003946835.1	Bacillus sp. 2B09	Scaffold	100.0	0.07	27	347292	3729829	water	f	RefSeq	South Africa: North West province; Dr Kenneth Kaunda district municipality	not type material	2018-12-14
+L16	Bacillus altitudinis	RS_GCF_001444735.1	GCF_001444735.1	Bacillus sp. TH007	Contig	100.0	0.01	19	734920	3687156	soil	f	RefSeq	USA: Columbus; Ohio	not type material	2015-11-17
+L16	Bacillus altitudinis	RS_GCF_026786605.1	GCF_026786605.1	Bacillus altitudinis	Scaffold	100.0	0.0	123	101824	3739203	none	f	RefSeq	none	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_026786615.1	GCF_026786615.1	Bacillus altitudinis	Scaffold	100.0	0.5	109	91859	3738788	none	f	RefSeq	New Zealand	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_002042895.1	GCF_002042895.1	Bacillus altitudinis	Contig	100.0	0.04	113	54515	3692443	none	f	RefSeq	Southern Ocean: Indian Sector	not type material	2017-03-20
+L16	Bacillus altitudinis	RS_GCF_010747395.1	GCF_010747395.1	Bacillus altitudinis	Contig	100.0	0.0	54	103203	3684860	mining residue	f	RefSeq	Portugal	not type material	2020-02-18
+L16	Bacillus altitudinis	RS_GCF_015846075.1	GCF_015846075.1	Bacillus altitudinis	Scaffold	100.0	0.01	17	938324	3738947	Pit mud	f	RefSeq	China	not type material	2020-12-08
+L16	Bacillus altitudinis	RS_GCF_017161205.1	GCF_017161205.1	Bacillus altitudinis	Complete Genome	100.0	0.02	1	3729040	3729040	Soil samples of chilli in Haidian Harbor Garden; Haikou city; Hainan Province; China	f	RefSeq	China: Haidian Harbor Garden; Haikou city; Hainan Province	not type material	2021-03-03
+L16	Bacillus altitudinis	RS_GCF_000831655.1	GCF_000831655.1	Bacillus aerophilus	Contig	100.0	0.01	17	981173	3753035	submerged soil sample from rice field	f	RefSeq	Portugal	not type material	2015-02-03
+L16	Bacillus altitudinis	RS_GCF_019037745.1	GCF_019037745.1	Bacillus altitudinis	Contig	100.0	0.02	27	388342	3754669	cleanroom floor	f	RefSeq	USA: California; Pasadena; JPL; Building 179	not type material	2021-06-25
+L16	Bacillus altitudinis	RS_GCF_003217715.1	GCF_003217715.1	Bacillus altitudinis	Contig	100.0	0.03	43	248107	3865054	soil	f	RefSeq	Netherlands	not type material	2018-06-12
+L16	Bacillus altitudinis	GB_GCA_021560155.1	GCA_021560155.1	Bacillus aerophilus	Complete Genome	100.0	0.06	1	3754440	3754440	none	f	GenBank	China:Xinjiang	not type material	2022-01-24
+L16	Bacillus altitudinis	RS_GCF_007681435.1	GCF_007681435.1	Bacillus altitudinis	Scaffold	100.0	0.02	42	464020	3765631	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L16	Bacillus altitudinis	RS_GCF_004634445.1	GCF_004634445.1	Bacillus sp. 005/A4HT-01/001	Scaffold	100.0	0.01	25	416645	3815265	Subtidal Marine Sponge	f	RefSeq	Singapore	not type material	2019-04-04
+L16	Bacillus altitudinis	RS_GCF_008123875.1	GCF_008123875.1	Bacillus sp. Y3	Contig	100.0	0.02	22	878282	3671094	environmental	f	RefSeq	China: Wuhan	not type material	2019-08-28
+L16	Bacillus altitudinis	RS_GCF_015689015.1	GCF_015689015.1	Bacillus altitudinis	Complete Genome	100.0	0.01	1	3718493	3718493	rhizosphere	f	RefSeq	China	not type material	2020-11-25
+L16	Bacillus altitudinis	RS_GCF_023714595.1	GCF_023714595.1	Bacillus altitudinis	Contig	100.0	0.05	33	483649	3712377	Cleanroom	f	RefSeq	USA	not type material	2022-06-13
+L16	Bacillus altitudinis	RS_GCF_026787895.1	GCF_026787895.1	Bacillus altitudinis	Scaffold	100.0	0.0	72	124061	3699463	soil	f	RefSeq	Cote d Ivoire: Africa	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_020165915.1	GCF_020165915.1	Bacillus sp. RSS_NA_20	Contig	100.0	0.01	6	2632493	3722692	Mangrove plant	f	RefSeq	Viet Nam	not type material	2021-09-26
+L16	Bacillus altitudinis	RS_GCF_023554815.1	GCF_023554815.1	Bacillus altitudinis	Contig	100.0	0.04	17	818136	3801811	sediment	f	RefSeq	Malaysia: Balok; Pahang	not type material	2022-05-25
+L16	Bacillus altitudinis	RS_GCF_018904675.1	GCF_018904675.1	Bacillus sp. GG161	Contig	100.0	0.07	47	371380	3713733	fish gut	f	RefSeq	India: University of North Bengal	not type material	2021-06-16
+L16	Bacillus altitudinis	RS_GCF_026065915.1	GCF_026065915.1	Bacillus altitudinis	Contig	100.0	0.01	51	217336	3806151	Garden soil	f	RefSeq	India: Maharashtra	not type material	2022-11-08
+L16	Bacillus altitudinis	RS_GCF_026787845.1	GCF_026787845.1	Bacillus altitudinis	Scaffold	100.0	0.13	97	95183	3699278	soil	f	RefSeq	Cote d Ivoire: Africa	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_023823755.1	GCF_023823755.1	Bacillus altitudinis	Complete Genome	100.0	0.03	1	3762948	3762948	soil	f	RefSeq	China	not type material	2022-06-21
+L16	Bacillus altitudinis	RS_GCF_024398395.1	GCF_024398395.1	Bacillus sp. FS02	Complete Genome	100.0	0.12	1	3773439	3773439	Soil	f	RefSeq	India: Palampur; HP	not type material	2022-07-25
+L16	Bacillus altitudinis	RS_GCF_900156275.1	GCF_900156275.1	Bacillus altitudinis	Contig	100.0	0.02	5	975148	3714837	none	f	RefSeq	none	not type material	2017-01-20
+L16	Bacillus altitudinis	RS_GCF_028462265.1	GCF_028462265.1	Bacillus altitudinis	Contig	100.0	0.04	14	980975	3679170	lake sediments	f	RefSeq	China: Baiyangdian Lake	not type material	2023-02-04
+L16	Bacillus altitudinis	RS_GCF_003284495.1	GCF_003284495.1	Bacillus altitudinis	Contig	100.0	0.0	28	378104	3746010	saliva	f	RefSeq	Russia: East Siberia	not type material	2018-06-28
+L16	Bacillus altitudinis	RS_GCF_013283915.1	GCF_013283915.1	Bacillus altitudinis	Complete Genome	100.0	0.03	1	3879167	3879167	potato plant	f	RefSeq	Belarus: Babruysk District	not type material	2020-06-07
+L16	Bacillus altitudinis	RS_GCF_001543165.1	GCF_001543165.1	Bacillus altitudinis	Chromosome	100.0	0.0	177	50458	3745118	wood borer insect	f	RefSeq	India	not type material	2016-02-01
+L16	Bacillus altitudinis	RS_GCF_026787125.1	GCF_026787125.1	Bacillus altitudinis	Scaffold	100.0	0.0	92	81560	3703009	soil	f	RefSeq	India	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_018361385.1	GCF_018361385.1	Bacillus altitudinis	Contig	100.0	0.32	2	3864843	3898625	Plastic house	f	RefSeq	South Korea: Daegeon	not type material	2021-05-14
+L16	Bacillus altitudinis	RS_GCF_030122945.1	GCF_030122945.1	Bacillus altitudinis	Complete Genome	100.0	0.13	1	3788886	3788886	marine or sediment	f	RefSeq	India: Kochi; Kerala	not type material	2023-05-27
+L16	Bacillus altitudinis	RS_GCF_030011555.1	GCF_030011555.1	Bacillus altitudinis	Complete Genome	100.0	0.14	2	3909702	3950658	peat soil samples	f	RefSeq	Malaysia	not type material	2023-05-14
+L16	Bacillus altitudinis	RS_GCF_024134705.1	GCF_024134705.1	Bacillus altitudinis	Chromosome	100.0	0.06	1	3749496	3749596	Clean room	f	RefSeq	USA: Texas	not type material	2022-07-04
+L16	Bacillus altitudinis	RS_GCF_009830135.1	GCF_009830135.1	Bacillus sp. AN2	Contig	100.0	0.0	21	400560	3681081	none	f	RefSeq	Brazil	not type material	2020-01-04
+L16	Bacillus altitudinis	RS_GCF_003049175.1	GCF_003049175.1	Bacillus altitudinis	Contig	100.0	0.01	85	314998	3714673	refinery	f	RefSeq	India: Assam; Digboi	not type material	2022-11-17
+L16	Bacillus altitudinis	RS_GCF_020521575.1	GCF_020521575.1	Bacillus altitudinis	Contig	100.0	0.02	32	905837	3778259	none	f	RefSeq	none	not type material	2021-10-08
+L16	Bacillus altitudinis	RS_GCF_013205125.1	GCF_013205125.1	Bacillus stratosphericus	Contig	100.0	0.01	22	556510	3708421	stem from dragon fruit tree	f	RefSeq	Viet Nam: Ham thuan Nam; Binh Thuan	not type material	2020-06-01
+L16	Bacillus altitudinis	RS_GCF_013307105.1	GCF_013307105.1	Bacillus altitudinis	Complete Genome	100.0	0.02	1	3755707	3755707	none	f	RefSeq	China:Chengdu	not type material	2020-06-09
+L16	Bacillus altitudinis	RS_GCF_000353245.1	GCF_000353245.1	Bacillus stratosphericus LAMA 585	Contig	100.0	0.03	19	369435	3705643	marine sediments collected at 5;500m deep	f	RefSeq	Atlantic Ocean:Mid-Atlantic Ridge	not type material	2013-03-12
+L16	Bacillus altitudinis	RS_GCF_030123125.1	GCF_030123125.1	Bacillus altitudinis	Complete Genome	100.0	0.0	1	3797173	3797173	pine forrest soil between two spruce trees	f	RefSeq	Germany: near Munchenroda; Jena	not type material	2023-05-27
+L16	Bacillus altitudinis	RS_GCF_902500235.1	GCF_902500235.1	Bacillus altitudinis	Contig	100.0	0.47	63	123723	3727231	http://purl.obolibrary.org/obo/FOODON_0 0001055	f	RefSeq	none	not type material	2019-11-07
+L16	Bacillus altitudinis	RS_GCF_026787485.1	GCF_026787485.1	Bacillus altitudinis	Scaffold	100.0	0.01	187	107905	3667121	soil	f	RefSeq	Greenland	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_026787935.1	GCF_026787935.1	Bacillus altitudinis	Scaffold	100.0	0.01	67	117713	3826067	none	f	RefSeq	none	not type material	2022-12-09
+L16	Bacillus altitudinis	GB_GCA_020218125.1	GCA_020218125.1	Bacillus stratosphericus	Contig	100.0	0.04	13	970327	3674613	sediment	f	GenBank	China: Shenzhen	not type material	2021-10-03
+L16	Bacillus altitudinis	RS_GCF_004563755.2	GCF_004563755.2	Bacillus altitudinis	Complete Genome	100.0	0.12	1	3867833	3867833	rhizosphere soil	f	RefSeq	Malaysia: Cameron Highlan	not type material	2019-09-12
+L16	Bacillus altitudinis	RS_GCF_949152375.1	GCF_949152375.1	Bacillus altitudinis	Scaffold	100.0	0.29	143	73060	3789332	Urban environment	f	RefSeq	none	not type material	2023-04-08
+L16	Bacillus altitudinis	RS_GCF_029894105.1	GCF_029894105.1	Bacillus aerius	Contig	100.0	0.0	2	3887393	3899111	none	f	RefSeq	USA: Russell; KS	type strain of species	2023-04-28
+L16	Bacillus altitudinis	RS_GCF_013391605.1	GCF_013391605.1	Bacillus altitudinis	Scaffold	100.0	0.01	37	341754	3794141	roots	f	RefSeq	Argentina: Misiones	not type material	2020-07-08
+L16	Bacillus altitudinis	RS_GCF_006007905.1	GCF_006007905.1	Bacillus altitudinis	Complete Genome	100.0	0.04	3	3701797	3716092	ocean sediment	f	RefSeq	none	not type material	2019-06-05
+L16	Bacillus altitudinis	GB_GCA_020172045.1	GCA_020172045.1	Bacillus stratosphericus	Contig	100.0	0.04	13	898553	3674517	sediment	f	GenBank	China: Shenzhen	not type material	2021-09-28
+L16	Bacillus altitudinis	RS_GCF_003400325.1	GCF_003400325.1	Bacillus sp. HMG	Contig	100.0	0.03	13	977686	3693643	soil	f	RefSeq	USA: New Hampshire; Town of Hanover	not type material	2018-08-16
+L16	Bacillus altitudinis	RS_GCF_001457015.1	GCF_001457015.1	Bacillus altitudinis	Scaffold	100.0	0.02	26	313698	3615064	marine sediment	f	RefSeq	India: Chora Island	type strain of heterotypic synonym	2015-12-04
+L16	Bacillus altitudinis	RS_GCF_023714945.1	GCF_023714945.1	Bacillus altitudinis	Contig	100.0	0.31	46	844862	3714328	Cleanroom	f	RefSeq	USA	not type material	2022-06-13
+L16	Bacillus altitudinis	RS_GCF_000508145.1	GCF_000508145.1	Bacillus pumilus INR7	Contig	100.0	0.01	55	147762	3681709	none	f	RefSeq	none	not type material	2013-12-15
+L16	Bacillus altitudinis	RS_GCF_019311265.1	GCF_019311265.1	Bacillus altitudinis	Contig	100.0	0.07	26	632576	3705556	Dye pond	f	RefSeq	Nigeria: Lagos	not type material	2021-07-21
+L16	Bacillus altitudinis	RS_GCF_026787695.1	GCF_026787695.1	Bacillus altitudinis	Scaffold	99.96	0.0	244	54149	3627103	soil	f	RefSeq	Grenada	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_018128525.1	GCF_018128525.1	Bacillus altitudinis C16B11	Contig	100.0	0.03	49	500986	3675079	Bottom water	f	RefSeq	Pacific Ocean	not type material	2021-04-22
+L16	Bacillus altitudinis	RS_GCF_000949525.1	GCF_000949525.1	Bacillus altitudinis	Contig	100.0	0.01	61	270279	3812514	health products	f	RefSeq	Portugal	not type material	2015-03-10
+L16	Bacillus altitudinis	RS_GCF_005849435.1	GCF_005849435.1	Bacillus altitudinis	Complete Genome	100.0	0.09	2	3880448	3891368	Lycium barbarum rhizosphere soil	f	RefSeq	China:Ningxia Hui Autonomous Region	not type material	2019-05-27
+L16	Bacillus altitudinis	RS_GCF_902506075.1	GCF_902506075.1	Bacillus sp. 9J	Scaffold	100.0	0.15	76	3741681	3837156	none	f	RefSeq	none	not type material	2020-01-03
+L16	Bacillus altitudinis	RS_GCF_022700755.1	GCF_022700755.1	Bacillus altitudinis	Complete Genome	100.0	0.3	1	3937910	3937910	Soil in tiger area of zoo	f	RefSeq	China:zhengzhou	not type material	2022-03-28
+L16	Bacillus altitudinis	RS_GCF_030291995.1	GCF_030291995.1	Bacillus altitudinis	Complete Genome	100.0	0.01	2	3912078	3919705	grassland soil	f	RefSeq	Denmark: Jaegersborg Dyrehave	not type material	2023-06-20
+L16	Bacillus altitudinis	RS_GCF_026786505.1	GCF_026786505.1	Bacillus altitudinis	Scaffold	99.99	0.06	119	114808	3731239	none	f	RefSeq	USA: Phoenix	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_000986655.1	GCF_000986655.1	Bacillus sp. L_1B0_12	Contig	100.0	0.03	113	62808	3634690	man-made lake 220 cm below water surface	f	RefSeq	Malaysia: Selangor	not type material	2015-04-30
+L16	Bacillus altitudinis	RS_GCF_024380035.1	GCF_024380035.1	Bacillus altitudinis	Complete Genome	100.0	0.62	2	3765315	3825696	soil	f	RefSeq	USA:Tenesee	not type material	2022-07-23
+L16	Bacillus altitudinis	RS_GCF_024362715.1	GCF_024362715.1	Bacillus altitudinis	Complete Genome	100.0	0.4	1	3951520	3951520	diseased muskmelon fruit	f	RefSeq	China:Anhui	not type material	2022-07-19
+L16	Bacillus altitudinis	RS_GCF_900094985.1	GCF_900094985.1	Bacillus altitudinis	Scaffold	100.0	0.02	26	313698	3615064	none	f	RefSeq	none	type strain of heterotypic synonym	2016-08-04
+L16	Bacillus altitudinis	RS_GCF_001265125.1	GCF_001265125.1	Bacillus stratosphericus	Contig	100.0	0.03	155	46033	3693329	hot spring	f	RefSeq	Malaysia: Ulu Slim Hot Spring	not type material	2015-08-11
+L16	Bacillus altitudinis	RS_GCF_026787405.1	GCF_026787405.1	Bacillus altitudinis	Scaffold	100.0	0.03	62	132085	3711755	soil	f	RefSeq	Canada	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_001039015.1	GCF_001039015.1	Bacillus stratosphericus	Contig	100.0	0.01	70	94907	3689992	Plant	f	RefSeq	Malaysia: Malacca	not type material	2015-06-24
+L16	Bacillus altitudinis	RS_GCF_019036945.1	GCF_019036945.1	Bacillus altitudinis	Contig	100.0	0.02	23	381543	3703577	cleanroom floor	f	RefSeq	USA: California; Pasadena; JPL; Building 179	not type material	2021-06-25
+L16	Bacillus altitudinis	GB_GCA_019039005.1	GCA_019039005.1	Bacillus altitudinis	Contig	99.75	0.13	24	465047	3639414	Dye pond	f	GenBank	Nigeria: Lagos	not type material	2021-06-26
+L16	Bacillus altitudinis	RS_GCF_001191605.1	GCF_001191605.1	Bacillus altitudinis	Complete Genome	100.0	0.02	2	3674849	3681784	Soil	f	RefSeq	China	not type material	2015-08-03
+L16	Bacillus altitudinis	GB_GCA_019693775.1	GCA_019693775.1	Bacillus aerophilus	Contig	100.0	0.04	52	451297	3817687	Final Effluent	f	GenBank	South Africa: KwaZulu-Natal	not type material	2021-08-19
+L16	Bacillus altitudinis	RS_GCF_013391615.1	GCF_013391615.1	Bacillus altitudinis	Scaffold	100.0	0.05	48	225099	3737950	roots	f	RefSeq	Argentina: Misiones	not type material	2020-07-08
+L16	Bacillus altitudinis	RS_GCF_014138805.1	GCF_014138805.1	Bacillus aerius	Scaffold	100.0	0.03	13	971790	3702275	none	f	RefSeq	USA: Texas	not type material	2020-08-10
+L16	Bacillus altitudinis	RS_GCF_024397295.1	GCF_024397295.1	Bacillus altitudinis	Complete Genome	100.0	0.03	1	3811827	3811827	TNT red soil	f	RefSeq	China: Gansu	not type material	2022-07-25
+L16	Bacillus altitudinis	RS_GCF_023525275.1	GCF_023525275.1	Bacillus altitudinis	Contig	100.0	0.02	48	293183	3648564	Pear tree	f	RefSeq	Morocco: Asni Region	not type material	2022-05-23
+L16	Bacillus altitudinis	RS_GCF_017948365.1	GCF_017948365.1	Bacillus altitudinis	Complete Genome	100.0	0.03	1	3804206	3804206	soil	f	RefSeq	China:Shandong	not type material	2021-04-14
+L16	Bacillus altitudinis	GB_GCA_029953515.1	GCA_029953515.1	Bacillus altitudinis	Complete Genome	100.0	0.04	1	3754982	3754982	none	f	GenBank	Malaysia: Sabah	not type material	2023-05-08
+L16	Bacillus altitudinis	RS_GCF_030016475.1	GCF_030016475.1	Bacillus altitudinis	Contig	100.0	0.26	264	291365	3817728	none	f	RefSeq	Slovenia: Domzale	not type material	2023-05-15
+L16	Bacillus altitudinis	RS_GCF_001908475.1	GCF_001908475.1	Bacillus altitudinis	Complete Genome	100.0	0.01	2	3733835	3740896	none	f	RefSeq	China: Henan	not type material	2016-12-19
+L16	Bacillus altitudinis	RS_GCF_947497955.1	GCF_947497955.1	Bacillus altitudinis	Contig	100.0	0.01	35	332165	3740041	none	f	RefSeq	none	not type material	2023-01-28
+L16	Bacillus altitudinis	GB_GCA_020171425.1	GCA_020171425.1	Bacillus stratosphericus	Contig	100.0	0.03	19	880538	3731201	sediment	f	GenBank	China: Shenzhen	not type material	2021-09-28
+L16	Bacillus altitudinis	GB_GCA_019748625.1	GCA_019748625.1	Bacillus aerophilus	Contig	100.0	0.0	61	160583	3707186	Air filter	f	GenBank	USA	not type material	2021-08-24
+L16	Bacillus altitudinis	RS_GCF_026787165.1	GCF_026787165.1	Bacillus altitudinis	Scaffold	100.0	0.03	55	144642	3713340	soil	f	RefSeq	India	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_947488875.1	GCF_947488875.1	Bacillus altitudinis	Contig	100.0	0.04	68	194986	3749556	none	f	RefSeq	none	not type material	2023-01-28
+L16	Bacillus altitudinis	RS_GCF_026787425.1	GCF_026787425.1	Bacillus altitudinis	Scaffold	100.0	0.03	59	136486	3712844	sand	f	RefSeq	Greenland	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_030062305.1	GCF_030062305.1	Bacillus altitudinis	Contig	100.0	1.38	81	375146	3762390	distribution water from treated drinking water production facilities	f	RefSeq	South Africa: North-West	not type material	2023-05-22
+L16	Bacillus altitudinis	GB_GCA_019693755.1	GCA_019693755.1	Bacillus aerophilus	Contig	100.0	0.24	45	343227	3817159	Final Effluent	f	GenBank	South Africa: KwaZulu-Natal	not type material	2021-08-19
+L16	Bacillus altitudinis	RS_GCF_001578165.1	GCF_001578165.1	Bacillus pumilus	Complete Genome	100.0	0.01	1	3860091	3860091	sugar beet rhizoshpere	f	RefSeq	Netherlands: Wageningen	not type material	2016-03-01
+L16	Bacillus altitudinis	RS_GCF_001431145.1	GCF_001431145.1	Bacillus altitudinis	Complete Genome	100.0	0.09	1	3793419	3793419	soil	f	RefSeq	China: Nanjing	not type material	2015-11-04
+L16	Bacillus altitudinis	RS_GCF_002571755.1	GCF_002571755.1	Bacillus altitudinis	Contig	100.0	0.06	53	217303	3696995	plant	f	RefSeq	USA: NC	not type material	2017-10-17
+L16	Bacillus altitudinis	RS_GCF_026787505.1	GCF_026787505.1	Bacillus altitudinis	Scaffold	99.89	0.34	173	104944	3721000	none	f	RefSeq	France	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_022819205.1	GCF_022819205.1	Bacillus altitudinis	Chromosome	100.0	0.01	91	115252	3767351	paddy rhizosphere	f	RefSeq	Malaysia	not type material	2022-04-06
+L16	Bacillus altitudinis	RS_GCF_007671735.1	GCF_007671735.1	Bacillus altitudinis	Scaffold	100.0	0.03	25	606519	3691136	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L16	Bacillus altitudinis	RS_GCF_002443015.2	GCF_002443015.2	Bacillus altitudinis	Complete Genome	100.0	0.0	2	3812575	3844795	air	f	RefSeq	Singapore	not type material	2018-12-11
+L16	Bacillus altitudinis	RS_GCF_007682105.1	GCF_007682105.1	Bacillus altitudinis	Scaffold	100.0	0.14	42	297324	3916682	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L16	Bacillus altitudinis	RS_GCF_026787755.1	GCF_026787755.1	Bacillus altitudinis	Scaffold	100.0	0.09	130	81998	3866019	soil	f	RefSeq	Trinidad and Tobago: Trinidad	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_012844145.1	GCF_012844145.1	Bacillus altitudinis	Contig	100.0	0.27	34	219153	3868742	feces	f	RefSeq	Germany	not type material	2020-04-25
+L16	Bacillus altitudinis	RS_GCF_022803025.1	GCF_022803025.1	Bacillus altitudinis	Contig	100.0	0.02	79	233237	3824497	leaf	f	RefSeq	Germany: Tuebingen	not type material	2022-04-01
+L16	Bacillus altitudinis	RS_GCF_000828455.1	GCF_000828455.1	Bacillus altitudinis	Scaffold	100.0	0.01	71	95446	3719496	cereals; cereal products; fermented breads; pasta and pastries	f	RefSeq	Netherlands	not type material	2015-01-26
+L16	Bacillus altitudinis	GB_GCA_019350915.1	GCA_019350915.1	Bacillus aerophilus	Contig	100.0	0.27	49	483503	3861250	soil	f	GenBank	India: Tamil Nadu	not type material	2021-07-26
+L16	Bacillus altitudinis	RS_GCF_023714965.1	GCF_023714965.1	Bacillus altitudinis	Contig	100.0	0.42	75	844862	3727933	Cleanroom	f	RefSeq	USA	not type material	2022-06-13
+L16	Bacillus altitudinis	RS_GCF_030645085.1	GCF_030645085.1	Bacillus altitudinis	Complete Genome	100.0	0.14	1	3892599	3892599	ENVO:01001176	f	RefSeq	Atlantic Ocean: Knipovich seamount	not type material	2023-08-05
+L16	Bacillus altitudinis	RS_GCF_024507855.1	GCF_024507855.1	Bacillus altitudinis	Complete Genome	100.0	0.01	2	3754572	3762968	none	f	RefSeq	none	not type material	2022-08-03
+L16	Bacillus altitudinis	RS_GCF_001038845.1	GCF_001038845.1	Bacillus stratosphericus	Contig	100.0	0.0	47	223161	3733110	Plant	f	RefSeq	Malaysia: Malacca	not type material	2015-06-24
+L16	Bacillus altitudinis	RS_GCF_028550655.1	GCF_028550655.1	Bacillus altitudinis	Contig	100.0	0.01	13	465005	3714140	Water	f	RefSeq	USA: Miami; Florida	not type material	2023-02-07
+L16	Bacillus altitudinis	RS_GCF_026787465.1	GCF_026787465.1	Bacillus altitudinis	Scaffold	100.0	0.05	101	112614	3938180	gut	f	RefSeq	France	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_018128575.1	GCF_018128575.1	Bacillus altitudinis C101	Contig	100.0	0.02	28	463032	3670386	sediment	f	RefSeq	Arctic Ocean	not type material	2021-04-22
+L16	Bacillus altitudinis	RS_GCF_023714045.1	GCF_023714045.1	Bacillus altitudinis	Contig	100.0	0.05	79	535620	3705254	Cleanroom	f	RefSeq	USA	not type material	2022-06-13
+L16	Bacillus altitudinis	RS_GCF_027568435.1	GCF_027568435.1	Bacillus altitudinis	Contig	100.0	0.02	17	958318	3788883	feces	f	RefSeq	China	not type material	2023-01-03
+L16	Bacillus altitudinis	RS_GCF_013131835.1	GCF_013131835.1	Bacillus altitudinis	Contig	100.0	0.01	46	205868	3883973	jute-retting water	f	RefSeq	India: West Bengal	not type material	2020-05-20
+L16	Bacillus altitudinis	GB_GCA_002953695.1	GCA_002953695.1	Bacillus altitudinis	Chromosome	100.0	0.06	35	240120	3751533	phylloplane	f	GenBank	India: Coimbatore	not type material	2018-02-01
+L16	Bacillus altitudinis	RS_GCF_000590455.1	GCF_000590455.1	Bacillus pumilus	Complete Genome	100.0	0.25	1	3763493	3763493	none	f	RefSeq	none	not type material	2014-03-12
+L16	Bacillus altitudinis	RS_GCF_003064485.1	GCF_003064485.1	Bacillus altitudinis	Contig	100.0	0.01	69	234390	3628062	leaf	f	RefSeq	India: Manipur	not type material	2018-04-23
+L16	Bacillus altitudinis	RS_GCF_019164215.1	GCF_019164215.1	Bacillus altitudinis	Complete Genome	100.0	0.05	1	3763082	3763082	rice rhizosphere soil	f	RefSeq	China: Heilongjiang Province	not type material	2021-07-07
+L16	Bacillus altitudinis	RS_GCF_030166595.1	GCF_030166595.1	Bacillus altitudinis	Complete Genome	100.0	0.01	1	3753708	3753708	seed of Verticillium wilt-resistant Gossypium hirsutum cultivar  Zhongzhimian No. 2	f	RefSeq	China:Beijing	not type material	2023-06-05
+L16	Bacillus altitudinis	RS_GCF_001029865.1	GCF_001029865.1	Bacillus altitudinis	Contig	100.0	0.01	85	98293	3972159	internal stem tissue	f	RefSeq	Puerto Rico	not type material	2015-06-19
+L16	Bacillus altitudinis	RS_GCF_004101925.1	GCF_004101925.1	Bacillus aerophilus	Complete Genome	100.0	0.09	1	3829464	3829464	air	f	RefSeq	India	not type material	2019-01-22
+L16	Bacillus altitudinis	RS_GCF_018128625.1	GCF_018128625.1	Bacillus altitudinis MN12	Contig	100.0	0.04	33	721566	3679259	marine sediment	f	RefSeq	Pacific Ocean	not type material	2021-04-22
+L16	Bacillus altitudinis	RS_GCF_001043795.1	GCF_001043795.1	Bacillus sp. LK10	Contig	100.0	0.02	71	226127	3687890	Plant	f	RefSeq	Malaysia: Malacca	not type material	2015-06-30
+L16	Bacillus altitudinis	RS_GCF_026787325.1	GCF_026787325.1	Bacillus altitudinis	Scaffold	100.0	0.01	110	83220	3798571	soil	f	RefSeq	Greenland	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_026787185.1	GCF_026787185.1	Bacillus altitudinis	Scaffold	100.0	0.02	54	197042	3702871	soil	f	RefSeq	France	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_016807685.1	GCF_016807685.1	Bacillus altitudinis	Complete Genome	100.0	0.02	2	3772571	3781168	rot potato tubers	f	RefSeq	Belarus: Minsk Region; Chervyen District	not type material	2021-02-04
+L16	Bacillus altitudinis	RS_GCF_026787385.1	GCF_026787385.1	Bacillus altitudinis	Scaffold	99.99	0.49	252	26694	3695084	soil	f	RefSeq	Canada	not type material	2022-12-09
+L16	Bacillus altitudinis	GB_GCA_020172015.1	GCA_020172015.1	Bacillus stratosphericus	Contig	100.0	0.01	13	964982	3717952	sediment	f	GenBank	China: Shenzhen	not type material	2021-09-28
+L16	Bacillus altitudinis	RS_GCF_001896335.1	GCF_001896335.1	Bacillus altitudinis	Contig	100.0	0.21	54	172320	3747257	heated water in contact with grass/sediment layer	f	RefSeq	USA: Yellowstone National Park; WY	not type material	2016-12-09
+L16	Bacillus altitudinis	RS_GCF_000701305.1	GCF_000701305.1	Bacillus sp. UNC125MFCrub1.1	Scaffold	100.0	0.02	16	949037	3718149	none	f	RefSeq	none	not type material	2014-06-11
+L16	Bacillus altitudinis	GB_GCA_030385675.1	GCA_030385675.1	Bacillus aerophilus	Contig	100.0	0.01	55	206761	3805603	caecum	f	GenBank	none	not type material	2023-07-02
+L16	Bacillus altitudinis	RS_GCF_002797105.1	GCF_002797105.1	Bacillus altitudinis	Contig	100.0	0.02	33	471307	3739340	Water sample and microbial mat on an anthropogenic pipe from caldera Uzon	f	RefSeq	Russia: Kamchatka	not type material	2017-11-28
+L16	Bacillus altitudinis	RS_GCF_003160715.1	GCF_003160715.1	Bacillus altitudinis	Contig	100.0	0.02	130	128930	3688424	leaf	f	RefSeq	India: Imphal west district	not type material	2018-05-24
+L16	Bacillus altitudinis	RS_GCF_027594585.1	GCF_027594585.1	Bacillus altitudinis	Chromosome	100.0	0.01	16	705911	3732726	Rice plant with soil	f	RefSeq	India: Jorhat; Assam	not type material	2023-01-09
+L16	Bacillus altitudinis	RS_GCF_007681095.1	GCF_007681095.1	Bacillus altitudinis	Contig	100.0	0.04	77	665807	3723350	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L16	Bacillus altitudinis	RS_GCF_005144805.1	GCF_005144805.1	Bacillus sp. S2(2019)	Contig	100.0	0.03	20	976729	3762691	canine ocular discharge	f	RefSeq	USA: New Hampshire; Goffstown	not type material	2019-05-04
+L16	Bacillus altitudinis	RS_GCF_000299555.2	GCF_000299555.2	Bacillus altitudinis	Complete Genome	100.0	0.02	1	3755709	3755709	none	f	RefSeq	China:Chengdu	not type material	2020-08-27
+L16	Bacillus altitudinis	RS_GCF_019037255.1	GCF_019037255.1	Bacillus altitudinis	Scaffold	100.0	0.02	33	279777	3754660	cleanroom floor	f	RefSeq	USA: California; Pasadena; JPL; Building 179	not type material	2021-06-25
+L16	Bacillus altitudinis	RS_GCF_026786855.1	GCF_026786855.1	Bacillus altitudinis	Scaffold	100.0	0.03	40	141623	3711784	soil	f	RefSeq	Canada: Grand Nord	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_011800395.1	GCF_011800395.1	Bacillus sp. EKM104P	Contig	100.0	0.05	30	564880	3722775	Dry seeds	f	RefSeq	Canada: Guelph	not type material	2020-03-31
+L16	Bacillus altitudinis	RS_GCF_027215635.1	GCF_027215635.1	Bacillus altitudinis	Contig	100.0	0.01	130	399014	3744885	soil	f	RefSeq	India: Assam; Jorhat	not type material	2022-12-21
+L16	Bacillus altitudinis	RS_GCF_002753875.2	GCF_002753875.2	Bacillus altitudinis	Contig	100.0	0.02	35	202489	3738419	sediments	f	RefSeq	Russia: Lake Krotovaya Lyaga; Novosibirsk region	not type material	2017-12-16
+L16	Bacillus altitudinis	RS_GCF_028821655.1	GCF_028821655.1	Bacillus altitudinis	Contig	100.0	0.0	21	667480	3695387	stem	f	RefSeq	Brazil: Rio Grande do Sul	not type material	2023-02-23
+L16	Bacillus altitudinis	RS_GCF_011067205.1	GCF_011067205.1	Bacillus altitudinis	Chromosome	100.0	0.44	30	421415	4041532	Hot spring microbial mat	f	RefSeq	Mexico:Michoacan;Zimirao	not type material	2020-03-08
+L16	Bacillus altitudinis	RS_GCF_900188195.1	GCF_900188195.1	Bacillus altitudinis	Scaffold	100.0	0.0	47	149139	3717231	none	f	RefSeq	none	not type material	2017-07-16
+L16	Bacillus altitudinis	RS_GCF_002741745.1	GCF_002741745.1	Bacillus altitudinis	Complete Genome	100.0	0.06	1	3765752	3765752	rhizosphere of rice from organic rice farming	f	RefSeq	Indonesia: Central Java; Semarang; Banyubiru	not type material	2017-11-02
+L16	Bacillus altitudinis	RS_GCF_029537175.1	GCF_029537175.1	Bacillus altitudinis	Complete Genome	100.0	1.21	3	3794334	3853736	cleanroom facility; TAS-I	f	RefSeq	Italy: Torino	not type material	2023-04-02
+L16	Bacillus altitudinis	RS_GCF_007676435.1	GCF_007676435.1	Bacillus altitudinis	Scaffold	100.0	0.01	136	397537	3778594	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L16	Bacillus altitudinis	RS_GCF_000972685.1	GCF_000972685.1	Bacillus altitudinis	Complete Genome	100.0	0.02	1	3745123	3745123	raw gallnut honey	f	RefSeq	China: Nandan County; Guangxi Province	not type material	2015-04-16
+L16	Bacillus altitudinis	RS_GCF_022570695.1	GCF_022570695.1	Bacillus altitudinis	Complete Genome	100.0	0.02	1	3727518	3727518	Fertile soil	f	RefSeq	China: Shandong; Qingdao	not type material	2022-03-15
+L16	Bacillus altitudinis	RS_GCF_026787965.1	GCF_026787965.1	Bacillus altitudinis	Scaffold	100.0	0.01	45	157787	3695096	soil	f	RefSeq	France: Paris	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_018128565.1	GCF_018128565.1	Bacillus altitudinis S70-5-12	Contig	100.0	0.02	62	277159	3641582	marine surface water	f	RefSeq	Indian Ocean	not type material	2021-04-22
+L16	Bacillus altitudinis	GB_GCA_031316515.1	GCA_031316515.1	Bacillus altitudinis	Contig	100.0	0.15	80	321419	3702921	none	f	GenBank	none	not type material	2023-09-08
+L16	Bacillus altitudinis	RS_GCF_000691145.1	GCF_000691145.1	Bacillus altitudinis 41KF2b	Contig	100.0	0.01	39	348530	3678935	cryogenic tubes used for collecting air samples from high altitudes	t	RefSeq	India	type strain of species	2014-05-15
+L16	Bacillus altitudinis	RS_GCF_026787265.1	GCF_026787265.1	Bacillus altitudinis	Scaffold	99.99	0.12	150	75872	3677418	soil	f	RefSeq	Greenland	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_001038775.1	GCF_001038775.1	Bacillus stratosphericus	Contig	100.0	0.02	53	196435	3702000	Plant	f	RefSeq	Malaysia: Malacca	not type material	2015-06-24
+L16	Bacillus altitudinis	RS_GCF_018128585.1	GCF_018128585.1	Bacillus altitudinis	Contig	100.0	0.04	86	68745	3673513	Bottom water	f	RefSeq	China: South sea	not type material	2021-04-22
+L16	Bacillus altitudinis	RS_GCF_000264255.1	GCF_000264255.1	Bacillus sp. M 2-6	Contig	100.0	0.19	67	128603	3795647	ginseng with high-pressure treatment	f	RefSeq	South Korea: Sungnam	not type material	2012-05-23
+L16	Bacillus altitudinis	RS_GCF_030271195.1	GCF_030271195.1	Bacillus altitudinis	Contig	100.0	0.02	16	939846	3635805	soil	f	RefSeq	Morocco: Errachidia; Merzouga	not type material	2023-06-13
+L16	Bacillus altitudinis	RS_GCF_001038915.1	GCF_001038915.1	Bacillus stratosphericus	Contig	100.0	0.03	57	148096	3700415	Plant	f	RefSeq	Malaysia: Malacca	not type material	2015-06-24
+L16	Bacillus altitudinis	RS_GCF_026787145.1	GCF_026787145.1	Bacillus altitudinis	Scaffold	100.0	0.03	37	202324	3721078	soil	f	RefSeq	India	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_018128635.1	GCF_018128635.1	Bacillus altitudinis A23-8	Contig	100.0	0.06	78	288988	3835941	marine sediment	f	RefSeq	Indian Ocean	not type material	2021-04-22
+L16	Bacillus altitudinis	RS_GCF_000225935.1	GCF_000225935.1	Bacillus altitudinis	Scaffold	100.0	0.01	161	50105	3692856	none	f	RefSeq	none	not type material	2011-09-15
+L16	Bacillus altitudinis	RS_GCF_024807925.1	GCF_024807925.1	Bacillus sp. JUb11	Contig	100.0	0.01	22	396303	3744822	none	f	RefSeq	none	not type material	2022-08-31
+L16	Bacillus altitudinis	RS_GCF_001426125.1	GCF_001426125.1	Bacillus sp. Leaf49	Contig	100.0	0.3	26	297105	3934505	leaf	f	RefSeq	Switzerland: Zurich	not type material	2015-11-02
+L16	Bacillus altitudinis	RS_GCF_021654615.1	GCF_021654615.1	Bacillus altitudinis	Complete Genome	100.0	0.02	1	3715529	3715529	spider	f	RefSeq	Japan	not type material	2021-11-19
+L16	Bacillus altitudinis	RS_GCF_024262145.1	GCF_024262145.1	Bacillus altitudinis	Scaffold	100.0	0.05	13	669064	3714049	mangrove soil	f	RefSeq	Philippines: Palawan	not type material	2022-07-13
+L16	Bacillus altitudinis	RS_GCF_026787245.1	GCF_026787245.1	Bacillus altitudinis	Scaffold	100.0	0.01	91	83918	3808571	soil	f	RefSeq	Greenland	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_001700735.1	GCF_001700735.1	Bacillus altitudinis	Complete Genome	100.0	0.09	1	3792999	3792999	soil	f	RefSeq	China: Zhongshan Moutain; Nanjing	not type material	2016-08-08
+L16	Bacillus altitudinis	RS_GCF_007681315.1	GCF_007681315.1	Bacillus altitudinis	Scaffold	100.0	0.01	42	449426	3764965	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L16	Bacillus altitudinis	RS_GCF_030348255.1	GCF_030348255.1	Bacillus altitudinis	Contig	100.0	0.02	5	3860161	3871190	marine	f	RefSeq	Denmark: Jyllinge harbor	not type material	2023-06-27
+L16	Bacillus altitudinis	RS_GCF_902506045.1	GCF_902506045.1	Bacillus sp. 348	Scaffold	100.0	0.06	5	3588615	3846638	none	f	RefSeq	none	not type material	2020-01-03
+L16	Bacillus altitudinis	RS_GCF_001431785.1	GCF_001431785.1	Bacillus altitudinis	Complete Genome	100.0	0.09	1	3787818	3787818	soil	f	RefSeq	China:Zhongshan moutain Nanjing	not type material	2015-11-04
+L16	Bacillus altitudinis	RS_GCF_007923025.1	GCF_007923025.1	Bacillus altitudinis	Chromosome	100.0	0.08	39	250745	3748650	sludge	f	RefSeq	China	not type material	2019-08-09
+L16	Bacillus altitudinis	RS_GCF_001687085.1	GCF_001687085.1	Bacillus pumilus	Chromosome	100.0	0.01	80	78094	3659360	compost	f	RefSeq	Egypt: Alexandria	not type material	2016-07-18
+L16	Bacillus altitudinis	RS_GCF_020165935.1	GCF_020165935.1	Bacillus sp. RAR_M1_44	Contig	100.0	0.01	5	2582281	3768026	Mangrove plant	f	RefSeq	Viet Nam	not type material	2021-09-26
+L16	Bacillus altitudinis	RS_GCF_007681425.1	GCF_007681425.1	Bacillus altitudinis	Scaffold	100.0	0.01	41	499520	3688696	environmental	f	RefSeq	USA: North Carolina; Durham	not type material	2019-07-30
+L16	Bacillus altitudinis	RS_GCF_026787745.1	GCF_026787745.1	Bacillus altitudinis	Scaffold	100.0	0.03	37	154750	3719218	sand	f	RefSeq	France	not type material	2022-12-09
+L16	Bacillus altitudinis	RS_GCF_002077245.1	GCF_002077245.1	Bacillus stratosphericus	Contig	100.0	0.01	159	106700	3628496	none	f	RefSeq	USA: Central Florida	not type material	2017-04-03
+L16	Bacillus altitudinis	RS_GCF_900411365.1	GCF_900411365.1	Bacillus altitudinis	Contig	100.0	0.04	28	660289	3690614	none	f	RefSeq	none	not type material	2018-06-24
+L17	Cytobacillus oceanisediminis	RS_GCF_007830235.1	GCF_007830235.1	Cytobacillus oceanisediminis	Scaffold	100.0	3.04	68	153726	5634660	none	t	RefSeq	none	type strain of species	2019-08-02
+L18	Cytobacillus firmus_B	RS_GCF_019801595.1	GCF_019801595.1	Cytobacillus firmus	Contig	100.0	0.54	54	190213	4889663	sediment	f	RefSeq	China: Shenzhen	not type material	2021-08-30
+L18	Cytobacillus firmus_B	RS_GCF_030123345.1	GCF_030123345.1	Cytobacillus firmus	Complete Genome	100.0	0.24	1	5085204	5085204	rhizosphere soil	f	RefSeq	China: Shangqiu; Henan Province	not type material	2023-05-27
+L18	Cytobacillus firmus_B	RS_GCF_020524225.1	GCF_020524225.1	Cytobacillus firmus	Contig	100.0	0.13	27	643300	5166491	sediment	f	RefSeq	China: Shenzhen	not type material	2021-10-18
+L18	Cytobacillus firmus_B	RS_GCF_030123225.1	GCF_030123225.1	Cytobacillus firmus	Complete Genome	100.0	0.12	1	5004067	5004067	rhizosphere soil	f	RefSeq	China: Longnan; Gansu Province	not type material	2023-05-27
+L18	Cytobacillus firmus_B	GB_GCA_023197125.1	GCA_023197125.1	Cytobacillus sp. HI03-3b	Contig	99.73	4.52	11	865454	4860704	none	f	GenBank	Indonesia:Hoga Island; Southeast Sulawesi	not type material	2022-05-01
+L18	Cytobacillus firmus_B	RS_GCF_015844875.1	GCF_015844875.1	Cytobacillus firmus	Contig	100.0	1.61	33	447519	5652295	none	f	RefSeq	China	not type material	2020-12-08
+L18	Cytobacillus firmus_B	RS_GCF_023657595.1	GCF_023657595.1	Cytobacillus firmus	Complete Genome	100.0	0.26	1	4981461	4981461	soil	t	RefSeq	China:Beijing	not type material	2022-06-07
+L18	Cytobacillus firmus_B	RS_GCF_025467715.1	GCF_025467715.1	Cytobacillus firmus	Scaffold	100.0	0.45	22	635554	5137666	rhizosphere soil	f	RefSeq	Italy	not type material	2022-09-28
+L18	Cytobacillus firmus_B	RS_GCF_015880935.1	GCF_015880935.1	Cytobacillus firmus	Scaffold	100.0	0.03	34	423826	5091941	soil	f	RefSeq	China	not type material	2020-12-08
+L18	Cytobacillus firmus_B	RS_GCF_947496675.1	GCF_947496675.1	Cytobacillus firmus	Contig	100.0	0.7	54	513187	5123457	none	f	RefSeq	none	not type material	2023-01-30
+L18	Cytobacillus firmus_B	RS_GCF_023823815.1	GCF_023823815.1	Cytobacillus firmus	Complete Genome	100.0	1.95	2	4922036	5268767	soil	f	RefSeq	China	not type material	2022-06-21
+L18	Cytobacillus firmus_B	RS_GCF_025732135.1	GCF_025732135.1	Cytobacillus firmus	Complete Genome	100.0	1.13	2	4970020	5353076	soil	f	RefSeq	China: Beijing	not type material	2022-10-18
+L18	Cytobacillus firmus_B	RS_GCF_001038755.1	GCF_001038755.1	Cytobacillus firmus	Contig	100.0	0.03	136	82452	4717984	Plant	f	RefSeq	Malaysia: Malacca	not type material	2015-06-24
+L18	Cytobacillus firmus_B	RS_GCF_010628845.1	GCF_010628845.1	Bacillus sp. 22-7	Scaffold	100.0	0.09	92	99115	4943639	none	f	RefSeq	China	not type material	2020-02-14
+L18	Cytobacillus firmus_B	RS_GCF_020739485.1	GCF_020739485.1	Cytobacillus oceanisediminis	Contig	100.0	0.51	15	863059	4994267	sediment	f	RefSeq	China: Shenzhen	not type material	2021-11-03
+L18	Cytobacillus firmus_B	RS_GCF_020524945.1	GCF_020524945.1	Cytobacillus firmus	Contig	100.0	0.13	30	642902	5166060	sediment	f	RefSeq	China: Shenzhen	not type material	2021-10-18
+L18	Cytobacillus firmus_B	RS_GCF_015880905.1	GCF_015880905.1	Cytobacillus firmus	Contig	100.0	0.0	17	857603	5009386	soil	f	RefSeq	China	not type material	2020-12-08
+L18	Cytobacillus firmus_B	RS_GCF_024753035.1	GCF_024753035.1	Cytobacillus firmus	Scaffold	100.0	0.09	24	586325	4887464	agricultural environmental material	f	RefSeq	Italy	not type material	2022-08-28

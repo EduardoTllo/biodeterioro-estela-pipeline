@@ -1,0 +1,8 @@
+rango	linaje_id	especie_gtdb	slug	ncbi_especie	ncbi_taxid	n_postqc	n_descargados_ok	n_no_redundantes	viable	seleccionada	n_bins	bins	completitud_bin_max
+1	L16	Bacillus altitudinis	L16_Bacillus_altitudinis	Bacillus altitudinis	293387	209	208	137	si	si	1	bin-5-63	72.46
+2	L12	Peribacillus frigoritolerans	L12_Peribacillus_frigoritolerans	Peribacillus frigoritolerans	450367	72	69	42	si	si	1	bin-1-54	92.25
+3	L8	Acinetobacter schindleri	L8_Acinetobacter_schindleri	Acinetobacter schindleri	108981	29	29	23	si	si	1	bin-4-52	99.86
+NA	L18	Cytobacillus firmus_B	L18_Cytobacillus_firmus_B	Cytobacillus firmus	1399	18	18	12	no	no	1	bin-5-50	76.56
+NA	L11	Staphylococcus warneri_A	L11_Staphylococcus_warneri_A	Staphylococcus warneri	1292	24	24	4	no	no	1	bin-1-53	99.84
+NA	L9	Priestia flexa	L9_Priestia_flexa	Priestia flexa	86664	29	29	4	no	no	1	bin-5-60	77.53
+NA	L14	Bacillus licheniformis	L14_Bacillus_licheniformis	Bacillus licheniformis	1402	279	279	1	no	no	1	bin-1-64	99.84

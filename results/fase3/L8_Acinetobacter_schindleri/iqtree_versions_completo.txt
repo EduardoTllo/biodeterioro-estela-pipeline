@@ -1,0 +1,5 @@
+Fase 3 - IQ-TREE - L8_Acinetobacter_schindleri
+Fecha: Wed Oct  7 00:27:20 -05 2026   Job: 54753   Nodo: n003
+Modo: completo   UFBoot: 1000   Semilla: 12345
+iqtree=3.1.3=h8471819_0
+snp-sites=2.5.1=h577a1d6_7

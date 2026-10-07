@@ -1,0 +1,15 @@
+consulta	bin	genoma_original	locus_tag	contig	largo_contig	gc_contig	inicio	fin	hebra	dist_borde_pb	largo_aa	gen	producto	familia	f1	f2_anclaje	f4	f4_hit	f3	f3_hit
+bin_5_63_00095	bin_5_63	bin-5-63	bin_5_63_00095	contig_7	91591	0.4062	1542	2186	+	1541	214		Serine protease	group_1291	ok	anclado	ok		ok	
+bin_5_63_00096	bin_5_63	bin-5-63	bin_5_63_00096	contig_7	91591	0.4062	2188	2643	+	2187	151		DUF4342 domain-containing protein	group_1675	ok	anclado	ok		ok	
+bin_5_63_00159	bin_5_63	bin-5-63	bin_5_63_00159	contig_7	91591	0.4062	69200	70492	+	21099	430		SIR2 family protein	group_397	ok	anclado	descartado_F4_presente_en_especie	GCF_024362715_1 (100.0 % id, 100 % cov)		
+bin_5_63_00160	bin_5_63	bin-5-63	bin_5_63_00160	contig_7	91591	0.4062	70489	70974	+	20617	161		Maturase K	group_1604	ok	anclado	descartado_F4_presente_en_especie	GCF_024362715_1 (99.4 % id, 100 % cov)		
+bin_5_63_00161	bin_5_63	bin-5-63	bin_5_63_00161	contig_7	91591	0.4062	70961	72868	+	18723	635		Rad50/SbcC-type AAA domain-containing protein	group_105	ok	anclado	descartado_F4_presente_en_especie	GCF_024362715_1 (99.8 % id, 100 % cov)		
+bin_5_63_00302	bin_5_63	bin-5-63	bin_5_63_00302	contig_11	25711	0.3935	14730	14909	+	10802	59		Transcriptional regulator	group_5426	descartado_F1_corto	anclado				
+bin_5_63_00303	bin_5_63	bin-5-63	bin_5_63_00303	contig_11	25711	0.3935	14967	15458	-	10253	163		hypothetical protein	group_5422	ok	anclado	descartado_F4_presente_en_especie	GCF_900119345_1 (100.0 % id, 85 % cov)		
+bin_5_63_00304	bin_5_63	bin-5-63	bin_5_63_00304	contig_11	25711	0.3935	15569	15772	-	9939	67		DUF1146 domain-containing protein	group_5425	descartado_F1_corto	anclado				
+bin_5_63_00305	bin_5_63	bin-5-63	bin_5_63_00305	contig_11	25711	0.3935	16449	17147	-	8564	232		hypothetical protein	group_5424	ok	anclado	descartado_F4_presente_en_especie	GCF_900119345_1 (99.6 % id, 100 % cov)		
+bin_5_63_00306	bin_5_63	bin-5-63	bin_5_63_00306	contig_11	25711	0.3935	18030	18554	+	7157	174		site-specific integrase	group_5423	ok	anclado	descartado_F4_presente_en_especie	GCF_900119345_1 (99.4 % id, 100 % cov)		
+bin_5_63_01184	bin_5_63	bin-5-63	bin_5_63_01184	contig_43	20680	0.4122	5055	5147	-	5054	30		hypothetical protein	group_5427	descartado_F1_corto	anclado				
+bin_5_63_01216	bin_5_63	bin-5-63	bin_5_63_01216	contig_44	39056	0.4268	17060	18517	-	17059	485		HNH/ENDO VII family nuclease	group_260	ok	anclado	descartado_F4_presente_en_especie	GCF_900188195_1 (99.8 % id, 100 % cov)		
+bin_5_63_01463	bin_5_63	bin-5-63	bin_5_63_01463	contig_50	78781	0.4100	60849	62618	+	16163	589		ATP-dependent endonuclease	group_148	ok	anclado	descartado_F4_presente_en_especie	GCF_005849435_1 (98.3 % id, 100 % cov)		
+bin_5_63_01464	bin_5_63	bin-5-63	bin_5_63_01464	contig_50	78781	0.4100	62605	64230	+	14551	541		ATP-dependent helicase	group_188	ok	anclado	descartado_F4_presente_en_especie	GCF_005849435_1 (98.0 % id, 100 % cov)		

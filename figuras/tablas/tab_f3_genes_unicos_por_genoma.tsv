@@ -1,0 +1,116 @@
+linaje_id	especie_gtdb	id	assembly_level	contigs	n50	unicos	atipico
+L16	Bacillus altitudinis	GCF_029894105_1	Contig	2	3887393	97	TRUE
+L16	Bacillus altitudinis	GCF_000691145_1	Contig	39	348530	13	FALSE
+L16	Bacillus altitudinis	GCF_010747395_1	Contig	54	103203	4	FALSE
+L16	Bacillus altitudinis	GCF_001687085_1	Chromosome	80	78094	12	FALSE
+L16	Bacillus altitudinis	GCF_003946835_1	Scaffold	27	347292	49	FALSE
+L16	Bacillus altitudinis	GCF_023525275_1	Contig	48	293183	6	FALSE
+L16	Bacillus altitudinis	GCF_024134705_1	Chromosome	1	3749496	18	FALSE
+L16	Bacillus altitudinis	GCF_000789425_2	Scaffold	19	466626	27	FALSE
+L16	Bacillus altitudinis	GCF_000972685_1	Complete Genome	1	3745123	10	FALSE
+L16	Bacillus altitudinis	GCF_023502445_1	Contig	17	958318	39	FALSE
+L16	Bacillus altitudinis	GCA_002953695_1	Chromosome	35	240120	29	FALSE
+L16	Bacillus altitudinis	GCF_026786505_1	Scaffold	119	114808	37	FALSE
+L16	Bacillus altitudinis	GCF_026787755_1	Scaffold	130	81998	55	FALSE
+L16	Bacillus altitudinis	GCF_011067205_1	Chromosome	30	421415	263	TRUE
+L16	Bacillus altitudinis	GCF_002571755_1	Contig	53	217303	15	FALSE
+L16	Bacillus altitudinis	GCF_004101925_1	Complete Genome	1	3829464	40	FALSE
+L16	Bacillus altitudinis	GCF_021654615_1	Complete Genome	1	3715529	20	FALSE
+L16	Bacillus altitudinis	GCF_902500235_1	Contig	63	123723	10	FALSE
+L16	Bacillus altitudinis	GCF_026787465_1	Scaffold	101	112614	116	TRUE
+L16	Bacillus altitudinis	GCF_015160895_1	Complete Genome	1	3763717	12	FALSE
+L16	Bacillus altitudinis	GCA_029953515_1	Complete Genome	1	3754982	20	FALSE
+L16	Bacillus altitudinis	GCF_026787325_1	Scaffold	110	83220	30	FALSE
+L16	Bacillus altitudinis	GCF_028550655_1	Contig	13	465005	17	FALSE
+L16	Bacillus altitudinis	GCF_015689015_1	Complete Genome	1	3718493	10	FALSE
+L16	Bacillus altitudinis	GCF_029537175_1	Complete Genome	3	3794334	46	FALSE
+L16	Bacillus altitudinis	GCF_001578165_1	Complete Genome	1	3860091	10	FALSE
+L16	Bacillus altitudinis	GCF_000828455_1	Scaffold	71	95446	51	FALSE
+L16	Bacillus altitudinis	GCF_003284495_1	Contig	28	378104	15	FALSE
+L16	Bacillus altitudinis	GCF_003049175_1	Contig	85	314998	30	FALSE
+L16	Bacillus altitudinis	GCF_029478555_1	Contig	41	982708	15	FALSE
+L16	Bacillus altitudinis	GCF_016767855_1	Complete Genome	1	3741767	21	FALSE
+L16	Bacillus altitudinis	GCF_030122945_1	Complete Genome	1	3788886	16	FALSE
+L16	Bacillus altitudinis	GCF_030123125_1	Complete Genome	1	3797173	3	FALSE
+L16	Bacillus altitudinis	GCF_002443015_2	Complete Genome	2	3812575	30	FALSE
+L16	Bacillus altitudinis	GCF_021654595_1	Complete Genome	2	3674367	13	FALSE
+L16	Bacillus altitudinis	GCF_030645085_1	Complete Genome	1	3892599	47	FALSE
+L16	Bacillus altitudinis	GCF_026786615_1	Scaffold	109	91859	35	FALSE
+L16	Bacillus altitudinis	GCF_030291995_1	Complete Genome	2	3912078	42	FALSE
+L16	Bacillus altitudinis	GCF_000353245_1	Contig	19	369435	74	TRUE
+L16	Bacillus altitudinis	GCF_013391605_1	Scaffold	37	341754	36	FALSE
+L16	Bacillus altitudinis	GCF_007671735_1	Scaffold	25	606519	4	FALSE
+L16	Bacillus altitudinis	GCF_005144805_1	Contig	20	976729	16	FALSE
+L16	Bacillus altitudinis	GCF_000590455_1	Complete Genome	1	3763493	18	FALSE
+L16	Bacillus altitudinis	GCF_026787895_1	Scaffold	72	124061	10	FALSE
+L16	Bacillus altitudinis	GCF_006007905_1	Complete Genome	3	3701797	29	FALSE
+L16	Bacillus altitudinis	GCF_030433755_1	Contig	190	516346	17	FALSE
+L16	Bacillus altitudinis	GCF_008123875_1	Contig	22	878282	12	FALSE
+L16	Bacillus altitudinis	GCF_001543165_1	Chromosome	177	50458	1	FALSE
+L16	Bacillus altitudinis	GCF_002077245_1	Contig	159	106700	0	FALSE
+L16	Bacillus altitudinis	GCF_026787695_1	Scaffold	244	54149	6	FALSE
+L12	Peribacillus frigoritolerans	GCF_030123165_1	Complete Genome	1	5451292	74	FALSE
+L12	Peribacillus frigoritolerans	GCF_023823955_1	Complete Genome	1	5654626	192	FALSE
+L12	Peribacillus frigoritolerans	GCF_030122925_1	Complete Genome	1	5436505	76	FALSE
+L12	Peribacillus frigoritolerans	GCF_004006475_1	Complete Genome	1	5475560	116	FALSE
+L12	Peribacillus frigoritolerans	GCF_022394675_1	Complete Genome	2	5552463	63	FALSE
+L12	Peribacillus frigoritolerans	GCF_023823995_1	Complete Genome	3	5339772	166	FALSE
+L12	Peribacillus frigoritolerans	GCF_025960625_1	Complete Genome	4	5703943	158	FALSE
+L12	Peribacillus frigoritolerans	GCF_001636405_1	Scaffold	6	1809189	80	FALSE
+L12	Peribacillus frigoritolerans	GCA_001636485_1	Scaffold	7	4413263	119	FALSE
+L12	Peribacillus frigoritolerans	GCA_001277355_1	Scaffold	11	3704817	91	FALSE
+L12	Peribacillus frigoritolerans	GCF_014876505_1	Scaffold	12	1217941	159	FALSE
+L12	Peribacillus frigoritolerans	GCA_001277335_1	Scaffold	23	1643036	121	FALSE
+L12	Peribacillus frigoritolerans	GCF_007828935_1	Scaffold	23	576253	46	FALSE
+L12	Peribacillus frigoritolerans	GCA_000785385_1	Scaffold	34	339104	178	FALSE
+L12	Peribacillus frigoritolerans	GCF_018613135_1	Scaffold	53	360426	349	TRUE
+L12	Peribacillus frigoritolerans	GCF_022603155_1	Scaffold	54	405431	165	FALSE
+L12	Peribacillus frigoritolerans	GCA_001429835_1	Scaffold	60	300665	77	FALSE
+L12	Peribacillus frigoritolerans	GCA_002998155_1	Scaffold	65	228291	56	FALSE
+L12	Peribacillus frigoritolerans	GCA_024160055_1	Scaffold	81	117816	148	FALSE
+L12	Peribacillus frigoritolerans	GCF_024733505_1	Scaffold	84	142460	60	FALSE
+L12	Peribacillus frigoritolerans	GCA_021012855_1	Scaffold	91	246125	183	FALSE
+L12	Peribacillus frigoritolerans	GCF_026794655_1	Scaffold	123	124397	107	FALSE
+L12	Peribacillus frigoritolerans	GCA_001636475_1	Scaffold	129	110832	655	TRUE
+L12	Peribacillus frigoritolerans	GCA_018613485_1	Scaffold	166	56985	170	FALSE
+L12	Peribacillus frigoritolerans	GCF_023502885_1	Scaffold	170	215258	113	FALSE
+L12	Peribacillus frigoritolerans	GCF_026794285_1	Scaffold	206	65168	58	FALSE
+L12	Peribacillus frigoritolerans	GCF_023502825_1	Scaffold	231	144974	221	FALSE
+L12	Peribacillus frigoritolerans	GCF_026795095_1	Scaffold	264	65494	93	FALSE
+L12	Peribacillus frigoritolerans	GCA_030804025_1	Contig	1	5587248	170	FALSE
+L12	Peribacillus frigoritolerans	GCF_024169475_1	Contig	2	5488220	175	FALSE
+L12	Peribacillus frigoritolerans	GCF_030348775_1	Contig	3	5579326	110	FALSE
+L12	Peribacillus frigoritolerans	GCF_030348515_1	Contig	3	5767210	304	FALSE
+L12	Peribacillus frigoritolerans	GCF_030348785_1	Contig	8	5448059	149	FALSE
+L12	Peribacillus frigoritolerans	GCF_026891895_1	Contig	43	360633	178	FALSE
+L12	Peribacillus frigoritolerans	GCA_014839555_1	Contig	63	260351	76	FALSE
+L12	Peribacillus frigoritolerans	GCF_025548515_1	Contig	66	232713	118	FALSE
+L12	Peribacillus frigoritolerans	GCF_029222345_1	Contig	90	407114	215	FALSE
+L12	Peribacillus frigoritolerans	GCA_016757415_1	Contig	136	187761	107	FALSE
+L12	Peribacillus frigoritolerans	GCF_023714145_1	Contig	153	261737	146	FALSE
+L12	Peribacillus frigoritolerans	GCA_019748875_1	Contig	166	93834	135	FALSE
+L12	Peribacillus frigoritolerans	GCA_002276655_1	Contig	215	113116	110	FALSE
+L12	Peribacillus frigoritolerans	GCF_029625965_1	Contig	288	54923	16	FALSE
+L8	Acinetobacter schindleri	GCF_003072585_2	Complete Genome	2	3088433	214	FALSE
+L8	Acinetobacter schindleri	GCF_028657965_1	Complete Genome	2	3165552	170	FALSE
+L8	Acinetobacter schindleri	GCF_001971565_1	Complete Genome	7	3001209	71	FALSE
+L8	Acinetobacter schindleri	GCA_022832955_1	Complete Genome	7	3135005	308	TRUE
+L8	Acinetobacter schindleri	GCF_010919095_1	Complete Genome	9	3131572	168	FALSE
+L8	Acinetobacter schindleri	GCF_010918895_1	Complete Genome	9	3097067	147	FALSE
+L8	Acinetobacter schindleri	GCF_010918635_1	Complete Genome	11	3135167	117	FALSE
+L8	Acinetobacter schindleri	GCF_000368465_1	Scaffold	25	315976	175	FALSE
+L8	Acinetobacter schindleri	GCF_000368625_1	Scaffold	33	547262	102	FALSE
+L8	Acinetobacter schindleri	GCF_000369585_1	Scaffold	41	285287	62	FALSE
+L8	Acinetobacter schindleri	GCF_014204595_1	Scaffold	66	113477	71	FALSE
+L8	Acinetobacter schindleri	GCF_001866125_1	Scaffold	107	101119	50	FALSE
+L8	Acinetobacter schindleri	GCF_003289665_1	Scaffold	118	71050	32	FALSE
+L8	Acinetobacter schindleri	GCF_030973565_1	Scaffold	141	93667	220	FALSE
+L8	Acinetobacter schindleri	GCF_024129565_1	Contig	39	281186	128	FALSE
+L8	Acinetobacter schindleri	GCA_013420325_1	Contig	70	247441	150	FALSE
+L8	Acinetobacter schindleri	GCF_025513595_1	Contig	86	95813	95	FALSE
+L8	Acinetobacter schindleri	GCF_023218135_1	Contig	101	117054	82	FALSE
+L8	Acinetobacter schindleri	GCF_000264725_1	Contig	102	68401	165	FALSE
+L8	Acinetobacter schindleri	GCF_003069395_1	Contig	105	56503	20	FALSE
+L8	Acinetobacter schindleri	GCF_025514435_1	Contig	106	83787	104	FALSE
+L8	Acinetobacter schindleri	GCF_030678615_1	Contig	138	90150	65	FALSE
+L8	Acinetobacter schindleri	GCF_002918965_1	Contig	161	66687	66	FALSE

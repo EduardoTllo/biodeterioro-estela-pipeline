@@ -1,0 +1,8 @@
+slug	linaje_id	especie_gtdb	ncbi_especie	ncbi_taxid	n_postqc	bins	n_bins
+L14_Bacillus_licheniformis	L14	Bacillus licheniformis	Bacillus licheniformis	1402	279	bin-1-64	1
+L16_Bacillus_altitudinis	L16	Bacillus altitudinis	Bacillus altitudinis	293387	209	bin-5-63	1
+L12_Peribacillus_frigoritolerans	L12	Peribacillus frigoritolerans	Peribacillus frigoritolerans	450367	72	bin-1-54	1
+L8_Acinetobacter_schindleri	L8	Acinetobacter schindleri	Acinetobacter schindleri	108981	29	bin-4-52	1
+L9_Priestia_flexa	L9	Priestia flexa	Priestia flexa	86664	29	bin-5-60	1
+L11_Staphylococcus_warneri_A	L11	Staphylococcus warneri_A	Staphylococcus warneri	1292	24	bin-1-53	1
+L18_Cytobacillus_firmus_B	L18	Cytobacillus firmus_B	Cytobacillus firmus	1399	18	bin-5-50	1

@@ -1,0 +1,4 @@
+rango	slug	linaje_id	especie_gtdb	ncbi_especie	ncbi_taxid	n_refs	n_no_redundantes	bins	bins_ids
+1	L16_Bacillus_altitudinis	L16	Bacillus altitudinis	Bacillus altitudinis	293387	50	137	bin-5-63	bin_5_63
+2	L12_Peribacillus_frigoritolerans	L12	Peribacillus frigoritolerans	Peribacillus frigoritolerans	450367	42	42	bin-1-54	bin_1_54
+3	L8_Acinetobacter_schindleri	L8	Acinetobacter schindleri	Acinetobacter schindleri	108981	23	23	bin-4-52	bin_4_52

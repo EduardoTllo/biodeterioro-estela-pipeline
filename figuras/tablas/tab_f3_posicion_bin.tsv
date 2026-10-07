@@ -1,0 +1,4 @@
+bin	genoma_original	completitud_checkm2	recuperacion_core_pct	n_genes	core	shell	cloud	exclusivo_candidato	no_en_pangenoma	slug	etiqueta
+bin_5_63	bin-5-63	72.46	75.17	2739	2465	213	15	14	32	L16_Bacillus_altitudinis	Bacillus altitudinis (L16)
+bin_1_54	bin-1-54	92.25	85.71	4167	3406	520	200	34	7	L12_Peribacillus_frigoritolerans	Peribacillus frigoritolerans (L12)
+bin_4_52	bin-4-52	99.86	99.04	3266	2383	345	367	70	101	L8_Acinetobacter_schindleri	Acinetobacter schindleri (L8)

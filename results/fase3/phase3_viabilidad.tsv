@@ -1,0 +1,13 @@
+ranking_disponibilidad	linaje_id	especie_gtdb	ncbi_especie	ncbi_taxid	sufijo_gtdb	conteo_ncbi_comparable	n_genbank	n_refseq	n_cluster_gtdb	n_postqc	n_objetivo_pangenoma	completitud_media	contaminacion_media	n_habitats_distintos	habitats	prevalencia_espacial	n_bins_propios	viabilidad_pangenoma	seleccion_fase3
+1	L14	Bacillus licheniformis	Bacillus licheniformis	1402	no	si	1	1	307	279	50	100.00	0.21	83	skim milk powder (medium heat) (18); uncut heroin sample (11); soil (11); alpha-amylase enzym 4g (coobra) (10); food (7)	1	1	Si	Si
+2	L16	Bacillus altitudinis	Bacillus altitudinis	293387	no	si	1	1	217	209	50	100.00	0.08	90	soil (37); environmental (10); sediment (8); plant (7); cleanroom (4)	1	1	Si	Si
+3	L12	Peribacillus frigoritolerans	Peribacillus frigoritolerans	450367	no	si	1	1	82	72	50	100.00	0.95	27	soil (20); rhizosphere soil (6); steppe soil[envo:00005777]|soil organic  (4); seed (2); core; corn (2)	1	1	Si	Si
+4	L8	Acinetobacter schindleri	Acinetobacter schindleri	108981	no	si	1	1	37	29	29	99.97	0.65	19	stool (3); endovascular (2); urine (2); stomach (1); the condensate water of the shenzhou-9 s (1)	1	1	Si	Si
+5	L9	Priestia flexa	Priestia flexa	86664	no	si	1	1	31	29	29	99.99	0.11	14	sediment (6); environmental (2); marine or sediment (1); kimchi (1); local geographical source (1)	1	1	Si	Si
+6	L11	Staphylococcus warneri_A	Staphylococcus warneri	1292	si	no	1	1	27	24	24	99.99	0.21	15	herd 321 (4); blood (2); skin (2); nasal swab (2); herd 202 (2)	1	1	Si	Si
+7	L18	Cytobacillus firmus_B	Cytobacillus firmus	1399	si	no	1	1	18	18	18	99.98	0.70	5	soil (5); sediment (4); rhizosphere soil (3); plant (1); agricultural environmental material (1)	1	1	Si	Si
+NA	L1	Telluria timonae	Massilia timonae	47229	no	si	1	1	8	3	3	100.00	0.40	1	forest soil (1)	2	2	No	No
+NA	L3	Bacillus_AB infantis	Bacillus infantis	324767	si	no	1	1	12	9	9	100.00	1.37	6	sediment (2); clean room (1); open ocean (1); symbiodiniaceae culture (1); ocular surface of healthy person (1)	1	1	No	No
+NA	L13	Rossellomorea marisflavi	Rossellomorea marisflavi	189381	no	si	1	1	4	4	4	99.91	0.33	2	dumpsite (1); a tidal flat (1)	1	1	No	No
+NA	L15	Metabacillus halosaccharovorans	Metabacillus halosaccharovorans	930124	no	si	1	1	4	4	4	100.00	1.38	3	cleanroom (1); high background radiation area costal sa (1); agricultural soil (1)	1	1	No	No
+NA	L17	Cytobacillus oceanisediminis	Cytobacillus oceanisediminis	665099	no	si	1	1	1	1	1	100.00	3.04	0	NA	1	1	No	No

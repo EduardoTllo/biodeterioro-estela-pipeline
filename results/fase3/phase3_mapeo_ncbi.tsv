@@ -1,0 +1,13 @@
+linaje_id	especie_gtdb	ncbi_especie_esperada	ncbi_especie	ncbi_taxid	acuerdo_mapeo	n_taxids_distintos	sufijo_gtdb	conteo_ncbi_comparable
+L1	Telluria timonae	Telluria timonae	Massilia timonae	47229	0.75	3	no	si
+L3	Bacillus_AB infantis	Bacillus infantis	Bacillus infantis	324767	0.50	6	si	no
+L8	Acinetobacter schindleri	Acinetobacter schindleri	Acinetobacter schindleri	108981	0.59	16	no	si
+L9	Priestia flexa	Priestia flexa	Priestia flexa	86664	0.90	4	no	si
+L11	Staphylococcus warneri_A	Staphylococcus warneri	Staphylococcus warneri	1292	0.85	5	si	no
+L12	Peribacillus frigoritolerans	Peribacillus frigoritolerans	Peribacillus frigoritolerans	450367	0.60	25	no	si
+L13	Rossellomorea marisflavi	Rossellomorea marisflavi	Rossellomorea marisflavi	189381	0.50	3	no	si
+L14	Bacillus licheniformis	Bacillus licheniformis	Bacillus licheniformis	1402	0.94	17	no	si
+L15	Metabacillus halosaccharovorans	Metabacillus halosaccharovorans	Metabacillus halosaccharovorans	930124	1.00	1	no	si
+L16	Bacillus altitudinis	Bacillus altitudinis	Bacillus altitudinis	293387	0.73	31	no	si
+L17	Cytobacillus oceanisediminis	Cytobacillus oceanisediminis	Cytobacillus oceanisediminis	665099	1.00	1	no	si
+L18	Cytobacillus firmus_B	Cytobacillus firmus	Cytobacillus firmus	1399	0.83	4	si	no
