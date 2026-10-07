@@ -14,7 +14,7 @@ la fraccion cultivable, provistos por el Laboratorio de Genomica Microbiana
 |---|---|---|---|
 | 1 | Control de calidad y seleccion de genomas (OE1) | Ejecutada | [`results/fase1/`](results/fase1/) |
 | 2 | Asignacion taxonomica y definicion de linajes (OE2) | Ejecutada | [`results/fase2/`](results/fase2/) |
-| 3 | Analisis pangenomico comparativo (OE3) | Codigo completo; pendiente de ejecucion | [`results/fase3/`](results/fase3/) |
+| 3 | Analisis pangenomico comparativo (OE3) | En ejecucion (pasos 1-9 corridos en Khipu) | [`results/fase3/`](results/fase3/) |
 | 4 | Potencial metabolico y de riesgo (OE4) | Pendiente | - |
 
 En la Fase 1, de 97 bins crudos 66 pasan el filtro por dominio (Tiara) y quedan

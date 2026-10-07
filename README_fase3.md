@@ -86,42 +86,55 @@ viene cada bin.
 
 ## Configuracion
 
-Todos los scripts trabajan sobre una carpeta de trabajo, por defecto
-`$HOME/estela/fase3`. Para usar otra, exporta la variable antes de correr los
-scripts y pasala a SLURM con `--export=ALL`:
+### Carpetas
 
-```bash
-export WORKDIR=/ruta/a/mi/fase3
-```
+Todo se hace dentro de una carpeta de trabajo, `~/estela/fase3`. Los comandos
+de esta guia suponen ademas que la Fase 1 y la Fase 2 se corrieron en
+`~/estela/fase1` y `~/estela/fase2`. Si usas otras rutas, cambialas en los
+comandos donde aparecen.
 
-Otras variables que se pueden cambiar sin editar los scripts:
+Variables que se pueden cambiar sin editar los scripts:
 
 | Variable | Valor por defecto | Usada por |
 |---|---|---|
+| `WORKDIR` | `$HOME/estela/fase3` | todos los scripts (pasarla a SLURM con `--export=ALL`) |
 | `DBS_DIR` | `$HOME/dbs` | `03_setup_fase3_khipu.sh` (Bakta y taxdump) |
 | `GTDB_RELEASE_DIR` | `$HOME/gtdbtk_data/release220` | `03_setup_fase3_khipu.sh` |
 | `CHECKM2_REPORT` | `$HOME/estela/fase1/results/02_checkm2/quality_report.tsv` | `06_panaroo.slurm` |
 | `TAXDUMP_DIR` | `$HOME/dbs/taxdump` | `08_exclusivos_remoto.sh` |
 | `NR_DB`, `NT_DB` | `nr`, `core_nt` | `08_exclusivos_remoto.sh` |
+| `ESPERA_MAX_H` | `24` | `08_exclusivos_remoto.sh` (horas maximas de espera por busqueda en NCBI) |
 
-Lo que es propio del cluster donde se desarrollo (Khipu, UTEC) y hay que editar
-a mano en otro cluster:
+### Cuenta de SLURM, correo y limites de cola
 
-- la linea `#SBATCH --partition=standard` de cada `.slurm`;
-- las lineas `module purge` / `module load miniconda/3.0` de cada script, si tu
-  cluster carga conda de otra forma.
+Los comandos de esta guia son los que se usaron en Khipu (UTEC): todos los
+envios llevan `--account=tesis` y piden un correo al terminar o fallar. En otro
+cluster cambia `tesis` por tu cuenta y la linea `#SBATCH --partition=standard`
+de cada `.slurm`; si tu cluster no usa Lmod, ajusta tambien las lineas
+`module purge` / `module load miniconda/3.0` de los scripts.
 
-**Cuenta y limites de cola.** Si tu usuario tiene varias cuentas de SLURM,
-indica la correcta en cada envio con `--account=<cuenta>` (en Khipu,
-`--account=tesis`). Muchos clusters limitan cuantos trabajos puede tener un
-usuario en cola; en un *job array* cada tarea cuenta como un trabajo. Los
-limites de tu cuenta se consultan con
-`sacctmgr -n show qos format=Name%20,MaxSubmitPU,MaxJobsPU,MaxTRESPU%40,MaxWall`.
-Los comandos de abajo estan pensados para un limite de 5 trabajos enviados,
-3 corriendo, 32 CPU y 98 GB en total, y 24 h por trabajo (cuenta tesis de
-Khipu). Si al enviar aparece `QOSMaxSubmitJobPerUserLimit`, el array es mas
-grande que tu limite: envialo por tramos (por ejemplo `--array=1-5` y, cuando
-termine, `--array=6-7`).
+El correo se guarda una sola vez en `~/.bashrc` como la variable `CORREO`
+(reemplaza la direccion por la tuya):
+
+```bash
+echo 'export CORREO=nombre.apellido@universidad.edu' >> ~/.bashrc && source ~/.bashrc
+```
+
+La cuenta `tesis` de Khipu admite **5 trabajos enviados y 3 corriendo** a la
+vez (32 CPU, 98 GB, 24 h por trabajo). En un *job array* cada tarea cuenta como
+un trabajo; por eso algunos pasos se envian por tramos o con `%1` (una tarea a
+la vez). Si al enviar aparece `QOSMaxSubmitJobPerUserLimit`, espera a que
+terminen trabajos anteriores. Para ver cuantos tienes en cola:
+
+```bash
+squeue --me
+```
+
+Para ver los limites de tu cuenta:
+
+```bash
+sacctmgr -n show qos format=Name%20,MaxSubmitPU,MaxJobsPU,MaxTRESPU%40,MaxWall
+```
 
 **Aviso:** `03_setup_fase3_khipu.sh` reescribe `~/.condarc` para usar solo
 conda-forge y bioconda si encuentra el canal `defaults`. Antes guarda una copia
@@ -129,7 +142,9 @@ como `~/.condarc.bak.<fecha>`.
 
 ## Instalacion
 
-Estructura de trabajo, codigo y datos de entrada:
+Todo en el nodo de login.
+
+**1. Carpetas, codigo y bins.**
 
 ```bash
 mkdir -p ~/estela/fase3/data/bins ~/estela/fase3/data/bins_libreria ~/estela/fase3/logs
@@ -140,39 +155,90 @@ git clone https://github.com/EduardoTllo/biodeterioro-estela-pipeline.git ~/este
 ```
 
 ```bash
-cp <fase1>/results/phase1_selected_genomes/*.fasta ~/estela/fase3/data/bins/
+cp ~/estela/fase1/results/phase1_selected_genomes/*.fasta ~/estela/fase3/data/bins/
 ```
 
 ```bash
-cp <fase1>/bins/*.fasta ~/estela/fase3/data/bins_libreria/
+cp ~/estela/fase1/bins/*.fasta ~/estela/fase3/data/bins_libreria/
 ```
 
-`<fase1>` es la carpeta de trabajo de la Fase 1 (por defecto `~/estela/fase1`).
+`data/bins/` recibe los bins seleccionados en la Fase 1 (21 en este proyecto) y
+`data/bins_libreria/` todos los bins crudos (97), que se usan en el filtro F3.
+Comprobacion:
 
-Instalacion de entornos y bases de datos, en el nodo con internet. Tarda varias
-horas por la base de datos de Bakta y conviene correrlo en `tmux` o `screen`:
+```bash
+ls ~/estela/fase3/data/bins | wc -l; ls ~/estela/fase3/data/bins_libreria | wc -l
+```
+
+Para actualizar el codigo mas adelante:
+
+```bash
+cd ~/estela/fase3/scripts && git pull
+```
+
+**2. Comprobar la tabla de la Fase 2.** El censo necesita que
+`phase2_selection.tsv` tenga la clasificacion de GTDB de cada bin. Una version
+antigua del parser de la Fase 2 la dejaba vacia y el censo devolvia 0 linajes.
+Revisa que la columna de clasificacion tenga texto (`d__Bacteria;p__...`):
+
+```bash
+head -n 3 ~/estela/fase2/results/phase2_selection.tsv
+```
+
+Si esta vacia, usa la version del repositorio (guardando la anterior):
+
+```bash
+mv ~/estela/fase2/results/phase2_selection.tsv ~/estela/fase2/results/phase2_selection.sin_taxonomia.bak.tsv && cp ~/estela/fase3/scripts/results/fase2/phase2_selection.tsv ~/estela/fase2/results/
+```
+
+**3. Entornos y bases de datos.** Tarda varias horas por la base de datos de
+Bakta; correrlo dentro de `tmux` para que no se corte si se cierra la conexion
+(`tmux new -s fase3`; salir sin cortarlo con `Ctrl+b` y luego `d`; volver con
+`tmux attach -t fase3`):
 
 ```bash
 bash ~/estela/fase3/scripts/03_setup_fase3_khipu.sh 2>&1 | tee ~/estela/fase3/logs/setup.log
 ```
 
-El script es idempotente: si se interrumpe, se vuelve a correr y omite lo que ya
-esta hecho. Al terminar imprime las versiones instaladas y deja los lock files
-de todos los entornos en `scripts/envs/`.
+El script se puede volver a correr si se interrumpe: omite lo que ya esta
+hecho. Deja los lock files de los entornos en `scripts/envs/`.
+
+**4. Comprobar los entornos.** Cada linea debe imprimir una version. En Khipu
+el entorno `blast` llego a quedar solo con python, y el error recien aparecio
+en el paso 9 (`makeblastdb: command not found`):
+
+```bash
+module load miniconda/3.0 && eval "$(conda shell.bash hook)" && conda run -n ncbi-datasets datasets --version && conda run -n bakta bakta --version && conda run -n panaroo panaroo --version && conda run -n iqtree iqtree3 --version | head -n 1 && conda run -n blast makeblastdb -version | head -n 1 && conda run -n blast taxonkit version && conda run -n drep dRep -h | head -n 2
+```
+
+Si falta alguno, se recrea ese entorno. Por ejemplo, `blast`:
+
+```bash
+conda env remove -n blast -y; conda create -y -n blast --override-channels -c conda-forge -c bioconda blast=2.17.0 taxonkit=0.20.0 python=3.11
+```
 
 ## Ejecucion
 
-Los comandos se corren desde `~/estela/fase3` (los `.slurm` escriben su registro
-en `logs/`, relativo a esa carpeta). Los pasos de login necesitan conda activado:
+Todos los comandos se corren desde `~/estela/fase3`: los `.slurm` escriben su
+registro en `logs/` relativo a esa carpeta. Los pasos 1, 2, 3 y 5 corren en el
+login con el entorno `ncbi-datasets` activado:
 
 ```bash
 cd ~/estela/fase3 && module load miniconda/3.0 && eval "$(conda shell.bash hook)" && conda activate ncbi-datasets
 ```
 
+Para revisar un trabajo de SLURM terminado (estado, tiempo y memoria), cambia
+el nombre segun el paso (`f3_drep`, `f3_bakta`, `f3_panaroo`, `f3_iqtree`,
+`f3_exclus`):
+
+```bash
+sacct -u $USER --name=f3_drep -X --format=JobID%14,State,ExitCode,Elapsed,MaxRSS
+```
+
 ### 1. Censo de genomas publicos (login)
 
 ```bash
-python scripts/03_censo_genomas.py censo --selection <fase2>/results/phase2_selection.tsv --gtdb-metadata ~/gtdbtk_data/release220/bac120_metadata_r220.tsv --outdir results/00_censo
+python scripts/03_censo_genomas.py censo --selection ~/estela/fase2/results/phase2_selection.tsv --gtdb-metadata ~/gtdbtk_data/release220/bac120_metadata_r220.tsv --outdir results/00_censo
 ```
 
 ```bash
@@ -184,7 +250,10 @@ python scripts/03_censo_genomas.py tabla --outdir results/00_censo --umbral 15
 ```
 
 `censo` no necesita internet; `ncbi` consulta los conteos vigentes de NCBI y es
-opcional. El reporte queda en `results/00_censo/phase3_censo_report.md`.
+opcional. Reporte: `results/00_censo/phase3_censo_report.md`. Antes de
+descargar, conviene revisar los nombres de NCBI dentro de cada especie: los
+genomas rotulados con otro filo se agregan a `scripts/metadata/exclusiones.tsv`
+(columnas `accession`, `linaje_id`, `motivo`).
 
 ### 2. Descarga de referencias (login)
 
@@ -192,14 +261,11 @@ opcional. El reporte queda en `results/00_censo/phase3_censo_report.md`.
 bash scripts/04_fetch_refs.sh 2>&1 | tee logs/descarga.log
 ```
 
-Descarga todas las referencias de las especies viables y verifica que la
-longitud de cada FASTA coincida con la de GTDB. Resumen:
-`results/01_descarga/descarga_resumen.tsv`.
-
-Tambien aplica la lista de exclusiones manuales `metadata/exclusiones.tsv`
-(columnas `accession`, `linaje_id`, `motivo`): esos genomas quedan con estado
-`excluido` y no entran a la desreplicacion, al pangenoma ni a la busqueda del
-filtro F4. Si se edita la lista despues de descargar, basta con repetir la
+Descarga las referencias de las especies viables, verifica que la longitud de
+cada FASTA coincida con la de GTDB y aplica `metadata/exclusiones.tsv` (esos
+genomas quedan como `excluido` y no entran a la desreplicacion, al pangenoma
+ni al filtro F4). Resumen: `results/01_descarga/descarga_resumen.tsv`. Si se
+edita la lista de exclusiones despues de descargar, basta con repetir la
 verificacion:
 
 ```bash
@@ -214,128 +280,166 @@ python scripts/04_clasificar_refs.py clasificar --censo-dir results/00_censo --d
 
 El habitat se asigna con las expresiones regulares de
 `metadata/habitat_keywords.tsv` (gana la primera categoria que coincide) y el
-continente con `metadata/paises_continentes.tsv`. Las fuentes de aislamiento y
-paises que no se pudieron clasificar quedan en `results/02_drep/fuentes_unicas.tsv`
-y `results/02_drep/paises_sin_mapear.tsv`.
+continente con `metadata/paises_continentes.tsv`. Lo que no se pudo clasificar
+queda en `results/02_drep/fuentes_unicas.tsv` y
+`results/02_drep/paises_sin_mapear.tsv`.
 
 ### 4. Desreplicacion (SLURM)
 
-Una tarea por especie (16 CPU y 32 GB cada una):
+Una tarea por especie viable (16 CPU, 32 GB, hasta 6 h). Numero de especies:
 
 ```bash
-N=$(tail -n +2 results/01_descarga/especies_para_drep.tsv | wc -l); echo "$N especies"; sbatch --array=1-$N scripts/04_drep_refs.slurm
+tail -n +2 results/01_descarga/especies_para_drep.tsv | wc -l
 ```
 
-Si hay mas especies que el limite de trabajos en cola, se envia por tramos. Por
-ejemplo, con 7 especies y un limite de 5, primero:
+Con 7 especies y el limite de 5 envios, va en dos tramos. Primero las 5
+primeras, de a 2 a la vez:
 
 ```bash
-sbatch --array=1-5%2 scripts/04_drep_refs.slurm
+sbatch --account=tesis --array=1-5%2 --mail-type=END,FAIL --mail-user="$CORREO" scripts/04_drep_refs.slurm
 ```
 
-y cuando terminen:
+Cuando terminen, las restantes:
 
 ```bash
-sbatch --array=6-7 scripts/04_drep_refs.slurm
+sbatch --account=tesis --array=6-7 --mail-type=END,FAIL --mail-user="$CORREO" scripts/04_drep_refs.slurm
 ```
+
+Con 5 especies o menos basta un envio (`--array=1-N`).
 
 ### 5. Ranking y seleccion de referencias (login)
 
 ```bash
-python scripts/04_clasificar_refs.py seleccionar --descarga-dir results/01_descarga --drep-dir results/02_drep --refs-dir data/refs --bins-dir data/bins --checkm2 <fase1>/results/02_checkm2/quality_report.tsv --outdir results/03_seleccion
+python scripts/04_clasificar_refs.py seleccionar --descarga-dir results/01_descarga --drep-dir results/02_drep --refs-dir data/refs --bins-dir data/bins --checkm2 ~/estela/fase1/results/02_checkm2/quality_report.tsv --outdir results/03_seleccion
 ```
 
-Elige las especies y sus referencias y escribe el manifiesto de Bakta. Reporte:
+Elige las 3 especies con mas genomas no redundantes y hasta 50 referencias por
+especie, y escribe los manifiestos de Bakta. Reporte:
 `results/03_seleccion/phase3_seleccion_report.md`. El script se detiene si dRep
 no aplico la tabla de pesos (`extraW.tsv`) o si ninguna especie es viable.
+Desde aqui los pasos usan 3 especies (`--array=1-3`).
 
-### 6. Anotacion (SLURM)
+### 6. Anotacion con Bakta (SLURM)
 
-`05_bakta_all.slurm` trabaja por lotes: cada tarea del array anota varios
-genomas seguidos (la tarea k toma las filas k, k+LOTES, k+2*LOTES... del
-manifiesto), con 10 CPU y 32 GB (en el piloto, un lote uso 30 GB). El numero de tareas del array debe ser igual a
-`LOTES`. Los genomas ya anotados se saltan, asi que si una tarea llega al limite
-de tiempo basta con volver a enviarla; si un genoma falla, el lote sigue con los
-demas y el fallo queda en el registro.
+`05_bakta_all.slurm` trabaja por lotes: cada tarea anota varios genomas
+seguidos (10 CPU y 32 GB por lote). El numero de tareas del array debe ser
+igual a `LOTES`.
 
-Se recomienda una prueba piloto antes de la corrida completa: Bakta y Panaroo
-sobre 3 referencias y el bin de la primera especie
-(`results/03_seleccion/piloto_manifest.tsv`), en un solo lote:
+**Piloto** (3 referencias y el bin de la primera especie, un lote):
 
 ```bash
-sbatch --array=1 --export=ALL,LOTES=1,MANIFEST=results/03_seleccion/piloto_manifest.tsv scripts/05_bakta_all.slurm
+sbatch --account=tesis --array=1 --export=ALL,LOTES=1,MANIFEST=results/03_seleccion/piloto_manifest.tsv --mail-type=END,FAIL --mail-user="$CORREO" scripts/05_bakta_all.slurm
 ```
+
+Cuando termine, Panaroo sobre el piloto (unos minutos):
 
 ```bash
-sbatch --export=ALL,PILOTO=1 scripts/06_panaroo.slurm
+sbatch --account=tesis --export=ALL,PILOTO=1 --mail-type=END,FAIL --mail-user="$CORREO" scripts/06_panaroo.slurm
 ```
 
-Corrida completa en 3 lotes en paralelo (30 CPU y 96 GB en total; los genomas
-del piloto se saltan):
+El piloto esta bien si el registro de Panaroo no muestra `Error reading prokka
+input`, `conversion_descartes.tsv` no tiene CDS descartados y la recuperacion
+del core en el bin (`particion_report.md`) es parecida a su completitud.
+
+**Corrida completa** (118 genomas en 3 lotes en paralelo, unas 4-5 h; los
+genomas del piloto se saltan):
 
 ```bash
-sbatch --array=1-3 --export=ALL,LOTES=3 scripts/05_bakta_all.slurm
+sbatch --account=tesis --array=1-3 --export=ALL,LOTES=3 --mail-type=END,FAIL --mail-user="$CORREO" scripts/05_bakta_all.slurm
 ```
 
-Resumen de las anotaciones:
+Resumen y control de las anotaciones (alerta si un genoma se aleja mas de 20 %
+de la mediana de CDS de su especie):
 
 ```bash
 python scripts/07_particion.py bakta --manifest results/03_seleccion/bakta_manifest.tsv --bakta-dir results/04_bakta --out results/04_bakta_resumen.tsv
 ```
 
-### 7. Pangenoma (SLURM)
+### 7. Pangenoma con Panaroo (SLURM)
+
+Una especie a la vez (32 CPU y 90 GB cada una; en este proyecto, entre 12 y
+50 min por especie):
 
 ```bash
-N=$(tail -n +2 results/03_seleccion/especies_seleccionadas.tsv | wc -l); sbatch --array=1-$N%1 scripts/06_panaroo.slurm
+sbatch --account=tesis --array=1-3%1 --mail-type=END,FAIL --mail-user="$CORREO" scripts/06_panaroo.slurm
 ```
 
 Convierte los GFF3 de Bakta, corre Panaroo y calcula la particion. Reporte por
-especie: `results/05_panaroo/<especie>/particion/particion_report.md`.
+especie: `results/05_panaroo/<especie>/particion/particion_report.md`. Revisar
+las alertas de `recuperacion_core.tsv`.
 
-### 8. Arbol del core (SLURM)
+### 8. Arbol del core con IQ-TREE (SLURM)
+
+Despues de que termine Panaroo (Panaroo e IQ-TREE juntos serian 6 trabajos,
+mas que el limite de 5):
 
 ```bash
-N=$(tail -n +2 results/03_seleccion/especies_seleccionadas.tsv | wc -l); sbatch --array=1-$N%1 scripts/06b_iqtree.slurm
+sbatch --account=tesis --array=1-3%1 --mail-type=END,FAIL --mail-user="$CORREO" scripts/06b_iqtree.slurm
 ```
 
-Si una especie supera las 24 h, se repite solo esa tarea sobre el alineamiento
-de SNPs:
+Si una especie termina en `TIMEOUT`, se repite solo esa tarea (su numero de
+fila, por ejemplo 2) sobre el alineamiento de SNPs:
 
 ```bash
-sbatch --array=<n> --export=ALL,MODO=snps scripts/06b_iqtree.slurm
+sbatch --account=tesis --array=2 --export=ALL,MODO=snps --mail-type=END,FAIL --mail-user="$CORREO" scripts/06b_iqtree.slurm
 ```
 
 ### 9. Verificacion de genes exclusivos
 
-Parte local (SLURM):
+**Parte local, F1-F4 (SLURM).** Puede correr al mismo tiempo que IQ-TREE si en
+la cola hay 2 trabajos o menos (`squeue --me`). Tarda menos de un minuto por
+especie:
 
 ```bash
-N=$(tail -n +2 results/03_seleccion/especies_seleccionadas.tsv | wc -l); sbatch --array=1-$N scripts/08_exclusivos_local.slurm
+sbatch --account=tesis --array=1-3 --mail-type=END,FAIL --mail-user="$CORREO" scripts/08_exclusivos_local.slurm
 ```
 
-Parte remota (login; BLAST contra NCBI, puede tardar horas y se puede retomar si
-se interrumpe):
+El registro de cada especie (`logs/fase3_exclusivos_*.out`) indica cuantos
+candidatos descarto cada filtro y cuantas proteinas pasan a F5.
+
+**Parte remota, F5-F6 (login, dentro de `tmux`).** Necesita internet, por eso
+no va a SLURM:
 
 ```bash
-bash scripts/08_exclusivos_remoto.sh 2>&1 | tee logs/exclusivos_remoto.log
+bash scripts/08_exclusivos_remoto.sh 2>&1 | tee logs/fase3_exclusivos_remoto.log
 ```
 
-Si `core_nt` no esta disponible en el BLAST remoto, se usa `nt`:
+Las busquedas se envian a NCBI por su URL API con `curl`, el script consulta
+el estado cada minuto y recoge el resultado con `blast_formatter`. No se usa
+`blastp -remote`, que desde Khipu se quedaba esperando y en otras redes fallaba
+con `Connection stream is in bad state`. Segun la cola de NCBI, cada especie
+puede tardar de minutos a horas; mientras espera, el registro escribe
+`... sigue en cola` cada 30 min. Si se corta, se vuelve a correr el mismo
+comando: los lotes terminados no se repiten y las busquedas en curso se
+retoman por su numero (RID). Al final imprime `[ok] embudo: ...` por especie.
+
+Si `core_nt` no estuviera disponible, se usa `nt`:
 
 ```bash
-NT_DB=nt bash scripts/08_exclusivos_remoto.sh 2>&1 | tee logs/exclusivos_remoto.log
+NT_DB=nt bash scripts/08_exclusivos_remoto.sh 2>&1 | tee logs/fase3_exclusivos_remoto.log
 ```
 
 ### 10. Exportacion y figuras
 
-En el cluster:
+En el cluster, reunir las tablas, reportes y arboles en `export_fase3/`:
 
 ```bash
 bash scripts/bin/export_fase3.sh
 ```
 
-Luego se copia `~/estela/fase3/export_fase3/` a `results/fase3/` del repositorio
-y, desde la raiz del repositorio:
+En la computadora local (Linux, macOS o WSL), desde la raiz del repositorio,
+traer los resultados y los lock files de los entornos (cambia `usuario` y el
+nombre del cluster por los tuyos):
+
+```bash
+rsync -avh usuario@khipu.utec.edu.pe:~/estela/fase3/export_fase3/ results/fase3/
+```
+
+```bash
+rsync -avh usuario@khipu.utec.edu.pe:~/estela/fase3/scripts/envs/ envs/
+```
+
+Y generar las figuras:
 
 ```bash
 Rscript figuras/R/f3_run_all.R
@@ -418,6 +522,11 @@ Referencias:
 | `Error reading prokka input!` en Panaroo | Algun GFF no paso por el conversor; revisar `conversion_descartes.tsv` y el registro de esa especie |
 | `seleccionar` se detiene por `extraW.tsv` | dRep no leyo la tabla de pesos; borrar `results/02_drep/<especie>/data_tables` y reenviar esa especie |
 | IQ-TREE con estado `TIMEOUT` | Repetir esa especie con `MODO=snps` |
+| `QOSMaxSubmitJobPerUserLimit` al enviar | El array tiene mas tareas que los envios permitidos; esperar a que terminen trabajos o enviar por tramos |
+| El censo devuelve 0 linajes | `phase2_selection.tsv` sin clasificacion de GTDB (ver Instalacion, paso 2) |
+| `makeblastdb: command not found` (exit 127) en el paso 9 | El entorno `blast` quedo sin BLAST; recrearlo (Instalacion, paso 4) |
+| Un trabajo de Bakta termina por memoria (`OUT_OF_MEMORY`) | Un lote usa hasta ~31 GB; no bajar `--mem` de 32G |
+| `-bash: ...: No such file or directory` al enviar con correo | Se copio un marcador con `<...>`; usar `--mail-user="$CORREO"` |
 
 Todos los scripts omiten lo que ya esta hecho, asi que un paso fallido se puede
 reenviar sin repetir el trabajo anterior. Para reenviar una sola especie se usa
