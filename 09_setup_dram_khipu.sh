@@ -71,6 +71,12 @@ else:
     print("    Parche no necesario:", p)
 compile(s, p, "exec")
 PY
+#  c) dbCAN se mudo de bcb.unl.edu a pro.unl.edu; el servidor viejo responde
+#     con una pagina HTML y hmmpress falla. Se cambian las URL de DRAM.
+DP="$(python -c 'import mag_annotator.database_processing as m; print(m.__file__)')"
+sed -i -E 's#https?://bcb\.unl\.edu/#https://pro.unl.edu/#g' "$DP"
+grep -q 'bcb\.unl\.edu' "$DP" && { echo "ERROR: quedan URL de bcb.unl.edu en $DP" >&2; exit 1; }
+echo "    URL de dbCAN apuntan a pro.unl.edu"
 
 if ! DRAM.py --help >/dev/null || ! DRAM-setup.py --help >/dev/null; then
   echo "ERROR: DRAM no arranca; revisar el mensaje de arriba." >&2
@@ -82,6 +88,9 @@ echo "==> [2/3] Bases de datos de DRAM en $DRAM_DB (solo las de la Fase 4)"
 if DRAM-setup.py print_config 2>/dev/null | grep -qE "KOfam db: .*kofam"; then
   echo "    Ya configuradas (ver print_config abajo). Se omite."
 else
+  # Un intento anterior incompleto deja archivos a medias y una carpeta
+  # database_files que hace fallar a DRAM (mkdir sin exist_ok): se empieza limpio.
+  rm -rf "$DRAM_DB"
   DRAM-setup.py prepare_databases --output_dir "$DRAM_DB" --skip_uniref --threads "$THREADS" \
       --select_db kofam_hmm --select_db kofam_ko_list \
       --select_db dbcan --select_db dbcan_fam_activities --select_db dbcan_subfam_ec \
@@ -89,6 +98,11 @@ else
       --select_db genome_summary_form --select_db module_step_form \
       --select_db function_heatmap_form --select_db amg_database --select_db etc_module_database \
       --clear_config --verbose
+fi
+
+if grep -l '<!DOCTYPE' "$DRAM_DB"/*.txt 2>/dev/null; then
+  echo "ERROR: los archivos de arriba son paginas HTML, no bases de datos." >&2
+  exit 1
 fi
 
 echo "==> [3/3] Configuracion final"
