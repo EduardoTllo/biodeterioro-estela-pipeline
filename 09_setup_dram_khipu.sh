@@ -37,7 +37,7 @@ module load miniconda/3.0
 eval "$(conda shell.bash hook)"
 
 echo "==> [1/3] Entorno 'dram' (DRAM $DRAM_VERSION)"
-INSTALADA="$(conda run -n dram DRAM.py --help >/dev/null 2>&1 && conda list -n dram --export 2>/dev/null | grep -iE '^dram-bio=' | cut -d= -f2 || true)"
+INSTALADA="$(conda list -n dram --export 2>/dev/null | grep -iE '^dram-bio=' | cut -d= -f2 || true)"
 if [[ "$INSTALADA" == "$DRAM_VERSION" ]]; then
   echo "    Ya existe con DRAM $INSTALADA. Se omite."
 else
@@ -47,7 +47,36 @@ else
   $SOLVER env create -n dram -f "$WORKDIR/dram_environment.yaml"
 fi
 conda activate dram
-DRAM.py --help >/dev/null && echo "    OK: $(conda list --export | grep -iE '^dram-bio=')"
+
+# Dos defectos de DRAM 1.5.0 (no de Khipu), corregidos sin cambiar la version:
+#  a) DRAM importa pkg_resources, que setuptools elimino desde la version 81.
+#  b) El DRAM-setup.py publicado tiene un error de sintaxis (argumento
+#     --viral_loc partido por --camper_tar_gz_loc). Se reordena igual que en
+#     la rama master de DRAM; el parche es idempotente.
+pip install -q "setuptools<81"
+python - "$(command -v DRAM-setup.py)" <<'PY'
+import re, sys
+p = sys.argv[1]
+s = open(p, encoding="utf-8").read()
+roto = re.compile(r"^( *)set_db_locs_parser\.add_argument\('--viral_loc', default=None,\s*\n", re.M)
+huerfana = re.compile(r"^ *help='mmseqs2 database file from ref seq viral gene collection'\)\s*\n", re.M)
+if roto.search(s) and huerfana.search(s):
+    sangria = roto.search(s).group(1)
+    s = roto.sub("", s, count=1)
+    s = huerfana.sub(sangria + "set_db_locs_parser.add_argument('--viral_loc', default=None, "
+                     "help='mmseqs2 database file from ref seq viral gene collection')\n", s, count=1)
+    open(p, "w", encoding="utf-8").write(s)
+    print("    Parche aplicado a", p)
+else:
+    print("    Parche no necesario:", p)
+compile(s, p, "exec")
+PY
+
+if ! DRAM.py --help >/dev/null || ! DRAM-setup.py --help >/dev/null; then
+  echo "ERROR: DRAM no arranca; revisar el mensaje de arriba." >&2
+  exit 1
+fi
+echo "    OK: $(conda list --export | grep -iE '^dram-bio=')"
 
 echo "==> [2/3] Bases de datos de DRAM en $DRAM_DB (solo las de la Fase 4)"
 if DRAM-setup.py print_config 2>/dev/null | grep -qE "KOfam db: .*kofam"; then
