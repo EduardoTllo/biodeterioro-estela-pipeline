@@ -424,11 +424,56 @@ genomas atipicos, y parte es real, porque la especie tiene linajes profundos
 con repertorios distintos (seccion 8; ANI minimo entre referencias 95,8 %,
 cerca del limite de especie). Se reportan ambos valores.
 
+### 5.2 Sensibilidad al modo de limpieza de Panaroo
+
+Panaroo se corrio en modo `moderate` (seccion 3.3), que elimina los genes de
+extremo de contig presentes en un solo genoma. Para medir cuanto dependen los
+resultados de esa eleccion se repitio el pangenoma en modo `sensitive`, que no
+hace esa poda (`trailing_recursive = 0`), con los mismos genomas y la misma
+particion solo con referencias.
+
+### Figura 5. Moderate frente a sensitive
+
+![Sensibilidad Panaroo](../../figuras/figs/fig_f3_sensibilidad_panaroo.png)
+
+**Panel a.** Particion de las familias de las referencias en ambos modos.
+**Panel b.** Curvas de acumulacion del pangenoma y alpha de Heaps.
+
+| | Modo | Familias | Core | Shell | Cloud | Singletons | alpha | Genes del bin fuera del pangenoma | Familias del bin sin referencias |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| *B. altitudinis* | moderate | 7 059 | 3 303 | 847 | 2 909 | 1 546 | 0,65 | 32 | 14 |
+| | sensitive | 7 443 | 3 303 | 847 | 3 293 | 1 927 | 0,61 | 1 | 45 |
+| *P. frigoritolerans* | moderate | 16 125 | 3 961 | 2 142 | 10 022 | 6 103 | 0,57 | 7 | 34 |
+| | sensitive | 18 399 | 3 961 | 2 143 | 12 295 | 8 363 | 0,49 | 3 | 38 |
+| *A. schindleri* | moderate | 7 599 | 2 389 | 1 114 | 4 096 | 2 782 | 0,55 | 101 | 70 |
+| | sensitive | 8 743 | 2 389 | 1 117 | 5 237 | 3 922 | 0,46 | 1 | 171 |
+
+**Resultado.**
+- **Core y shell no cambian** (a lo sumo 3 familias): todo lo que se dijo del
+  genoma comun y de la posicion de los bins es independiente del modo.
+- **El cloud crece 13-28 %**, y casi todo ese aumento son singletons (familias
+  de un solo genoma): 381, 2 260 y 1 140 mas. Son los genes de extremo de
+  contig que `moderate` poda en las referencias, entre ellos fragmentos.
+- **alpha baja entre 0,04 y 0,09** (0,65 a 0,61; 0,57 a 0,49; 0,55 a 0,46): el
+  pangenoma parece mas abierto sin la poda. La conclusion "abierto" no cambia,
+  pero el valor de alpha depende del modo de limpieza y debe reportarse junto
+  con el.
+- **Genes del bin.** En `sensitive` casi ningun gen del bin queda fuera del
+  pangenoma (32 a 1, 7 a 3, 101 a 1) y las familias del bin sin referencias
+  pasan a 45, 38 y 171. Son practicamente los mismos que la v2 de genes
+  especificos ya recupero como candidatos sin cambiar de modo (46, 41 y 171;
+  seccion 9.4): la correccion aplicada en la v2 equivale a usar `sensitive`
+  para el bin sin agregar fragmentos al pangenoma de las referencias.
+
+**Por que se mantiene `moderate`.** Da un pangenoma de referencias mas limpio
+(sin los singletons de extremo de contig) y, gracias a la v2, no pierde ningun
+candidato del bin.
+
 ---
 
 ## 6. Donde cae cada cepa de la Estela dentro de su especie
 
-### Figura 5. Posicion del bin en el pangenoma
+### Figura 6. Posicion del bin en el pangenoma
 
 ![Posicion del bin](../../figuras/figs/fig_f3_posicion_bin.png)
 
@@ -458,7 +503,7 @@ Los tres quedan dentro de la banda: calcular la particion solo con
 referencias funciona. Consecuencia: que un gen **este** en el bin es confiable;
 que **falte**, no, sobre todo en bin-5-63.
 
-### Figura 6. Genes propios frente a distancia al pariente mas cercano
+### Figura 7. Genes propios frente a distancia al pariente mas cercano
 
 ![Unicos vs vecino](../../figuras/figs/fig_f3_unicos_vecino.png)
 
@@ -481,7 +526,26 @@ por si mismo adaptacion al ambiente de la Estela.
 ### 6.1 ANI de cada bin contra todos los genomas de su especie
 
 Calculado con fastANI contra los 208, 69 y 29 genomas descargados
-(`06c_ani_bins.slurm`).
+(`06c_ani_bins.slurm`), no solo contra las referencias del pangenoma.
+
+### Figura 8. ANI de cada bin
+
+![ANI de los bins](../../figuras/figs/fig_f3_ani_bins.png)
+
+**Panel a.** ANI del bin contra cada genoma de su especie, de mayor a menor.
+Azul: referencias del pangenoma; naranja: genomas que quedaron fuera
+(desreplicacion o tope de 50). Linea discontinua: 99 % (misma cepa o clon);
+punteada: 95 % (misma especie).
+
+**Panel b.** Control de coherencia: ANI de genoma completo frente a la
+distancia en el arbol del core, para las referencias. Si ambos metodos
+coinciden, a mas distancia en el arbol, menos ANI (rho negativo).
+
+| | Genomas | ANI >= 99 % | ANI >= 98 % | ANI maximo | Mediana | Minimo | rho ANI ~ arbol |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| *B. altitudinis* | 208 | 2 | 198 | 99,06 % | 98,19 % | 96,59 % | -0,33 |
+| *P. frigoritolerans* | 69 | 8 | 13 | 99,98 % | 97,18 % | 96,51 % | -0,90 |
+| *A. schindleri* | 29 | 0 | 1 | 98,39 % | 97,12 % | 96,77 % | -0,50 |
 
 | Bin | Genoma mas parecido | ANI | Lectura |
 |---|---|---:|---|
@@ -495,12 +559,25 @@ ANI >= 99 %: manzana podrida y suelo agricola (Alemania), semilla (Francia),
 suelo (Corea), nieve (Antartida), sala limpia y piel humana (EE. UU.) y uno
 sin datos. La cepa de la Estela es un miembro mas de ese clon, presente en 4
 continentes y 6 ambientes. Eso explica que no tenga genes propios (seccion 9).
+En la figura 8 se ve como un escalon: 8 genomas a >= 99 %, un grupo cercano a
+~98,2 % y el resto de la especie a ~97 %.
+
+**Las otras dos especies.** bin-5-63 esta casi a la misma distancia (98,0-98,4 %)
+de 198 de los 208 genomas de *B. altitudinis*, salvo dos a 99,06 %; por eso la
+correlacion con el arbol es debil (rho = -0,33): las distancias del arbol entre
+el bin y las referencias varian poco. bin-4-52 no llega a 99 % con ningun
+genoma de *A. schindleri*.
+
+**Coherencia.** En las tres especies el ANI baja cuando aumenta la distancia en
+el arbol (rho negativo), y en *P. frigoritolerans* casi perfectamente
+(-0,90): el arbol del core y el ANI de genoma completo cuentan la misma
+historia.
 
 ---
 
 ## 7. Arboles del genoma core
 
-### Figuras 7-9. Arbol de cada especie
+### Figuras 9-11. Arbol de cada especie
 
 ![Arbol B. altitudinis](../../figuras/figs/fig_f3_arbol_core_L16_Bacillus_altitudinis.png)
 
@@ -546,7 +623,7 @@ secuenciado, no el origen del bin.
 
 ## 8. Contenido accesorio, parentesco y habitat
 
-### Figura 10. Ordenacion del genoma accesorio
+### Figura 12. Ordenacion del genoma accesorio
 
 ![PCoA](../../figuras/figs/fig_f3_pcoa_accesorio.png)
 
@@ -567,7 +644,7 @@ singletons, que no aportan parecido entre genomas.
 | *P. frigoritolerans* | r = 0,73, p = 0,001 | R2 = 0,04, p ~ 0,3 (28, 2) |
 | *A. schindleri* | r = 0,54, p = 0,001 | R2 = 0,15, p ~ 0,06 (17, 3) |
 
-### Figura 11. Matriz de presencia/ausencia junto al arbol
+### Figura 13. Matriz de presencia/ausencia junto al arbol
 
 ![Matriz L16](../../figuras/figs/fig_f3_matriz_L16_Bacillus_altitudinis.png)
 ![Matriz L12](../../figuras/figs/fig_f3_matriz_L12_Peribacillus_frigoritolerans.png)
@@ -685,7 +762,7 @@ Los genes eliminados por Panaroo aportan 12 proteinas nuevas a F5 en
 
 ### 9.5 Que son los genes especificos (resultados de la v1)
 
-### Figura 12. Embudo de los filtros y origen
+### Figura 14. Embudo de los filtros y origen
 
 ![Embudo](../../figuras/figs/fig_f3_exclusivos.png)
 
@@ -694,7 +771,7 @@ Origen probable segun el mejor parecido en nr: mismo genero, misma familia
 taxonomica, mismo filo u otro filo; "sin parecido" (ORFan) si no hay ninguno.
 (Figura de la v1; se regenera con la v2.)
 
-### Figura 13. Contexto genomico
+### Figura 15. Contexto genomico
 
 ![Contexto](../../figuras/figs/fig_f3_contexto_exclusivos.png)
 
@@ -791,6 +868,9 @@ El resultado oficial es el de NCBI; el del EBI queda en `<especie>/ebi/`.
 - Se excluyeron los MAG de las referencias y de F4 (8, 3 y 3 por especie).
 - El arbol no corrige la recombinacion; las relaciones profundas de
   *B. altitudinis* estan mal resueltas.
+- alpha depende del modo de limpieza de Panaroo: sin poda de extremos
+  (`sensitive`) baja 0,04-0,09 (seccion 5.2). La conclusion "abierto" no
+  cambia; el valor puntual si.
 - Pocos genomas por habitat: las pruebas de habitat tienen poca potencia.
 - No se hizo una comparacion funcional de core frente a accesorio: Bakta anota
   la categoria COG solo en 4-31 % de los genes segun el genoma (y KEGG, EC o GO
@@ -801,15 +881,9 @@ El resultado oficial es el de NCBI; el del EBI queda en `<especie>/ebi/`.
 ## 11. Pendientes
 
 - Terminar la parte remota de la v2 (F5 de las proteinas nuevas, F5b y F6 de
-  los 10 contigs huerfanos) y actualizar las secciones 9.4-9.6, las figuras 12
-  y 13, la figura de genes especificos y la seccion 10.
-- Figura del ANI de cada bin contra todos los genomas de su especie, con la
-  exportacion final.
-- Sensibilidad al modo de limpieza de Panaroo: repetir el pangenoma en modo
-  `sensitive` (sin poda de genes de extremo de contig) y comparar familias,
-  core, shell, cloud, singletons y alpha con `moderate`
-  (`f3_08_sensibilidad_panaroo.R`). No cambia la lista de genes especificos,
-  porque los genes que `moderate` elimina del bin ya entran como candidatos.
+  los 10 contigs huerfanos) y actualizar las secciones 9.4-9.6, las figuras 14
+  y 15, la figura 16 (genes especificos) y la seccion 10.
+
 
 Archivos de esta fase en `results/fase3/` (tablas por especie en
 `<especie>/`), figuras en `figuras/figs/` (scripts `figuras/R/f3_*.R`) y

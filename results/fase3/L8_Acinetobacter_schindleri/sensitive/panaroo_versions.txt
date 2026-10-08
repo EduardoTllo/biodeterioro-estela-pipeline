@@ -1,0 +1,8 @@
+Fase 3 - Panaroo - L8_Acinetobacter_schindleri
+Fecha: Thu Oct  8 11:00:15 -05 2026   Job: 54899   Nodo: n003
+Parametros: --clean-mode sensitive --remove-invalid-genes (sin alineamiento; resto por defecto)
+Genomas: 24
+cd-hit=4.8.1=h43eeafb_11
+mafft=7.526=h4bc722e_0
+panaroo=1.8.0=pyhdfd78af_0
+python=3.11.9=hb806964_0_cpython

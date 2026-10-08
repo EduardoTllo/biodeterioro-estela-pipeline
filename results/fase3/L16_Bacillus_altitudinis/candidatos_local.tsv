@@ -1,15 +1,47 @@
-consulta	bin	genoma_original	locus_tag	contig	largo_contig	gc_contig	inicio	fin	hebra	dist_borde_pb	largo_aa	gen	producto	familia	f1	f2_anclaje	f4	f4_hit	f3	f3_hit
-bin_5_63_00095	bin_5_63	bin-5-63	bin_5_63_00095	contig_7	91591	0.4062	1542	2186	+	1541	214		Serine protease	group_1291	ok	anclado	ok		ok	
-bin_5_63_00096	bin_5_63	bin-5-63	bin_5_63_00096	contig_7	91591	0.4062	2188	2643	+	2187	151		DUF4342 domain-containing protein	group_1675	ok	anclado	ok		ok	
-bin_5_63_00159	bin_5_63	bin-5-63	bin_5_63_00159	contig_7	91591	0.4062	69200	70492	+	21099	430		SIR2 family protein	group_397	ok	anclado	descartado_F4_presente_en_especie	GCF_024362715_1 (100.0 % id, 100 % cov)		
-bin_5_63_00160	bin_5_63	bin-5-63	bin_5_63_00160	contig_7	91591	0.4062	70489	70974	+	20617	161		Maturase K	group_1604	ok	anclado	descartado_F4_presente_en_especie	GCF_024362715_1 (99.4 % id, 100 % cov)		
-bin_5_63_00161	bin_5_63	bin-5-63	bin_5_63_00161	contig_7	91591	0.4062	70961	72868	+	18723	635		Rad50/SbcC-type AAA domain-containing protein	group_105	ok	anclado	descartado_F4_presente_en_especie	GCF_024362715_1 (99.8 % id, 100 % cov)		
-bin_5_63_00302	bin_5_63	bin-5-63	bin_5_63_00302	contig_11	25711	0.3935	14730	14909	+	10802	59		Transcriptional regulator	group_5426	descartado_F1_corto	anclado				
-bin_5_63_00303	bin_5_63	bin-5-63	bin_5_63_00303	contig_11	25711	0.3935	14967	15458	-	10253	163		hypothetical protein	group_5422	ok	anclado	descartado_F4_presente_en_especie	GCF_900119345_1 (100.0 % id, 85 % cov)		
-bin_5_63_00304	bin_5_63	bin-5-63	bin_5_63_00304	contig_11	25711	0.3935	15569	15772	-	9939	67		DUF1146 domain-containing protein	group_5425	descartado_F1_corto	anclado				
-bin_5_63_00305	bin_5_63	bin-5-63	bin_5_63_00305	contig_11	25711	0.3935	16449	17147	-	8564	232		hypothetical protein	group_5424	ok	anclado	descartado_F4_presente_en_especie	GCF_900119345_1 (99.6 % id, 100 % cov)		
-bin_5_63_00306	bin_5_63	bin-5-63	bin_5_63_00306	contig_11	25711	0.3935	18030	18554	+	7157	174		site-specific integrase	group_5423	ok	anclado	descartado_F4_presente_en_especie	GCF_900119345_1 (99.4 % id, 100 % cov)		
-bin_5_63_01184	bin_5_63	bin-5-63	bin_5_63_01184	contig_43	20680	0.4122	5055	5147	-	5054	30		hypothetical protein	group_5427	descartado_F1_corto	anclado				
-bin_5_63_01216	bin_5_63	bin-5-63	bin_5_63_01216	contig_44	39056	0.4268	17060	18517	-	17059	485		HNH/ENDO VII family nuclease	group_260	ok	anclado	descartado_F4_presente_en_especie	GCF_900188195_1 (99.8 % id, 100 % cov)		
-bin_5_63_01463	bin_5_63	bin-5-63	bin_5_63_01463	contig_50	78781	0.4100	60849	62618	+	16163	589		ATP-dependent endonuclease	group_148	ok	anclado	descartado_F4_presente_en_especie	GCF_005849435_1 (98.3 % id, 100 % cov)		
-bin_5_63_01464	bin_5_63	bin-5-63	bin_5_63_01464	contig_50	78781	0.4100	62605	64230	+	14551	541		ATP-dependent helicase	group_188	ok	anclado	descartado_F4_presente_en_especie	GCF_005849435_1 (98.0 % id, 100 % cov)		
+consulta	bin	genoma_original	locus_tag	contig	largo_contig	gc_contig	inicio	fin	hebra	dist_borde_pb	largo_aa	gen	producto	familia	origen_candidato	f1	f2_anclaje	f4	f4_hit	f3	f3_hit
+bin_5_63_00062	bin_5_63	bin-5-63	bin_5_63_00062	contig_4	1667	0.4271	102	1628	-	39	508		ATP-dependent DNA helicase		eliminado_por_panaroo	descartado_F1_borde_contig	huerfano				
+bin_5_63_00090	bin_5_63	bin-5-63	bin_5_63_00090	contig_6	2312	0.4213	104	568	+	103	154		hypothetical protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_5_63_00091	bin_5_63	bin-5-63	bin_5_63_00091	contig_6	2312	0.4213	648	803	-	647	51		Lipoprotein		eliminado_por_panaroo	descartado_F1_corto	huerfano				
+bin_5_63_00092	bin_5_63	bin-5-63	bin_5_63_00092	contig_6	2312	0.4213	929	1396	-	916	155		hypothetical protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_5_63_00093	bin_5_63	bin-5-63	bin_5_63_00093	contig_6	2312	0.4213	1641	2243	-	69	200		2-nitropropane dioxygenase		eliminado_por_panaroo	descartado_F1_borde_contig	huerfano				
+bin_5_63_00095	bin_5_63	bin-5-63	bin_5_63_00095	contig_7	91591	0.4062	1542	2186	+	1541	214		Serine protease	group_1291	familia_sin_referencias	ok	anclado	ok		ok	
+bin_5_63_00096	bin_5_63	bin-5-63	bin_5_63_00096	contig_7	91591	0.4062	2188	2643	+	2187	151		DUF4342 domain-containing protein	group_1675	familia_sin_referencias	ok	anclado	ok		ok	
+bin_5_63_00159	bin_5_63	bin-5-63	bin_5_63_00159	contig_7	91591	0.4062	69200	70492	+	21099	430		SIR2 family protein	group_397	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_024362715_1 (100.0 % id, 100 % cov)		
+bin_5_63_00160	bin_5_63	bin-5-63	bin_5_63_00160	contig_7	91591	0.4062	70489	70974	+	20617	161		Maturase K	group_1604	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_024362715_1 (99.4 % id, 100 % cov)		
+bin_5_63_00161	bin_5_63	bin-5-63	bin_5_63_00161	contig_7	91591	0.4062	70961	72868	+	18723	635		Rad50/SbcC-type AAA domain-containing protein	group_105	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_024362715_1 (99.8 % id, 100 % cov)		
+bin_5_63_00302	bin_5_63	bin-5-63	bin_5_63_00302	contig_11	25711	0.3935	14730	14909	+	10802	59		Transcriptional regulator	group_5426	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_5_63_00303	bin_5_63	bin-5-63	bin_5_63_00303	contig_11	25711	0.3935	14967	15458	-	10253	163		hypothetical protein	group_5422	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_900119345_1 (100.0 % id, 85 % cov)		
+bin_5_63_00304	bin_5_63	bin-5-63	bin_5_63_00304	contig_11	25711	0.3935	15569	15772	-	9939	67		DUF1146 domain-containing protein	group_5425	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_5_63_00305	bin_5_63	bin-5-63	bin_5_63_00305	contig_11	25711	0.3935	16449	17147	-	8564	232		hypothetical protein	group_5424	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_900119345_1 (99.6 % id, 100 % cov)		
+bin_5_63_00306	bin_5_63	bin-5-63	bin_5_63_00306	contig_11	25711	0.3935	18030	18554	+	7157	174		site-specific integrase	group_5423	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_900119345_1 (99.4 % id, 100 % cov)		
+bin_5_63_00414	bin_5_63	bin-5-63	bin_5_63_00414	contig_15	2505	0.4212	24	602	+	23	192		hypothetical protein		eliminado_por_panaroo	descartado_F1_borde_contig	huerfano				
+bin_5_63_00415	bin_5_63	bin-5-63	bin_5_63_00415	contig_15	2505	0.4212	609	1244	+	608	211	udk	uridine kinase		eliminado_por_panaroo	ok	huerfano	descartado_F4_presente_en_especie	GCF_029478555_1 (85.2 % id, 99 % cov)		
+bin_5_63_00416	bin_5_63	bin-5-63	bin_5_63_00416	contig_15	2505	0.4212	1495	1968	+	537	157	greA	transcription elongation factor GreA		eliminado_por_panaroo	ok	huerfano	descartado_F4_presente_en_especie	GCF_026787385_1 (90.4 % id, 100 % cov)		
+bin_5_63_00949	bin_5_63	bin-5-63	bin_5_63_00949	contig_34	47429	0.4108	8700	8804	+	8699	34		hypothetical protein		eliminado_por_panaroo	descartado_F1_corto	anclado				
+bin_5_63_01143	bin_5_63	bin-5-63	bin_5_63_01143	contig_39	1708	0.3981	432	914	-	431	160		Zinc-finger domain-containing protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_5_63_01144	bin_5_63	bin-5-63	bin_5_63_01144	contig_39	1708	0.3981	911	1426	-	282	171		Sigma-70 family RNA polymerase sigma factor		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_5_63_01145	bin_5_63	bin-5-63	bin_5_63_01145	contig_40	3412	0.4106	32	808	+	31	258	yqaK	Uncharacterized protein YqaK		eliminado_por_panaroo	descartado_F1_borde_contig	huerfano				
+bin_5_63_01146	bin_5_63	bin-5-63	bin_5_63_01146	contig_40	3412	0.4106	861	1562	+	860	233	yqaL	Uncharacterized protein YqaL		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_5_63_01147	bin_5_63	bin-5-63	bin_5_63_01147	contig_40	3412	0.4106	1525	2385	+	1027	286	yqaM	Uncharacterized protein YqaM		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_5_63_01148	bin_5_63	bin-5-63	bin_5_63_01148	contig_40	3412	0.4106	2382	2525	+	887	47	yqzO	Uncharacterized protein YqzO		eliminado_por_panaroo	descartado_F1_corto	huerfano				
+bin_5_63_01149	bin_5_63	bin-5-63	bin_5_63_01149	contig_40	3412	0.4106	2621	3049	+	363	142	rusA	RusA family crossover junction endodeoxyribonuclease		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_5_63_01150	bin_5_63	bin-5-63	bin_5_63_01150	contig_40	3412	0.4106	3131	3337	+	75	68	yqaO	Uncharacterized protein YqaO		eliminado_por_panaroo	descartado_F1_corto	huerfano				
+bin_5_63_01151	bin_5_63	bin-5-63	bin_5_63_01151	contig_41	2124	0.4025	241	483	-	240	80	ydgA	Uncharacterized protein YdgA		eliminado_por_panaroo	descartado_F1_corto	huerfano				
+bin_5_63_01152	bin_5_63	bin-5-63	bin_5_63_01152	contig_41	2124	0.4025	497	769	-	496	90	ydgB	Uncharacterized protein YdgB		eliminado_por_panaroo	descartado_F1_corto	huerfano				
+bin_5_63_01153	bin_5_63	bin-5-63	bin_5_63_01153	contig_41	2124	0.4025	1068	1664	+	460	198	ydgC	Uncharacterized HTH-type transcriptional regulator YdgC		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_5_63_01154	bin_5_63	bin-5-63	bin_5_63_01154	contig_41	2124	0.4025	1661	2005	+	119	114	ydgD	Uncharacterized protein YdgD		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_5_63_01184	bin_5_63	bin-5-63	bin_5_63_01184	contig_43	20680	0.4122	5055	5147	-	5054	30		hypothetical protein	group_5427	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_5_63_01216	bin_5_63	bin-5-63	bin_5_63_01216	contig_44	39056	0.4268	17060	18517	-	17059	485		HNH/ENDO VII family nuclease	group_260	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_900188195_1 (99.8 % id, 100 % cov)		
+bin_5_63_01463	bin_5_63	bin-5-63	bin_5_63_01463	contig_50	78781	0.4100	60849	62618	+	16163	589		ATP-dependent endonuclease	group_148	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_005849435_1 (98.3 % id, 100 % cov)		
+bin_5_63_01464	bin_5_63	bin-5-63	bin_5_63_01464	contig_50	78781	0.4100	62605	64230	+	14551	541		ATP-dependent helicase	group_188	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_005849435_1 (98.0 % id, 100 % cov)		
+bin_5_63_01785	bin_5_63	bin-5-63	bin_5_63_01785	contig_55	2064	0.4075	1236	1358	+	706	40		hypothetical protein		eliminado_por_panaroo	descartado_F1_corto	huerfano				
+bin_5_63_01903	bin_5_63	bin-5-63	bin_5_63_01903	contig_58	1589	0.4185	1025	1465	-	124	146		hypothetical protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_5_63_01904	bin_5_63	bin-5-63	bin_5_63_01904	contig_59	1867	0.4055	199	690	-	198	163	yocK	General stress protein 16O		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_5_63_01905	bin_5_63	bin-5-63	bin_5_63_01905	contig_59	1867	0.4055	765	1097	-	764	110	yocL	Uncharacterized protein YocL		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_5_63_01906	bin_5_63	bin-5-63	bin_5_63_01906	contig_59	1867	0.4055	1175	1402	+	465	75	yoyB	Uncharacterized protein YoyB		eliminado_por_panaroo	descartado_F1_corto	huerfano				
+bin_5_63_01907	bin_5_63	bin-5-63	bin_5_63_01907	contig_59	1867	0.4055	1389	1850	-	17	153	yocM	salt stress-responsive protein YocM		eliminado_por_panaroo	descartado_F1_borde_contig	huerfano				
+bin_5_63_02162	bin_5_63	bin-5-63	bin_5_63_02162	contig_65	1528	0.4084	48	299	+	47	83		hypothetical protein		eliminado_por_panaroo	descartado_F1_corto	huerfano				
+bin_5_63_02163	bin_5_63	bin-5-63	bin_5_63_02163	contig_65	1528	0.4084	369	1520	-	8	383		Aminopeptidase		eliminado_por_panaroo	descartado_F1_borde_contig	huerfano				
+bin_5_63_02327	bin_5_63	bin-5-63	bin_5_63_02327	contig_70	1778	0.4044	30	1364	+	29	444		hypothetical protein		eliminado_por_panaroo	descartado_F1_borde_contig	huerfano				
+bin_5_63_02579	bin_5_63	bin-5-63	bin_5_63_02579	contig_81	1662	0.4374	16	759	+	15	247		starch-binding protein		eliminado_por_panaroo	descartado_F1_borde_contig	huerfano				
+bin_5_63_02608	bin_5_63	bin-5-63	bin_5_63_02608	contig_84	2058	0.3761	157	2049	+	9	630		LXG domain-containing protein		eliminado_por_panaroo	descartado_F1_borde_contig	huerfano				

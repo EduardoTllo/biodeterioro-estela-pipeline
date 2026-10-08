@@ -1,0 +1,7 @@
+slug	modo	referencias	familias	core	shell	cloud	singletons	alpha	bin_genes	bin_fuera_pangenoma	bin_sin_referencias	etiqueta
+L16_Bacillus_altitudinis	moderate	50	7059	3303	847	2909	1546	0.6461540735762422	2739	32	14	Bacillus altitudinis (L16)
+L16_Bacillus_altitudinis	sensitive	50	7443	3303	847	3293	1927	0.6071141871642995	2739	1	45	Bacillus altitudinis (L16)
+L12_Peribacillus_frigoritolerans	moderate	42	16125	3961	2142	10022	6103	0.5671816264744464	4167	7	34	Peribacillus frigoritolerans (L12)
+L12_Peribacillus_frigoritolerans	sensitive	42	18399	3961	2143	12295	8363	0.48725605493433144	4167	3	38	Peribacillus frigoritolerans (L12)
+L8_Acinetobacter_schindleri	moderate	23	7599	2389	1114	4096	2782	0.5508036471333533	3266	101	70	Acinetobacter schindleri (L8)
+L8_Acinetobacter_schindleri	sensitive	23	8743	2389	1117	5237	3922	0.45542453143480666	3266	1	171	Acinetobacter schindleri (L8)

@@ -1,0 +1,14 @@
+slug	isla	contig	inicio	fin	genes	con_bandera	clases	largo_kb	moviles_cerca	gc_isla	gc_bin	delta_gc
+L16_Bacillus_altitudinis	L16_contig_7_1	contig_7	1542	2643	2	0	hipotetica,metabolismo	1.102	1	NA	NA	NA
+L8_Acinetobacter_schindleri	L8_contig_40_1	contig_40	5598	10023	4	0	metabolismo,otra,regulacion	4.426	3	NA	NA	NA
+L8_Acinetobacter_schindleri	L8_contig_40_2	contig_40	16778	17809	1	0	otra	1.032	2	NA	NA	NA
+L8_Acinetobacter_schindleri	L8_contig_40_3	contig_40	32099	42524	6	0	hipotetica,metabolismo	10.426	4	NA	NA	NA
+L8_Acinetobacter_schindleri	L8_contig_63_1	contig_63	138373	139818	2	0	hipotetica,otra	1.446	4	NA	NA	NA
+L8_Acinetobacter_schindleri	L8_contig_63_2	contig_63	146127	146609	1	0	hipotetica	0.483	4	NA	NA	NA
+L8_Acinetobacter_schindleri	L8_contig_69_1	contig_69	7955	12587	2	0	hipotetica,movil_fago	4.633	1	NA	NA	NA
+L8_Acinetobacter_schindleri	L8_contig_71_1	contig_71	14743	18469	3	0	hipotetica,movil_fago	3.727	3	NA	NA	NA
+L8_Acinetobacter_schindleri	L8_contig_76_1	contig_76	80422	81642	1	0	transporte	1.221	0	NA	NA	NA
+L8_Acinetobacter_schindleri	L8_contig_91_1	contig_91	1688	3046	1	0	transporte	1.359	8	NA	NA	NA
+L8_Acinetobacter_schindleri	L8_contig_91_2	contig_91	11837	24916	5	0	regulacion,transporte,metabolismo	13.08	4	NA	NA	NA
+L8_Acinetobacter_schindleri	L8_contig_93_1	contig_93	11227	18065	3	0	hipotetica,movil_fago	6.839	4	NA	NA	NA
+L8_Acinetobacter_schindleri	L8_contig_94_1	contig_94	23799	24485	1	0	hipotetica	0.687	0	NA	NA	NA

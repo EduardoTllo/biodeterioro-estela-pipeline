@@ -1,71 +1,172 @@
-consulta	bin	genoma_original	locus_tag	contig	largo_contig	gc_contig	inicio	fin	hebra	dist_borde_pb	largo_aa	gen	producto	familia	f1	f2_anclaje	f4	f4_hit	f3	f3_hit
-bin_4_52_00045	bin_4_52	bin-4-52	bin_4_52_00045	contig_4	18372	0.3996	9736	10398	+	7974	220		Aminomethyltransferase folate-binding domain-containing protein	group_1392	ok	anclado	ok		ok	
-bin_4_52_00091	bin_4_52	bin-4-52	bin_4_52_00091	contig_6	12939	0.3711	10821	11366	-	1573	181		hypothetical protein	group_6014	ok	anclado	descartado_F4_presente_en_especie	GCF_001485065_1 (99.4 % id, 100 % cov)		
-bin_4_52_00097	bin_4_52	bin-4-52	bin_4_52_00097	contig_7	27040	0.3864	7172	8446	-	7171	424		restriction endonuclease subunit S	group_6133	ok	anclado	ok		ok	
-bin_4_52_01288	bin_4_52	bin-4-52	bin_4_52_01288	contig_40	63355	0.4263	4944	5117	-	4943	57		hypothetical protein	group_2928	descartado_F1_corto	anclado				
-bin_4_52_01290	bin_4_52	bin-4-52	bin_4_52_01290	contig_40	63355	0.4263	5598	7358	-	5597	586		AAA family ATPase	group_203	ok	anclado	ok		ok	
-bin_4_52_01291	bin_4_52	bin-4-52	bin_4_52_01291	contig_40	63355	0.4263	7349	7579	-	7348	76		ABC-three component system middle component 6	group_2731	descartado_F1_corto	anclado				
-bin_4_52_01292	bin_4_52	bin-4-52	bin_4_52_01292	contig_40	63355	0.4263	7567	8538	-	7566	323		SMEK domain-containing protein	group_857	ok	anclado	ok		ok	
-bin_4_52_01293	bin_4_52	bin-4-52	bin_4_52_01293	contig_40	63355	0.4263	8608	9303	-	8607	231		Peptidase S24	group_1334	ok	anclado	ok		ok	
-bin_4_52_01294	bin_4_52	bin-4-52	bin_4_52_01294	contig_40	63355	0.4263	9439	9657	+	9438	72		helix-turn-helix domain-containing protein	group_2779	descartado_F1_corto	anclado				
-bin_4_52_01295	bin_4_52	bin-4-52	bin_4_52_01295	contig_40	63355	0.4263	9667	10023	+	9666	118		transcriptional regulator	group_2236	ok	anclado	ok		ok	
-bin_4_52_01309	bin_4_52	bin-4-52	bin_4_52_01309	contig_40	63355	0.4263	16778	17809	-	16777	343		CHAT domain-containing protein	group_758	ok	anclado	ok		ok	
-bin_4_52_01325	bin_4_52	bin-4-52	bin_4_52_01325	contig_40	63355	0.4263	32099	32473	+	30882	124		hypothetical protein	group_2169	ok	anclado	ok		ok	
-bin_4_52_01326	bin_4_52	bin-4-52	bin_4_52_01326	contig_40	63355	0.4263	32454	33683	+	29672	409		hypothetical protein	group_496	ok	anclado	ok		ok	
-bin_4_52_01327	bin_4_52	bin-4-52	bin_4_52_01327	contig_40	63355	0.4263	33673	34029	+	29326	118		carboxypeptidase regulatory-like domain-containing protein	group_2237	ok	anclado	ok		ok	
-bin_4_52_01328	bin_4_52	bin-4-52	bin_4_52_01328	contig_40	63355	0.4263	34031	36952	+	26403	973		hypothetical protein	group_58	ok	anclado	ok		ok	
-bin_4_52_01329	bin_4_52	bin-4-52	bin_4_52_01329	contig_40	63355	0.4263	36939	39503	+	23852	854		hypothetical protein	group_84	ok	anclado	ok		ok	
-bin_4_52_01332	bin_4_52	bin-4-52	bin_4_52_01332	contig_40	63355	0.4263	41364	42524	+	20831	386		hypothetical protein	group_595	ok	anclado	ok		ok	
-bin_4_52_01802	bin_4_52	bin-4-52	bin_4_52_01802	contig_62	47940	0.3989	1349	1675	-	1348	108		Aconitate hydratase 1	group_2350	ok	anclado	descartado_F4_presente_en_especie	GCF_010918635_1 (92.3 % id, 84 % cov)		
-bin_4_52_01803	bin_4_52	bin-4-52	bin_4_52_01803	contig_62	47940	0.3989	1691	1945	-	1690	84		Aconitate hydratase 1	group_2635	descartado_F1_corto	anclado				
-bin_4_52_01973	bin_4_52	bin-4-52	bin_4_52_01973	contig_63	271873	0.4348	138373	138684	-	133189	103		prepilin-type cleavage/methylation domain-containing protein	group_2403	ok	anclado	ok		ok	
-bin_4_52_01974	bin_4_52	bin-4-52	bin_4_52_01974	contig_63	271873	0.4348	138928	139098	-	132775	56		Arc family DNA-binding protein	group_2939	descartado_F1_corto	anclado				
-bin_4_52_01975	bin_4_52	bin-4-52	bin_4_52_01975	contig_63	271873	0.4348	139456	139818	+	132055	120		hypothetical protein	group_2212	ok	anclado	ok		ok	
-bin_4_52_01976	bin_4_52	bin-4-52	bin_4_52_01976	contig_63	271873	0.4348	139860	140216	-	131657	118		Transposase	group_2238	ok	anclado	descartado_F4_presente_en_especie	GCF_023218135_1 (89.8 % id, 100 % cov)		
-bin_4_52_01977	bin_4_52	bin-4-52	bin_4_52_01977	contig_63	271873	0.4348	140220	141401	-	130472	393		Tyr recombinase domain-containing protein	group_551	ok	anclado	descartado_F4_presente_en_especie	GCF_002918965_1 (89.3 % id, 100 % cov)		
-bin_4_52_01978	bin_4_52	bin-4-52	bin_4_52_01978	contig_63	271873	0.4348	141488	142276	-	129597	262		hypothetical protein	group_1151	ok	anclado	descartado_F4_presente_en_especie	GCF_002919885_1 (92.3 % id, 99 % cov)		
-bin_4_52_01979	bin_4_52	bin-4-52	bin_4_52_01979	contig_63	271873	0.4348	142273	144210	-	127663	645		Tyr recombinase domain-containing protein	group_161	ok	anclado	descartado_F4_presente_en_especie	GCF_002918965_1 (80.5 % id, 100 % cov)		
-bin_4_52_01980	bin_4_52	bin-4-52	bin_4_52_01980	contig_63	271873	0.4348	144207	145634	-	126239	475		site-specific integrase	group_322	ok	anclado	descartado_F4_presente_en_especie	GCF_002918965_1 (88.4 % id, 99 % cov)		
-bin_4_52_01981	bin_4_52	bin-4-52	bin_4_52_01981	contig_63	271873	0.4348	145808	146002	-	125871	64		DNA-binding protein	group_2865	descartado_F1_corto	anclado				
-bin_4_52_01982	bin_4_52	bin-4-52	bin_4_52_01982	contig_63	271873	0.4348	146127	146609	-	125264	160		hypothetical protein	group_1840	ok	anclado	ok		ok	
-bin_4_52_01983	bin_4_52	bin-4-52	bin_4_52_01983	contig_63	271873	0.4348	146707	146913	+	124960	68		helix-turn-helix domain-containing protein	group_2835	descartado_F1_corto	anclado				
-bin_4_52_01984	bin_4_52	bin-4-52	bin_4_52_01984	contig_63	271873	0.4348	147137	147397	+	124476	86		(pseudo) helix-turn-helix transcriptional regulator	group_2603	descartado_F1_pseudogen	anclado				
-bin_4_52_02218	bin_4_52	bin-4-52	bin_4_52_02218	contig_69	133718	0.4265	7955	8461	+	7954	168		Phage P1-related protein	group_1746	ok	anclado	ok		ok	
-bin_4_52_02220	bin_4_52	bin-4-52	bin_4_52_02220	contig_69	133718	0.4265	11970	12587	+	11969	205		DUF805 domain-containing protein	group_1488	ok	anclado	ok		ok	
-bin_4_52_02379	bin_4_52	bin-4-52	bin_4_52_02379	contig_71	40252	0.4154	14743	15639	+	14742	298		hypothetical protein	group_998	ok	anclado	ok		ok	
-bin_4_52_02380	bin_4_52	bin-4-52	bin_4_52_02380	contig_71	40252	0.4154	15740	16975	-	15739	411		hypothetical protein	group_490	ok	anclado	ok		ok	
-bin_4_52_02381	bin_4_52	bin-4-52	bin_4_52_02381	contig_71	40252	0.4154	17071	17367	+	17070	98	prtN	Pyocin activator PrtN family protein	group_2473	descartado_F1_corto	anclado				
-bin_4_52_02382	bin_4_52	bin-4-52	bin_4_52_02382	contig_71	40252	0.4154	17333	18469	-	17332	378		Tyrosine-type recombinase/integrase	group_617	ok	anclado	ok		ok	
-bin_4_52_02627	bin_4_52	bin-4-52	bin_4_52_02627	contig_76	101810	0.4281	80422	81642	-	20168	406		Transporter	group_506	ok	anclado	ok		ok	
-bin_4_52_02652	bin_4_52	bin-4-52	bin_4_52_02652	contig_78	18620	0.4234	1743	5090	-	1742	1115		hypothetical protein	group_6310	ok	anclado	descartado_F4_presente_en_especie	GCF_001866125_1 (96.2 % id, 100 % cov)		
-bin_4_52_03109	bin_4_52	bin-4-52	bin_4_52_03109	contig_91	58306	0.4041	1688	3046	-	1687	452		Potassium transporter	group_361	ok	anclado	ok		ok	
-bin_4_52_03110	bin_4_52	bin-4-52	bin_4_52_03110	contig_91	58306	0.4041	3368	3673	-	3367	101		IS30 family transposase	group_2434	ok	anclado	descartado_F4_presente_en_especie	GCF_001971565_1 (97.0 % id, 100 % cov)		
-bin_4_52_03115	bin_4_52	bin-4-52	bin_4_52_03115	contig_91	58306	0.4041	6311	9526	-	6310	1071		Tyr recombinase domain-containing protein	group_6324	ok	anclado	descartado_F4_presente_en_especie	GCA_022832955_1 (95.9 % id, 100 % cov)		
-bin_4_52_03116	bin_4_52	bin-4-52	bin_4_52_03116	contig_91	58306	0.4041	9510	11837	-	9509	775		Tyr recombinase domain-containing protein	group_6314	ok	anclado	descartado_F4_presente_en_especie	GCF_002918965_1 (89.4 % id, 100 % cov)		
-bin_4_52_03117	bin_4_52	bin-4-52	bin_4_52_03117	contig_91	58306	0.4041	11837	12508	-	11836	223	araC	AraC family transcriptional regulator	group_6315	ok	anclado	ok		ok	
-bin_4_52_03118	bin_4_52	bin-4-52	bin_4_52_03118	contig_91	58306	0.4041	13073	14491	-	13072	472		Polyphosphate kinase-2-related domain-containing protein	group_6322	ok	anclado	ok		ok	
-bin_4_52_03119	bin_4_52	bin-4-52	bin_4_52_03119	contig_91	58306	0.4041	14799	15506	+	14798	235		HTH tetR-type domain-containing protein	group_6318	ok	anclado	ok		ok	
-bin_4_52_03120	bin_4_52	bin-4-52	bin_4_52_03120	contig_91	58306	0.4041	15511	16908	+	15510	465		RND transporter	group_6323	ok	anclado	ok		ok	
-bin_4_52_03121	bin_4_52	bin-4-52	bin_4_52_03121	contig_91	58306	0.4041	16927	17985	+	16926	352		Membrane fusion protein biotin-lipoyl like domain-containing protein	group_6319	ok	anclado	ok		ok	
-bin_4_52_03122	bin_4_52	bin-4-52	bin_4_52_03122	contig_91	58306	0.4041	17982	20738	+	17981	918	rbbA	ribosome-associated ATPase/putative transporter RbbA	rbbA	ok	anclado	ok		ok	
-bin_4_52_03123	bin_4_52	bin-4-52	bin_4_52_03123	contig_91	58306	0.4041	20740	21864	+	20739	374		ABC transmembrane type-2 domain-containing protein	group_6316	ok	anclado	ok		ok	
-bin_4_52_03124	bin_4_52	bin-4-52	bin_4_52_03124	contig_91	58306	0.4041	22006	23598	+	22005	530	phoU	PhoU domain-containing protein	group_6320	ok	anclado	ok		ok	
-bin_4_52_03125	bin_4_52	bin-4-52	bin_4_52_03125	contig_91	58306	0.4041	23648	24916	+	23647	422	mgtC	MgtC family	group_6312	ok	anclado	ok		ok	
-bin_4_52_03126	bin_4_52	bin-4-52	bin_4_52_03126	contig_91	58306	0.4041	25029	27107	+	25028	692	ppk1	polyphosphate kinase 1	group_6313	ok	anclado	descartado_F4_presente_en_especie	GCF_010918635_1 (82.2 % id, 99 % cov)		
-bin_4_52_03127	bin_4_52	bin-4-52	bin_4_52_03127	contig_91	58306	0.4041	27252	27662	+	27251	136	tnp	IS5 family transposase ORF A	group_6321	ok	anclado	descartado_F4_presente_en_especie	GCF_002919885_1 (90.4 % id, 100 % cov)		
-bin_4_52_03128	bin_4_52	bin-4-52	bin_4_52_03128	contig_91	58306	0.4041	27610	27876	+	27609	88		Transposase IS4-like domain-containing protein	group_6317	descartado_F1_corto	anclado				
-bin_4_52_03186	bin_4_52	bin-4-52	bin_4_52_03186	contig_93	70200	0.4170	11227	11826	+	11226	199		hypothetical protein	group_1528	ok	anclado	ok		ok	
-bin_4_52_03187	bin_4_52	bin-4-52	bin_4_52_03187	contig_93	70200	0.4170	11929	12204	+	11928	91	alpA	AlpA family phage regulatory protein	group_2551	descartado_F1_corto	anclado				
-bin_4_52_03188	bin_4_52	bin-4-52	bin_4_52_03188	contig_93	70200	0.4170	12201	12419	+	12200	72		Winged helix-turn-helix domain-containing protein	group_2780	descartado_F1_corto	anclado				
-bin_4_52_03189	bin_4_52	bin-4-52	bin_4_52_03189	contig_93	70200	0.4170	12416	12619	+	12415	67		Carrier domain-containing protein	group_2843	descartado_F1_corto	anclado				
-bin_4_52_03190	bin_4_52	bin-4-52	bin_4_52_03190	contig_93	70200	0.4170	12616	12747	+	12615	43		DUF4372 domain-containing protein	group_2999	descartado_F1_corto	anclado				
-bin_4_52_03191	bin_4_52	bin-4-52	bin_4_52_03191	contig_93	70200	0.4170	12744	13061	+	12743	105		hypothetical protein	group_2379	ok	anclado	ok		ok	
-bin_4_52_03193	bin_4_52	bin-4-52	bin_4_52_03193	contig_93	70200	0.4170	13054	13452	+	13053	132		DUF3077 domain-containing protein	group_2095	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (93.9 % id, 99 % cov)		
-bin_4_52_03194	bin_4_52	bin-4-52	bin_4_52_03194	contig_93	70200	0.4170	13449	15599	+	13448	716		DUF3987 domain-containing protein	group_123	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (94.7 % id, 100 % cov)		
-bin_4_52_03195	bin_4_52	bin-4-52	bin_4_52_03195	contig_93	70200	0.4170	15941	16303	+	15940	120		Helix-turn-helix domain-containing protein	group_2213	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (95.8 % id, 100 % cov)		
-bin_4_52_03196	bin_4_52	bin-4-52	bin_4_52_03196	contig_93	70200	0.4170	16370	17332	+	16369	320		HK97 family phage major capsid protein	group_865	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (95.9 % id, 100 % cov)		
-bin_4_52_03197	bin_4_52	bin-4-52	bin_4_52_03197	contig_93	70200	0.4170	17337	18065	+	17336	242		HK97 family phage prohead protease	group_1274	ok	anclado	ok		ok	
-bin_4_52_03198	bin_4_52	bin-4-52	bin_4_52_03198	contig_93	70200	0.4170	18062	18415	+	18061	117		hypothetical protein	group_2245	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (97.4 % id, 100 % cov)		
-bin_4_52_03199	bin_4_52	bin-4-52	bin_4_52_03199	contig_93	70200	0.4170	18471	18791	+	18470	106		HNH endonuclease	group_2370	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (96.2 % id, 99 % cov)		
-bin_4_52_03200	bin_4_52	bin-4-52	bin_4_52_03200	contig_93	70200	0.4170	18869	19189	+	18868	106		Terminase small subunit	group_2371	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (96.2 % id, 100 % cov)		
-bin_4_52_03267	bin_4_52	bin-4-52	bin_4_52_03267	contig_94	30063	0.4418	23799	24485	+	5578	228		hypothetical protein	group_1349	ok	anclado	ok		ok	
+consulta	bin	genoma_original	locus_tag	contig	largo_contig	gc_contig	inicio	fin	hebra	dist_borde_pb	largo_aa	gen	producto	familia	origen_candidato	f1	f2_anclaje	f4	f4_hit	f3	f3_hit
+bin_4_52_00001	bin_4_52	bin-4-52	bin_4_52_00001	contig_1	4433	0.3519	189	698	+	188	169		hypothetical protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00002	bin_4_52	bin-4-52	bin_4_52_00002	contig_1	4433	0.3519	706	3198	+	705	830		AAA family ATPase		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00003	bin_4_52	bin-4-52	bin_4_52_00003	contig_1	4433	0.3519	3195	4331	+	102	378		hypothetical protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00037	bin_4_52	bin-4-52	bin_4_52_00037	contig_4	18372	0.3996	267	1145	+	266	292		SMODS and SLOG-associating 2TM effector domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00038	bin_4_52	bin-4-52	bin_4_52_00038	contig_4	18372	0.3996	1166	2176	+	1165	336		Nucleotidyltransferase		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00039	bin_4_52	bin-4-52	bin_4_52_00039	contig_4	18372	0.3996	2373	2897	+	2372	174		hypothetical protein		eliminado_por_panaroo	ok	anclado	descartado_F4_presente_en_especie	GCF_010918895_1 (89.9 % id, 95 % cov)		
+bin_4_52_00045	bin_4_52	bin-4-52	bin_4_52_00045	contig_4	18372	0.3996	9736	10398	+	7974	220		Aminomethyltransferase folate-binding domain-containing protein	group_1392	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_00052	bin_4_52	bin-4-52	bin_4_52_00052	contig_4	18372	0.3996	17983	18180	-	192	65		hypothetical protein		eliminado_por_panaroo	descartado_F1_corto	anclado				
+bin_4_52_00080	bin_4_52	bin-4-52	bin_4_52_00080	contig_6	12939	0.3711	132	1973	-	131	613		TerB-C domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00081	bin_4_52	bin-4-52	bin_4_52_00081	contig_6	12939	0.3711	1973	3139	-	1972	388		DNA 3'-5' helicase II		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00082	bin_4_52	bin-4-52	bin_4_52_00082	contig_6	12939	0.3711	3142	5559	-	3141	805		Hsp70 family protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00083	bin_4_52	bin-4-52	bin_4_52_00083	contig_6	12939	0.3711	5669	6193	-	5668	174		IS3 family transposase		eliminado_por_panaroo	ok	anclado	descartado_F4_presente_en_especie	GCF_003072585_2 (94.1 % id, 98 % cov)		
+bin_4_52_00084	bin_4_52	bin-4-52	bin_4_52_00084	contig_6	12939	0.3711	6207	6542	-	6206	111		(pseudo) transposase		eliminado_por_panaroo	descartado_F1_pseudogen	anclado				
+bin_4_52_00085	bin_4_52	bin-4-52	bin_4_52_00085	contig_6	12939	0.3711	6582	6929	-	6010	115		(pseudo) transposase		eliminado_por_panaroo	descartado_F1_pseudogen	anclado				
+bin_4_52_00086	bin_4_52	bin-4-52	bin_4_52_00086	contig_6	12939	0.3711	7139	7576	-	5363	145		HTH-like domain protein		eliminado_por_panaroo	ok	anclado	descartado_F4_presente_en_especie	GCF_003069395_1 (86.2 % id, 100 % cov)		
+bin_4_52_00087	bin_4_52	bin-4-52	bin_4_52_00087	contig_6	12939	0.3711	7576	7893	-	5046	105	tnp	IS3 family transposase ORF A		eliminado_por_panaroo	ok	anclado	descartado_F4_presente_en_especie	GCF_014204595_1 (93.3 % id, 100 % cov)		
+bin_4_52_00088	bin_4_52	bin-4-52	bin_4_52_00088	contig_6	12939	0.3711	8090	8686	+	4253	198		transposase		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00089	bin_4_52	bin-4-52	bin_4_52_00089	contig_6	12939	0.3711	8925	9806	-	3133	293		IS982 family transposase		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00091	bin_4_52	bin-4-52	bin_4_52_00091	contig_6	12939	0.3711	10821	11366	-	1573	181		hypothetical protein	group_6014	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_001485065_1 (99.4 % id, 100 % cov)		
+bin_4_52_00097	bin_4_52	bin-4-52	bin_4_52_00097	contig_7	27040	0.3864	7172	8446	-	7171	424		restriction endonuclease subunit S	group_6133	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_00111	bin_4_52	bin-4-52	bin_4_52_00111	contig_7	27040	0.3864	26814	26945	-	95	43		hypothetical protein		eliminado_por_panaroo	descartado_F1_corto	anclado				
+bin_4_52_00295	bin_4_52	bin-4-52	bin_4_52_00295	contig_16	40826	0.3586	16800	17399	+	16799	199		Restriction endonuclease subunit S		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00296	bin_4_52	bin-4-52	bin_4_52_00296	contig_16	40826	0.3586	17410	18684	+	17409	424		site-specific DNA-methyltransferase (adenine-specific)		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00297	bin_4_52	bin-4-52	bin_4_52_00297	contig_16	40826	0.3586	18697	18960	+	18696	87		DUF4258 domain-containing protein		eliminado_por_panaroo	descartado_F1_corto	anclado				
+bin_4_52_00298	bin_4_52	bin-4-52	bin_4_52_00298	contig_16	40826	0.3586	19127	19411	+	19126	94		site-specific DNA-methyltransferase (adenine-specific)		eliminado_por_panaroo	descartado_F1_corto	anclado				
+bin_4_52_00299	bin_4_52	bin-4-52	bin_4_52_00299	contig_16	40826	0.3586	19532	21493	+	19333	653		site-specific DNA-methyltransferase (adenine-specific)		eliminado_por_panaroo	ok	anclado	descartado_F4_presente_en_especie	GCA_022832955_1 (97.1 % id, 100 % cov)		
+bin_4_52_00300	bin_4_52	bin-4-52	bin_4_52_00300	contig_16	40826	0.3586	21502	22827	+	17999	441		Type I restriction modification DNA specificity domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00301	bin_4_52	bin-4-52	bin_4_52_00301	contig_16	40826	0.3586	22884	24062	+	16764	392		DUF4268 domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00302	bin_4_52	bin-4-52	bin_4_52_00302	contig_16	40826	0.3586	24090	26015	+	14811	641		GmrSD restriction endonucleases N-terminal domain-containing protein		eliminado_por_panaroo	ok	anclado	descartado_F4_presente_en_especie	GCA_022832955_1 (89.4 % id, 100 % cov)		
+bin_4_52_00303	bin_4_52	bin-4-52	bin_4_52_00303	contig_16	40826	0.3586	26021	28285	+	12541	754		DUF262 domain-containing protein		eliminado_por_panaroo	ok	anclado	descartado_F4_presente_en_especie	GCA_022832955_1 (93.5 % id, 99 % cov)		
+bin_4_52_00304	bin_4_52	bin-4-52	bin_4_52_00304	contig_16	40826	0.3586	28285	31347	+	9479	1020		type I site-specific deoxyribonuclease		eliminado_por_panaroo	ok	anclado	descartado_F4_presente_en_especie	GCF_010919095_1 (97.9 % id, 100 % cov)		
+bin_4_52_00305	bin_4_52	bin-4-52	bin_4_52_00305	contig_16	40826	0.3586	31479	34847	+	5979	1122		Baseplate protein J-like domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00306	bin_4_52	bin-4-52	bin_4_52_00306	contig_16	40826	0.3586	34849	40770	+	56	1973		DEAD/DEAH box helicase		eliminado_por_panaroo	descartado_F1_borde_contig	anclado				
+bin_4_52_00424	bin_4_52	bin-4-52	bin_4_52_00424	contig_19	14338	0.3457	927	1223	-	926	98		DUF4258 domain-containing protein		eliminado_por_panaroo	descartado_F1_corto	huerfano				
+bin_4_52_00425	bin_4_52	bin-4-52	bin_4_52_00425	contig_19	14338	0.3457	1476	2036	+	1475	186		hypothetical protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00426	bin_4_52	bin-4-52	bin_4_52_00426	contig_19	14338	0.3457	2049	3188	+	2048	379	csm6	CRISPR-associated ring nuclease Csm6		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00427	bin_4_52	bin-4-52	bin_4_52_00427	contig_19	14338	0.3457	3234	4535	-	3233	433		hypothetical protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00428	bin_4_52	bin-4-52	bin_4_52_00428	contig_19	14338	0.3457	4628	5170	-	4627	180		Endonuclease YncB, thermonuclease family		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00429	bin_4_52	bin-4-52	bin_4_52_00429	contig_19	14338	0.3457	5413	6210	+	5412	265		methyltransferase domain-containing protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00430	bin_4_52	bin-4-52	bin_4_52_00430	contig_19	14338	0.3457	6212	6973	+	6211	253	alkB	alpha-ketoglutarate-dependent dioxygenase AlkB		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00431	bin_4_52	bin-4-52	bin_4_52_00431	contig_19	14338	0.3457	7111	7791	+	6547	226		VWFA domain-containing protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00432	bin_4_52	bin-4-52	bin_4_52_00432	contig_19	14338	0.3457	7821	8495	+	5843	224		PP2C family serine/threonine-protein phosphatase		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00433	bin_4_52	bin-4-52	bin_4_52_00433	contig_19	14338	0.3457	8498	9910	+	4428	470		protein kinase domain-containing protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00434	bin_4_52	bin-4-52	bin_4_52_00434	contig_19	14338	0.3457	9915	13253	+	1085	1112		DEAD/DEAH box helicase		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00435	bin_4_52	bin-4-52	bin_4_52_00435	contig_19	14338	0.3457	13237	14229	+	109	330		hypothetical protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_00816	bin_4_52	bin-4-52	bin_4_52_00816	contig_28	24108	0.3985	441	1244	+	440	267		DUF4942 domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_00817	bin_4_52	bin-4-52	bin_4_52_00817	contig_28	24108	0.3985	1440	1733	-	1439	97		hypothetical protein		eliminado_por_panaroo	descartado_F1_corto	anclado				
+bin_4_52_00825	bin_4_52	bin-4-52	bin_4_52_00825	contig_28	24108	0.3985	6854	7288	-	6853	144	tnp	IS4 family transposase		eliminado_por_panaroo	ok	anclado	descartado_F4_presente_en_especie	GCF_001485065_1 (97.9 % id, 100 % cov)		
+bin_4_52_00982	bin_4_52	bin-4-52	bin_4_52_00982	contig_32	2389	0.3407	1620	2285	+	104	221		hypothetical protein		eliminado_por_panaroo	ok	anclado	descartado_F4_presente_en_especie	GCF_030973565_1 (100.0 % id, 95 % cov)		
+bin_4_52_01160	bin_4_52	bin-4-52	bin_4_52_01160	contig_34	90924	0.4149	74536	75804	+	15120	422		Tyr recombinase domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01161	bin_4_52	bin-4-52	bin_4_52_01161	contig_34	90924	0.4149	76611	77222	+	13702	203		WYL domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01162	bin_4_52	bin-4-52	bin_4_52_01162	contig_34	90924	0.4149	77386	79026	+	11898	546		Dynamin N-terminal domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01163	bin_4_52	bin-4-52	bin_4_52_01163	contig_34	90924	0.4149	79117	80766	+	10158	549		Dynamin N-terminal domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01164	bin_4_52	bin-4-52	bin_4_52_01164	contig_34	90924	0.4149	80877	81281	-	9643	134	vapC	Ribonuclease VapC		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01165	bin_4_52	bin-4-52	bin_4_52_01165	contig_34	90924	0.4149	81282	81509	-	9415	75		AbrB/MazE/SpoVT family DNA-binding domain-containing protein		eliminado_por_panaroo	descartado_F1_corto	anclado				
+bin_4_52_01166	bin_4_52	bin-4-52	bin_4_52_01166	contig_34	90924	0.4149	81690	84896	-	6028	1068		hypothetical protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01167	bin_4_52	bin-4-52	bin_4_52_01167	contig_34	90924	0.4149	85076	87172	+	3752	698		Dynamin N-terminal domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01168	bin_4_52	bin-4-52	bin_4_52_01168	contig_34	90924	0.4149	87236	87517	+	3407	93		hypothetical protein		eliminado_por_panaroo	descartado_F1_corto	anclado				
+bin_4_52_01169	bin_4_52	bin-4-52	bin_4_52_01169	contig_34	90924	0.4149	87627	88934	+	1990	435		AAA+ ATPase domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01170	bin_4_52	bin-4-52	bin_4_52_01170	contig_34	90924	0.4149	88982	89569	+	1355	195		hypothetical protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01171	bin_4_52	bin-4-52	bin_4_52_01171	contig_34	90924	0.4149	89584	90801	+	123	405		VWFA domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01179	bin_4_52	bin-4-52	bin_4_52_01179	contig_36	9285	0.3696	1206	1463	+	1205	85		hypothetical protein		eliminado_por_panaroo	descartado_F1_corto	anclado				
+bin_4_52_01180	bin_4_52	bin-4-52	bin_4_52_01180	contig_36	9285	0.3696	1497	2159	+	1496	220		Apea-like HEPN domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01181	bin_4_52	bin-4-52	bin_4_52_01181	contig_36	9285	0.3696	2526	3224	-	2525	232	tnpC	IS66 family transposase		eliminado_por_panaroo	ok	anclado	descartado_F4_presente_en_especie	GCF_030973565_1 (98.7 % id, 100 % cov)		
+bin_4_52_01182	bin_4_52	bin-4-52	bin_4_52_01182	contig_36	9285	0.3696	3281	3784	-	3280	167		GreA/GreB family elongation factor		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01183	bin_4_52	bin-4-52	bin_4_52_01183	contig_36	9285	0.3696	3777	4358	-	3776	193		AAA family ATPase		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01184	bin_4_52	bin-4-52	bin_4_52_01184	contig_36	9285	0.3696	4355	6178	-	3107	607		hypothetical protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01185	bin_4_52	bin-4-52	bin_4_52_01185	contig_36	9285	0.3696	6242	7108	+	2177	288		WYL domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01186	bin_4_52	bin-4-52	bin_4_52_01186	contig_36	9285	0.3696	7115	8113	+	1172	332		SIS domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01187	bin_4_52	bin-4-52	bin_4_52_01187	contig_36	9285	0.3696	8227	8814	-	471	195		Anaerobic ribonucleoside-triphosphate reductase-activating protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01188	bin_4_52	bin-4-52	bin_4_52_01188	contig_36	9285	0.3696	8841	9194	-	91	117		hypothetical protein		eliminado_por_panaroo	descartado_F1_borde_contig	anclado				
+bin_4_52_01288	bin_4_52	bin-4-52	bin_4_52_01288	contig_40	63355	0.4263	4944	5117	-	4943	57		hypothetical protein	group_2928	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_01290	bin_4_52	bin-4-52	bin_4_52_01290	contig_40	63355	0.4263	5598	7358	-	5597	586		AAA family ATPase	group_203	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01291	bin_4_52	bin-4-52	bin_4_52_01291	contig_40	63355	0.4263	7349	7579	-	7348	76		ABC-three component system middle component 6	group_2731	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_01292	bin_4_52	bin-4-52	bin_4_52_01292	contig_40	63355	0.4263	7567	8538	-	7566	323		SMEK domain-containing protein	group_857	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01293	bin_4_52	bin-4-52	bin_4_52_01293	contig_40	63355	0.4263	8608	9303	-	8607	231		Peptidase S24	group_1334	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01294	bin_4_52	bin-4-52	bin_4_52_01294	contig_40	63355	0.4263	9439	9657	+	9438	72		helix-turn-helix domain-containing protein	group_2779	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_01295	bin_4_52	bin-4-52	bin_4_52_01295	contig_40	63355	0.4263	9667	10023	+	9666	118		transcriptional regulator	group_2236	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01309	bin_4_52	bin-4-52	bin_4_52_01309	contig_40	63355	0.4263	16778	17809	-	16777	343		CHAT domain-containing protein	group_758	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01325	bin_4_52	bin-4-52	bin_4_52_01325	contig_40	63355	0.4263	32099	32473	+	30882	124		hypothetical protein	group_2169	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01326	bin_4_52	bin-4-52	bin_4_52_01326	contig_40	63355	0.4263	32454	33683	+	29672	409		hypothetical protein	group_496	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01327	bin_4_52	bin-4-52	bin_4_52_01327	contig_40	63355	0.4263	33673	34029	+	29326	118		carboxypeptidase regulatory-like domain-containing protein	group_2237	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01328	bin_4_52	bin-4-52	bin_4_52_01328	contig_40	63355	0.4263	34031	36952	+	26403	973		hypothetical protein	group_58	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01329	bin_4_52	bin-4-52	bin_4_52_01329	contig_40	63355	0.4263	36939	39503	+	23852	854		hypothetical protein	group_84	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01332	bin_4_52	bin-4-52	bin_4_52_01332	contig_40	63355	0.4263	41364	42524	+	20831	386		hypothetical protein	group_595	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01642	bin_4_52	bin-4-52	bin_4_52_01642	contig_52	11110	0.4394	71	1243	+	70	390	fadA	acetyl-CoA C-acyltransferase FadA		eliminado_por_panaroo	descartado_F1_borde_contig	anclado				
+bin_4_52_01774	bin_4_52	bin-4-52	bin_4_52_01774	contig_59	13233	0.3682	129	1481	-	128	450		SIR2-like domain-containing protein		eliminado_por_panaroo	ok	anclado	descartado_F4_presente_en_especie	GCF_030973565_1 (99.5 % id, 88 % cov)		
+bin_4_52_01802	bin_4_52	bin-4-52	bin_4_52_01802	contig_62	47940	0.3989	1349	1675	-	1348	108		Aconitate hydratase 1	group_2350	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_010918635_1 (92.3 % id, 84 % cov)		
+bin_4_52_01803	bin_4_52	bin-4-52	bin_4_52_01803	contig_62	47940	0.3989	1691	1945	-	1690	84		Aconitate hydratase 1	group_2635	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_01839	bin_4_52	bin-4-52	bin_4_52_01839	contig_62	47940	0.3989	42152	43249	-	4691	365		O-antigen ligase-related domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01840	bin_4_52	bin-4-52	bin_4_52_01840	contig_62	47940	0.3989	43367	44245	-	3695	292		glycosyltransferase		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01841	bin_4_52	bin-4-52	bin_4_52_01841	contig_62	47940	0.3989	44248	45417	-	2523	389		UDP-glucose 6-dehydrogenase		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01842	bin_4_52	bin-4-52	bin_4_52_01842	contig_62	47940	0.3989	45414	46280	-	1660	288		ATP-grasp domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01843	bin_4_52	bin-4-52	bin_4_52_01843	contig_62	47940	0.3989	46282	47556	-	384	424		Polysaccharide biosynthesis protein C-terminal domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_01844	bin_4_52	bin-4-52	bin_4_52_01844	contig_62	47940	0.3989	47546	47635	-	305	29		hypothetical protein		eliminado_por_panaroo	descartado_F1_corto	anclado				
+bin_4_52_01973	bin_4_52	bin-4-52	bin_4_52_01973	contig_63	271873	0.4348	138373	138684	-	133189	103		prepilin-type cleavage/methylation domain-containing protein	group_2403	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01974	bin_4_52	bin-4-52	bin_4_52_01974	contig_63	271873	0.4348	138928	139098	-	132775	56		Arc family DNA-binding protein	group_2939	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_01975	bin_4_52	bin-4-52	bin_4_52_01975	contig_63	271873	0.4348	139456	139818	+	132055	120		hypothetical protein	group_2212	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01976	bin_4_52	bin-4-52	bin_4_52_01976	contig_63	271873	0.4348	139860	140216	-	131657	118		Transposase	group_2238	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_023218135_1 (89.8 % id, 100 % cov)		
+bin_4_52_01977	bin_4_52	bin-4-52	bin_4_52_01977	contig_63	271873	0.4348	140220	141401	-	130472	393		Tyr recombinase domain-containing protein	group_551	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_002918965_1 (89.3 % id, 100 % cov)		
+bin_4_52_01978	bin_4_52	bin-4-52	bin_4_52_01978	contig_63	271873	0.4348	141488	142276	-	129597	262		hypothetical protein	group_1151	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_002919885_1 (92.3 % id, 99 % cov)		
+bin_4_52_01979	bin_4_52	bin-4-52	bin_4_52_01979	contig_63	271873	0.4348	142273	144210	-	127663	645		Tyr recombinase domain-containing protein	group_161	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_002918965_1 (80.5 % id, 100 % cov)		
+bin_4_52_01980	bin_4_52	bin-4-52	bin_4_52_01980	contig_63	271873	0.4348	144207	145634	-	126239	475		site-specific integrase	group_322	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_002918965_1 (88.4 % id, 99 % cov)		
+bin_4_52_01981	bin_4_52	bin-4-52	bin_4_52_01981	contig_63	271873	0.4348	145808	146002	-	125871	64		DNA-binding protein	group_2865	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_01982	bin_4_52	bin-4-52	bin_4_52_01982	contig_63	271873	0.4348	146127	146609	-	125264	160		hypothetical protein	group_1840	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_01983	bin_4_52	bin-4-52	bin_4_52_01983	contig_63	271873	0.4348	146707	146913	+	124960	68		helix-turn-helix domain-containing protein	group_2835	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_01984	bin_4_52	bin-4-52	bin_4_52_01984	contig_63	271873	0.4348	147137	147397	+	124476	86		(pseudo) helix-turn-helix transcriptional regulator	group_2603	familia_sin_referencias	descartado_F1_pseudogen	anclado				
+bin_4_52_02207	bin_4_52	bin-4-52	bin_4_52_02207	contig_68	2128	0.3473	359	670	+	358	103		hypothetical protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_02208	bin_4_52	bin-4-52	bin_4_52_02208	contig_68	2128	0.3473	879	1229	-	878	116		hypothetical protein		eliminado_por_panaroo	ok	huerfano	descartado_F4_presente_en_especie	GCF_002919885_1 (93.8 % id, 97 % cov)		
+bin_4_52_02209	bin_4_52	bin-4-52	bin_4_52_02209	contig_68	2128	0.3473	1240	1977	-	151	245		DUF1173 domain-containing protein		eliminado_por_panaroo	ok	huerfano	descartado_F4_presente_en_especie	GCF_001971565_1 (97.6 % id, 100 % cov)		
+bin_4_52_02218	bin_4_52	bin-4-52	bin_4_52_02218	contig_69	133718	0.4265	7955	8461	+	7954	168		Phage P1-related protein	group_1746	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_02220	bin_4_52	bin-4-52	bin_4_52_02220	contig_69	133718	0.4265	11970	12587	+	11969	205		DUF805 domain-containing protein	group_1488	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_02379	bin_4_52	bin-4-52	bin_4_52_02379	contig_71	40252	0.4154	14743	15639	+	14742	298		hypothetical protein	group_998	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_02380	bin_4_52	bin-4-52	bin_4_52_02380	contig_71	40252	0.4154	15740	16975	-	15739	411		hypothetical protein	group_490	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_02381	bin_4_52	bin-4-52	bin_4_52_02381	contig_71	40252	0.4154	17071	17367	+	17070	98	prtN	Pyocin activator PrtN family protein	group_2473	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_02382	bin_4_52	bin-4-52	bin_4_52_02382	contig_71	40252	0.4154	17333	18469	-	17332	378		Tyrosine-type recombinase/integrase	group_617	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_02401	bin_4_52	bin-4-52	bin_4_52_02401	contig_71	40252	0.4154	32930	33349	+	6903	139		Beta-lactamase hydrolase-like protein phosphatase-like domain-containing protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_02402	bin_4_52	bin-4-52	bin_4_52_02402	contig_71	40252	0.4154	33342	33446	+	6806	34		Lipoprotein		eliminado_por_panaroo	descartado_F1_corto	anclado				
+bin_4_52_02403	bin_4_52	bin-4-52	bin_4_52_02403	contig_71	40252	0.4154	33504	38021	-	2231	1505		hypothetical protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_02404	bin_4_52	bin-4-52	bin_4_52_02404	contig_71	40252	0.4154	38193	39575	+	677	460		dihydrolipoyl dehydrogenase		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_02416	bin_4_52	bin-4-52	bin_4_52_02416	contig_73	19275	0.4082	499	942	+	498	147		DUF3592 domain-containing protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_02417	bin_4_52	bin-4-52	bin_4_52_02417	contig_73	19275	0.4082	990	2189	+	989	399		Cobalt/zinc/cadmium resistance protein		eliminado_por_panaroo	ok	huerfano	descartado_F4_presente_en_especie	GCF_001866125_1 (81.2 % id, 100 % cov)		
+bin_4_52_02418	bin_4_52	bin-4-52	bin_4_52_02418	contig_73	19275	0.4082	2201	3676	+	2200	491		Cobalt-zinc-cadmium resistance protein		eliminado_por_panaroo	ok	huerfano	descartado_F4_presente_en_especie	GCF_002918965_1 (90.7 % id, 100 % cov)		
+bin_4_52_02419	bin_4_52	bin-4-52	bin_4_52_02419	contig_73	19275	0.4082	3689	6817	+	3688	1042	czcA	Cation efflux system protein CzcA		eliminado_por_panaroo	ok	huerfano	descartado_F4_presente_en_especie	GCF_002918965_1 (96.4 % id, 99 % cov)		
+bin_4_52_02420	bin_4_52	bin-4-52	bin_4_52_02420	contig_73	19275	0.4082	6871	7167	+	6870	98		(pseudo) hypothetical protein		eliminado_por_panaroo	descartado_F1_pseudogen	huerfano				
+bin_4_52_02421	bin_4_52	bin-4-52	bin_4_52_02421	contig_73	19275	0.4082	7208	7921	+	7207	237		HupE/UreJ protein		eliminado_por_panaroo	ok	huerfano	descartado_F4_presente_en_especie	GCF_001077515_1 (90.7 % id, 100 % cov)		
+bin_4_52_02422	bin_4_52	bin-4-52	bin_4_52_02422	contig_73	19275	0.4082	7933	8571	+	7932	212		Transmembrane anchor protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_02423	bin_4_52	bin-4-52	bin_4_52_02423	contig_73	19275	0.4082	8655	9962	+	8654	435		Major facilitator superfamily (MFS) profile domain-containing protein		eliminado_por_panaroo	ok	huerfano	descartado_F4_presente_en_especie	GCF_001077515_1 (85.5 % id, 100 % cov)		
+bin_4_52_02424	bin_4_52	bin-4-52	bin_4_52_02424	contig_73	19275	0.4082	10525	10776	+	8499	83		tryptophan synthase		eliminado_por_panaroo	descartado_F1_corto	huerfano				
+bin_4_52_02425	bin_4_52	bin-4-52	bin_4_52_02425	contig_73	19275	0.4082	11068	12192	+	7083	374		ABC transporter ATP-binding protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_02426	bin_4_52	bin-4-52	bin_4_52_02426	contig_73	19275	0.4082	12214	13230	+	6045	338		Extracellular solute-binding protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_02427	bin_4_52	bin-4-52	bin_4_52_02427	contig_73	19275	0.4082	13313	14941	+	4334	542		ABC transporter, permease protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_02428	bin_4_52	bin-4-52	bin_4_52_02428	contig_73	19275	0.4082	15111	15638	+	3637	175		Winged helix-turn helix domain-containing protein		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_02429	bin_4_52	bin-4-52	bin_4_52_02429	contig_73	19275	0.4082	15693	15920	-	3355	75		hypothetical protein		eliminado_por_panaroo	descartado_F1_corto	huerfano				
+bin_4_52_02430	bin_4_52	bin-4-52	bin_4_52_02430	contig_73	19275	0.4082	16453	18537	+	738	694		TonB-dependent siderophore receptor		eliminado_por_panaroo	ok	huerfano	ok		ok	
+bin_4_52_02431	bin_4_52	bin-4-52	bin_4_52_02431	contig_73	19275	0.4082	18674	19141	-	134	155		Recombinase family protein		eliminado_por_panaroo	ok	huerfano	descartado_F4_presente_en_especie	GCF_025514435_1 (92.1 % id, 97 % cov)		
+bin_4_52_02627	bin_4_52	bin-4-52	bin_4_52_02627	contig_76	101810	0.4281	80422	81642	-	20168	406		Transporter	group_506	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_02652	bin_4_52	bin-4-52	bin_4_52_02652	contig_78	18620	0.4234	1743	5090	-	1742	1115		hypothetical protein	group_6310	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_001866125_1 (96.2 % id, 100 % cov)		
+bin_4_52_02659	bin_4_52	bin-4-52	bin_4_52_02659	contig_78	18620	0.4234	9692	18613	-	7	2973		DUF5801 domain-containing protein		eliminado_por_panaroo	descartado_F1_borde_contig	anclado				
+bin_4_52_03109	bin_4_52	bin-4-52	bin_4_52_03109	contig_91	58306	0.4041	1688	3046	-	1687	452		Potassium transporter	group_361	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03110	bin_4_52	bin-4-52	bin_4_52_03110	contig_91	58306	0.4041	3368	3673	-	3367	101		IS30 family transposase	group_2434	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_001971565_1 (97.0 % id, 100 % cov)		
+bin_4_52_03115	bin_4_52	bin-4-52	bin_4_52_03115	contig_91	58306	0.4041	6311	9526	-	6310	1071		Tyr recombinase domain-containing protein	group_6324	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCA_022832955_1 (95.9 % id, 100 % cov)		
+bin_4_52_03116	bin_4_52	bin-4-52	bin_4_52_03116	contig_91	58306	0.4041	9510	11837	-	9509	775		Tyr recombinase domain-containing protein	group_6314	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_002918965_1 (89.4 % id, 100 % cov)		
+bin_4_52_03117	bin_4_52	bin-4-52	bin_4_52_03117	contig_91	58306	0.4041	11837	12508	-	11836	223	araC	AraC family transcriptional regulator	group_6315	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03118	bin_4_52	bin-4-52	bin_4_52_03118	contig_91	58306	0.4041	13073	14491	-	13072	472		Polyphosphate kinase-2-related domain-containing protein	group_6322	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03119	bin_4_52	bin-4-52	bin_4_52_03119	contig_91	58306	0.4041	14799	15506	+	14798	235		HTH tetR-type domain-containing protein	group_6318	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03120	bin_4_52	bin-4-52	bin_4_52_03120	contig_91	58306	0.4041	15511	16908	+	15510	465		RND transporter	group_6323	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03121	bin_4_52	bin-4-52	bin_4_52_03121	contig_91	58306	0.4041	16927	17985	+	16926	352		Membrane fusion protein biotin-lipoyl like domain-containing protein	group_6319	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03122	bin_4_52	bin-4-52	bin_4_52_03122	contig_91	58306	0.4041	17982	20738	+	17981	918	rbbA	ribosome-associated ATPase/putative transporter RbbA	rbbA	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03123	bin_4_52	bin-4-52	bin_4_52_03123	contig_91	58306	0.4041	20740	21864	+	20739	374		ABC transmembrane type-2 domain-containing protein	group_6316	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03124	bin_4_52	bin-4-52	bin_4_52_03124	contig_91	58306	0.4041	22006	23598	+	22005	530	phoU	PhoU domain-containing protein	group_6320	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03125	bin_4_52	bin-4-52	bin_4_52_03125	contig_91	58306	0.4041	23648	24916	+	23647	422	mgtC	MgtC family	group_6312	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03126	bin_4_52	bin-4-52	bin_4_52_03126	contig_91	58306	0.4041	25029	27107	+	25028	692	ppk1	polyphosphate kinase 1	group_6313	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_010918635_1 (82.2 % id, 99 % cov)		
+bin_4_52_03127	bin_4_52	bin-4-52	bin_4_52_03127	contig_91	58306	0.4041	27252	27662	+	27251	136	tnp	IS5 family transposase ORF A	group_6321	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_002919885_1 (90.4 % id, 100 % cov)		
+bin_4_52_03128	bin_4_52	bin-4-52	bin_4_52_03128	contig_91	58306	0.4041	27610	27876	+	27609	88		Transposase IS4-like domain-containing protein	group_6317	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_03164	bin_4_52	bin-4-52	bin_4_52_03164	contig_92	10951	0.3853	181	516	+	180	111		hypothetical protein		eliminado_por_panaroo	ok	anclado	ok		ok	
+bin_4_52_03186	bin_4_52	bin-4-52	bin_4_52_03186	contig_93	70200	0.4170	11227	11826	+	11226	199		hypothetical protein	group_1528	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03187	bin_4_52	bin-4-52	bin_4_52_03187	contig_93	70200	0.4170	11929	12204	+	11928	91	alpA	AlpA family phage regulatory protein	group_2551	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_03188	bin_4_52	bin-4-52	bin_4_52_03188	contig_93	70200	0.4170	12201	12419	+	12200	72		Winged helix-turn-helix domain-containing protein	group_2780	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_03189	bin_4_52	bin-4-52	bin_4_52_03189	contig_93	70200	0.4170	12416	12619	+	12415	67		Carrier domain-containing protein	group_2843	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_03190	bin_4_52	bin-4-52	bin_4_52_03190	contig_93	70200	0.4170	12616	12747	+	12615	43		DUF4372 domain-containing protein	group_2999	familia_sin_referencias	descartado_F1_corto	anclado				
+bin_4_52_03191	bin_4_52	bin-4-52	bin_4_52_03191	contig_93	70200	0.4170	12744	13061	+	12743	105		hypothetical protein	group_2379	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03193	bin_4_52	bin-4-52	bin_4_52_03193	contig_93	70200	0.4170	13054	13452	+	13053	132		DUF3077 domain-containing protein	group_2095	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (93.9 % id, 99 % cov)		
+bin_4_52_03194	bin_4_52	bin-4-52	bin_4_52_03194	contig_93	70200	0.4170	13449	15599	+	13448	716		DUF3987 domain-containing protein	group_123	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (94.7 % id, 100 % cov)		
+bin_4_52_03195	bin_4_52	bin-4-52	bin_4_52_03195	contig_93	70200	0.4170	15941	16303	+	15940	120		Helix-turn-helix domain-containing protein	group_2213	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (95.8 % id, 100 % cov)		
+bin_4_52_03196	bin_4_52	bin-4-52	bin_4_52_03196	contig_93	70200	0.4170	16370	17332	+	16369	320		HK97 family phage major capsid protein	group_865	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (95.9 % id, 100 % cov)		
+bin_4_52_03197	bin_4_52	bin-4-52	bin_4_52_03197	contig_93	70200	0.4170	17337	18065	+	17336	242		HK97 family phage prohead protease	group_1274	familia_sin_referencias	ok	anclado	ok		ok	
+bin_4_52_03198	bin_4_52	bin-4-52	bin_4_52_03198	contig_93	70200	0.4170	18062	18415	+	18061	117		hypothetical protein	group_2245	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (97.4 % id, 100 % cov)		
+bin_4_52_03199	bin_4_52	bin-4-52	bin_4_52_03199	contig_93	70200	0.4170	18471	18791	+	18470	106		HNH endonuclease	group_2370	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (96.2 % id, 99 % cov)		
+bin_4_52_03200	bin_4_52	bin-4-52	bin_4_52_03200	contig_93	70200	0.4170	18869	19189	+	18868	106		Terminase small subunit	group_2371	familia_sin_referencias	ok	anclado	descartado_F4_presente_en_especie	GCF_000369585_1 (96.2 % id, 100 % cov)		
+bin_4_52_03267	bin_4_52	bin-4-52	bin_4_52_03267	contig_94	30063	0.4418	23799	24485	+	5578	228		hypothetical protein	group_1349	familia_sin_referencias	ok	anclado	ok		ok	
