@@ -5,6 +5,15 @@ prueba con analisis adicionales y senala que se sostiene, que hay que corregir
 y que queda abierto. Complementa la guia de lectura
 (`phase3_guia_resultados.md`), que explica las figuras 1-7.
 
+**Estado (08-10, tarde).** Las correcciones de la seccion 6 se decidieron y se
+implementaron (commit `2dfbe1f`): A, B, D, E y F si; C no. Ya corrieron la
+parte local de la verificacion (v2, con los genes que Panaroo habia eliminado)
+y el ANI de cada bin. Falta la parte remota (F5 en `nr` de las proteinas
+nuevas, F5b y F6): **los numeros finales de genes especificos de la cepa estan
+pendientes** y las cifras de la v1 (0 / 0 / 27) se mantienen solo como
+referencia. Desde esta version, "exclusivo verificado" pasa a llamarse **gen
+especifico de la cepa**.
+
 Especies: *Bacillus altitudinis* (L16, bin-5-63, 72,5 % completo),
 *Peribacillus frigoritolerans* (L12, bin-1-54, 92,3 %) y
 *Acinetobacter schindleri* (L8, bin-4-52, 99,9 %).
@@ -36,7 +45,10 @@ Especies: *Bacillus altitudinis* (L16, bin-5-63, 72,5 % completo),
 6. **F6 no vio contigs huerfanos porque Panaroo ya los habia eliminado.**
    Panaroo quito 140 genes de los bins, entre ellos 4 contigs completos
    (40 kb) del bin de *A. schindleri*, 3 con GC de 0,35 frente a 0,42 del
-   genoma. Esos genes nunca llegaron a ser candidatos ni pasaron por F6.
+   genoma. Esos genes nunca llegaron a ser candidatos ni pasaron por F6. La
+   causa esta confirmada en el codigo de Panaroo (seccion 3.7). En la v2 entran
+   como candidatos: 46 / 41 / 171 candidatos (antes 14 / 34 / 70), 14 / 1 / 97
+   proteinas a F5 (antes 2 / 1 / 36) y 6 / 0 / 4 contigs a F6 (antes 0).
 7. En la guia se dijo que la rama de bin-5-63 era larga por su incompletitud.
    No es asi: mide 0,0083, casi lo mismo que la de su pariente (0,0077).
 
@@ -46,8 +58,10 @@ Especies: *Bacillus altitudinis* (L16, bin-5-63, 72,5 % completo),
    especies tiene genes propios (mediana 18, 120 y 104 por referencia), y los
    bins estan dentro de lo tipico (percentiles 34, 2 y 26).
 9. bin-1-54 pertenece a un clon cosmopolita de *P. frigoritolerans* (8 genomas
-   a >= 99 % ANI de 4 continentes y 6 habitats). Por eso no tiene ningun gen
-   propio.
+   a >= 99 % ANI de 4 continentes y 6 habitats). Confirmado con fastANI:
+   99,98 % con GCA_900000145.1, es practicamente la misma cepa. Por eso no
+   tiene ningun gen propio. bin-5-63 tambien pertenece a un clon ya
+   secuenciado (99,06 %); bin-4-52 no (98,39 % con su pariente mas cercano).
 10. Los exclusivos de *A. schindleri* son casi todos ADN movil (profagos,
     islas con integrasas y transposasas); 19 de 27 son identicos (>= 99 %) a
     proteinas de otras especies de *Acinetobacter*.
@@ -71,7 +85,10 @@ Especies: *Bacillus altitudinis* (L16, bin-5-63, 72,5 % completo),
 | Distancia patristica | Suma de las ramas del arbol entre dos genomas (sustituciones por sitio del core). 0,0017 ~ 99,8 % de identidad en el core |
 | UFBoot | Soporte de cada agrupamiento del arbol (0-100). >= 95 se considera confiable |
 | Exclusivo candidato | Gen del bin cuya familia no esta en ninguna referencia |
-| Exclusivo verificado | Candidato que sobrevive a los filtros F1-F6: bien formado y sin una copia parecida (>= 80 % de identidad en >= 80 % del largo) en ningun otro genoma conocido de la especie |
+| Gen especifico de la cepa (antes "exclusivo verificado") | Candidato que sobrevive a los filtros F1-F6 y F5b: bien formado y sin una copia parecida (>= 80 % de identidad en >= 80 % del largo) en ningun otro genoma conocido de la especie |
+| Candidato eliminado por Panaroo | Gen del bin que Panaroo saco de la grafica por estar en el extremo de un contig y presente en un solo genoma. Desde la v2 tambien es candidato |
+| F5b | Comprobacion por ANI de la especie de todos los genomas que tienen la proteina de cada parecido de F5 (IPG + ANI de NCBI) |
+| Advertencia (bandera) | Gen especifico cuyo mejor parecido tiene >= 99 % de identidad y >= 90 % de cobertura en otra especie: posible transferencia reciente. No se descarta |
 | Transferencia horizontal (HGT) | Adquisicion de ADN de otro organismo, no heredado del ancestro. Suele viajar en elementos moviles |
 | Elemento genetico movil | ADN que se mueve entre genomas: profagos (virus integrados), transposones, secuencias de insercion (IS), islas con integrasa |
 | IPG (Identical Protein Groups) | Registro de NCBI que lista todos los genomas que contienen una proteina identica |
@@ -81,9 +98,9 @@ Especies: *Bacillus altitudinis* (L16, bin-5-63, 72,5 % completo),
 
 ---
 
-## 2. Que significa "verificado" y por que 0, 2 o 30
+## 2. Que significa "especifico de la cepa" (antes "verificado") y por que 0, 2 o 30
 
-Un exclusivo verificado responde a una sola pregunta: **este gen del bin de la
+Un gen especifico de la cepa responde a una sola pregunta: **este gen del bin de la
 Estela, existe en algun otro genoma conocido de su especie?** Si la respuesta
 es no (con los umbrales de F4 y F5), el gen es especifico de la cepa de la
 Estela frente a todo lo secuenciado hasta hoy.
@@ -92,11 +109,14 @@ No significa que el gen sea nuevo para la ciencia, ni que sea una adaptacion a
 la piedra, ni que sea raro en la naturaleza: puede estar identico en otra
 especie del mismo genero.
 
-| | Candidatos | Verificados (F1-F6) | Corregido por ANI | Lectura |
-|---|---:|---:|---:|---|
-| *B. altitudinis* | 14 | 2 | **0** | Los 2 estan en una cepa de rizosfera china publicada en 2025 |
-| *P. frigoritolerans* | 34 | 0 | **0** | El bin pertenece a un clon cosmopolita: todo lo que tiene ya esta en otros miembros del clon |
-| *A. schindleri* | 70 | 30 | **27** | 3 estan en otra cepa china de 2025; el resto es ADN movil compartido con otras *Acinetobacter* |
+| | v1: candidatos | v1: tras F1-F6 | v1 corregido por ANI | v2: candidatos | v2: a F5 | Lectura |
+|---|---:|---:|---:|---:|---:|---|
+| *B. altitudinis* | 14 | 2 | **0** | 46 | 14 | Los 2 de la v1 estan en una cepa de rizosfera china publicada en 2025 |
+| *P. frigoritolerans* | 34 | 0 | **0** | 41 | 1 | El bin es practicamente la misma cepa que otro genoma (ANI 99,98 %) |
+| *A. schindleri* | 70 | 30 | **27** | 171 | 97 | 3 de la v1 estan en otra cepa china de 2025; el resto es ADN movil compartido con otras *Acinetobacter* |
+
+La v2 agrega los genes que Panaroo habia eliminado (seccion 3.7). El resultado
+final de la v2 esta pendiente de F5, F5b y F6.
 
 Por que tan distintos:
 
@@ -191,9 +211,20 @@ Su pariente (GCA_024160055.1, suelo, Corea) representa un grupo de 8 genomas a
 suelo (Corea), nieve (Antartida), sala limpia y piel humana (EE. UU.) y uno sin
 datos. bin-1-54 esta a 0,0017 sustituciones/sitio de ese representante.
 
-**Veredicto:** la cepa de la Estela es probablemente un miembro mas de un clon
-cosmopolita y generalista. Eso explica que no tenga genes propios. Confirmarlo
-requiere el ANI del bin contra esos 8 genomas (pendiente, ver seccion 6).
+**ANI (fastANI, bin contra los 69 genomas descargados de la especie):**
+99,98 % con GCA_900000145.1 (sin datos de origen), 99,75 % con GCF_025142885.1
+(piel humana, EE. UU.) y 99,74 % con GCF_024159205.1 (sala limpia, EE. UU.).
+
+**Veredicto:** confirmado. La cepa de la Estela es practicamente la misma que
+GCA_900000145.1 y pertenece a un clon cosmopolita y generalista. Eso explica
+que no tenga genes propios.
+
+Para comparar, los otros bins: bin-5-63 tiene 99,06 % con GCF_900119345.1 y
+GCF_900188195.1, dos genomas que no estan en el pangenoma (los dejo fuera la
+desreplicacion o el tope de 50; son los mismos donde F4 encontro candidatos),
+asi que tambien es miembro de un clon ya secuenciado. bin-4-52 tiene como
+maximo 98,39 % (GCF_025514435.1, su hermana en el arbol): es una cepa distinta
+de todas las secuenciadas.
 
 ### 3.6 Los exclusivos verificados son de verdad exclusivos?
 
@@ -224,10 +255,16 @@ de esos 10.
 
 ### 3.7 Que quedo sin examinar?
 
-Panaroo, en su limpieza, elimina genes poco respaldados (fragmentos y genes
-de un solo genoma en extremos de contig), que trata como posibles errores o
-contaminacion (Tonkin-Hill et al. 2020). Esos genes del bin no entran a ninguna
-familia y por eso nunca fueron candidatos.
+Panaroo, en su limpieza, elimina genes poco respaldados, que trata como
+posibles errores o contaminacion (Tonkin-Hill et al. 2020). Segun su codigo
+(v1.8.0, `set_default_args.py`), en modo `moderate` elimina todo gen que este
+en el extremo de un contig y aparezca en menos de 2 genomas
+(`min_trailing_support = max(2, 1 % de los genomas)`), y repite la poda hacia
+adentro hasta encontrar un gen compartido (`trailing_recursive` ilimitado). En
+los bins, 136 de los 140 genes eliminados forman justamente tramos continuos
+desde el borde de un contig; los otros 4 son proteinas muy cortas (31-45 aa) y
+una transposasa. Esos genes no entran a ninguna familia y por eso nunca fueron
+candidatos.
 
 | | Genes del bin eliminados | Contigs eliminados enteros |
 |---|---:|---|
@@ -239,10 +276,22 @@ Los 101 genes de *A. schindleri* tienen largo normal (mediana 267 aa) y muchos
 son de sistemas de defensa o elementos moviles (metiltransferasas de
 restriccion-modificacion, helicasas DEAD/DEAH, dinamina, dominios WYL).
 
-**Veredicto:** el "0 contigs huerfanos" de F6 es un artefacto del orden de los
-pasos. Un GC 7 puntos mas bajo que el del genoma es tipico de ADN adquirido
-(plasmidos, fagos) o de contaminacion de otro organismo. Hay que pasarlos por
-F1-F6 (ver seccion 6).
+**Veredicto:** no es una falla de Panaroo sino un filtro pensado para
+pangenomas de aislados, que va en contra de lo que aqui se busca: un gen
+especifico esta, por definicion, en un solo genoma, y un MAG tiene muchos
+extremos de contig. El "0 contigs huerfanos" de F6 era un artefacto del orden
+de los pasos. Un GC 7 puntos mas bajo que el del genoma es tipico de ADN
+adquirido (plasmidos, fagos) o de contaminacion de otro organismo.
+
+**v2 (corrida local del 08-10):** estos genes ya son candidatos.
+
+| | Candidatos (de ellos, eliminados por Panaroo) | Pasan F1 | Pasan F4 | Contigs a F6 |
+|---|---:|---:|---:|---:|
+| *B. altitudinis* | 46 (32) | 25 | 14 | 6 |
+| *P. frigoritolerans* | 41 (7) | 29 | 1 | 0 |
+| *A. schindleri* | 171 (101) | 137 | 97 | 4 |
+
+Pendiente: F5, F5b y F6 de la parte remota.
 
 ### 3.8 El habitat explica el contenido accesorio?
 
@@ -278,8 +327,8 @@ pangenoma por si solo no permite afirmar adaptacion al sustrato petreo.
   que se ha secuenciado, no una afinidad clinica del bin.
 - *P. frigoritolerans*: suelo y plantas; *B. altitudinis*: variado.
 - Se excluyeron MAGs de las referencias y de F4 (8 en *A. schindleri*, 3 en
-  cada *Bacillus*). Ninguno resulto ser el origen de un verificado (ver 3.6),
-  pero F4 no los reviso.
+  cada *Bacillus*). Ninguno resulto ser el origen de un gen especifico de la v1
+  (ver 3.6), pero F4 no los reviso. Se decidio no ampliar F4 (propuesta C).
 - GTDB R220 no incluye genomas posteriores; justamente ahi aparecieron las dos
   cepas chinas de 2025.
 
@@ -352,7 +401,7 @@ exclusivos estan en islas junto a integrasas, transposasas y fagos.
 
 | Figura | Para que | Que falta |
 |---|---|---|
-| ANI del bin contra todas sus referencias (mapa de calor) | Confirmar el clon cosmopolita de *P. frigoritolerans* y medir que tan nueva es cada cepa | Un `fastANI` de cada bin contra las referencias (minutos) |
+| ANI del bin contra todos los genomas de su especie | Confirmar el clon cosmopolita de *P. frigoritolerans* y medir que tan nueva es cada cepa | **Hecho (08-10, `06c_ani_bins.slurm`):** resultados en 3.5; la figura se hace con la exportacion final |
 | Categorias funcionales (COG) por core/shell/cloud/exclusivo | Figura habitual en los estudios de pangenoma (por ejemplo, Fu et al. 2021) | **Descartada en la Fase 3 (08-10):** Bakta anota la categoria COG en 4-31 % de los CDS segun el genoma y KEGG/EC/GO en 17-26 %; una figura con esa cobertura mostraria cuanto se sabe de cada gen, no que hace. Una anotacion uniforme (DRAM o eggNOG-mapper sobre las familias) se dejo para la Fase 4 |
 | Ganancia y perdida de genes sobre el arbol | Ubicar cuando entro cada isla | Software adicional (Count, GLOOME); prescindible |
 | Correccion por recombinacion (Gubbins, ClonalFrameML) | Mejorar el esqueleto del arbol de *B. altitudinis* | Prescindible para la posicion del bin |
@@ -369,24 +418,31 @@ exclusivos estan en islas junto a integrasas, transposasas y fagos.
    cepa clinica). Ninguna se agrupa con las cepas de ambientes petreos.
 3. El contenido accesorio sigue al parentesco y no al habitat de aislamiento.
 4. Las cepas de la Estela no tienen mas genes propios que cualquier otra cepa
-   de su especie. Los genes exclusivos verificados (0, 0 y 27) son en su
-   mayoria ADN movil adquirido de otras especies del mismo genero.
+   de su especie. Los genes especificos de la cepa (v1: 0, 0 y 27; cifra final
+   pendiente de la v2) son en su mayoria ADN movil adquirido de otras especies
+   del mismo genero.
+4b. La cepa de *P. frigoritolerans* de la Estela es practicamente identica
+   (ANI 99,98 %) a una cepa ya secuenciada y pertenece a un clon cosmopolita;
+   la de *B. altitudinis* tambien pertenece a un clon conocido (99,06 %); la de
+   *A. schindleri* es una cepa distinta de las secuenciadas (98,39 %).
 5. La exclusividad depende de la base de datos y de la definicion de especie:
    con UniProtKB en lugar de `nr` habrian pasado 7 genes mas, y con nombres de
    NCBI en lugar de ANI, 5 mas.
 
 ---
 
-## 6. Correcciones propuestas y decisiones pendientes
+## 6. Correcciones propuestas y decisiones
 
-| # | Propuesta | Costo | Recomendacion |
-|---|---|---|---|
-| A | Incorporar a F5 la comprobacion por ANI de los genomas portadores (IPG + ANI de NCBI) para todos los parecidos >= 80/80, no solo el mejor | Bajo (minutos, desde el login o la laptop) | Si: alinea F5 con la definicion de especie del resto del flujo (GTDB/ANI) |
-| B | Pasar por F1-F6 los 140 genes que Panaroo elimino de los bins (incluye F6 para los 4 contigs de *A. schindleri*) | Medio (una corrida local + BLAST remoto) | Si, al menos los contigs eliminados enteros |
-| C | Ampliar F4 a todos los genomas del cluster GTDB (incluidos MAGs y los que no pasaron el QC: 8, 10 y 8) | Bajo | Si: para buscar presencia la calidad importa menos |
-| D | `fastANI` de cada bin contra sus referencias | Muy bajo | Si: confirma 3.5 y da la figura de ANI |
-| E | Renombrar "verificado" a "especifico de la cepa" en tablas y figuras | Nulo | Opcional |
-| F | Marca de advertencia para exclusivos con >= 99 % de identidad con otra especie ("posible transferencia reciente") | Nulo | Opcional; afectaria a 16 de 27 |
+Decididas el 08-10 e implementadas en el commit `2dfbe1f`.
+
+| # | Propuesta | Costo | Recomendacion | Decision |
+|---|---|---|---|---|
+| A | Incorporar a F5 la comprobacion por ANI de los genomas portadores (IPG + ANI de NCBI) para todos los parecidos >= 80/80, no solo el mejor | Bajo (minutos, desde el login o la laptop) | Si: alinea F5 con la definicion de especie del resto del flujo (GTDB/ANI) | **Si**: paso F5b (`08_exclusivos.py ani`) |
+| B | Pasar por F1-F6 los 140 genes que Panaroo elimino de los bins (incluye F6 para los 4 contigs de *A. schindleri*) | Medio (una corrida local + BLAST remoto) | Si, al menos los contigs eliminados enteros | **Si**, todos (tras confirmar la causa en el codigo de Panaroo) |
+| C | Ampliar F4 a todos los genomas del cluster GTDB (incluidos MAGs y los que no pasaron el QC: 8, 10 y 8) | Bajo | Si: para buscar presencia la calidad importa menos | **No** |
+| D | `fastANI` de cada bin contra sus referencias | Muy bajo | Si: confirma 3.5 y da la figura de ANI | **Si**: hecho (`06c_ani_bins.slurm`) |
+| E | Renombrar "verificado" a "especifico de la cepa" en tablas y figuras | Nulo | Opcional | **Si**: clases `especifico`, `especifico_con_bandera`, `descartado` |
+| F | Marca de advertencia para exclusivos con >= 99 % de identidad con otra especie ("posible transferencia reciente") | Nulo | Opcional; afectaria a 16 de 27 | **Si**: >= 99 % de identidad y >= 90 % de cobertura |
 
 ---
 
