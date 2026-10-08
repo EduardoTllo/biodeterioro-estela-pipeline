@@ -186,30 +186,31 @@ ventanas <- map_dfr(especies_f3$slug, function(s) {
   gb <- leer_especie(s, "genes_bin.tsv")
   ev <- leer_especie(s, "exclusivos_verificados.tsv", col_types = cols(.default = "c"))
   if (is.null(ev)) return(NULL)
-  ver <- ev |> filter(clase != "descartado") |> pull(locus_tag)
+  ani <- c(ev |> filter(grepl("F5b", motivo)) |> pull(locus_tag),
+           f5b |> filter(resultado_f5b == "presente_en_la_especie") |> pull(locus_tag))
+  ver <- ev |> filter(clase != "descartado" | locus_tag %in% ani) |> pull(locus_tag)
   if (!length(ver)) return(NULL)
-  ani <- f5b |> filter(resultado_f5b == "presente_en_la_especie") |> pull(locus_tag)
   ctg <- gb |> filter(locus_tag %in% ver) |> group_by(contig) |>
     summarise(ini = max(0, min(inicio) - 4000), fin = max(fin) + 4000, .groups = "drop")
   gb |> inner_join(ctg, by = "contig") |> filter(fin.x >= ini, inicio <= fin.y) |>
     rename(fin = fin.x) |>
     mutate(slug = s,
-           clase = case_when(locus_tag %in% ani ~ "exclusivo, pero en otra cepa (ANI)",
-                             locus_tag %in% ver ~ "exclusivo verificado",
+           clase = case_when(locus_tag %in% ani ~ "en otra cepa de la especie (F5b, ANI)",
+                             locus_tag %in% ver ~ "especifico de la cepa",
                              exclusivo_candidato == "si" ~ "candidato descartado (F1-F5)",
                              estado_panaroo != "en_familia" ~ "fuera del pangenoma",
                              TRUE ~ categoria_95),
            movil = grepl("integrase|recombinase|transposase|phage|terminase|capsid|prohead|IS[0-9]",
                          producto, ignore.case = TRUE),
-           rotulo = if_else(clase %in% c("exclusivo verificado", "exclusivo, pero en otra cepa (ANI)"),
+           rotulo = if_else(clase %in% c("especifico de la cepa", "en otra cepa de la especie (F5b, ANI)"),
                             str_trunc(str_squish(gsub("domain-containing|family|protein|-type", "", producto)), 18), ""),
            molecula = paste0(str_extract(slug, "^L\\d+"), " ", sub("_(\\d+)_(\\d+)$", "-\\1-\\2", bin), " ", contig),
            forward = hebra == "+")
 })
 if (nrow(ventanas)) {
   PAL_CTX <- c("core" = "#2166AC", "shell" = "#67A9CF", "cloud" = "#D1E5F0",
-               "exclusivo verificado" = "#B2182B",
-               "exclusivo, pero en otra cepa (ANI)" = "#F4A582",
+               "especifico de la cepa" = "#B2182B",
+               "en otra cepa de la especie (F5b, ANI)" = "#F4A582",
                "candidato descartado (F1-F5)" = "#FDDBC7",
                "fuera del pangenoma" = "#BDBDBD")
   g5 <- ggplot(ventanas, aes(xmin = inicio, xmax = fin, y = molecula, fill = clase, forward = forward)) +
@@ -224,7 +225,7 @@ if (nrow(ventanas)) {
     scale_fill_manual(values = PAL_CTX, name = NULL) +
     theme_genes() +
     labs(x = "Posicion en el contig (pb)", y = NULL,
-         caption = "Rotulos: exclusivos. Triangulo negro: gen movil (integrasa, recombinasa, transposasa, fago, IS).") +
+         caption = "Rotulos: genes especificos y los descartados por F5b. Triangulo negro: gen movil (integrasa, recombinasa, transposasa, fago, IS).") +
     theme(legend.position = "bottom", strip.text = element_blank(),
           axis.text.y = element_text(size = 7))
   guardar_fig(g5, "fig_f3_contexto_exclusivos", ancho = 10, alto = 1.15 * n_distinct(ventanas$molecula) + 1.2)

@@ -69,9 +69,19 @@ done
 for d in "$R"/07_exclusivos/*/; do
   s="$(basename "$d")"
   for f in exclusivos_verificados.tsv embudo_exclusivos.tsv exclusivos_report.md \
-           candidatos_local.tsv versions_local.txt versions_remoto.txt; do
+           candidatos_local.tsv versions_local.txt versions_remoto.txt \
+           f5_blastp_nr.tsv f5b_ani.tsv linajes.tsv; do
     cp_si "$d/$f" "$E/$s/$f"
   done
+done
+# ANI de cada bin contra los genomas de su especie (06c_ani_bins.slurm)
+for d in "$R"/06c_ani/*/; do
+  [[ -d "$d" ]] || continue
+  cp_si "$d/ani_bin_genomas.tsv" "$E/$(basename "$d")/ani_bin_genomas.tsv"
+done
+# Categoria COG de cada familia (07_particion.py cog)
+for d in "$R"/05_panaroo/*/; do
+  cp_si "$d/particion/familias_cog.tsv" "$E/$(basename "$d")/familias_cog.tsv"
 done
 
 # Exclusivos con F5 por el EBI (MOTOR=ebi), si se corrio: en <especie>/ebi/

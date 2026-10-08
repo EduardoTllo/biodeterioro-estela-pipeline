@@ -28,13 +28,27 @@ Filtros (de los baratos a los caros):
                      probable (mismo genero / misma familia / mismo filo / otro
                      filo / sin hit = ORFan). Un hit de la MISMA especie con
                      identidad >= 80 % y cobertura >= 80 % -> descartado.
+  F5b especie (ANI)  para cada hit >= 80/80 de F5, todos los genomas con la
+                     proteina identica (IPG de NCBI) y la especie de cada uno por
+                     su ANI contra cepas tipo (NCBI Datasets). Si alguno es de la
+                     especie del bin -> descartado. Corrige los genomas de la
+                     especie depositados como "sp." o con un sinonimo.
+  Advertencia        mejor hit >= 99 % de identidad y >= 90 % de cobertura en otra
+                     especie: posible transferencia reciente (no descarta).
 
-Clases finales: verificado | con_bandera | descartado (con motivo).
+Candidatos: genes del bin cuya familia de Panaroo no esta en ninguna referencia
+y, ademas, genes del bin que Panaroo elimino de la grafica. En modo moderate
+Panaroo poda, de forma recursiva, los genes del extremo de un contig presentes
+en < 2 genomas (filtro de contaminacion); justamente los genes propios de un
+solo genoma, que es lo que aqui se busca.
+
+Clases finales: especifico (de la cepa) | especifico_con_bandera | descartado.
 
 Subcomandos:
   preparar  F1 + F2; escribe las consultas para F4 y F3.       (SLURM, local)
   evaluar   lee F4 y F3; escribe las consultas para F5 y F6.    (SLURM, local)
-  integrar  lee F5 y F6 (+ linajes de taxonkit); clase final.   (login/laptop)
+  ani       F5b: IPG + ANI de NCBI de los genomas de cada hit.  (login/laptop)
+  integrar  lee F5, F5b y F6 (+ linajes de taxonkit); clase final. (login/laptop)
   ebi       F5 por el REST del EBI (blastp contra UniProtKB), alternativa
             cuando la cola de NCBI no avanza. Salida en el mismo tabular.
 """
@@ -53,6 +67,8 @@ DEF_MIN_BORDE = 100
 DEF_F4_ID, DEF_F4_COV = 80.0, 80.0
 DEF_F3_ID, DEF_F3_COV = 95.0, 80.0
 DEF_F5_ID, DEF_F5_COV = 80.0, 80.0
+DEF_ANI = 95.0
+DEF_CASI_ID, DEF_CASI_COV = 99.0, 90.0
 
 OUTFMT_CAMPOS = ["qseqid", "sseqid", "pident", "length", "qcovs", "evalue", "bitscore",
                  "staxids"]
@@ -144,7 +160,8 @@ def cmd_preparar(args):
     genes = leer_tsv(os.path.join(args.particion_dir, "genes_bin.tsv"))
     anclados = set((g["bin"], g["contig"]) for g in genes
                    if g["estado_panaroo"] == "en_familia" and a_float(g["n_ref"], 0) > 0)
-    cand = [g for g in genes if g["exclusivo_candidato"] == "si"]
+    cand = [g for g in genes if g["exclusivo_candidato"] == "si"
+            or g["estado_panaroo"] != "en_familia"]
     os.makedirs(args.outdir, exist_ok=True)
 
     faa, ffn, fna = {}, {}, {}
@@ -166,7 +183,9 @@ def cmd_preparar(args):
             f1 = "ok"
         anclado = (b, g["contig"]) in anclados
         fila = dict(g)
-        fila.update({"consulta": loc, "f1": f1, "f2_anclaje": "anclado" if anclado else "huerfano"})
+        fila.update({"consulta": loc, "f1": f1, "f2_anclaje": "anclado" if anclado else "huerfano",
+                     "origen_candidato": ("familia_sin_referencias" if g["exclusivo_candidato"] == "si"
+                                          else "eliminado_por_panaroo")})
         filas.append(fila)
         if f1 != "ok":
             continue
@@ -179,15 +198,17 @@ def cmd_preparar(args):
 
     campos = ["consulta", "bin", "genoma_original", "locus_tag", "contig", "largo_contig",
               "gc_contig", "inicio", "fin", "hebra", "dist_borde_pb", "largo_aa", "gen",
-              "producto", "familia", "f1", "f2_anclaje"]
+              "producto", "familia", "origen_candidato", "f1", "f2_anclaje"]
     escribir_tsv(os.path.join(args.outdir, "candidatos.tsv"), filas, campos)
     escribir_fasta(os.path.join(args.outdir, "f1_ok.faa"), q_faa)
     for b, regs in q_ffn.items():
         escribir_fasta(os.path.join(args.outdir, "f1_ok_%s.ffn" % b), regs)
     escribir_fasta(os.path.join(args.outdir, "contigs_huerfanos.fna"), list(huerfanos.items()))
     c = Counter(f["f1"] for f in filas)
-    print("[ok] %d candidatos | F1: %s | huerfanos (con F1 ok): %d"
-          % (len(filas), ", ".join("%s=%d" % kv for kv in c.most_common()), len(huerfanos)))
+    co = Counter(f["origen_candidato"] for f in filas)
+    print("[ok] %d candidatos (%s) | F1: %s | huerfanos (con F1 ok): %d"
+          % (len(filas), ", ".join("%s=%d" % kv for kv in co.most_common()),
+             ", ".join("%s=%d" % kv for kv in c.most_common()), len(huerfanos)))
 
 
 # ----------------------------------------------------------- subcomando evaluar
@@ -231,6 +252,123 @@ def cmd_evaluar(args):
     print("[ok] F4: %s | pasan a F5 (nr): %d | contigs huerfanos para F6: %d"
           % (", ".join("%s=%d" % kv for kv in c4.most_common()), len(q5), len(q6)))
 
+
+
+# --------------------------------------------------------------- subcomando ani
+
+EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+DATASETS = "https://api.ncbi.nlm.nih.gov/datasets/v2/genome/accession/%s/dataset_report"
+
+
+def http_get(url, intentos=4, pausa=0.4):
+    import time
+    import urllib.request
+    for i in range(1, intentos + 1):
+        try:
+            with urllib.request.urlopen(url, timeout=120) as r:
+                datos = r.read().decode("utf-8")
+            time.sleep(pausa)              # NCBI: <= 3 consultas/s sin clave
+            return datos
+        except Exception as e:
+            if i == intentos:
+                warn("sin respuesta de %s: %s" % (url[:90], e))
+                return ""
+            time.sleep(5 * i)
+
+
+def nucleo_acc(acc):
+    """GCF_029894105.1 / GCA_029894105.2 / RS_GCF_... -> 029894105"""
+    m = re.search(r"GC[AF]_(\d+)", acc or "")
+    return m.group(1) if m else ""
+
+
+def proteina_de(sseqid):
+    partes = [x for x in (sseqid or "").split("|") if x]
+    return partes[1] if len(partes) >= 2 else (partes[0] if partes else "")
+
+
+def cmd_ani(args):
+    """F5b: especie, por ANI, de todos los genomas con la proteina de cada hit.
+    Usa el IPG de NCBI (genomas con la proteina identica) y el ANI que NCBI
+    Datasets calcula de cada genoma contra las cepas tipo. Guarda lo consultado
+    en f5b_cache.json para no repetirlo si se relanza."""
+    import json
+    import urllib.parse
+    filas = leer_tsv(os.path.join(args.outdir, "candidatos_local.tsv"))
+    vivos = [f["consulta"] for f in filas if f["f1"] == "ok" and f["f4"] == "ok"]
+    f5 = leer_blast(args.f5)
+    especie = {nucleo_acc(r.get("accession_ncbi") or r.get("accession_gtdb"))
+               for r in leer_tsv(args.genomas_especie) if r.get("linaje_id") == args.linaje}
+    especie.discard("")
+    nombres = {n.strip() for n in args.nombres.split(";") if n.strip()}
+    if not especie:
+        die("ningun genoma del linaje %s en %s" % (args.linaje, args.genomas_especie))
+    p_cache = os.path.join(args.outdir, "f5b_cache.json")
+    cache = json.load(open(p_cache)) if os.path.exists(p_cache) else {"ipg": {}, "ani": {}}
+    clave = "&api_key=" + os.environ["NCBI_API_KEY"] if os.environ.get("NCBI_API_KEY") else ""
+
+    def ipg(prot):
+        if prot not in cache["ipg"]:
+            txt = http_get(EUTILS + "?" + urllib.parse.urlencode(
+                {"db": "ipg", "id": prot, "rettype": "ipg", "retmode": "text",
+                 "tool": "estela_fase3"}) + clave)
+            ens = sorted({p[10] for p in (l.split("\t") for l in txt.strip().splitlines()[1:])
+                          if len(p) > 10 and p[10].startswith("GC")})
+            cache["ipg"][prot] = ens
+        return cache["ipg"][prot]
+
+    hits_vivos = {q: [h for h in f5.get(q, []) if h["pident"] >= args.f5_id and h["qcovs"] >= args.f5_cov]
+                  for q in vivos}
+    for q, hs in hits_vivos.items():
+        for h in hs:
+            ipg(proteina_de(h["sseqid"]))
+        json.dump(cache, open(p_cache, "w"))
+    faltan = sorted({a for q in hits_vivos for h in hits_vivos[q] for a in ipg(proteina_de(h["sseqid"]))
+                     if a not in cache["ani"]})
+    print("[ani] %d consultas, %d proteinas, %d ensamblajes por consultar"
+          % (len(vivos), len(cache["ipg"]), len(faltan)))
+    for i in range(0, len(faltan), 20):
+        lote = faltan[i:i + 20]
+        txt = http_get(DATASETS % ",".join(lote))
+        reps = json.loads(txt).get("reports", []) if txt else []
+        vistos = set()
+        for r in reps:
+            b = (r.get("average_nucleotide_identity") or {}).get("best_ani_match") or {}
+            v = [b.get("organism_name", "sin_ANI"), b.get("assembly", ""), b.get("ani")]
+            for a in lote:
+                if nucleo_acc(a) == nucleo_acc(r.get("accession")):
+                    cache["ani"][a] = v
+                    vistos.add(a)
+        for a in lote:                       # los que el lote no devolvio: uno por uno
+            if a in vistos:
+                continue
+            txt = http_get(DATASETS % a)
+            r = (json.loads(txt).get("reports") or [{}])[0] if txt else {}
+            b = (r.get("average_nucleotide_identity") or {}).get("best_ani_match") or {}
+            cache["ani"][a] = [b.get("organism_name", "sin_ANI"), b.get("assembly", ""), b.get("ani")]
+        json.dump(cache, open(p_cache, "w"))
+
+    salida = []
+    for q in vivos:
+        ens = sorted({a for h in hits_vivos[q] for a in ipg(proteina_de(h["sseqid"]))})
+        esp, misma = Counter(), []
+        for a in ens:
+            org, ref, ani = cache["ani"].get(a, ["sin_ANI", "", None])
+            esp[org or "sin_ANI"] += 1
+            if ani is not None and ani >= args.ani and (nucleo_acc(ref) in especie or org in nombres):
+                misma.append("%s (%s, ANI %.2f %%)" % (a, org, ani))
+            elif nucleo_acc(a) in especie:
+                misma.append("%s (genoma del cluster GTDB)" % a)
+        extra = " (+%d)" % (len(misma) - 5) if len(misma) > 5 else ""
+        salida.append({"consulta": q, "hits_revisados": len(hits_vivos[q]), "genomas": len(ens),
+                       "especies_por_ani": "; ".join("%s x%d" % kv for kv in esp.most_common(6)),
+                       "genomas_misma_especie": "; ".join(misma[:5]) + extra,
+                       "f5b": ("descartado_F5b_misma_especie_por_ANI" if misma
+                               else "ok" if ens else "sin_genomas")})
+    escribir_tsv(args.out, salida, ["consulta", "hits_revisados", "genomas", "especies_por_ani",
+                                    "genomas_misma_especie", "f5b"])
+    c = Counter(r["f5b"] for r in salida)
+    print("[ok] F5b: %s -> %s" % (", ".join("%s=%d" % kv for kv in c.most_common()), args.out))
 
 # ---------------------------------------------------------- subcomando integrar
 
@@ -281,6 +419,9 @@ def cmd_integrar(args):
                 "habia consultas)." % p)
     f5 = leer_blast(args.f5)
     f6 = leer_blast(args.f6)
+    f5b = {r["consulta"]: r for r in leer_tsv(args.f5b)} if args.f5b and os.path.exists(args.f5b) else {}
+    if args.f5b and not f5b:
+        warn("sin resultados de F5b (%s): no se aplica la comprobacion por ANI" % args.f5b)
     lin = leer_linajes(args.linajes)
     ref = lin.get(str(args.taxid_especie))
     if not ref:
@@ -290,7 +431,8 @@ def cmd_integrar(args):
     for f in filas:
         embudo["candidatos"] += 1
         f.update({"f6": "", "f6_hit": "", "f5_origen": "", "f5_hit": "", "f5_pident": "",
-                  "f5_qcovs": "", "f5_taxon": "", "clase": "", "motivo": ""})
+                  "f5_qcovs": "", "f5_taxon": "", "f5b": "", "f5b_genomas": "",
+                  "clase": "", "motivo": ""})
         if f["f1"] != "ok":
             f["clase"], f["motivo"] = "descartado", f["f1"]
             continue
@@ -336,24 +478,36 @@ def cmd_integrar(args):
             if misma:
                 f["clase"], f["motivo"] = "descartado", "descartado_F5_misma_especie_en_nr"
                 continue
+            if (h5["pident"] >= args.casi_id and h5["qcovs"] >= args.casi_cov
+                    and f["f5_origen"] != "misma_especie"):
+                banderas.append("bandera_casi_identico_otra_especie")
         embudo["pasa_F5"] += 1
+        r5b = f5b.get(f["consulta"])
+        if r5b:
+            f["f5b"], f["f5b_genomas"] = r5b["f5b"], r5b["genomas_misma_especie"]
+            if r5b["f5b"].startswith("descartado"):
+                f["clase"], f["motivo"] = "descartado", r5b["f5b"]
+                continue
+        embudo["pasa_F5b"] += 1
         if banderas:
-            f["clase"], f["motivo"] = "con_bandera", ";".join(banderas)
+            f["clase"], f["motivo"] = "especifico_con_bandera", ";".join(banderas)
             embudo["con_bandera"] += 1
         else:
-            f["clase"], f["motivo"] = "verificado", ""
-            embudo["verificado"] += 1
+            f["clase"], f["motivo"] = "especifico", ""
 
-    campos = ["clase", "motivo", "bin", "genoma_original", "locus_tag", "familia", "gen",
-              "producto", "largo_aa", "contig", "largo_contig", "gc_contig", "inicio", "fin",
-              "hebra", "dist_borde_pb", "f1", "f4", "f4_hit", "f2_anclaje", "f3", "f3_hit",
-              "f6", "f6_hit", "f5_origen", "f5_hit", "f5_pident", "f5_qcovs", "f5_taxon"]
+    campos = ["clase", "motivo", "bin", "genoma_original", "locus_tag", "familia",
+              "origen_candidato", "gen", "producto", "largo_aa", "contig", "largo_contig",
+              "gc_contig", "inicio", "fin", "hebra", "dist_borde_pb", "f1", "f4", "f4_hit",
+              "f2_anclaje", "f3", "f3_hit", "f6", "f6_hit", "f5_origen", "f5_hit", "f5_pident",
+              "f5_qcovs", "f5_taxon", "f5b", "f5b_genomas"]
+    for f in filas:
+        f.setdefault("origen_candidato", "familia_sin_referencias")
     escribir_tsv(os.path.join(args.outdir, "exclusivos_verificados.tsv"), filas, campos)
-    pasos = ["candidatos", "pasa_F1", "pasa_F4", "pasa_F6", "pasa_F5", "con_bandera",
-             "verificado"]
+    pasos = ["candidatos", "pasa_F1", "pasa_F4", "pasa_F6", "pasa_F5", "pasa_F5b",
+             "con_bandera"]
     escribir_tsv(os.path.join(args.outdir, "embudo_exclusivos.tsv"),
                  [{"paso": p, "n": embudo[p]} for p in pasos], ["paso", "n"])
-    origenes = Counter(f["f5_origen"] for f in filas if f["clase"] == "verificado")
+    origenes = Counter(f["f5_origen"] for f in filas if f["clase"].startswith("especifico"))
     motivos = Counter(f["motivo"] for f in filas if f["clase"] == "descartado")
     with open(os.path.join(args.outdir, "exclusivos_report.md"), "w", encoding="utf-8",
               newline="\n") as fh:
@@ -366,11 +520,14 @@ def cmd_integrar(args):
         w("\n## Motivos de descarte\n\n")
         for m, n in motivos.most_common():
             w("- %s: %d\n" % (m, n))
-        w("\n## Origen probable de los exclusivos verificados (mejor hit en nr)\n\n")
+        w("\n'pasa_F5b' = genes especificos de la cepa (sin copia >= 80/80 en ningun otro "
+          "genoma conocido de la especie); 'con_bandera' = cuantos de ellos llevan una "
+          "advertencia.\n")
+        w("\n## Origen probable de los genes especificos de la cepa (mejor hit en nr)\n\n")
         for o, n in origenes.most_common():
             w("- %s: %d\n" % (o, n))
         w("\nCheckpoint C7: todo candidato tiene clase; revisar a mano una muestra de 10 "
-          "verificados (anotacion, contig, mejor hit).\n")
+          "especificos (anotacion, contig, mejor hit).\n")
     print("[ok] embudo: " + " -> ".join("%s=%d" % (p, embudo[p]) for p in pasos))
 
 
@@ -501,9 +658,25 @@ def main():
     p.add_argument("--f6", required=True, help="salida de blastn remoto contra core_nt")
     p.add_argument("--linajes", required=True, help="taxid<TAB>filo;familia;genero;especie")
     p.add_argument("--taxid-especie", required=True, help="taxid NCBI de la especie del bin")
+    p.add_argument("--f5b", default="", help="salida de 'ani' (F5b); opcional")
     p.add_argument("--f5-id", type=float, default=DEF_F5_ID)
     p.add_argument("--f5-cov", type=float, default=DEF_F5_COV)
+    p.add_argument("--casi-id", type=float, default=DEF_CASI_ID)
+    p.add_argument("--casi-cov", type=float, default=DEF_CASI_COV)
     p.set_defaults(func=cmd_integrar)
+
+    p = sub.add_parser("ani", help="F5b: especie por ANI de los genomas de cada hit de F5")
+    p.add_argument("--outdir", required=True, help="carpeta de la especie (candidatos_local.tsv)")
+    p.add_argument("--f5", required=True, help="salida de blastp contra nr (outfmt 6)")
+    p.add_argument("--out", required=True)
+    p.add_argument("--genomas-especie", required=True,
+                   help="phase3_genomas_candidatos.tsv del censo (linaje_id, accession_ncbi)")
+    p.add_argument("--linaje", required=True, help="linaje_id del bin (p. ej. L8)")
+    p.add_argument("--nombres", required=True, help="nombres de la especie separados por ';'")
+    p.add_argument("--ani", type=float, default=DEF_ANI)
+    p.add_argument("--f5-id", type=float, default=DEF_F5_ID)
+    p.add_argument("--f5-cov", type=float, default=DEF_F5_COV)
+    p.set_defaults(func=cmd_ani)
 
     p = sub.add_parser("ebi", help="F5 por el BLAST del EBI (alternativa a NCBI)")
     p.add_argument("--query", required=True, help="FASTA de proteinas (f5_query.faa)")

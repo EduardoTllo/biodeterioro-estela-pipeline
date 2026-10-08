@@ -16,6 +16,8 @@
 #   que da el mismo formato tabular (qcovs, staxids). El RID queda guardado en
 #   <lote>.tsv.rid: si el script se corta, al relanzarlo se reutiliza (NCBI lo
 #   conserva ~36 h) en vez de enviar la busqueda de nuevo.
+#   F5b: especie por ANI (IPG + NCBI Datasets) de los genomas de cada hit; F5B=0
+#       la omite.
 #   Taxonomia: taxonkit (NCBI taxdump local) resuelve filo;familia;genero;especie
 #       de cada hit y de la especie del bin.
 #   Integrar: 08_exclusivos.py integrar -> exclusivos_verificados.tsv.
@@ -44,6 +46,7 @@ SCRIPTS_DIR="$WORKDIR/scripts"
 SEL_DIR="$WORKDIR/results/03_seleccion"
 EXCL_OUT="$WORKDIR/results/07_exclusivos"
 TAXDUMP_DIR="${TAXDUMP_DIR:-$HOME/dbs/taxdump}"
+CENSO_CAND="$WORKDIR/results/00_censo/phase3_genomas_candidatos.tsv"
 NR_DB="${NR_DB:-nr}"
 NT_DB="${NT_DB:-core_nt}"
 LOTE=50
@@ -155,23 +158,42 @@ tail -n +2 "$SEL_DIR/especies_seleccionadas.tsv" | while IFS=$'\t' read -r RANGO
 
   # F5: lotes de LOTE proteinas (NCBI) o una por trabajo (EBI)
   mkdir -p "$OUT/f5_lotes"
-  if [[ "$MOTOR" == "ebi" && -s "$OUT/f5_query.faa" ]]; then
-    echo "     F5 EBI: $(grep -c '^>' "$OUT/f5_query.faa") proteinas ($(date +%H:%M))"
-    python "$SCRIPTS_DIR/08_exclusivos.py" ebi --query "$OUT/f5_query.faa"         --out "$OUT/f5_blastp_nr.tsv" --estado "$OUT/f5_lotes" --email "$EBI_EMAIL" --db "$EBI_DB"
-  elif [[ -s "$OUT/f5_query.faa" ]]; then
-    awk -v n="$LOTE" -v d="$OUT/f5_lotes" '/^>/{if(c%n==0){f=sprintf("%s/lote_%04d.faa",d,int(c/n)+1)} c++} {print > f}' \
-        "$OUT/f5_query.faa"
+  if [[ ! -s "$OUT/f5_query.faa" ]]; then
+    : > "$OUT/f5_blastp_nr.tsv"
+  else
+    # Incremental: solo se envian las proteinas que aun no se buscaron (si la
+    # lista de candidatos cambia, las ya buscadas no vuelven a la cola de NCBI).
+    HECHAS="$OUT/f5_lotes/consultadas.txt"
+    if [[ ! -f "$HECHAS" ]]; then
+      : > "$HECHAS"
+      for Q in "$OUT"/f5_lotes/lote_*.faa; do
+        [[ -f "${Q%.faa}.tsv.ok" ]] && grep '^>' "$Q" | sed 's/^>//; s/ .*//' >> "$HECHAS"
+      done
+    fi
+    for Q in "$OUT"/f5_lotes/lote_*.faa; do      # lotes a medias: se rearman
+      [[ -f "$Q" && ! -f "${Q%.faa}.tsv.ok" ]] && rm -f "$Q" "${Q%.faa}.tsv" "${Q%.faa}.tsv.rid"
+    done
+    SIG=$(( $(ls "$OUT"/f5_lotes/lote_*.tsv.ok 2>/dev/null | wc -l) + 1 ))
+    awk -v hechas="$HECHAS" -v n="$LOTE" -v d="$OUT/f5_lotes" -v k="$SIG" '
+      BEGIN { while ((getline l < hechas) > 0) h[l] = 1 }
+      /^>/  { id = substr($1, 2); keep = !(id in h)
+              if (keep) { if (c % n == 0) f = sprintf("%s/lote_%04d.faa", d, k + int(c / n)); c++ } }
+      keep  { print > f }' "$OUT/f5_query.faa"
     for Q in "$OUT"/f5_lotes/lote_*.faa; do
       R="${Q%.faa}.tsv"
       if [[ -f "${R}.ok" ]]; then continue; fi
       echo "     F5 $(basename "$Q"): $(grep -c '^>' "$Q") proteinas ($(date +%H:%M))"
-      blast_ncbi blastp "$NR_DB" 1e-5 "$Q" "$R"
+      if [[ "$MOTOR" == "ebi" ]]; then
+        python "$SCRIPTS_DIR/08_exclusivos.py" ebi --query "$Q" --out "$R" \
+            --estado "$OUT/f5_lotes/ebi_json" --email "$EBI_EMAIL" --db "$EBI_DB"
+      else
+        blast_ncbi blastp "$NR_DB" 1e-5 "$Q" "$R"
+      fi
       touch "${R}.ok"
+      grep '^>' "$Q" | sed 's/^>//; s/ .*//' >> "$HECHAS"
       sleep "$PAUSA_S"
     done
     cat "$OUT"/f5_lotes/lote_*.tsv > "$OUT/f5_blastp_nr.tsv"
-  else
-    : > "$OUT/f5_blastp_nr.tsv"
   fi
 
   # F6: contigs huerfanos
@@ -184,6 +206,14 @@ tail -n +2 "$SEL_DIR/especies_seleccionadas.tsv" | while IFS=$'\t' read -r RANGO
     : > "$OUT/f6_blastn_nt.tsv"
   fi
 
+  # F5b: especie por ANI de los genomas con la proteina de cada hit (IPG + NCBI
+  # Datasets). Corrige genomas de la especie depositados como "sp." o con un
+  # sinonimo. Se reanuda con f5b_cache.json si se corta.
+  if [[ "${F5B:-1}" == "1" ]]; then
+    echo "     F5b: especie por ANI de los genomas de cada hit ($(date +%H:%M))"
+    python "$SCRIPTS_DIR/08_exclusivos.py" ani --outdir "$OUT" --f5 "$OUT/f5_blastp_nr.tsv"         --out "$OUT/f5b_ani.tsv" --genomas-especie "$CENSO_CAND" --linaje "$LID"         --nombres "$ESP;$NCBI_ESP"
+  fi
+
   # Taxonomia de los hits y de la especie del bin
   { echo "$TAXID"; cut -f8 "$OUT/f5_blastp_nr.tsv" "$OUT/f6_blastn_nt.tsv" | tr ';' '\n'; } \
       | grep -E '^[0-9]+$' | sort -u > "$OUT/taxids.txt"
@@ -192,7 +222,7 @@ tail -n +2 "$SEL_DIR/especies_seleccionadas.tsv" | while IFS=$'\t' read -r RANGO
 
   python "$SCRIPTS_DIR/08_exclusivos.py" integrar \
       --outdir "$OUT" --f5 "$OUT/f5_blastp_nr.tsv" --f6 "$OUT/f6_blastn_nt.tsv" \
-      --linajes "$OUT/linajes.tsv" --taxid-especie "$TAXID"
+      --linajes "$OUT/linajes.tsv" --taxid-especie "$TAXID" --f5b "$OUT/f5b_ani.tsv"
 done
 
 echo

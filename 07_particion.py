@@ -431,6 +431,54 @@ def cmd_particion(args):
 
 # ------------------------------------------------------------------------ main
 
+
+# ------------------------------------------------------------ subcomando cog
+
+def cogs_de(dbxrefs):
+    """Letras de categoria COG de un feature de Bakta ('COG:L', no 'COG:COG0593')."""
+    letras = []
+    for x in dbxrefs.split(","):
+        x = x.strip()
+        if x.startswith("COG:") and re.fullmatch(r"[A-Z]+", x[4:]):
+            letras.extend(x[4:])
+    return letras
+
+
+def cmd_cog(args):
+    """Categoria COG de cada familia (la mas frecuente entre sus genes) y de cada
+    gen del bin, para comparar la funcion de core, shell, cloud y exclusivos."""
+    genomas, familias = leer_panaroo(os.path.join(args.panaroo_dir, "gene_presence_absence.csv"))
+    cog_gen = {}
+    for g in genomas:
+        base = os.path.join(args.bakta_dir, g, g)
+        if not os.path.exists(base + ".tsv"):
+            die("falta %s.tsv" % base)
+        for f in leer_bakta_tsv(base + ".tsv"):
+            if f["tipo"] == "cds":
+                cog_gen[(g, f["locus"])] = cogs_de(f["dbxrefs"])
+    cat = {r["familia"]: r for r in leer_tsv(os.path.join(args.particion_dir, "particion_familias.tsv"))}
+    filas = []
+    for fam in familias:
+        c = Counter()
+        n = 0
+        for g, genes in fam["celdas"].items():
+            for loc in genes:
+                letras = cog_gen.get((g, loc))
+                if letras is None:
+                    continue
+                n += 1
+                c.update(set(letras))
+        top = sorted(c.items(), key=lambda kv: (-kv[1], kv[0]))
+        info = cat.get(fam["familia"], {})
+        filas.append({"familia": fam["familia"], "categoria_95": info.get("categoria_95", ""),
+                      "n_ref": info.get("n_ref", ""), "cog": top[0][0] if top else "sin_COG",
+                      "genes_con_cog": top[0][1] if top else 0,
+                      "genes": n})
+    escribir_tsv(args.out, filas, ["familia", "categoria_95", "n_ref", "cog", "genes_con_cog", "genes"])
+    resumen = Counter((f["categoria_95"], f["cog"]) for f in filas)
+    print("[ok] %d familias -> %s | sin COG: %d" % (len(filas), args.out,
+          sum(v for (k, c), v in resumen.items() if c == "sin_COG")))
+
 def main():
     ap = argparse.ArgumentParser(description="Fase 3: control de Bakta y particion del pangenoma.")
     sub = ap.add_subparsers(dest="cmd")
@@ -455,6 +503,13 @@ def main():
     p.add_argument("--min-recup-ref", type=float, default=DEF_MIN_RECUP_REF)
     p.add_argument("--max-dif-bin", type=float, default=DEF_MAX_DIF_BIN)
     p.set_defaults(func=cmd_particion)
+
+    p = sub.add_parser("cog", help="categoria COG de cada familia (desde Bakta)")
+    p.add_argument("--panaroo-dir", required=True)
+    p.add_argument("--particion-dir", required=True)
+    p.add_argument("--bakta-dir", required=True)
+    p.add_argument("--out", required=True)
+    p.set_defaults(func=cmd_cog)
 
     args = ap.parse_args()
     if not getattr(args, "func", None):

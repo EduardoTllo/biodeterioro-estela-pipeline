@@ -27,6 +27,7 @@ Fase 2: phase2_selection.tsv          metadata GTDB R220
    [7] Pangenoma por especie + particion core/accesorio  06_panaroo.slurm
                           |
    [8] Arbol del core por especie                        06b_iqtree.slurm
+                          |                              06c_ani_bins.slurm (ANI bin vs especie)
                           |
    [9] Verificacion de genes exclusivos (F1-F6)          08_exclusivos_local.slurm
                           |                              08_exclusivos_remoto.sh
@@ -410,8 +411,16 @@ el estado cada minuto y recoge el resultado con `blast_formatter`. No se usa
 con `Connection stream is in bad state`. Segun la cola de NCBI, cada especie
 puede tardar de minutos a horas; mientras espera, el registro escribe
 `... sigue en cola` cada 30 min. Si se corta, se vuelve a correr el mismo
-comando: los lotes terminados no se repiten y las busquedas en curso se
-retoman por su numero (RID). Al final imprime `[ok] embudo: ...` por especie.
+comando: las proteinas ya buscadas no se repiten (aunque cambie la lista de
+candidatos) y las busquedas en curso se retoman por su numero (RID).
+
+Despues de F5, el paso F5b consulta en NCBI que genomas tienen la proteina de
+cada parecido (registro IPG) y la especie de cada genoma por su ANI contra las
+cepas tipo. Si alguno es de la especie del bin, el gen se descarta aunque el
+genoma este depositado como "sp." o con un sinonimo. Tarda minutos; con la
+variable `F5B=0` se omite. Al final imprime `[ok] embudo: ...` por especie: el
+paso `pasa_F5b` son los genes especificos de la cepa y `con_bandera` cuantos
+de ellos tienen un parecido casi identico (>= 99 %) en otra especie.
 
 Si la cola de NCBI no avanza (puede pasar horas en `WAITING`), F5 se puede
 correr en el servicio BLAST del EBI contra UniProtKB, que suele responder en
@@ -429,6 +438,22 @@ Si `core_nt` no estuviera disponible, se usa `nt`:
 
 ```bash
 NT_DB=nt bash scripts/08_exclusivos_remoto.sh 2>&1 | tee logs/fase3_exclusivos_remoto.log
+```
+
+### 9b. Analisis complementarios
+
+ANI de cada bin contra todos los genomas descargados de su especie (un solo
+trabajo, minutos):
+
+```bash
+sbatch --account=tesis --mail-type=END,FAIL --mail-user="$CORREO" scripts/06c_ani_bins.slurm
+```
+
+Categoria funcional (COG) de cada familia del pangenoma, a partir de las
+anotaciones de Bakta (login, segundos por especie):
+
+```bash
+for d in results/05_panaroo/*/; do python scripts/07_particion.py cog --panaroo-dir "$d" --particion-dir "$d/particion" --bakta-dir results/04_bakta --out "$d/particion/familias_cog.tsv"; done
 ```
 
 ### 10. Exportacion y figuras
@@ -484,7 +509,10 @@ versiona en `results/fase3/`. Archivos principales:
 | `<especie>/genes_bin.tsv` | Cada gen del bin con su familia y categoria (entrada de la Fase 4) |
 | `<especie>/recuperacion_core.tsv` | Fraccion del core de referencias presente en cada genoma |
 | `<especie>/core.treefile` | Arbol de maxima verosimilitud del core |
-| `<especie>/exclusivos_verificados.tsv` | Genes exclusivos con su clase final y el motivo |
+| `<especie>/exclusivos_verificados.tsv` | Cada candidato con su clase final (`especifico`, `especifico_con_bandera` o `descartado`) y el motivo |
+| `<especie>/f5b_ani.tsv` | Especie por ANI de los genomas que tienen la proteina de cada hit de F5 |
+| `<especie>/ani_bin_genomas.tsv` | ANI del bin contra todos los genomas descargados de su especie |
+| `<especie>/familias_cog.tsv` | Categoria COG de cada familia del pangenoma |
 
 Figuras (`figuras/figs/`): curvas de acumulacion, posicion del bin en el
 pangenoma, arbol del core por especie y embudo de genes exclusivos.
@@ -505,7 +533,7 @@ pangenoma, arbol del core por especie y embudo de genes exclusivos.
 | Particion | Frecuencias calculadas solo con referencias: core >= 95 % (sensibilidad 90 %), shell 15-95 %, cloud < 15 %, exclusivo = ausente en todas las referencias | Tettelin et al. 2005 |
 | Apertura del pangenoma | Ley de Heaps (misma implementacion que `micropan::heaps`, vectorizada); alpha < 1 indica pangenoma abierto. Diagnosticos de inflacion: genes unicos vs. contigs, genomas atipicos, alpha solo con genomas completos, rango jackknife y fraccion de hipoteticas por categoria | Tettelin et al. 2008; Snipen y Liland 2015 |
 | Arbol | IQ-TREE 3, ModelFinder, 1000 replicas UFBoot, sobre el alineamiento del core | |
-| Genes exclusivos | F1: descarta pseudogenes, < 100 aa y CDS a < 100 pb del borde de contig. F4: descarta si aparece (>= 80 % identidad y cobertura) en cualquier genoma de la especie. F2/F6: contigs sin genes de la especie se contrastan con core_nt y se descartan si su mejor hit es de otro genero. F3: marca genes presentes en otro bin de la misma muestra. F5: BLASTp contra nr para el origen probable | |
+| Genes especificos de la cepa | Candidatos: genes del bin cuya familia no esta en ninguna referencia y genes del bin que Panaroo elimino (en modo moderate poda de forma recursiva los genes de extremo de contig presentes en < 2 genomas). F1: descarta pseudogenes, < 100 aa y CDS a < 100 pb del borde de contig. F4: descarta si aparece (>= 80 % identidad y cobertura) en cualquier genoma de la especie. F2/F6: contigs sin genes de la especie se contrastan con core_nt y se descartan si su mejor hit es de otro genero. F3: marca genes presentes en otro bin de la misma muestra. F5: BLASTp contra nr; descarta si hay un hit >= 80/80 rotulado con la especie y da el origen probable. F5b: descarta si alguno de los genomas con la proteina de un hit >= 80/80 es de la especie segun su ANI (NCBI). Advertencia si el mejor hit tiene >= 99 % de identidad y >= 90 % de cobertura en otra especie (posible transferencia reciente) | Tonkin-Hill et al. 2020 |
 
 Referencias:
 
