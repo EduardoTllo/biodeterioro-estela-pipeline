@@ -4,6 +4,12 @@ Esta guia explica el reporte de seleccion (`phase3_seleccion_report.md`) y las
 figuras de la Fase 3: que muestra cada una, como se lee y que dicen nuestros
 datos. Corresponde a la exportacion del 08-10-2026 (Fase 3 completa).
 
+**Importante:** el analisis critico (`phase3_analisis_critico.md`) corrige
+dos resultados de esta guia: los exclusivos verificados pasan de 2/0/30 a
+**0/0/27** al comprobar por ANI la especie de los genomas que tienen cada
+proteina, y F6 no vio contigs huerfanos porque Panaroo ya los habia eliminado.
+Tambien agrega las figuras 8-12.
+
 Especies analizadas:
 
 | Linaje | Especie (GTDB) | Bin de la Estela | Completitud del bin |
@@ -255,7 +261,7 @@ referencia concreta con soporte 100:
 
 | Bin | Pariente mas cercano | Distancia | Lectura |
 |---|---|---:|---|
-| bin-5-63 (*B. altitudinis*) | GCF_000828455.1, cereales fermentados, Paises Bajos | 0,016 | Forma con ella un grupo separado del resto de la especie. La rama propia del bin es larga, en parte por su incompletitud |
+| bin-5-63 (*B. altitudinis*) | GCF_000828455.1, cereales fermentados, Paises Bajos | 0,016 | Forma con ella un grupo separado del resto de la especie. La rama del bin (0,0083) es comparable a la de su pariente (0,0077) |
 | bin-1-54 (*P. frigoritolerans*) | GCA_024160055.1, suelo, Corea del Sur | **0,0017** | Practicamente la misma cepa en el core |
 | bin-4-52 (*A. schindleri*) | GCF_025514435.1, clinico (endovascular), EE. UU. | 0,013 | Dentro de un grupo de cepas clinicas, coherente con el sesgo de las referencias |
 

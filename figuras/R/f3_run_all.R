@@ -10,7 +10,8 @@ scripts <- c(
   "f3_02_posicion_bin.R",
   "f3_03_arbol_core.R",
   "f3_04_exclusivos.R",
-  "f3_05_diagnostico_heaps.R"
+  "f3_05_diagnostico_heaps.R",
+  "f3_06_analisis_adicional.R"
 )
 
 t0 <- Sys.time()

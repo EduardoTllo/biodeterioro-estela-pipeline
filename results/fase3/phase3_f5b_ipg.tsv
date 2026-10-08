@@ -1,0 +1,429 @@
+especie	locus	proteina	pident	organismo	cepa	ensamblaje
+L16_Bacillus_altitudinis	bin_5_63_00095	WP_440600311.1	100.0	Bacillus sp. 22483	22483	GCF_052044605.1
+L16_Bacillus_altitudinis	bin_5_63_00095	WP_440600311.1	100.0	Bacillus sp. 22483	22483	GCA_052044605.1
+L16_Bacillus_altitudinis	bin_5_63_00095	WP_440600311.1	100.0	Bacillus subtilis	122-E5	GCA_052120855.1
+L16_Bacillus_altitudinis	bin_5_63_00095	WP_440600311.1	100.0	Bacillus subtilis	PRO122	GCA_029762375.2
+L16_Bacillus_altitudinis	bin_5_63_00095	WP_440600311.1	100.0	Bacillus subtilis	122-WTA	GCA_052146725.1
+L16_Bacillus_altitudinis	bin_5_63_00096	WP_440600310.1	100.0	Bacillus sp. 22483	22483	GCF_052044605.1
+L16_Bacillus_altitudinis	bin_5_63_00096	WP_440600310.1	100.0	Bacillus sp. 22483	22483	GCA_052044605.1
+L16_Bacillus_altitudinis	bin_5_63_00096	WP_440600310.1	100.0	Bacillus subtilis	122-E5	GCA_052120855.1
+L16_Bacillus_altitudinis	bin_5_63_00096	WP_440600310.1	100.0	Bacillus subtilis	PRO122	GCA_029762375.2
+L16_Bacillus_altitudinis	bin_5_63_00096	WP_440600310.1	100.0	Bacillus subtilis	122-WTA	GCA_052146725.1
+L8_Acinetobacter_schindleri	bin_4_52_01290	WP_005026895.1	98.8	Acinetobacter radioresistens DSM 6976 = NBRC 102413 = CIP 103788	NBRC 102413	GCF_006757745.1
+L8_Acinetobacter_schindleri	bin_4_52_01290	WP_005026895.1	98.8	Acinetobacter radioresistens DSM 6976 = NBRC 102413 = CIP 103788	CIP 103788	GCF_000368905.1
+L8_Acinetobacter_schindleri	bin_4_52_01290	WP_005026895.1	98.8	Acinetobacter radioresistens DSM 6976 = NBRC 102413 = CIP 103788	NBRC 102413	GCA_006757745.1
+L8_Acinetobacter_schindleri	bin_4_52_01290	WP_005026895.1	98.8	Acinetobacter radioresistens DSM 6976 = NBRC 102413 = CIP 103788	CIP 103788	GCA_000368905.1
+L8_Acinetobacter_schindleri	bin_4_52_01290	WP_005026895.1	98.8	Acinetobacter radioresistens DSM 6976 = NBRC 102413 = CIP 103788	CIP 103788	GCA_000368905.1
+L8_Acinetobacter_schindleri	bin_4_52_01292	WP_234857188.1	92.0	Acinetobacter junii	WCO-9	GCF_021491935.1
+L8_Acinetobacter_schindleri	bin_4_52_01293	WP_005406150.1	81.4	Acinetobacter radioresistens WC-A-157	WC-A-157	GCF_000286595.1
+L8_Acinetobacter_schindleri	bin_4_52_01293	WP_005406150.1	81.4	Acinetobacter radioresistens WC-A-157	WC-A-157	GCA_000286595.1
+L8_Acinetobacter_schindleri	bin_4_52_01295	WP_475556067.1	96.6	Acinetobacter sp.		GCF_056182335.1
+L8_Acinetobacter_schindleri	bin_4_52_01309	WP_005107079.1	99.7	Acinetobacter lwoffii	VS15	GCF_019787645.1
+L8_Acinetobacter_schindleri	bin_4_52_01309	WP_005107079.1	99.7	Acinetobacter lwoffii NIPH 478	NIPH 478	GCF_000369145.1
+L8_Acinetobacter_schindleri	bin_4_52_01309	WP_005107079.1	99.7	Acinetobacter lwoffii NIPH 478	NIPH 478	GCA_000369145.1
+L8_Acinetobacter_schindleri	bin_4_52_01309	WP_005107079.1	99.7	Acinetobacter lwoffii NIPH 478	NIPH 478	GCA_000369145.1
+L8_Acinetobacter_schindleri	bin_4_52_01309	WP_005107079.1	99.7	Acinetobacter lwoffii	VS15	GCA_019787645.1
+L8_Acinetobacter_schindleri	bin_4_52_01325	WP_286713045.1	100.0	Acinetobacter sp. UBA2581		GCF_002339435.1
+L8_Acinetobacter_schindleri	bin_4_52_01326	WP_286713043.1	96.6	Acinetobacter sp. UBA2581		GCF_002339435.1
+L8_Acinetobacter_schindleri	bin_4_52_01327	WP_286713042.1	97.5	Acinetobacter sp. UBA2581		GCF_002339435.1
+L8_Acinetobacter_schindleri	bin_4_52_01328	WP_286713041.1	98.9	Acinetobacter sp. UBA2581		GCF_002339435.1
+L8_Acinetobacter_schindleri	bin_4_52_01329	WP_286713039.1	99.1	Acinetobacter sp. UBA2581		GCF_002339435.1
+L8_Acinetobacter_schindleri	bin_4_52_01973	WP_180167953.1	83.5	Acinetobacter sp. YH12035	YH12035	GCF_013419985.1
+L8_Acinetobacter_schindleri	bin_4_52_01975	WP_002940149.1	55.6	Thauera sp. 27	27	GCF_000310125.2
+L8_Acinetobacter_schindleri	bin_4_52_01975	WP_002940149.1	55.6	Thauera sp. 27	27	GCA_000310125.2
+L8_Acinetobacter_schindleri	bin_4_52_01982	WP_086044391.1	99.4	Acinetobacter lwoffii	ZS207	GCF_002119785.2
+L8_Acinetobacter_schindleri	bin_4_52_01982	WP_086044391.1	99.4	Acinetobacter lwoffii	ZS207	GCA_002119785.3
+L8_Acinetobacter_schindleri	bin_4_52_01982	WP_086044391.1	99.4	Acinetobacter junii		GCA_003452175.1
+L8_Acinetobacter_schindleri	bin_4_52_01982	WP_086044391.1	99.4	Acinetobacter johnsonii		GCA_046293955.1
+L8_Acinetobacter_schindleri	bin_4_52_02218	HJE53381.1	100.0	Acinetobacter pseudolwoffii		GCA_020742075.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter sp. P8-3-8	P8-3-8	GCF_000214135.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii	EJD.3cg	GCF_057369395.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii	12CE1	GCF_015602705.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii	FDAARGOS 1394	GCF_019048525.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii	TMP6	GCF_050703235.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter variabilis		GCF_032083625.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii SH145	SH145	GCF_000162095.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii	VE196-10	GCF_024129355.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter variabilis	AR4517	GCF_038020695.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter sp. CIP 102136	CIP 102136	GCF_000369685.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter sp. BMW17	BMW17	GCF_001592855.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii SH145	SH145	GCA_000162095.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter sp. CIP 102136	CIP 102136	GCA_000369685.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter sp. CIP 102136	CIP 102136	GCA_000369685.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter sp.		GCA_003527545.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter towneri		GCA_035445105.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii	VE196-10	GCA_024129355.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii	EJD.3cg	GCA_057369395.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii	TMP6	
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter sp. 51m	51m	GCA_001720685.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii	12CE1	GCA_015602705.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii	FDAARGOS 1394	GCA_019048525.1
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	Acinetobacter lwoffii	TMP6	GCA_050703235.1
+L8_Acinetobacter_schindleri	bin_4_52_02379	WP_441374923.1	100.0	Acinetobacter lwoffii	EJD.3cg	GCF_057369395.1
+L8_Acinetobacter_schindleri	bin_4_52_02379	WP_441374923.1	100.0	Acinetobacter lwoffii	EJD.3cg	GCA_057369395.1
+L8_Acinetobacter_schindleri	bin_4_52_02380	EEY88770.1	100.0	Acinetobacter lwoffii SH145	SH145	GCA_000162095.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter johnsonii	A26995	GCF_050157305.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter lwoffii SH145	SH145	GCF_000162095.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter towneri	DF40-4	GCF_030329085.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter johnsonii	XH1783	GCF_040067755.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter johnsonii	ULE_I071	GCF_048549735.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter johnsonii	ULE_I065	GCF_048549815.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter johnsonii	ULE_I032	GCF_048552175.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter sp. 231_lipA	231_lipA	GCF_058243005.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter ihumii	Marseille-P8049	GCF_900625095.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter sp. MF4640	MF4640	GCF_002018895.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter sp. YH16053	YH16053	GCF_013417035.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter lwoffii SH145	SH145	GCA_000162095.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter towneri	DF49-4	GCA_030329065.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter towneri	DF40-4	GCA_030329085.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter towneri	DF39-2	GCA_030329105.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter towneri	DF38-4	GCA_030329145.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter towneri	DF34-4	GCA_030329165.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter towneri	DF23-4	GCA_030329235.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter towneri	DF3-5	GCA_030329205.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter towneri	DF16-4	GCA_030329245.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter towneri	DF31-4-1	GCA_030329185.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Chryseobacterium sp.		GCA_030451135.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Lactococcus sp.		GCA_030453945.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter johnsonii	XH1783	GCA_040067755.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter johnsonii	ULE_I071	GCA_048549735.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter johnsonii	ULE_I065	GCA_048549815.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter johnsonii	ULE_I032	GCA_048552175.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter sp. 231_lipA	231_lipA	GCA_058243005.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter sp. MF4640	MF4640	GCA_002018895.1
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	Acinetobacter johnsonii	A26995	GCA_050157305.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM392	KAM392	GCF_021602685.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM393	KAM393	GCF_021602705.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM394	KAM394	GCF_021602725.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM395	KAM395	GCF_021602745.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM396	KAM396	GCF_021602765.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM397	KAM397	GCF_021602785.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM398	KAM398	GCF_021602805.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM399	KAM399	GCF_021602825.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM400	KAM400	GCF_021602845.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM401	KAM401	GCF_021602865.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM402	KAM402	GCF_021602885.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM403	KAM403	GCF_021603005.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM404	KAM404	GCF_021603045.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM405	KAM405	GCF_021603145.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM406	KAM406	GCF_021603185.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM392	KAM392	GCA_021602685.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM393	KAM393	GCA_021602705.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM394	KAM394	GCA_021602725.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM395	KAM395	GCA_021602745.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM396	KAM396	GCA_021602765.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM397	KAM397	GCA_021602785.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM398	KAM398	GCA_021602805.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM399	KAM399	GCA_021602825.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM400	KAM400	GCA_021602845.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM401	KAM401	GCA_021602865.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM402	KAM402	GCA_021602885.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM403	KAM403	GCA_021603005.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM404	KAM404	GCA_021603045.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM405	KAM405	GCA_021603145.1
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	Acinetobacter sp. KAM406	KAM406	GCA_021603185.1
+L8_Acinetobacter_schindleri	bin_4_52_03109	WP_440611112.1	100.0	Acinetobacter sp. 22323	22323	GCF_052044895.1
+L8_Acinetobacter_schindleri	bin_4_52_03109	WP_440611112.1	100.0	Acinetobacter sp. 22323	22323	GCA_052044895.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter sp. Swhac1	Swhac1	GCF_013390985.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter sp. SwsAc6	SwsAc6	GCF_013391565.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter towneri	A6	GCF_018501125.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter towneri	SAAt364	GCF_032841735.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter johnsonii	XH1780	GCF_040067635.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter sp. 22323	22323	GCF_052044895.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter baumannii NIPH 80	NIPH 80	GCF_000369345.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter haemolyticus	AN27	GCF_009899735.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter haemolyticus	AN10	GCF_009899845.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter baumannii NIPH 80	NIPH 80	GCA_000369345.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter baumannii NIPH 80	NIPH 80	GCA_000369345.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter baumannii		GCA_031876585.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter towneri	A6	GCA_018501125.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter johnsonii	GD03987	GCA_029838425.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter gerneri	M-SY-61	GCA_031158215.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter gerneri	M-SY-63	GCA_031157975.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter gerneri	C-SY-69	GCA_031158135.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter gerneri	C-SY-46	GCA_031158235.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter gerneri	M-SY-50	GCA_031158395.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter gerneri	M-SY-60	GCA_031158345.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter gerneri	M-SY-52	GCA_031158415.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter towneri	SAAt364	GCA_032841735.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter johnsonii	XH1780	GCA_040067635.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter sp. 22323	22323	GCA_052044895.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter haemolyticus	AN27	GCA_009899735.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter haemolyticus	AN10	GCA_009899845.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter haemolyticus	11654	GCA_009899905.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter sp. Swhac1	Swhac1	GCA_013390985.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter sp. SwsAc6	SwsAc6	GCA_013391565.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter cumulans	WCHAc060003	GCA_003664635.1
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	Acinetobacter cumulans	WCHAc060001	GCA_003664655.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter sp. Swhac1	Swhac1	GCF_013390985.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter sp. SwsAc6	SwsAc6	GCF_013391565.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter towneri	A6	GCF_018501125.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter towneri	SAAt364	GCF_032841735.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter johnsonii	XH1780	GCF_040067635.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter sp. 22323	22323	GCF_052044895.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter towneri	A6	GCA_018501125.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter johnsonii	GD03987	GCA_029838425.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter gerneri	M-SY-61	GCA_031158215.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter gerneri	M-SY-63	GCA_031157975.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter gerneri	C-SY-69	GCA_031158135.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter gerneri	C-SY-46	GCA_031158235.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter gerneri	M-SY-50	GCA_031158395.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter gerneri	M-SY-60	GCA_031158345.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter gerneri	M-SY-52	GCA_031158415.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter towneri	SAAt364	GCA_032841735.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter johnsonii	XH1780	GCA_040067635.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter sp. 22323	22323	GCA_052044895.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter sp. Swhac1	Swhac1	GCA_013390985.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter sp. SwsAc6	SwsAc6	GCA_013391565.1
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	Acinetobacter cumulans	WCHAc060003	GCA_003664635.1
+L8_Acinetobacter_schindleri	bin_4_52_03119	MIN8005637.1	99.1	Cloacibacterium sp.		GCA_060871325.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter johnsonii	LXL_C1	GCF_003335165.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter septicus	FDAARGOS_1401	GCF_019355975.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii	RIVM_C011601	GCF_025723105.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter sp. Swhac1	Swhac1	GCF_013390985.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter towneri	A6	GCF_018501125.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii	AOR04_HL	GCF_027855375.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii	GD03892	GCF_029840255.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii	GD03671	GCF_029844785.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter towneri	SAAt364	GCF_032841735.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii	AU71	GCF_037028865.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii	XH1705	GCF_040068105.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii ANC 3649	ANC 3649	GCF_000368845.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter sp. WCHAc060042	WCHAc060042	GCF_003231195.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter johnsonii	LXL_C1	GCA_003335165.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii ANC 3649	ANC 3649	GCA_000368845.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii ANC 3649	ANC 3649	GCA_000368845.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter towneri	A6	GCA_018501125.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii	AOR04_HL	GCA_027855375.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii	GD03892	GCA_029840255.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter johnsonii	GD03987	GCA_029838425.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii	GD03671	GCA_029844785.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter towneri	SAAt364	GCA_032841735.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii	XH1705	GCA_040068105.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter towneri		GCA_041441205.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter sp. Swhac1	Swhac1	GCA_013390985.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter septicus	FDAARGOS_1401	GCA_019355975.1
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	Acinetobacter ursingii	RIVM_C011601	GCA_025723105.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	OCU Ac18	GCF_019703285.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter towneri	PT23-B2	GCF_040436385.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii CIP 107470 = MTCC 11364	MTCC 11364	GCF_000430225.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter pengchengensis	NS4_7	GCF_982235345.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	15208	GCF_984580065.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter venetianus VE-C3	VE-C3	GCF_000308235.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. SW-226	SW-226	GCF_055632855.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter variabilis	CUVET24-CM1	GCF_057471025.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter variabilis	CUVET24-CC1	GCF_057471035.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	LXL_C1	GCF_003335165.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	2126ch	GCF_009892345.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	11616	GCF_009892385.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	E47	GCF_008931365.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	FDAARGOS_1095	GCF_016726205.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	FDAARGOS_1094	GCF_016726625.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii	AJ_351	GCF_003939335.2
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter septicus	FDAARGOS_1401	GCF_019355975.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	OC061	GCF_024749505.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	RIVM_C011601	GCF_025723105.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	XH1044	GCF_043044125.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	E5131942	GCF_041501495.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter piscicola	p38	GCF_041519375.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii	COLMIS_280	GCF_058150205.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. SwsAc6	SwsAc6	GCF_013391565.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. UC24323	UC24323	GCF_024151445.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	WU_MDCI_Au61	GCF_025562315.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	AOR04_HL	GCF_027855375.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	KZ-1257	GCF_022699685.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii	GD03910	GCF_029839935.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	GD03892	GCF_029840255.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	GD03888	GCF_029840305.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	GD03884	GCF_029840405.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	GD03725	GCF_029843525.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii	GD03703	GCF_029843865.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	GD03671	GCF_029844785.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	GD03668	GCF_029844825.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	G3719	GCF_030055705.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	G5688	GCF_030055835.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	C-SZ-10	GCF_031158015.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	C-SZ-13	GCF_031157995.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	C-SZ-23	GCF_031157795.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	C-SZ-27	GCF_031157735.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	C-SZ-65	GCF_031157905.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	C-SZ-92	GCF_031158065.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter brisouii		GCF_041904985.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp.		GCF_041914465.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	AU71	GCF_037028865.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter variabilis	AR4517	GCF_038020695.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii	30	GCF_037478175.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter towneri	PUMA0279	GCF_039716075.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	XH1781	GCF_040067035.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	XH1705	GCF_040068105.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	TYF_7	GCF_043105445.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter uliginosus	BSP-53	GCF_044130295.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	32B	GCF_046694045.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	SIMBA025	GCF_046488685.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	16H4P8	GCF_050379635.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	WWCOL-140	GCF_051547365.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	BG424	GCF_054108945.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. NigerLNRRAM0016	NigerLNRRAM0016	GCF_054112845.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	A12_80	GCF_056120245.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter tandoii DSM 14970 = CIP 107469	DSM 14970	GCF_000621065.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii CIP 107470 = MTCC 11364	CIP 107470	GCF_000368665.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii DSM 16037 = CIP 107286	CIP 107286	GCF_000368825.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii ANC 3649	ANC 3649	GCF_000368845.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter tandoii DSM 14970 = CIP 107469	CIP 107469	GCF_000400735.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. SWAC57	SWAC57	GCF_003569905.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter tandoii	SC36	GCF_002795165.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	ABBL059	GCF_001414915.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	ARLG-1948	GCF_002137265.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	ARLG1327	GCF_002143955.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	WE1572	GCF_003070905.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. WCHAc060042	WCHAc060042	GCF_003231195.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter cumulans	WCHAc060004	GCF_003611535.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	TG31299	GCF_003949235.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	TG22168	GCF_003948725.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	FDAARGOS_492	GCF_003938895.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. WCHAc060033	WCHAc060033	GCF_004209125.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	MRSN7153	GCF_006492295.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	MRSN31937	GCF_006492985.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	AN27	GCF_009899735.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	AN10	GCF_009899845.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	11650	GCF_009899965.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	3281	GCF_009899925.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. SA01	SA01	GCF_011319235.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	LXL_C1	GCA_003335165.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	OCU_Ac18	GCA_019703285.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter towneri	PT23-B2	GCA_040436385.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	2023GN-00205	
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii CIP 107470 = MTCC 11364	CIP 107470	GCA_000368665.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii CIP 107470 = MTCC 11364	CIP 107470	GCA_000368665.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii DSM 16037 = CIP 107286	CIP 107286	GCA_000368825.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii DSM 16037 = CIP 107286	CIP 107286	GCA_000368825.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii ANC 3649	ANC 3649	GCA_000368845.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii ANC 3649	ANC 3649	GCA_000368845.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter tandoii DSM 14970 = CIP 107469	CIP 107469	GCA_000400735.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter tandoii DSM 14970 = CIP 107469	CIP 107469	GCA_000400735.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	2023GN-00205	GCA_029380035.4
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii		GCA_016496645.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	MSHR_A200	GCA_016511175.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	ARLG-1327	GCA_024025595.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	GT24-0089	GCA_032618875.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	GT24-0088	GCA_032618835.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	GT24-0113	GCA_033451365.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter towneri		GCA_035445105.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp.		GCA_018002535.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp.		GCA_018004275.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp.		GCA_018004535.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp.		GCA_021287125.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	KZ-1257	GCA_022699685.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. UC24323	UC24323	GCA_024151445.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	WU_MDCI_Ab215	GCA_025406925.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	WU_MDCI_Ab261	GCA_025407535.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	WU_MDCI_Au61	GCA_025562315.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. WU_MDCI_Axc73	WU_MDCI_Axc73	GCA_025562455.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter entericus	BIT-DXN8	GCA_026168575.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	AOR04_HL	GCA_027855375.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	17-HoPe_S16-5	GCA_028443475.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter towneri		GCA_028710175.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	GD03892	GCA_029840255.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	GD03888	GCA_029840305.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	GD03884	GCA_029840405.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii	GD03910	GCA_029839935.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	GD03987	GCA_029838425.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii	GD03703	GCA_029843865.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	GD03725	GCA_029843525.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	GD03671	GCA_029844785.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	GD03668	GCA_029844825.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	G3719	GCA_030055705.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	G5688	GCA_030055835.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	C-SZ-27	GCA_031157735.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	C-SZ-10	GCA_031158015.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	C-SZ-92	GCA_031158065.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	C-SZ-23	GCA_031157795.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	C-SZ-13	GCA_031157995.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	C-SZ-65	GCA_031157905.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	16673	GCA_031196035.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii		GCA_032556755.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii		GCA_032578195.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter towneri	PUMA0278	GCA_039716085.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter towneri	PUMA0279	GCA_039716075.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter towneri	PUMA0280	GCA_039716135.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter towneri	PUMA0281	GCA_039716055.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter towneri	PUMA0276	GCA_039716155.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	XH1705	GCA_040068105.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	XH1781	GCA_040067035.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter towneri		GCA_041441205.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	TYF_7	GCA_043105445.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter uliginosus	BSP-53	GCA_044130295.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	WAb18	GCA_044622775.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii		GCA_046087225.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	SIMBA025	GCA_046488685.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	s061065	GCA_049017625.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	s083242	GCA_049013525.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	s133611	GCA_049004945.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	s160186	GCA_049021485.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	16H4P8	GCA_050379635.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	WWCOL-140	GCA_051547365.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii		GCA_051648985.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	ABO22-H100	GCA_052391575.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii	acj0216	GCA_052545475.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	25028283	GCA_053651335.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. NigerLNRRAM0016	NigerLNRRAM0016	GCA_054112845.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. SW-226	SW-226	GCA_055632855.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	A12_80	GCA_056120245.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter variabilis	CUVET24-CC1	GCA_057471035.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter variabilis	CUVET24-CM1	GCA_057471025.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter modestus	UFRJ_13_OL-COL-P4-26	GCA_060416645.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii	UFRJ_9_OL-COL-P3-24	GCA_060416665.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	UFRJ_3_C-M-2	GCA_060416765.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	UFRJ_4_C-M-3	GCA_060416745.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	AB1705	GCA_060756225.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	AB0518	GCA_060760465.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	24AB061	GCA_061107425.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	24AB064	GCA_061107365.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	24AB018	GCA_061108285.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. CMUL030	CMUL030	GCA_061117175.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii	588M	GCA_061142365.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	AN27	GCA_009899735.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	AN10	GCA_009899845.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	AN20	GCA_009899725.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	5439	GCA_009899945.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	11654	GCA_009899905.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	3281	GCA_009899925.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	11650	GCA_009899965.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	3275	GCA_009900005.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. SwsAc6	SwsAc6	GCA_013391565.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	PR375	GCA_002137265.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	ARLG1327	GCA_002143955.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	WE1572	GCA_003070905.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp.		GCA_003248375.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	E47	GCA_008931365.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	2126ch	GCA_009892345.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	11616	GCA_009892385.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	FDAARGOS_1095	GCA_016726205.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter johnsonii	FDAARGOS_1094	GCA_016726625.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii	AJ_351	GCA_003939335.2
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter septicus	FDAARGOS_1401	GCA_019355975.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. SWAC57	SWAC57	GCA_003569905.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. SWAC57	SWAC57	GCA_003569905.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter cumulans	WCHAc060004	GCA_003611535.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter cumulans	WCHAc060003	GCA_003664635.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	FDAARGOS_492	GCA_003938895.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter haemolyticus	TG41244	GCA_003947885.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	TG31299	GCA_003949235.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	TG22168	GCA_003948725.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter wuhouensis	WCHAW060023	GCA_004209325.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter sp. WCHAc060033	WCHAc060033	GCA_004209125.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	MRSN7153	GCA_006492295.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	MRSN31937	GCA_006492985.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	RIVM_C011601	GCA_025723105.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter ursingii	E5131942	GCA_041501495.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter piscicola	p38	GCA_041519375.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter baumannii	XH1044	GCA_043044125.1
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	Acinetobacter junii	COLMIS_280	GCA_058150205.1
+L8_Acinetobacter_schindleri	bin_4_52_03186	WP_168405097.1	100.0	Acinetobacter sp. T63	T63	GCF_053852345.1
+L8_Acinetobacter_schindleri	bin_4_52_03186	WP_168405097.1	100.0	Acinetobacter indicus	N53-1	GCA_030325845.1
+L8_Acinetobacter_schindleri	bin_4_52_03186	WP_168405097.1	100.0	Acinetobacter sp. T63	T63	GCA_053852345.1
+L8_Acinetobacter_schindleri	bin_4_52_03191	WP_126562364.1	100.0	Acinetobacter baumannii	AM107	GCF_003970215.1
+L8_Acinetobacter_schindleri	bin_4_52_03191	WP_126562364.1	100.0	Acinetobacter baumannii	AM107	GCA_003970215.1
+L8_Acinetobacter_schindleri	bin_4_52_03197	MDM1310687.1	99.6	Acinetobacter indicus	N53-1	GCA_030325845.1
+L8_Acinetobacter_schindleri	bin_4_52_03267	WP_200222872.1	79.8	Acinetobacter sp. CS-2	CS-2	GCF_016599715.1
+L8_Acinetobacter_schindleri	bin_4_52_03267	WP_200222872.1	79.8	Acinetobacter sp. CS-2	CS-2	GCA_016599715.1

@@ -1,0 +1,32 @@
+slug	locus_tag	mejor_hit_nr	pident	n_genomas_con_proteina_identica	especies_por_ANI	genomas_de_la_misma_especie_por_ANI	resultado_f5b
+L16_Bacillus_altitudinis	bin_5_63_00095	WP_440600311.1	100.0	4	Bacillus subtilis x3; Bacillus aerius x1	GCF_052044605.1 (Bacillus sp. 22483, ANI 98.30 %)	presente_en_la_especie
+L16_Bacillus_altitudinis	bin_5_63_00096	WP_440600310.1	100.0	4	Bacillus subtilis x3; Bacillus aerius x1	GCF_052044605.1 (Bacillus sp. 22483, ANI 98.30 %)	presente_en_la_especie
+L8_Acinetobacter_schindleri	bin_4_52_01290	WP_005026895.1	98.8	2	Acinetobacter radioresistens x2	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_01292	WP_234857188.1	92.0	1	Acinetobacter junii x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_01293	WP_005406150.1	81.4	1	Acinetobacter radioresistens x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_01295	WP_475556067.1	96.6	1	Acinetobacter endophylla x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_01309	WP_005107079.1	99.7	2	Acinetobacter lwoffii x2	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_01325	WP_286713045.1	100.0	1	Acinetobacter variabilis x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_01326	WP_286713043.1	96.6	1	Acinetobacter variabilis x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_01327	WP_286713042.1	97.5	1	Acinetobacter variabilis x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_01328	WP_286713041.1	98.9	1	Acinetobacter variabilis x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_01329	WP_286713039.1	99.1	1	Acinetobacter variabilis x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_01973	WP_180167953.1	83.5	1	Acinetobacter variabilis x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_01975	WP_002940149.1	55.6	1	Thauera mechernichensis x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_01982	WP_086044391.1	99.4	4	Acinetobacter lwoffii x2; Acinetobacter junii x1; Acinetobacter johnsonii x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_02218	HJE53381.1	100.0	1	Acinetobacter pseudolwoffii x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_02220	WP_004281638.1	100.0	14	Acinetobacter lwoffii x8; Acinetobacter variabilis x3; Acinetobacter piscicola x1; Acinetobacter johnsonii x1; Acinetobacter towneri x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_02379	WP_441374923.1	100.0	1	Acinetobacter lwoffii x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_02380	EEY88770.1	100.0	1	Acinetobacter lwoffii x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_02382	WP_004281613.1	100.0	21	Acinetobacter towneri x10; Acinetobacter johnsonii x7; Acinetobacter lwoffii x1; Acinetobacter ursingii x1; Chryseobacterium carnipullorum x1; Lactococcus garvieae x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_02627	WP_236162512.1	99.3	15	Acinetobacter towneri x15	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_03109	WP_440611112.1	100.0	1	Acinetobacter schindleri x1	GCF_052044895.1 (Acinetobacter sp. 22323, ANI 97.75 %)	presente_en_la_especie
+L8_Acinetobacter_schindleri	bin_4_52_03117	WP_005137638.1	100.0	21	Acinetobacter gerneri x7; Acinetobacter towneri x3; Acinetobacter cumulans x3; Acinetobacter haemolyticus x3; Acinetobacter johnsonii x2; Acinetobacter baumannii x2; Acinetobacter schindleri x1	GCF_052044895.1 (Acinetobacter sp. 22323, ANI 97.75 %)	presente_en_la_especie
+L8_Acinetobacter_schindleri	bin_4_52_03118	WP_121594233.1	100.0	15	Acinetobacter gerneri x7; Acinetobacter towneri x3; Acinetobacter cumulans x2; Acinetobacter johnsonii x2; Acinetobacter schindleri x1	GCF_052044895.1 (Acinetobacter sp. 22323, ANI 97.75 %)	presente_en_la_especie
+L8_Acinetobacter_schindleri	bin_4_52_03119	MIN8005637.1	99.1	1	Cloacibacterium normanense x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_03122	WP_005001585.1	100.0	15	Acinetobacter ursingii x8; Acinetobacter towneri x4; Acinetobacter johnsonii x2; Acinetobacter halobius x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_03125	WP_004907087.1	100.0	141	Acinetobacter baumannii x53; Acinetobacter ursingii x16; Acinetobacter haemolyticus x14; Acinetobacter junii x11; Acinetobacter towneri x9; Acinetobacter johnsonii x8; Acinetobacter halobius x3; Acinetobacter variabilis x3; Acinetobacter cumulans x3; Acinetobacter kanungonis x3; Acinetobacter pengchengensis x2; Acinetobacter tandoii x2; Acinetobacter wuhouensis x2; Acinetobacter bohemicus x2; Acinetobacter septicus x2; Acinetobacter venetianus x1; Acinetobacter sichuanensis x1; Acinetobacter brisouii x1; Acinetobacter kookii x1; Acinetobacter uliginosus x1; Acinetobacter modestus x1; Acinetobacter bouvetii x1; Acinetobacter yuyunsongii x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_03186	WP_168405097.1	100.0	2	Acinetobacter indicus x2	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_03191	WP_126562364.1	100.0	1	Acinetobacter baumannii x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_03197	MDM1310687.1	99.6	1	Acinetobacter indicus x1	-	ok
+L8_Acinetobacter_schindleri	bin_4_52_03267	WP_200222872.1	79.8	1	Acinetobacter uliginosus x1	-	ok
