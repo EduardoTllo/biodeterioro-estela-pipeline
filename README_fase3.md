@@ -449,12 +449,11 @@ trabajo, minutos):
 sbatch --account=tesis --mail-type=END,FAIL --mail-user="$CORREO" scripts/06c_ani_bins.slurm
 ```
 
-Categoria funcional (COG) de cada familia del pangenoma, a partir de las
-anotaciones de Bakta (login, segundos por especie):
-
-```bash
-for d in results/05_panaroo/*/; do python scripts/07_particion.py cog --panaroo-dir "$d" --particion-dir "$d/particion" --bakta-dir results/04_bakta --out "$d/particion/familias_cog.tsv"; done
-```
+`07_particion.py cog` asigna a cada familia la categoria COG que Bakta anota
+en sus genes. **No se usa para comparar categorias:** Bakta solo escribe la
+categoria COG por una de sus vias de anotacion, y la cobertura vario entre 4 %
+y 31 % de los CDS segun el genoma (KEGG, EC y GO: 17-26 %). La comparacion
+funcional se hace en la Fase 4.
 
 ### 10. Exportacion y figuras
 

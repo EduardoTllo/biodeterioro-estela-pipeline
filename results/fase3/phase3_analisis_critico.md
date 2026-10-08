@@ -353,7 +353,7 @@ exclusivos estan en islas junto a integrasas, transposasas y fagos.
 | Figura | Para que | Que falta |
 |---|---|---|
 | ANI del bin contra todas sus referencias (mapa de calor) | Confirmar el clon cosmopolita de *P. frigoritolerans* y medir que tan nueva es cada cepa | Un `fastANI` de cada bin contra las referencias (minutos) |
-| Categorias funcionales (COG) por core/shell/cloud/exclusivo | Figura habitual en los estudios de pangenoma (por ejemplo, Fu et al. 2021); muestra que funciones son estables y cuales variables | Exportar las tablas de anotacion de Bakta; o hacerlo con DRAM en la Fase 4 |
+| Categorias funcionales (COG) por core/shell/cloud/exclusivo | Figura habitual en los estudios de pangenoma (por ejemplo, Fu et al. 2021) | **Descartada en la Fase 3 (08-10):** Bakta anota la categoria COG en 4-31 % de los CDS segun el genoma y KEGG/EC/GO en 17-26 %; una figura con esa cobertura mostraria cuanto se sabe de cada gen, no que hace. Una anotacion uniforme (DRAM o eggNOG-mapper sobre las familias) se dejo para la Fase 4 |
 | Ganancia y perdida de genes sobre el arbol | Ubicar cuando entro cada isla | Software adicional (Count, GLOOME); prescindible |
 | Correccion por recombinacion (Gubbins, ClonalFrameML) | Mejorar el esqueleto del arbol de *B. altitudinis* | Prescindible para la posicion del bin |
 | Asociacion gen-habitat (pan-GWAS, Scoary) | Buscar genes ligados a ambientes petreos | **No recomendable:** 1-2 genomas petreos por especie, sin potencia |
