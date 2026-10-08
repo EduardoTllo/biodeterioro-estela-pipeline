@@ -1,0 +1,6 @@
+Fase 3 - Exclusivos (remoto) - L8_Acinetobacter_schindleri
+Fecha: Wed Oct  7 15:18:51 -05 2026   Host: khipu
+F5: blastp en el EBI (REST ncbiblast) -db uniprotkb -evalue 1e-5, 10 hits, una proteina por trabajo
+F6: blastn megablast (URL API de NCBI) -db core_nt -evalue 1e-10, 10 hits
+blast: blastp: 2.17.0+ | taxonkit: taxonkit v0.20.0
+taxdump: /home/eduardo.tello/dbs/taxdump (2026-10-04)

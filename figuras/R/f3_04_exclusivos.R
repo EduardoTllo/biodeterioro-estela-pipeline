@@ -24,7 +24,8 @@ if (nrow(embudo) > 0) {
   ga <- ggplot(df_e, aes(n, paso)) +
     geom_col(fill = "#B2182B", width = 0.7) +
     geom_text(aes(label = n), hjust = -0.2, size = 3) +
-    facet_wrap(~ etiqueta, scales = "free_x") +
+    facet_wrap(~ etiqueta, scales = "free_x", labeller = label_wrap_gen(width = 20)) +
+    theme(strip.text = element_text(size = 8)) +
     scale_x_continuous(expand = expansion(mult = c(0, 0.2))) +
     labs(x = "Genes", y = NULL, tag = "a")
 

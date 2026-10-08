@@ -1,5 +1,5 @@
-Fase 3 - Exclusivos (remoto) - L16_Bacillus_altitudinis
-Fecha: Wed Oct  7 20:26:10 -05 2026   Host: khipu
+Fase 3 - Exclusivos (remoto) - L8_Acinetobacter_schindleri
+Fecha: Wed Oct  7 23:58:23 -05 2026   Host: khipu
 F5: blastp (URL API de NCBI + blast_formatter -rid) -db nr -evalue 1e-5, 10 hits (lotes de 50)
 F6: blastn megablast (URL API de NCBI) -db core_nt -evalue 1e-10, 10 hits
 blast: blastp: 2.17.0+ | taxonkit: taxonkit v0.20.0

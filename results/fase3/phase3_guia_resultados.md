@@ -2,8 +2,7 @@
 
 Esta guia explica el reporte de seleccion (`phase3_seleccion_report.md`) y las
 figuras de la Fase 3: que muestra cada una, como se lee y que dicen nuestros
-datos. Corresponde a la exportacion del 07-10-2026 (todo menos la verificacion
-remota de genes exclusivos, F5).
+datos. Corresponde a la exportacion del 08-10-2026 (Fase 3 completa).
 
 Especies analizadas:
 
@@ -267,9 +266,77 @@ origen del bin: refleja que cepas se han secuenciado.
 
 ---
 
-## 3. Pendiente
+### Figura 7. Embudo de verificacion de genes exclusivos
 
-- **Figura 7. Embudo de genes exclusivos** (`f3_04_exclusivos.R`): cuantos
-  candidatos descarta cada filtro y el origen probable de los verificados. Se
-  genera cuando termine F5 (BLAST contra nr).
-- Hasta ahora (F1-F4): de 14, 34 y 70 candidatos pasan a F5 2, 1 y 36.
+![Exclusivos](../../figuras/figs/fig_f3_exclusivos.png)
+
+Un **candidato a exclusivo** es un gen del bin cuya familia no aparece en
+ninguna de las referencias del pangenoma. Puede ser una adaptacion propia de la
+cepa de la Estela, pero tambien un gen mal predicho, un gen que otras cepas si
+tienen pero que no estaban entre las referencias, o contaminacion. Los filtros
+F1-F6 separan esos casos (decision D26).
+
+**Panel a. Cuantos candidatos sobreviven a cada filtro.**
+
+| Filtro | Que descarta |
+|---|---|
+| F1 estructura | Pseudogenes, genes de < 100 aminoacidos y genes a < 100 pb del borde del contig (suelen ser genes partidos) |
+| F4 especie ampliada | Genes presentes (>= 80 % identidad y cobertura) en cualquiera de los genomas descargados de la especie (hasta 208), no solo en los <= 50 del pangenoma |
+| F6 contigs huerfanos | Genes en contigs sin genes de la especie cuyo mejor parecido en `core_nt` es de otro genero (contaminacion). No hubo contigs huerfanos: ningun candidato se descarto aqui |
+| F5 nr (misma especie) | Genes cuya proteina aparece en otra cepa de la misma especie en `nr` de NCBI (>= 80 % identidad y cobertura): no son exclusivos, solo faltaban en GTDB |
+| Verificados | Lo que queda. F3 (presencia en otro bin de la misma muestra) solo marca con advertencia y no marco ninguno |
+
+| | Candidatos | F1 | F4 | F5 | Verificados |
+|---|---:|---:|---:|---:|---:|
+| *B. altitudinis* | 14 | -3 | -9 | 0 | **2** |
+| *P. frigoritolerans* | 34 | -7 | -26 | -1 | **0** |
+| *A. schindleri* | 70 | -14 | -20 | -6 | **30** |
+
+F4 es el filtro que mas descarta en las *Bacillus*: casi todos sus "exclusivos"
+eran genes de cepas de la especie que no entraron entre las referencias.
+*P. frigoritolerans* termina sin ningun exclusivo verificado.
+*A. schindleri* conserva 30, coherente con un bin casi completo (99,9 %) frente
+a solo 23 referencias.
+
+**Panel b. Origen probable de los verificados**, segun la especie de su mejor
+parecido en `nr`:
+
+| Origen | *B. altitudinis* | *A. schindleri* |
+|---|---:|---:|
+| Mismo genero | 2 | 27 |
+| Mismo filo | 0 | 1 |
+| Otro filo | 0 | 2 |
+
+Casi todos los exclusivos tienen parientes en otras especies del mismo
+genero, muchos con 99-100 % de identidad: no son genes "nuevos", sino genes
+que circulan entre especies cercanas y que esta cepa adquirio y sus
+conespecificas no. Los dos de "otro filo" en *A. schindleri* son una proteina
+de fago (mejor parecido: un virus, *Caudoviricetes*) y un regulador TetR
+(99 % con *Cloacibacterium*, Bacteroidota).
+
+**Contexto genomico.** Los exclusivos no estan dispersos: se agrupan en pocos
+contigs junto a integrasas, proteinas de fago y transportadores. Son islas
+genomicas y profagos, es decir, ADN movil:
+- *B. altitudinis*: una serina proteasa y una proteina con dominio DUF4342,
+  consecutivas al inicio de un contig, justo despues de una integrasa, e
+  identicas (100 %) a proteinas de *B. subtilis*. Indica una transferencia
+  horizontal reciente desde el grupo *B. subtilis*. El contig continua con
+  genes core de *B. altitudinis*, por lo que no es contaminacion.
+- *A. schindleri*: grupos en 6 contigs (contig_40, 63, 69, 71, 91 y 93) con
+  integrasas, proteinas de fago (HK97, P1), transportadores de potasio y
+  magnesio (MgtC) y una polifosfato quinasa; muchos identicos a proteinas de
+  *A. lwoffii*, *A. radioresistens* y otras especies del genero.
+
+**Sensibilidad a la base de datos (NCBI frente a EBI).** F5 se corrio tambien
+contra UniProtKB en el EBI, porque la cola de NCBI tardo hasta 7 h por
+especie. UniProtKB no sirve como reemplazo: elimina proteomas redundantes y
+le faltan muchos genomas de generos muy secuenciados.
+- No encontro en la especie 7 genes que `nr` si encontro (1 en
+  *P. frigoritolerans*, 6 en *A. schindleri*): con UniProtKB habrian pasado
+  como exclusivos.
+- En *B. altitudinis* asigno los 2 genes a otra familia y a otro genero del
+  filo (identidad 57-66 %) cuando `nr` tiene proteinas identicas en
+  *B. subtilis*: exagera la distancia del origen.
+
+El resultado oficial es el de NCBI (`<especie>/exclusivos_verificados.tsv`);
+el del EBI queda en `<especie>/ebi/` como comparacion.
