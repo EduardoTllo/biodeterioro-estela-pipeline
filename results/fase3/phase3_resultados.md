@@ -136,8 +136,13 @@ la misma especie.
 4. **Anotacion.** Bakta anoto con el mismo metodo las 115 referencias y los 3
    bins (118 genomas).
 5. **Pangenoma.** Panaroo agrupo los genes en familias; las categorias core,
-   shell y cloud se calcularon **solo con las referencias**, porque un bin
-   incompleto haria pasar genes del core por accesorios (Li y Yin 2022).
+   shell y cloud se calcularon **solo con las referencias** (decision D22). La
+   razon principal es la pregunta: se describe la especie con genomas
+   independientes del bin y luego se ubica el bin contra esa descripcion; si
+   el bin entrara al calculo, sus genes propios pasarian a ser "cloud" y no
+   habria candidatos. Ademas evita que un MAG incompleto entre en las curvas
+   y en la ley de Heaps. Contar el bin como un genoma mas apenas cambiaria la
+   particion (seccion 5.1).
 6. **Arbol.** IQ-TREE construyo un arbol por especie con el alineamiento de los
    genes core.
 7. **Genes especificos.** Los genes candidatos del bin pasaron por los filtros
@@ -260,6 +265,14 @@ fuente que no encaja en ninguna categoria):
 
 Con el umbral de core en 90 % (sensibilidad) el core sube poco: 3 391, 4 078 y
 2 409.
+
+**Que pasaria si el bin contara como un genoma mas.** El core bajaria solo 15,
+32 y 5 familias (0,2-0,8 %), porque el bin es un genoma entre 23 a 50: con 50
+referencias el core exige estar en 48 de 50, y contando el bin en 49 de 51. La
+perdida de core por incompletitud que describen Li y Yin (2022) es importante
+cuando hay muchos MAG o pocos genomas (en el piloto, con 4 genomas, el core
+caia de 3 410 a 2 539), no en este diseno. Lo que si cambiaria es que las
+familias propias del bin (14, 34 y 70) pasarian a ser "cloud".
 
 ### Figura 1. Curvas de acumulacion
 
