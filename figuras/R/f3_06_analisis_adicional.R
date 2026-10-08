@@ -230,3 +230,56 @@ if (nrow(ventanas)) {
           axis.text.y = element_text(size = 7))
   guardar_fig(g5, "fig_f3_contexto_exclusivos", ancho = 10, alto = 1.15 * n_distinct(ventanas$molecula) + 1.2)
 }
+
+# --- 6. Comparacion a igual numero de genomas --------------------------------
+# El pangenoma crece con el numero de genomas: para comparar especies se usan
+# 23 genomas en todas (el N de A. schindleri). (a) curvas promedio con 23
+# genomas elegidos al azar; (b) alpha de Heaps en 30 submuestras de 23.
+N_COMUN <- 23
+set.seed(23)
+curvas23 <- list(); alfas23 <- list()
+for (s in especies_f3$slug) {
+  pm <- t(leer_matriz(s))                       # genomas x familias
+  n <- nrow(pm)
+  cur <- map_dfr(seq_len(N_PERM_CURVA), function(i) {
+    sub <- pm[sample(n, N_COMUN), , drop = FALSE]
+    sub <- sub[, colSums(sub) > 0, drop = FALSE]
+    cc <- curva_acumulacion(sub)
+    tibble(k = seq_len(N_COMUN), pan = cc$pan, core = cc$core)
+  })
+  curvas23[[s]] <- cur |> group_by(k) |>
+    summarise(across(c(pan, core), list(med = median, lo = ~ quantile(.x, 0.25),
+                                        hi = ~ quantile(.x, 0.75))), .groups = "drop") |>
+    mutate(slug = s)
+  reps <- if (n > N_COMUN) 30 else 1
+  alfas23[[s]] <- tibble(slug = s, alpha = replicate(reps, {
+    sub <- pm[sample(n, N_COMUN), , drop = FALSE]
+    heaps_rapido(sub[, colSums(sub) > 0, drop = FALSE], n.perm = 100)["alpha"]
+  }))
+}
+c23 <- bind_rows(curvas23) |> left_join(especies_f3 |> select(slug, etiqueta), by = "slug")
+a23 <- bind_rows(alfas23) |> left_join(especies_f3 |> select(slug, etiqueta), by = "slug")
+PAL_ESP <- setNames(c("#1B9E77", "#D95F02", "#7570B3"), especies_f3$etiqueta)
+g6a <- ggplot(c23, aes(k, colour = etiqueta, fill = etiqueta)) +
+  geom_ribbon(aes(ymin = pan_lo, ymax = pan_hi), alpha = 0.15, colour = NA) +
+  geom_line(aes(y = pan_med), linewidth = 0.9) +
+  geom_ribbon(aes(ymin = core_lo, ymax = core_hi), alpha = 0.15, colour = NA) +
+  geom_line(aes(y = core_med), linewidth = 0.9, linetype = "dashed") +
+  scale_colour_manual(values = PAL_ESP, name = NULL) +
+  scale_fill_manual(values = PAL_ESP, name = NULL) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(x = "Genomas de referencia (submuestras de 23)", y = "Familias de genes", tag = "a",
+       caption = "Linea continua: pangenoma; discontinua: core (en todos los genomas). Mediana y rango intercuartil.") +
+  theme(legend.position = "bottom")
+g6b <- ggplot(a23, aes(alpha, etiqueta, colour = etiqueta)) +
+  geom_vline(xintercept = 1, linetype = "dashed", colour = "grey50") +
+  geom_boxplot(outlier.shape = NA, width = 0.5) +
+  geom_jitter(height = 0.12, width = 0, size = 1.2, alpha = 0.7) +
+  scale_colour_manual(values = PAL_ESP, guide = "none") +
+  labs(x = "alpha de Heaps con 23 genomas (< 1 = abierto)", y = NULL, tag = "b",
+       caption = "30 submuestras de 23 genomas (A. schindleri tiene exactamente 23: un solo valor).")
+guardar_fig(g6a / g6b + plot_layout(heights = c(2, 1)), "fig_f3_comparacion_igual_n",
+            ancho = 8, alto = 7.5)
+write_tsv(a23 |> group_by(slug) |> summarise(alpha_mediana = median(alpha),
+                                             alpha_min = min(alpha), alpha_max = max(alpha)),
+          file.path(DIR_TAB, "tab_f3_alpha_igual_n.tsv"))

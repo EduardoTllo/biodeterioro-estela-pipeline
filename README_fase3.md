@@ -483,6 +483,9 @@ Rscript figuras/R/f3_run_all.R
 
 ## Salidas
 
+La interpretacion de los resultados de este proyecto, con todas las figuras
+explicadas, esta en [results/fase3/phase3_resultados.md](results/fase3/phase3_resultados.md).
+
 En `~/estela/fase3/results/`:
 
 | Carpeta | Contenido |
