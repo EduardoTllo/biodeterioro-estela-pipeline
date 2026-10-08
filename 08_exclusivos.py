@@ -246,8 +246,21 @@ def leer_linajes(path):
     return lin
 
 
-def taxid_de(hit):
-    return (hit.get("staxids") or "").split(";")[0].strip()
+def taxids_de(hit):
+    """Todos los taxid del hit: en nr una proteina identica de varias especies es
+    un solo registro (WP_) con varios taxid separados por ';'."""
+    return [t.strip() for t in (hit.get("staxids") or "").split(";") if t.strip()]
+
+
+CERCANIA = {"misma_especie": 0, "mismo_genero": 1, "misma_familia": 2, "mismo_filo": 3,
+            "otro_filo": 4, "taxonomia_desconocida": 5}
+
+
+def taxid_mas_cercano(hit, lin, ref):
+    """(taxid, linaje, origen) del taxid del hit mas cercano a la especie del bin."""
+    opciones = [(t, lin.get(t, {})) for t in taxids_de(hit)] or [("", {})]
+    t, l = min(opciones, key=lambda o: CERCANIA[origen(o[1], ref)])
+    return t, l, origen(l, ref)
 
 
 def origen(lin_hit, lin_ref):
@@ -295,9 +308,8 @@ def cmd_integrar(args):
                 f["f6"] = "bandera_F6_huerfano_sin_hit"
                 banderas.append(f["f6"])
             else:
-                l6 = lin.get(taxid_de(h6), {})
-                f["f6_hit"] = "%s %s (%.1f %% id)" % (taxid_de(h6), l6.get("especie", ""),
-                                                    h6["pident"])
+                t6, l6, _ = taxid_mas_cercano(h6, lin, ref)
+                f["f6_hit"] = "%s %s (%.1f %% id)" % (t6, l6.get("especie", ""), h6["pident"])
                 if l6.get("genero") and l6.get("genero") == ref.get("genero"):
                     f["f6"] = "ok_mismo_genero"
                 else:
@@ -310,15 +322,16 @@ def cmd_integrar(args):
             f["f5_origen"] = "sin_hit_ORFan"
         else:
             h5 = hits5[0]
-            l5 = lin.get(taxid_de(h5), {})
-            f["f5_origen"] = origen(l5, ref)
+            t5, l5, f["f5_origen"] = taxid_mas_cercano(h5, lin, ref)
             f["f5_hit"] = h5["sseqid"]
             f["f5_pident"] = "%.1f" % h5["pident"]
             f["f5_qcovs"] = "%.0f" % h5["qcovs"]
-            f["f5_taxon"] = "%s | %s" % (taxid_de(h5), ";".join(
-                l5.get(k, "") for k in ("filo", "familia", "genero", "especie")))
-            misma = [h for h in hits5 if lin.get(taxid_de(h), {}).get("especie")
-                     and lin[taxid_de(h)]["especie"] == ref.get("especie")
+            n_tax = len(taxids_de(h5))
+            f["f5_taxon"] = "%s | %s%s" % (t5, ";".join(
+                l5.get(k, "") for k in ("filo", "familia", "genero", "especie")),
+                " (+%d taxid mas en el mismo registro)" % (n_tax - 1) if n_tax > 1 else "")
+            misma = [h for h in hits5
+                     if taxid_mas_cercano(h, lin, ref)[2] == "misma_especie"
                      and h["pident"] >= args.f5_id and h["qcovs"] >= args.f5_cov]
             if misma:
                 f["clase"], f["motivo"] = "descartado", "descartado_F5_misma_especie_en_nr"
