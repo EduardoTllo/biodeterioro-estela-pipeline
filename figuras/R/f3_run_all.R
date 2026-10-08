@@ -12,7 +12,8 @@ scripts <- c(
   "f3_04_exclusivos.R",
   "f3_05_diagnostico_heaps.R",
   "f3_06_analisis_adicional.R",
-  "f3_07_especificos.R"
+  "f3_07_especificos.R",
+  "f3_08_sensibilidad_panaroo.R"
 )
 
 t0 <- Sys.time()

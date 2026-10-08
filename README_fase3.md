@@ -455,6 +455,17 @@ categoria COG por una de sus vias de anotacion, y la cobertura vario entre 4 %
 y 31 % de los CDS segun el genoma (KEGG, EC y GO: 17-26 %). La comparacion
 funcional se hace en la Fase 4.
 
+Sensibilidad del pangenoma al modo de limpieza de Panaroo: la misma corrida en
+modo `sensitive`, que no poda los genes de extremo de contig. Escribe en
+`results/05_panaroo_sensitive/`, reutiliza los GFF ya convertidos y no alinea
+el core (unas 2 h para las tres especies, una a la vez):
+
+```bash
+sbatch --account=tesis --array=1-3%1 --export=ALL,CLEAN_MODE=sensitive --mail-type=END,FAIL --mail-user="$CORREO" scripts/06_panaroo.slurm
+```
+
+La comparacion (tabla y figura) la hace `figuras/R/f3_08_sensibilidad_panaroo.R`.
+
 ### 10. Exportacion y figuras
 
 En el cluster, reunir las tablas, reportes y arboles en `export_fase3/`:

@@ -805,6 +805,11 @@ El resultado oficial es el de NCBI; el del EBI queda en `<especie>/ebi/`.
   y 13, la figura de genes especificos y la seccion 10.
 - Figura del ANI de cada bin contra todos los genomas de su especie, con la
   exportacion final.
+- Sensibilidad al modo de limpieza de Panaroo: repetir el pangenoma en modo
+  `sensitive` (sin poda de genes de extremo de contig) y comparar familias,
+  core, shell, cloud, singletons y alpha con `moderate`
+  (`f3_08_sensibilidad_panaroo.R`). No cambia la lista de genes especificos,
+  porque los genes que `moderate` elimina del bin ya entran como candidatos.
 
 Archivos de esta fase en `results/fase3/` (tablas por especie en
 `<especie>/`), figuras en `figuras/figs/` (scripts `figuras/R/f3_*.R`) y

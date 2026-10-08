@@ -82,6 +82,18 @@ while IFS=$'\t' read -r B SLUG; do
     cp_si "$R/04_bakta/$B/$B.$ext" "$E/$SLUG/bakta_bin/$B.$ext"
   done
 done
+# Sensibilidad al modo de limpieza de Panaroo (CLEAN_MODE=sensitive): en <especie>/sensitive/
+for d in "$R"/05_panaroo_sensitive/*/; do
+  [[ -d "$d" ]] || continue
+  s="$(basename "$d")"
+  [[ "$s" == _piloto_* ]] && continue
+  cp_si "$d/summary_statistics.txt" "$E/$s/sensitive/panaroo_summary_statistics.txt"
+  cp_si "$d/versions.txt" "$E/$s/sensitive/panaroo_versions.txt"
+  for f in resumen_particion.tsv resumen_bins.tsv recuperacion_core.tsv genes_bin.tsv \
+           pangenoma_refs.Rtab particion_report.md; do
+    cp_si "$d/particion/$f" "$E/$s/sensitive/$f"
+  done
+done
 # ANI de cada bin contra los genomas de su especie (06c_ani_bins.slurm)
 for d in "$R"/06c_ani/*/; do
   [[ -d "$d" ]] || continue

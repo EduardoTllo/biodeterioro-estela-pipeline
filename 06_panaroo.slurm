@@ -24,6 +24,13 @@
 #   Piloto P0:  sbatch --export=ALL,PILOTO=1 scripts/06_panaroo.slurm
 #   Completo:   N=$(tail -n +2 results/03_seleccion/especies_seleccionadas.tsv | wc -l)
 #               sbatch --array=1-$N%1 scripts/06_panaroo.slurm
+#
+# Analisis de sensibilidad del modo de limpieza (08-10-2026):
+#   sbatch --array=1-3%1 --export=ALL,CLEAN_MODE=sensitive scripts/06_panaroo.slurm
+#   Con un modo distinto de moderate escribe en results/05_panaroo_<modo>/, reutiliza
+#   los GFF ya convertidos de results/05_panaroo/ y no alinea el core (ALINEAR=0 por
+#   defecto en ese caso; el arbol se hace solo con moderate). En sensitive Panaroo
+#   no poda los genes de extremo de contig (trailing_recursive = 0).
 
 #SBATCH --job-name=f3_panaroo
 #SBATCH --partition=standard
@@ -44,10 +51,17 @@ WORKDIR="${WORKDIR:-$HOME/estela/fase3}"
 SCRIPTS_DIR="$WORKDIR/scripts"
 SEL_DIR="$WORKDIR/results/03_seleccion"
 BAKTA_OUT="$WORKDIR/results/04_bakta"
-PANAROO_OUT="$WORKDIR/results/05_panaroo"
+PANAROO_BASE="$WORKDIR/results/05_panaroo"
 CHECKM2_REPORT="${CHECKM2_REPORT:-$HOME/estela/fase1/results/02_checkm2/quality_report.tsv}"
-CLEAN_MODE="moderate"
+CLEAN_MODE="${CLEAN_MODE:-moderate}"
 CORE_ALN_THRESHOLD=0.95
+if [[ "$CLEAN_MODE" == "moderate" ]]; then
+  PANAROO_OUT="$PANAROO_BASE"
+  ALINEAR="${ALINEAR:-1}"
+else
+  PANAROO_OUT="$WORKDIR/results/05_panaroo_$CLEAN_MODE"
+  ALINEAR="${ALINEAR:-0}"
+fi
 
 # No editar debajo salvo que sepas lo que haces
 THREADS="${SLURM_CPUS_PER_TASK:-32}"
@@ -89,7 +103,10 @@ while IFS=$'\t' read -r ID FASTA TIPO ESP ORIG; do
     echo "ERROR: falta $GFF3 (Bakta no termino para $ID)" >&2; exit 1
   fi
   GFF="$OUT/gff/$ID.gff"
-  if [[ ! -s "$GFF" ]]; then
+  GFF_BASE="$PANAROO_BASE/$SLUG/gff/$ID.gff"
+  if [[ ! -s "$GFF" && "$OUT" != "$PANAROO_BASE/$SLUG" && -s "$GFF_BASE" ]]; then
+    cp "$GFF_BASE" "$GFF"                  # misma conversion que la corrida moderate
+  elif [[ ! -s "$GFF" ]]; then
     python "$SCRIPTS_DIR/convert_bakta_to_prokka_gff.py" -g "$GFF3" -o "$GFF"
   fi
   N_B=$(awk -F'\t' '/^##FASTA/{exit} $3=="CDS"' "$GFF3" | wc -l)
@@ -106,7 +123,11 @@ fi
 {
   echo "Fase 3 - Panaroo - $SLUG"
   echo "Fecha: $(date)   Job: ${SLURM_JOB_ID:-NA}   Nodo: $(hostname)"
-  echo "Parametros: --clean-mode $CLEAN_MODE --remove-invalid-genes -a core --aligner mafft --core_threshold $CORE_ALN_THRESHOLD (resto por defecto)"
+  if [[ "$ALINEAR" == "1" ]]; then
+    echo "Parametros: --clean-mode $CLEAN_MODE --remove-invalid-genes -a core --aligner mafft --core_threshold $CORE_ALN_THRESHOLD (resto por defecto)"
+  else
+    echo "Parametros: --clean-mode $CLEAN_MODE --remove-invalid-genes (sin alineamiento; resto por defecto)"
+  fi
   echo "Genomas: $N_GEN"
   conda list --export | grep -E '^(panaroo|mafft|cd-hit|python)=' || true
 } > "$OUT/versions.txt"
@@ -114,12 +135,17 @@ fi
 # 2) Panaroo
 if [[ -s "$OUT/summary_statistics.txt" && -s "$OUT/gene_presence_absence.csv" ]]; then
   echo "Panaroo ya corrio para $SLUG. Se omite (borra la carpeta para rehacer)."
-else
+elif [[ "$ALINEAR" == "1" ]]; then
   panaroo -i "$LISTA" -o "$OUT" \
       --clean-mode "$CLEAN_MODE" \
       --remove-invalid-genes \
       -a core --aligner mafft \
       --core_threshold "$CORE_ALN_THRESHOLD" \
+      -t "$THREADS"
+else
+  panaroo -i "$LISTA" -o "$OUT" \
+      --clean-mode "$CLEAN_MODE" \
+      --remove-invalid-genes \
       -t "$THREADS"
 fi
 cat "$OUT/summary_statistics.txt"; echo
