@@ -168,6 +168,61 @@ Se aplican en este orden; un gen descartado no sigue.
 F1-F6 vienen de la decision D26; F5b y la advertencia se agregaron el 08-10 a
 partir del analisis critico (seccion 9.2).
 
+### 3.3 Herramientas, versiones y parametros
+
+Todo se corrio en el cluster Khipu (UTEC) con entornos conda fijados (lock
+files en `envs/`); las figuras y las estadisticas, en R 4.5.0.
+
+**Censo, descarga y seleccion**
+
+| Paso | Herramienta | Parametros |
+|---|---|---|
+| Taxonomia de los bins (Fase 2) | GTDB-Tk 2.6.1, base GTDB R220 | `classify_wf` |
+| Censo de genomas | `03_censo_genomas.py` sobre `bac120_metadata_r220.tsv` | Completitud >= 95 % y contaminacion <= 5 % (CheckM2 de GTDB), <= 300 contigs, solo aislados (sin MAG); viable si >= 15 genomas; tope 50 por especie |
+| Descarga | NCBI Datasets CLI 18.38.0 (`download genome accession` + `rehydrate`) | Accesion con version exacta de GTDB; se acepta si el largo total difiere <= 1 % del `genome_size` de GTDB |
+| Desreplicacion | dRep 3.7.1 (Mash 2.3, fastANI 1.34) | `dereplicate -pa 0.90 -sa 0.99 --S_algorithm fastANI -comp 0 -con 100 --genomeInfo ... -extraW ...`; agrupamiento secundario por enlace promedio (*average linkage*); pesos extra +1000 (T0) y +500 (T1) |
+| Seleccion | `04_clasificar_refs.py seleccionar` | >= 15 no redundantes; 3 especies; <= 50 referencias por especie (T0, T1 y luego T2 rotando habitat y continente) |
+
+**Anotacion, pangenoma y arbol**
+
+| Paso | Herramienta | Parametros |
+|---|---|---|
+| Anotacion | Bakta 1.12.1, base de datos v6.0 tipo *full* (24-02-2025) | `--locus-tag <id> --skip-plot`; mismas opciones para referencias y bins; no se usaron anotaciones de NCBI |
+| Conversion de formato | `convert_bakta_to_prokka_gff.py` (Panaroo v1.8.0) | GFF3 de Bakta a formato Prokka; se registran los CDS descartados (5 en total, todos en *A. schindleri*) |
+| Pangenoma | Panaroo 1.8.0 (CD-HIT 4.8.1, MAFFT 7.526) | `--clean-mode moderate --remove-invalid-genes -a core --aligner mafft --core_threshold 0.95`. Valores del modo `moderate`: identidad de agrupamiento 0,98 (`--threshold`), umbral de familia 0,70 (`--family_threshold`), diferencia de largo 0,98 (`--len_dif_percent`), poda de extremos de contig con soporte < max(2, 1 % de los genomas), recursiva (`min_trailing_support`, `trailing_recursive`) |
+| Particion | `07_particion.py particion` | Frecuencia calculada solo con referencias; core >= 0,95, shell 0,15-0,95, cloud < 0,15; sensibilidad con core >= 0,90. Control: cada referencia debe recuperar >= 97 % del core; cada bin, a <= 10 puntos de su completitud |
+| Arbol | IQ-TREE 3.1.3 | Alineamiento del core de Panaroo; `-m MFP` (ModelFinder, criterio BIC) `-B 1000` (UFBoot) `-T AUTO --seed 12345`. Respaldo previsto si se pasaba de 24 h (no hizo falta): `snp-sites -c` + `-m MFP+ASC` |
+| ANI de los bins | fastANI 1.34 | Bin contra todos los genomas descargados de su especie, parametros por defecto (fragmentos de 3 kb) |
+
+**Genes especificos de la cepa**
+
+| Filtro | Herramienta | Parametros |
+|---|---|---|
+| F1 | `08_exclusivos.py preparar` | Pseudogen segun Bakta; < 100 aa; < 100 pb del borde del contig |
+| F4 | BLAST+ 2.17.0 `tblastn` | Base: todos los genomas descargados de la especie (`makeblastdb -dbtype nucl`); `-evalue 1e-10 -max_target_seqs 50`; presente si >= 80 % de identidad y >= 80 % de cobertura de la consulta (`qcovs`) |
+| F3 | BLAST+ 2.17.0 `blastn` | Contra los demas bins de la misma muestra; `-evalue 1e-10`; advertencia si >= 95 % / >= 80 % |
+| F5 | `blastp` en NCBI por su URL API, resultado con `blast_formatter` 2.17.0 | Base `nr`; e-valor <= 1e-5; 10 parecidos por proteina; lotes de 50; descarta si un parecido >= 80 % / >= 80 % lleva el taxid de la especie; taxonomia de los parecidos con taxonkit 0.20.0 y el taxdump de NCBI del 04-10-2026 |
+| F5b | NCBI E-utilities (`efetch db=ipg`) y NCBI Datasets API v2 (`dataset_report`) | Parecidos >= 80 % / >= 80 %; especie de cada genoma = mejor ANI contra cepas tipo (`best_ani_match`); misma especie si ANI >= 95 % y la cepa tipo pertenece al cluster GTDB de la especie o lleva su nombre |
+| F6 | `blastn` en NCBI por su URL API | Base `core_nt`; `megablast`; e-valor <= 1e-10; 10 parecidos; descarta si el mejor parecido es de otro genero |
+| Advertencia | `08_exclusivos.py integrar` | Mejor parecido en otra especie con >= 99 % de identidad y >= 90 % de cobertura |
+| Comparacion | BLAST del EBI (REST `ncbiblast`, BLAST+ 2.16.0) | Base UniProtKB; `blastp`, e-valor <= 1e-5, 10 parecidos |
+
+**Estadisticas y figuras (R 4.5.0)**
+
+| Analisis | Paquetes y parametros |
+|---|---|
+| Curvas de acumulacion | 100 ordenes aleatorios; mediana y rango intercuartil |
+| Ley de Heaps | Implementacion equivalente a `micropan::heaps` (Snipen y Liland 2015): 500 permutaciones, ajuste por minimos cuadrados no lineales (`optim`, L-BFGS-B) |
+| Jackknife de alpha | Quitando un genoma cada vez, 200 permutaciones por ajuste |
+| Genomas atipicos | Genes unicos > mediana + 3 MAD (desviacion absoluta mediana) |
+| Comparacion a igual N | 100 submuestras de 23 genomas para las curvas; 30 para alpha |
+| Correlaciones | Spearman (`cor.test`) |
+| Mantel | vegan 2.7.2, `mantel(method = "spearman", permutations = 999)`; distancia de Jaccard binaria del accesorio (2 a N-1 referencias) frente a distancia patristica del arbol (ape 5.8.1, `cophenetic`) |
+| PERMANOVA | vegan 2.7.2, `adonis2(permutations = 999)`; solo habitats con >= 3 referencias |
+| PCoA | `cmdscale` sobre la distancia de Jaccard |
+| Arboles | ggtree 3.16.3; raiz en el punto medio (phangorn 2.12.1, `midpoint`) solo para dibujar |
+| Mapas de genes | gggenes 0.7.0 |
+
 ---
 
 ## 4. Seleccion de especies y de genomas de referencia
@@ -664,7 +719,28 @@ recombinasa, transposasa, fago, IS).
 forma reciente (identidad casi total con otras especies). Su relevancia para
 el biodeterioro es una pregunta de la Fase 4.
 
-### 9.6 Sensibilidad a la base de datos: NCBI frente a EBI
+### 9.6 Analisis de los genes especificos (metodo; resultados con la v2)
+
+Contar los genes especificos no basta: hay que saber que son, como llegaron y
+si alguno importa para el biodeterioro. Script: `figuras/R/f3_07_especificos.R`;
+salidas `figuras/tablas/tab_f3_especificos_catalogo.tsv`,
+`tab_f3_especificos_islas.tsv` y `figuras/figs/fig_f3_especificos.png`.
+
+| Analisis | Como se hace | Que responde |
+|---|---|---|
+| Catalogo | Cada gen especifico con producto y nombre de gen (Bakta), numero KEGG (KO) y numero de enzima (EC) si Bakta los asigno, contig, posicion, origen probable e identidad del mejor parecido en nr | Que genes son |
+| Islas | Genes especificos del mismo contig a <= 5 kb entre si forman una isla. Para cada isla: largo, numero de genes, genes moviles (integrasa, recombinasa, transposasa, fago, IS) a <= 5 kb y diferencia entre el GC de la isla y el GC del bin | Si llegaron juntos y por transferencia horizontal: un GC distinto del resto del genoma y una integrasa al lado son las dos senales clasicas de ADN adquirido |
+| Clase funcional | Palabras clave del producto, en este orden (gana la primera que coincide): movil/fago, defensa, resistencia/estres, transporte, regulacion, hipotetica, metabolismo, otra. Reglas en `metadata/clases_funcionales.tsv` | Que tipo de funcion aportan |
+| Cruce con la Fase 4 | Los KO de cada gen contra la tabla de marcadores de biodeterioro y supervivencia (`metadata/marcadores_fase4.tsv`) | Si algun gen especifico es un marcador de riesgo (acidos organicos, biopelicula, pigmentos...) o de supervivencia en la piedra (desecacion, radiacion UV...) |
+
+**Limites del metodo.** La clase por palabras clave es gruesa y depende de la
+anotacion de Bakta; Bakta asigna KO a solo ~25 % de los genes, asi que el cruce
+con los marcadores puede pasar por alto genes sin KO. La anotacion funcional
+uniforme (DRAM) se hace en la Fase 4 sobre los mismos genes.
+
+**Resultados:** pendientes de la v2.
+
+### 9.7 Sensibilidad a la base de datos: NCBI frente a EBI
 
 Por la saturacion de la cola de NCBI (hasta 7 h por especie) se corrio F5
 tambien contra UniProtKB en el EBI. **No sirve como reemplazo:** UniProtKB
@@ -725,8 +801,8 @@ El resultado oficial es el de NCBI; el del EBI queda en `<especie>/ebi/`.
 ## 11. Pendientes
 
 - Terminar la parte remota de la v2 (F5 de las proteinas nuevas, F5b y F6 de
-  los 10 contigs huerfanos) y actualizar las secciones 9.4-9.5, las figuras 12
-  y 13 y la seccion 10.
+  los 10 contigs huerfanos) y actualizar las secciones 9.4-9.6, las figuras 12
+  y 13, la figura de genes especificos y la seccion 10.
 - Figura del ANI de cada bin contra todos los genomas de su especie, con la
   exportacion final.
 
@@ -744,5 +820,6 @@ tablas de las figuras en `figuras/tablas/`.
 - Horesh G, et al. (2021). Different evolutionary trends form the twilight zone of the bacterial pan-genome. *Microb Genom* 7(9):000670. doi:10.1099/mgen.0.000670
 - Li T, Yin Y. (2022). Critical assessment of pan-genomic analysis of metagenome-assembled genomes. *Brief Bioinform* 23(6):bbac413. doi:10.1093/bib/bbac413
 - McInerney JO, McNally A, O'Connell MJ. (2017). Why prokaryotes have pangenomes. *Nat Microbiol* 2:17040. doi:10.1038/nmicrobiol.2017.40
+- Snipen L, Liland KH. (2015). micropan: an R-package for microbial pan-genomics. *BMC Bioinformatics* 16:79. doi:10.1186/s12859-015-0517-0
 - Tettelin H, et al. (2008). Comparative genomics: the bacterial pan-genome. *Curr Opin Microbiol* 11(5):472-477.
 - Tonkin-Hill G, et al. (2020). Producing polished prokaryotic pangenomes with the Panaroo pipeline. *Genome Biol* 21:180. doi:10.1186/s13059-020-02090-4

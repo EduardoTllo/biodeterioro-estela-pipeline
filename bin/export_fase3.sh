@@ -74,6 +74,14 @@ for d in "$R"/07_exclusivos/*/; do
     cp_si "$d/$f" "$E/$s/$f"
   done
 done
+# Anotacion de Bakta y secuencia de cada bin (analisis de genes especificos:
+# KO/EC y GC de las islas). El .fna no se versiona (.gitignore), solo se usa local.
+tail -n +2 "$R/03_seleccion/bakta_manifest.tsv" | awk -F'\t' '$3 == "bin" {print $1 "\t" $4}' |
+while IFS=$'\t' read -r B SLUG; do
+  for ext in tsv fna; do
+    cp_si "$R/04_bakta/$B/$B.$ext" "$E/$SLUG/bakta_bin/$B.$ext"
+  done
+done
 # ANI de cada bin contra los genomas de su especie (06c_ani_bins.slurm)
 for d in "$R"/06c_ani/*/; do
   [[ -d "$d" ]] || continue

@@ -1,0 +1,8 @@
+orden	clase	patron	nota
+1	movil_fago	phage|prophage|capsid|terminase|portal protein|tail|holin|baseplate|integrase|recombinase|transposase|IS[0-9]+|insertion element|excisionase|resolvase|invertase|relaxase|conjugal|conjugative|mobilization|plasmid|\bTra[A-Z]\b	Elementos geneticos moviles: fagos, transposones, IS, plasmidos, integrasas
+2	defensa	restriction|site-specific DNA-methyltransferase|DNA methyltransferase|modification methylase|CRISPR|\bCas[0-9]+|abortive|toxin|antitoxin|dynamin|WYL|DEAD/DEAH|Gabija|Zorya|Thoeris|BREX|DISARM|Septu|Lamassu|Wadjet|retron|Hachiman|Druantia	Sistemas de defensa contra fagos y ADN extrano
+3	resistencia_estres	resistance|efflux|multidrug|tellurite|tellurium|arsenate|arsenite|arsenic|mercur|copper|cadmium|zinc|cobalt|nickel|chromate|heavy metal|catalase|peroxidase|peroxiredoxin|superoxide|oxidative|osmo|desiccation|cold shock|cold-shock|heat shock|universal stress|DNA repair|photolyase|UV	Resistencia a antibioticos, metales y estres (oxidativo, osmotico, UV, temperatura)
+4	transporte	transporter|permease|\bABC\b|porin|channel|symporter|antiporter|uptake|MgtC|siderophore receptor|TonB	Transporte de sustancias a traves de la membrana
+5	regulacion	regulator\b|transcriptional regulator|transcription regulator|sigma factor|repressor|activator|response regulator|histidine kinase|two-component|\bHTH\b|helix-turn-helix|AraC|TetR|LysR|GntR|MarR	Regulacion de la expresion genica
+6	hipotetica	hypothetical|\bDUF[0-9]+|domain of unknown function|uncharacterized	Funcion desconocida
+7	metabolismo	ase\b|ases\b|dehydrogenase|synthase|synthetase|reductase|oxidase|kinase|transferase|hydrolase|isomerase|ligase|lyase|mutase|peptidase|protease|carboxylase	Enzimas y metabolismo
