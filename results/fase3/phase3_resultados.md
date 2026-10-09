@@ -6,10 +6,17 @@ la explicacion de cada figura y el analisis critico (que se sostiene, que se
 corrigio y que queda abierto). Reemplaza a los documentos anteriores
 `phase3_guia_resultados.md` y `phase3_analisis_critico.md`.
 
-**Estado (08-10-2026).** El pangenoma, los arboles, las figuras 1-12 y el ANI
-de los bins estan completos. La verificacion de genes especificos de la cepa
-se esta repitiendo con correcciones (version 2, seccion 9.4): **las cifras
-finales de genes especificos estan pendientes** y se marcan como tales.
+**Estado (08-10-2026).** Estan completos el censo, la seleccion de
+referencias, la anotacion, el pangenoma (y su sensibilidad al modo de
+Panaroo), los arboles del core, el ANI de los bins y las figuras 1-13. La
+verificacion de genes especificos de la cepa se esta repitiendo con
+correcciones (version 2): la parte local termino y la remota (F5, F5b y F6)
+sigue en curso tras la correccion del 08-10 (seccion 3.3, paso 11). **Las
+cifras finales de genes especificos (secciones 9.4-9.6, figuras 14-16) estan
+pendientes** y se marcan como tales.
+
+La seccion 3 documenta el flujo completo tal como se corrio: cada paso con su
+script, parametros, recursos, fechas, controles y salidas.
 
 Convencion de escritura: este repositorio usa solo caracteres ASCII (sin
 tildes) para que los archivos se lean igual en Windows y Linux.
@@ -20,7 +27,7 @@ tildes) para que los archivos se lean igual en Windows y Linux.
 
 1. Que pregunta responde la Fase 3
 2. Glosario y abreviaturas
-3. Como se hizo, en una pagina
+3. Flujo de trabajo, parametros y ejecucion
 4. Seleccion de especies y de genomas de referencia
 5. El pangenoma de cada especie
 6. Donde cae cada cepa de la Estela dentro de su especie
@@ -118,39 +125,424 @@ la misma especie.
 | Elemento genetico movil | ADN que se mueve entre genomas: profagos (virus integrados en el cromosoma), transposones, secuencias de insercion (IS) e islas con integrasa |
 | Integrasa, transposasa | Enzimas que insertan elementos moviles en el cromosoma; su presencia junto a un gen es una pista de que ese gen llego por transferencia horizontal |
 | Gen candidato | Gen del bin que podria ser propio de la cepa: su familia no esta en ninguna referencia, o Panaroo lo elimino (seccion 9.3) |
-| Gen especifico de la cepa | Candidato que pasa todos los filtros de la seccion 3.2: bien formado y sin copia parecida en ningun otro genoma conocido de la especie. Antes se llamaba "exclusivo verificado" |
+| Gen especifico de la cepa | Candidato que pasa todos los filtros de la seccion 3.4: bien formado y sin copia parecida en ningun otro genoma conocido de la especie. Antes se llamaba "exclusivo verificado" |
 
 ---
 
-## 3. Como se hizo, en una pagina
+## 3. Flujo de trabajo, parametros y ejecucion
 
-### 3.1 Flujo
+Esta seccion describe cada paso tal como se corrio: que entra, que script lo
+hace, con que parametros, donde y cuando se corrio, que control se aplico y
+que salio. Los comandos completos para reproducirlo estan en
+[README_fase3.md](../../README_fase3.md); aqui se documenta la corrida real de
+este proyecto (04 al 08-10-2026).
 
-1. **Censo.** Para cada linaje de la Fase 2 con nombre de especie (12 de 19),
-   se contaron los genomas publicos de esa especie en GTDB R220 que pasan el
-   control de calidad.
-2. **Descarga y desreplicacion.** Se descargaron de NCBI los genomas de las
-   especies con suficientes genomas y se agruparon con dRep a ANI >= 99 %.
-3. **Seleccion.** Se eligieron las 3 especies con mas genomas no redundantes y
-   hasta 50 referencias por especie.
-4. **Anotacion.** Bakta anoto con el mismo metodo las 115 referencias y los 3
-   bins (118 genomas).
-5. **Pangenoma.** Panaroo agrupo los genes en familias; las categorias core,
-   shell y cloud se calcularon **solo con las referencias** (decision D22). La
-   razon principal es la pregunta: se describe la especie con genomas
-   independientes del bin y luego se ubica el bin contra esa descripcion; si
-   el bin entrara al calculo, sus genes propios pasarian a ser "cloud" y no
-   habria candidatos. Ademas evita que un MAG incompleto entre en las curvas
-   y en la ley de Heaps. Contar el bin como un genoma mas apenas cambiaria la
-   particion (seccion 5.1).
-6. **Arbol.** IQ-TREE construyo un arbol por especie con el alineamiento de los
-   genes core.
-7. **Genes especificos.** Los genes candidatos del bin pasaron por los filtros
-   de la seccion 3.2.
-8. **Analisis complementarios.** ANI de cada bin contra todos los genomas de su
-   especie, comparaciones a igual numero de genomas y pruebas estadisticas.
+### 3.1 Esquema general
 
-### 3.2 Filtros para los genes especificos de la cepa
+```
+Fase 2: 21 genomas en 19 linajes (12 con nombre de especie)
+   |
+[1]  Censo en GTDB R220 + QC de genomas publicos ..... 12 especies -> 7 viables (>= 15 post-QC)
+   |
+[2]  Descarga desde NCBI + verificacion .............. 660 solicitados, 660 verificados,
+   |                                                   4 excluidos a mano (D30) -> 656
+[3]  Clasificacion: nivel, habitat y continente ...... 656 genomas, 219 fuentes distintas
+   |
+[4]  Desreplicacion con dRep al 99 % ANI ............. 656 -> 137, 42, 23, 12, 4, 4 y 1 no redundantes
+   |
+[5]  Ranking y seleccion de referencias .............. 3 especies: 50 + 42 + 23 = 115 referencias
+   |                                                   + 3 bins = 118 genomas
+[6]  Piloto P0 (3 referencias + bin de L16) .......... aprobado
+   |
+[7]  Anotacion con Bakta ............................. 118/118 anotados, 0 alertas
+   |
+[8]  Pangenoma con Panaroo + particion ............... 7 059, 16 125 y 7 599 familias
+   |    (solo con referencias)
+[9]  Arbol del core con IQ-TREE ...................... 3 arboles, modo completo
+   |
+[10] Genes especificos, parte local (F1-F4) .......... v2: 46, 41 y 171 candidatos -> 14, 1 y 97 a F5
+   |
+[11] Genes especificos, parte remota (F5, F5b, F6) ... v1 terminada; v2 pendiente
+   |
+[12] Analisis complementarios ........................ ANI de los bins, Panaroo sensitive
+   |
+[13] Exportacion y figuras en R
+```
+
+Los numeros por especie van siempre en el orden *B. altitudinis* (L16),
+*P. frigoritolerans* (L12), *A. schindleri* (L8).
+
+### 3.2 Entorno de ejecucion
+
+| Aspecto | Valor |
+|---|---|
+| Cluster | Khipu (UTEC), SLURM 25.11, Rocky Linux 8.10, particion `standard` |
+| Cuenta | `tesis`: 5 trabajos enviados y 3 corriendo a la vez, 32 CPU y 98 GB en total, 24 h por trabajo. En un *job array* cada tarea cuenta como un trabajo, por eso varios pasos se enviaron con `%1` o por tramos |
+| Software | Entornos conda (solo conda-forge y bioconda, `python=3.11`) creados por `03_setup_fase3_khipu.sh`; versiones exactas en `envs/*.lock.yml` y en `phase3_versiones_herramientas.txt` |
+| Bases de datos | Bakta DB v6.0 *full* (24-02-2025); metadata de GTDB R220 (`bac120_metadata_r220.tsv`, descargado aparte porque no viene en el paquete de GTDB-Tk); NCBI taxdump descargado el 04-10-2026 |
+| Carpeta de trabajo | `~/estela/fase3` (codigo en `~/estela/fase3/scripts`, clonado de este repositorio) |
+| Donde corre cada paso | Pasos 1, 2, 3, 5 y 11 en el nodo de login (necesitan internet; los nodos de computo no tienen); pasos 4, 6-10 y 12 en SLURM; paso 13 en la laptop |
+| Estadisticas y figuras | R 4.5.0 en la laptop (Windows) |
+
+Cada `.slurm` escribe un `versions.txt` con la version de las herramientas, la
+fecha, el numero de trabajo y el nodo; esos archivos estan copiados en
+`<especie>/*versions*.txt`.
+
+### 3.3 Paso a paso
+
+#### Paso 0. Instalacion (04-10-2026, login)
+
+`03_setup_fase3_khipu.sh` creo los entornos `ncbi-datasets`, `bakta`,
+`panaroo`, `iqtree` y `blast` (el entorno `drep` se reutilizo de la Fase 2),
+descargo la base de Bakta (`bakta_db download --type full`), el conversor de
+GFF3 de Bakta a formato Prokka del tag v1.8.0 de Panaroo, el taxdump de NCBI y
+el metadata de GTDB R220, y exporto los lock files. Control (C0): cada entorno
+responde con su version, la base de Bakta es `major 6` y el metadata tiene las
+columnas `ncbi_country` y `gtdb_type_designation_ncbi_taxa`.
+
+#### Paso 1. Censo de genomas publicos (04-10-2026, login)
+
+- **Entrada:** `phase2_selection.tsv` (taxonomia GTDB y linaje de los 21 bins)
+  y `bac120_metadata_r220.tsv`.
+- **Script:** `03_censo_genomas.py censo`, luego `ncbi` (conteos vigentes en
+  NCBI con NCBI Datasets) y `tabla --umbral 15` (con `--top 0`: pasan todas las
+  viables; el top-3 se decide despues de la desreplicacion).
+- **Que linajes:** solo los 12 con binomio en GTDB. Quedan fuera 7: L2, L4, L5
+  y L10 (sin nombre de especie) y L6, L7 y L19 (nombre provisional
+  `sp<digitos>`).
+- **QC de cada genoma del cluster de especie de GTDB:** completitud >= 95 % y
+  contaminacion <= 5 % (valores de CheckM2 del metadata de GTDB), <= 300
+  contigs y solo aislados (se excluyen los genomas `derived from metagenome` o
+  `derived from environmental sample`). Viable si quedan >= 15.
+- **Nombre en NCBI:** voto de mayoria del `ncbi_species_taxid` de los genomas
+  del cluster (resuelve GTDB *Telluria timonae* = NCBI *Massilia timonae*). Los
+  sufijos GTDB (`_A`, `_B`, `_AB`) marcan especies que NCBI no separa: ahi vale
+  el tamano del cluster GTDB y no el conteo de NCBI.
+
+| Linaje | Especie GTDB | Cluster GTDB | MAG excluidos | Otros descartes de QC | Post-QC | Viable |
+|---|---|---:|---:|---|---:|---|
+| L14 | *Bacillus licheniformis* | 307 | 6 | 8 completitud, 2 contaminacion, 12 fragmentados | 279 | si |
+| L16 | *Bacillus altitudinis* | 217 | 3 | 2 completitud, 3 fragmentados | 209 | si |
+| L12 | *Peribacillus frigoritolerans* | 82 | 3 | 2 completitud, 1 contaminacion, 4 fragmentados | 72 | si |
+| L8 | *Acinetobacter schindleri* | 37 | 8 | - | 29 | si |
+| L9 | *Priestia flexa* | 31 | 1 | 1 completitud | 29 | si |
+| L11 | *Staphylococcus warneri_A* | 27 | 1 | 2 fragmentados | 24 | si |
+| L18 | *Cytobacillus firmus_B* | 18 | 0 | - | 18 | si |
+| L3 | *Bacillus_AB infantis* | 12 | 2 | 1 fragmentado | 9 | no |
+| L1 | *Telluria timonae* | 8 | 5 | - | 3 | no |
+| L13 | *Rossellomorea marisflavi* | 4 | 0 | - | 4 | no |
+| L15 | *Metabacillus halosaccharovorans* | 4 | 0 | - | 4 | no |
+| L17 | *Cytobacillus oceanisediminis* | 1 | 0 | - | 1 | no |
+
+- **Control (C1):** se revisaron a mano los nombres de NCBI dentro de cada
+  cluster. El acuerdo entre el cluster GTDB y el nombre NCBI mayoritario fue
+  bajo en L16 (0,73), L12 (0,60) y L8 (0,59) por genomas rotulados "sp.", con
+  sinonimos o con especies vecinas; no afecta la seleccion, que usa el cluster
+  GTDB. Aparecieron 4 genomas rotulados con un genero de otro filo (paso 2).
+- **Salidas:** `phase3_censo_genomas.tsv`, `phase3_genomas_candidatos.tsv`,
+  `phase3_mapeo_ncbi.tsv`, `phase3_ncbi_counts.tsv`, `phase3_viabilidad.tsv`,
+  `phase3_censo_report.md`.
+
+#### Paso 2. Descarga y verificacion (04-10-2026, login)
+
+- **Script:** `04_fetch_refs.sh`, que para cada especie viable descarga
+  **todos** sus genomas post-QC (no solo 50, porque el filtro F4 y el ANI de
+  los bins usan el conjunto completo).
+- **Comandos:** `datasets download genome accession --inputfile <lista>
+  --include genome --dehydrated`, `unzip` y `datasets rehydrate` (reintentos
+  cada 30 s). Cada accesion se pide con la version exacta que lista GTDB y no
+  se sustituye por otra si falta. Cada FASTA se renombra `<ID>.fna` (`.` por
+  `_`).
+- **Verificacion:** `04_clasificar_refs.py verificar --tolerancia 0.01
+  --exclusiones metadata/exclusiones.tsv`. Se acepta un genoma si su largo
+  total difiere <= 1 % del `genome_size` de GTDB.
+- **Exclusiones manuales (decision D30):** 4 genomas del cluster GTDB con
+  nombre NCBI de otro filo, por riesgo de ensamblaje quimerico o contaminado
+  (su calidad CheckM2 era buena): GCA_019443385.1, GCA_014303195.1
+  (*Brevibacterium* sp.) y GCA_004358745.1 (*Vibrio vulnificus*) en L12;
+  GCA_029916775.1 (*Micromonospora* sp.) en L16. No entran a dRep, al
+  pangenoma ni a la base de F4.
+- **Resultado (C2):** 660 solicitados, 660 descargados y verificados; 0
+  fallidos, 0 con otra version, 0 con largo discrepante. Validos: 656 (L14 279,
+  L16 208, L12 69, L8 29, L9 29, L11 24, L18 18). Las 7 siguen viables.
+- **Salidas:** `phase3_descarga_estado.tsv`, `phase3_descarga_resumen.tsv`,
+  `phase3_especies_para_drep.tsv` y, en el cluster, `genomas_ok_<especie>.txt`.
+
+#### Paso 3. Clasificacion de las referencias (04-10-2026, login)
+
+- **Script:** `04_clasificar_refs.py clasificar` con
+  `metadata/habitat_keywords.tsv` y `metadata/paises_continentes.tsv`.
+- **Habitat:** expresiones regulares sobre `ncbi_isolation_source`; gana la
+  primera categoria que coincide, en este orden: animal, clinico_humano,
+  petreo_arido, alimento_industrial, agua_sedimento, planta, suelo,
+  otro_ambiental. Fuente vacia o tipo "none", "missing", "not collected" =
+  desconocido; fuente que no coincide con nada = sin_clasificar.
+- **Continente:** primer termino de `ncbi_country` (antes de `:`).
+- **Nivel de prioridad:** T0 = representante de especie en GTDB
+  (`gtdb_representative = t`) o cepa tipo (`type strain of species`); T1 =
+  habitat petreo_arido; T2 = el resto. Se escriben, por especie,
+  `genomeInfo.csv` (completitud y contaminacion de CheckM2 del metadata) y
+  `extraW.tsv` (pesos extra para dRep: T0 +1000, T1 +500, T2 0).
+- **Control (C3):** se revisaron a mano las 219 fuentes distintas
+  (`phase3_fuentes_unicas.tsv`) y se ajusto el diccionario hasta que la
+  clasificacion fue aceptable; ningun pais quedo sin mapear. El nivel T1
+  "Latinoamerica" del plan original se elimino (decision D31): no hay
+  preferencia regional.
+- **Salida:** `phase3_refs_clasificadas.tsv` (656 genomas).
+
+#### Paso 4. Desreplicacion al 99 % ANI (04 y 05-10-2026, SLURM)
+
+- **Script:** `04_drep_refs.slurm`, una tarea por especie (16 CPU, 32 GB,
+  hasta 6 h). Se envio en dos tramos por el limite de cola: `--array=1-5%2` y
+  luego `--array=6-7`. Solo entran las referencias; los bins no se
+  desreplican.
+- **Comando:** `dRep dereplicate -pa 0.90 -sa 0.99 --S_algorithm fastANI
+  -comp 0 -con 100 --genomeInfo genomeInfo.csv -extraW extraW.tsv`, resto por
+  defecto (agrupamiento secundario por enlace promedio). `-comp 0 -con 100`
+  porque el QC ya se aplico en el censo.
+- **Resultado** (fastANI comparo todos los pares; sin fallas tecnicas):
+
+| Linaje | Validos | No redundantes | ANI medio | ANI minimo |
+|---|---:|---:|---:|---:|
+| L16 *B. altitudinis* | 208 | 137 | 98,16 % | 96,24 % |
+| L12 *P. frigoritolerans* | 69 | 42 | 97,07 % | 95,83 % |
+| L8 *A. schindleri* | 29 | 23 | 97,24 % | 96,40 % |
+| L18 *C. firmus_B* | 18 | 12 | 97,96 % | 96,53 % |
+| L11 *S. warneri_A* | 24 | 4 | 99,13 % | 98,56 % |
+| L9 *P. flexa* | 29 | 4 | 99,10 % | 98,56 % |
+| L14 *B. licheniformis* | 279 | 1 | 99,58 % | 98,76 % |
+
+- **Sensibilidad del umbral (decision D32):** se reagrupo desde la tabla de
+  ANI de dRep (`Ndb.csv`) con el mismo metodo; la columna 99 % reproduce a
+  dRep.
+
+| Linaje | 99 % | 99,5 % | 99,9 % |
+|---|---:|---:|---:|
+| L16 | 137 | 154 | 167 |
+| L12 | 42 | 52 | 58 |
+| L8 | 23 | 24 | 25 |
+| L14 | 1 | 7 | 125 |
+| L18 | 12 | 17 | 17 |
+| L9 | 4 | 15 | 24 |
+| L11 | 4 | 8 | 17 |
+
+  El top-3 es el mismo al 99 % y al 99,5 %; solo cambia al 99,9 %, que esta
+  en el limite de resolucion de fastANI. Se mantuvo el 99 % fijado antes de
+  ver los datos.
+- **Salidas:** `<especie>/drep_{Cdb,Sdb,Wdb}.csv` y `drep_versions.txt` de las
+  7 especies.
+
+#### Paso 5. Ranking y seleccion de referencias (05-10-2026, login)
+
+- **Script:** `04_clasificar_refs.py seleccionar --umbral 15 --tope 50
+  --top 3`.
+- **Ranking:** numero de genomas no redundantes, de mayor a menor (desempate:
+  mas bins propios, mayor completitud del bin, orden del linaje). Viable si
+  >= 15. El script se detiene si dRep no aplico los pesos de `extraW.tsv`.
+- **Seleccion dentro de la especie** (solo hace falta si hay mas de 50 no
+  redundantes): todos los T0, luego los T1 y luego los T2 por rotacion. La
+  rotacion recorre los habitats en este orden fijo (suelo, agua_sedimento,
+  planta, otro_ambiental, petreo_arido, animal, alimento_industrial,
+  clinico_humano, sin_clasificar, desconocido) y, dentro de cada habitat, los
+  continentes en orden alfabetico; en cada celda toma el genoma de mejor
+  calidad aun no elegido. Calidad: Complete Genome > Chromosome > Scaffold >
+  Contig, luego menos contigs, mayor completitud, menor contaminacion y
+  accesion. Es determinista, sin azar.
+- **Resultado:** L16 50 de 137 (T0 2, T1 1, T2 47); L12 las 42; L8 las 23. Se
+  comprobo que los pesos de dRep no cambiaron ningun representante. Se
+  escribieron `bakta_manifest.tsv` (118 genomas) y `piloto_manifest.tsv`.
+- **Salidas:** `phase3_ranking_especies.tsv`, `phase3_especies_seleccionadas.tsv`,
+  `phase3_referencias_finales.tsv`, `phase3_composicion_referencias.tsv`,
+  `phase3_seleccion_report.md`.
+
+#### Paso 6. Piloto P0 (05 y 06-10-2026, SLURM)
+
+3 referencias de *B. altitudinis* y bin-5-63, para probar la cadena
+Bakta -> conversion -> Panaroo antes de anotar 118 genomas.
+
+- Bakta: 2 h 01 min para 4 genomas en un lote de 10 CPU. El uso maximo de
+  memoria (MaxRSS) fue 30,0 GB, igual al limite pedido, y la memoria por lote
+  se subio a 32 GB para la corrida completa (commit `bf65e22`).
+- Conversion de GFF3: 0 CDS descartados. Panaroo: 2,5 min, sin errores de
+  lectura.
+- Con 4 genomas, contar el bin bajaba el core de 3 410 a 2 539 familias, lo
+  que respaldo calcular la particion solo con referencias (D22). Recuperacion
+  del core de bin-5-63: 74,5 %, frente a 72,5 % de completitud.
+
+#### Paso 7. Anotacion con Bakta (06-10-2026, SLURM)
+
+- **Script:** `05_bakta_all.slurm`, trabajo 54664, `--array=1-3
+  --export=ALL,LOTES=3`: 3 lotes en paralelo de 10 CPU y 32 GB; la tarea k
+  anota las filas k, k+3, k+6... del manifiesto.
+- **Comando por genoma:** `bakta --db <BD v6.0> --prefix <ID> --locus-tag <ID>
+  --threads 10 --skip-plot --force <fasta>`. Mismas opciones para referencias y
+  bins (decision D14), sin `--meta`, `--complete`, `--partial`, `--genus` ni
+  `--species`; no se usaron anotaciones de NCBI. Sin `--partial` Bakta no
+  predice genes que salen del borde del contig, lo que tiene en cuenta F1.
+- **Ejecucion:** nodo n006, ~4,5 h (~7 min por genoma), MaxRSS 30,5-31,0 GB
+  por lote. 118/118 anotados.
+- **Control (C5):** `07_particion.py bakta` compara los CDS de cada referencia
+  con la mediana de su especie (alerta si se aleja mas de 20 %): 0 alertas, 0
+  genomas sin anotacion.
+
+| | Referencias: CDS mediana (rango) | Contigs mediana (rango) | Tamano mediano | Bin: CDS / contigs / tamano |
+|---|---|---|---:|---|
+| *B. altitudinis* | 3 789 (3 513-4 238) | 15 (1-190) | 3,74 Mb | 2 738 / 90 / 2,76 Mb |
+| *P. frigoritolerans* | 5 337 (5 089-6 282) | 40 (1-288) | 5,52 Mb | 4 164 / 49 / 4,31 Mb |
+| *A. schindleri* | 3 123 (2 781-3 552) | 46 (2-161) | 3,32 Mb | 3 265 / 96 / 3,50 Mb |
+
+- **Salida:** `phase3_bakta_resumen.tsv`, `phase3_bakta_manifest.tsv`;
+  `.tsv` y `.fna` de Bakta de cada bin en `<especie>/bakta_bin/`.
+
+#### Paso 8. Pangenoma con Panaroo y particion (06-10-2026, SLURM)
+
+- **Script:** `06_panaroo.slurm`, trabajo 54744, `--array=1-3%1` (una especie
+  a la vez; 32 CPU, 90 GB, 24 h), nodo n006.
+- **Conversion:** `convert_bakta_to_prokka_gff.py` (Panaroo v1.8.0) pasa cada
+  GFF3 de Bakta al formato Prokka que Panaroo lee. Descarta CDS con stop
+  interno, largo no multiplo de 3 o < 34 pb. Descartados: 0 en
+  *B. altitudinis* y *P. frigoritolerans*; 5 en *A. schindleri* (1-2 en
+  4 referencias).
+- **Comando:** `panaroo --clean-mode moderate --remove-invalid-genes -a core
+  --aligner mafft --core_threshold 0.95 -t 32`, resto por defecto (identidad
+  0,98, umbral de familia 0,70, diferencia de largo 0,98, `--refind-mode
+  default`, sin `--merge_paralogs`). El `--core_threshold 0.95` de Panaroo solo
+  define el alineamiento del core para el arbol, con el bin incluido.
+- **Ejecucion:** *B. altitudinis* 38 min (8,5 GB), *P. frigoritolerans*
+  50 min (14 GB), *A. schindleri* 12 min (5 GB).
+- **Particion:** `07_particion.py particion` recalcula las categorias **solo
+  con las referencias** (decision D22): core >= 0,95, shell 0,15-0,95,
+  cloud < 0,15, candidato = familia presente en el bin y en ninguna
+  referencia; sensibilidad con core >= 0,90. La razon principal es la
+  pregunta: se describe la especie con genomas independientes del bin y luego
+  se ubica el bin contra esa descripcion. Si el bin entrara al calculo, sus
+  genes propios pasarian a ser "cloud" y no habria candidatos; ademas, un MAG
+  incompleto no entra en las curvas ni en la ley de Heaps. Contar el bin como
+  un genoma mas apenas cambiaria la particion (seccion 5.1).
+- **Control (C6):** cada referencia debe tener >= 97 % del core y cada bin
+  debe recuperar un porcentaje del core a <= 10 puntos de su completitud. Una
+  sola alerta: GCF_018613135.1 (*P. frigoritolerans*) con 94,62 %. Se mantuvo:
+  calidad 100 % / 0,5 %, 43 contigs, 5 364 CDS (mediana de la especie 5 337) y
+  ANI medio de 96,32 % con las otras 68 cepas (media de la especie 97,07 %);
+  es una cepa divergente, no un ensamblaje defectuoso. Los tres bins quedaron
+  dentro de los 10 puntos (seccion 6).
+- **Salidas por especie:** `panaroo_summary_statistics.txt`,
+  `pangenoma_refs.Rtab`, `particion_familias.tsv`, `genes_bin.tsv` (entrada de
+  la Fase 4), `recuperacion_core.tsv`, `resumen_particion.tsv`,
+  `resumen_bins.tsv`, `particion_report.md`, `panaroo_conversion_descartes.tsv`.
+
+#### Paso 9. Arbol del core (06 y 07-10-2026, SLURM)
+
+- **Script:** `06b_iqtree.slurm`, trabajo 54753, `--array=1-3%1` (32 CPU,
+  90 GB, 24 h), nodos n006 y n003.
+- **Comando:** `iqtree3 -s core_gene_alignment_filtered.aln -m MFP -B 1000
+  -T AUTO --threads-max 32 --seed 12345`. ModelFinder elige el modelo por BIC;
+  UFBoot con 1 000 replicas. El respaldo previsto si no cabia en 24 h
+  (`snp-sites -c` + `-m MFP+ASC`) no hizo falta: las tres corrieron en modo
+  completo.
+
+| | Secuencias | Sitios | Modelo (BIC) | Tiempo de reloj | Tiempo de CPU |
+|---|---:|---:|---|---:|---:|
+| *B. altitudinis* | 51 | 2 710 467 | GTR+F+I+R5 | 2 h 08 min | 32 h 54 min |
+| *P. frigoritolerans* | 43 | 3 237 494 | GTR+F+R7 | 2 h 50 min | 22 h 06 min |
+| *A. schindleri* | 24 | 2 040 250 | GTR+F+R4 | 25 min | 2 h 46 min |
+
+- **Salidas:** `<especie>/core.treefile`, `iqtree_core.txt` (registro
+  completo), `iqtree_modo.txt`, `iqtree_versions_completo.txt`. Resultados en
+  la seccion 7.
+
+#### Paso 10. Genes especificos, parte local F1-F4 (SLURM)
+
+- **Script:** `08_exclusivos_local.slurm`, una tarea por especie (16 CPU,
+  32 GB, 6 h; menos de 1 min por especie).
+- **Que hace:** `08_exclusivos.py preparar` aplica F1 y F2; `tblastn` (F4)
+  busca cada proteina en una base con todos los genomas validos de la especie
+  (208, 69 y 29; encabezados `<ID>__<contig>`); `blastn` (F3) busca cada gen
+  en los demas bins de la misma muestra (de los 97 bins crudos);
+  `08_exclusivos.py evaluar` aplica los umbrales y escribe las consultas de F5
+  (`f5_query.faa`) y F6 (`f6_query.fna`). Parametros en la seccion 3.5.
+- **v1 (07-10-2026, trabajo 54781):** candidatos = familias del bin sin
+  ninguna referencia. Antes hubo que recrear el entorno `blast`, que habia
+  quedado solo con python (`makeblastdb: command not found`).
+- **v2 (08-10-2026, trabajo 54889):** tras el analisis critico (commit
+  `2dfbe1f`) se agregaron como candidatos los genes del bin que Panaroo
+  elimino (seccion 9.3).
+
+| | v1: candidatos -> pasan F1 -> pasan F4 | v2: candidatos (eliminados por Panaroo) -> pasan F1 -> pasan F4 | Contigs huerfanos a F6 (v1 / v2) |
+|---|---|---|---|
+| *B. altitudinis* | 14 -> 11 -> 2 | 46 (32) -> 25 -> 14 | 0 / 6 |
+| *P. frigoritolerans* | 34 -> 27 -> 1 | 41 (7) -> 29 -> 1 | 0 / 0 |
+| *A. schindleri* | 70 -> 56 -> 36 | 171 (101) -> 137 -> 97 | 0 / 4 |
+
+- **Salidas:** `<especie>/candidatos_local.tsv`, `versions_local.txt`.
+
+#### Paso 11. Genes especificos, parte remota F5, F5b y F6 (login)
+
+- **Script:** `08_exclusivos_remoto.sh`, en el nodo de login dentro de `tmux`
+  (necesita internet).
+- **F5:** `blastp` contra `nr` enviado a la URL API de NCBI con `curl`
+  (`CMD=Put`, `PROGRAM=blastp`, `DATABASE=nr`, `EXPECT=1e-5`,
+  `HITLIST_SIZE=10`); el estado se consulta cada 60 s (espera maxima 24 h por
+  busqueda) y el resultado se recoge con `blast_formatter -rid` en tabular
+  `6 qseqid sseqid pident length qcovs evalue bitscore staxids`. El linaje de
+  cada taxid sale de `taxonkit` con el taxdump del 04-10-2026. No se uso
+  `blastp -remote`: en Khipu quedaba esperando y en WSL fallaba con
+  `Blast4-request`.
+- **F5b:** para cada parecido >= 80 % / >= 80 %, `efetch db=ipg` (genomas con
+  la proteina identica) y NCBI Datasets API v2 (`dataset_report`, especie de
+  cada genoma por `best_ani_match`).
+- **F6:** `blastn` megablast de los contigs huerfanos contra `core_nt`,
+  e-valor 1e-10, 10 parecidos.
+- **v1 (07 y 08-10-2026):** lotes de 50 proteinas. La cola de NCBI estaba
+  saturada: *B. altitudinis* ~7 h, *P. frigoritolerans* ~6 h,
+  *A. schindleri* ~4 h. En paralelo se corrio F5 contra UniProtKB en el EBI
+  (`MOTOR=ebi`, ~30 min) como comparacion (seccion 9.7). Resultado en la
+  seccion 9.2 (commit `20f1e55`).
+- **v2 (desde el 08-10-2026):** NCBI cancelo una busqueda por exceder su
+  limite de CPU (`SIGXCPU`). El script se corrigio (commit `d90effa`): lotes
+  de 10 proteinas y, si una busqueda se cancela, se divide en secuencias
+  individuales; las que fallan solas quedan marcadas como "sin resultado de
+  F5/F6" en lugar de "sin parecidos". Las proteinas ya buscadas no se
+  repiten. **Resultado pendiente.**
+- **Salidas:** `<especie>/f5_blastp_nr.tsv`, `exclusivos_verificados.tsv`,
+  `embudo_exclusivos.tsv`, `exclusivos_report.md`, `versions_remoto.txt`;
+  `phase3_f5b_ipg.tsv` y `phase3_f5b_especie_por_ani.tsv`; comparacion del EBI
+  en `<especie>/ebi/`.
+
+#### Paso 12. Analisis complementarios (08-10-2026, SLURM)
+
+| Analisis | Script y trabajo | Parametros | Resultado |
+|---|---|---|---|
+| ANI de cada bin contra todos los genomas de su especie | `06c_ani_bins.slurm`, trabajo 54890 (16 CPU, 16 GB) | `fastANI -q <bin> --rl genomas_ok_<especie>.txt -t 16`, fragmentos de 3 kb por defecto | Seccion 6.1, `<especie>/ani_bin_genomas.tsv` |
+| Panaroo en modo `sensitive` | `06_panaroo.slurm` con `CLEAN_MODE=sensitive`, trabajo 54899 (`--array=1-3%1`) | Mismos GFF convertidos; `--clean-mode sensitive --remove-invalid-genes`, sin alineamiento; misma particion solo con referencias. 5, 19 y 5 min | Seccion 5.2, `<especie>/sensitive/` |
+| Categoria COG por familia | `07_particion.py cog` (login) | Categoria COG mayoritaria de los genes de cada familia segun Bakta | Descartado: Bakta anota COG en solo 4-31 % de los CDS (seccion 10). `<especie>/familias_cog.tsv` |
+
+#### Paso 13. Exportacion y figuras (laptop)
+
+- En Khipu, `bin/export_fase3.sh` reune tablas, reportes, arboles y los `.tsv`
+  y `.fna` de Bakta de los bins en `export_fase3/` (sin FASTA de referencias,
+  GFF ni alineamientos). Desde WSL se trae con `rsync` a `results/fase3/` y
+  los lock files a `envs/`.
+- `Rscript figuras/R/f3_run_all.R` (R 4.5.0) genera todas las figuras y
+  tablas de la Fase 3:
+
+| Script | Figuras | Tablas (`figuras/tablas/`) |
+|---|---|---|
+| `f3_01_curvas_heaps.R` | 1 (curvas de acumulacion) | `tab_f3_heaps` |
+| `f3_02_posicion_bin.R` | 6 (posicion del bin) | `tab_f3_posicion_bin`, `tab_f3_resumen_pangenoma` |
+| `f3_03_arbol_core.R` | 9-11 (arboles del core) | - |
+| `f3_04_exclusivos.R` | 14 (embudo y origen) | `tab_f3_embudo_exclusivos` |
+| `f3_05_diagnostico_heaps.R` | 4 (diagnostico de Heaps) | `tab_f3_diagnostico_heaps`, `tab_f3_genes_unicos_por_genoma`, `tab_f3_hipoteticas_por_categoria` |
+| `f3_06_analisis_adicional.R` | 2 (igual N), 3 (espectro), 7 (unicos frente a vecino), 12 (PCoA), 13 (matrices), 15 (contexto genomico) | `tab_f3_alpha_igual_n`, `tab_f3_accesorio_filogenia_habitat` |
+| `f3_07_especificos.R` | 16 (genes especificos, pendiente de la v2) | `tab_f3_especificos_catalogo`, `tab_f3_especificos_islas` |
+| `f3_08_sensibilidad_panaroo.R` | 5 (moderate frente a sensitive) | `tab_f3_sensibilidad_panaroo` |
+| `f3_09_ani_bins.R` | 8 (ANI de los bins) | `tab_f3_ani_bins` |
+
+  Semillas fijas para las permutaciones (`set.seed(42)` en curvas y
+  diagnostico de Heaps, 23 en la comparacion a igual N, 8 en la sensibilidad
+  de Panaroo).
+
+### 3.4 Filtros para los genes especificos de la cepa
 
 Se aplican en este orden; un gen descartado no sigue.
 
@@ -168,7 +560,7 @@ Se aplican en este orden; un gen descartado no sigue.
 F1-F6 vienen de la decision D26; F5b y la advertencia se agregaron el 08-10 a
 partir del analisis critico (seccion 9.2).
 
-### 3.3 Herramientas, versiones y parametros
+### 3.5 Herramientas, versiones y parametros
 
 Todo se corrio en el cluster Khipu (UTEC) con entornos conda fijados (lock
 files en `envs/`); las figuras y las estadisticas, en R 4.5.0.
@@ -187,11 +579,11 @@ files en `envs/`); las figuras y las estadisticas, en R 4.5.0.
 
 | Paso | Herramienta | Parametros |
 |---|---|---|
-| Anotacion | Bakta 1.12.1, base de datos v6.0 tipo *full* (24-02-2025) | `--locus-tag <id> --skip-plot`; mismas opciones para referencias y bins; no se usaron anotaciones de NCBI |
+| Anotacion | Bakta 1.12.1, base de datos v6.0 tipo *full* (24-02-2025) | `--locus-tag <id> --threads 10 --skip-plot --force`, sin `--meta`, `--complete`, `--partial`, `--genus` ni `--species`; mismas opciones para referencias y bins; no se usaron anotaciones de NCBI |
 | Conversion de formato | `convert_bakta_to_prokka_gff.py` (Panaroo v1.8.0) | GFF3 de Bakta a formato Prokka; se registran los CDS descartados (5 en total, todos en *A. schindleri*) |
 | Pangenoma | Panaroo 1.8.0 (CD-HIT 4.8.1, MAFFT 7.526) | `--clean-mode moderate --remove-invalid-genes -a core --aligner mafft --core_threshold 0.95`. Valores del modo `moderate`: identidad de agrupamiento 0,98 (`--threshold`), umbral de familia 0,70 (`--family_threshold`), diferencia de largo 0,98 (`--len_dif_percent`), poda de extremos de contig con soporte < max(2, 1 % de los genomas), recursiva (`min_trailing_support`, `trailing_recursive`) |
 | Particion | `07_particion.py particion` | Frecuencia calculada solo con referencias; core >= 0,95, shell 0,15-0,95, cloud < 0,15; sensibilidad con core >= 0,90. Control: cada referencia debe recuperar >= 97 % del core; cada bin, a <= 10 puntos de su completitud |
-| Arbol | IQ-TREE 3.1.3 | Alineamiento del core de Panaroo; `-m MFP` (ModelFinder, criterio BIC) `-B 1000` (UFBoot) `-T AUTO --seed 12345`. Respaldo previsto si se pasaba de 24 h (no hizo falta): `snp-sites -c` + `-m MFP+ASC` |
+| Arbol | IQ-TREE 3.1.3 | Alineamiento del core de Panaroo; `-m MFP` (ModelFinder, criterio BIC) `-B 1000` (UFBoot) `-T AUTO --threads-max 32 --seed 12345`. Respaldo previsto si se pasaba de 24 h (no hizo falta): `snp-sites -c` + `-m MFP+ASC` |
 | ANI de los bins | fastANI 1.34 | Bin contra todos los genomas descargados de su especie, parametros por defecto (fragmentos de 3 kb) |
 
 **Genes especificos de la cepa**
@@ -201,7 +593,7 @@ files en `envs/`); las figuras y las estadisticas, en R 4.5.0.
 | F1 | `08_exclusivos.py preparar` | Pseudogen segun Bakta; < 100 aa; < 100 pb del borde del contig |
 | F4 | BLAST+ 2.17.0 `tblastn` | Base: todos los genomas descargados de la especie (`makeblastdb -dbtype nucl`); `-evalue 1e-10 -max_target_seqs 50`; presente si >= 80 % de identidad y >= 80 % de cobertura de la consulta (`qcovs`) |
 | F3 | BLAST+ 2.17.0 `blastn` | Contra los demas bins de la misma muestra; `-evalue 1e-10`; advertencia si >= 95 % / >= 80 % |
-| F5 | `blastp` en NCBI por su URL API, resultado con `blast_formatter` 2.17.0 | Base `nr`; e-valor <= 1e-5; 10 parecidos por proteina; lotes de 50; descarta si un parecido >= 80 % / >= 80 % lleva el taxid de la especie; taxonomia de los parecidos con taxonkit 0.20.0 y el taxdump de NCBI del 04-10-2026 |
+| F5 | `blastp` en NCBI por su URL API, resultado con `blast_formatter` 2.17.0 | Base `nr`; e-valor <= 1e-5; 10 parecidos por proteina; lotes de 50 en la v1 y de 10 en la v2 (con division en secuencias individuales si NCBI cancela la busqueda); descarta si un parecido >= 80 % / >= 80 % lleva el taxid de la especie; taxonomia de los parecidos con taxonkit 0.20.0 y el taxdump de NCBI del 04-10-2026 |
 | F5b | NCBI E-utilities (`efetch db=ipg`) y NCBI Datasets API v2 (`dataset_report`) | Parecidos >= 80 % / >= 80 %; especie de cada genoma = mejor ANI contra cepas tipo (`best_ani_match`); misma especie si ANI >= 95 % y la cepa tipo pertenece al cluster GTDB de la especie o lleva su nombre |
 | F6 | `blastn` en NCBI por su URL API | Base `core_nt`; `megablast`; e-valor <= 1e-10; 10 parecidos; descarta si el mejor parecido es de otro genero |
 | Advertencia | `08_exclusivos.py integrar` | Mejor parecido en otra especie con >= 99 % de identidad y >= 90 % de cobertura |
@@ -222,6 +614,31 @@ files en `envs/`); las figuras y las estadisticas, en R 4.5.0.
 | PCoA | `cmdscale` sobre la distancia de Jaccard |
 | Arboles | ggtree 3.16.3; raiz en el punto medio (phangorn 2.12.1, `midpoint`) solo para dibujar |
 | Mapas de genes | gggenes 0.7.0 |
+
+### 3.6 Diferencias con el plan y problemas de ejecucion
+
+El plan de la Fase 3 (decisiones D22-D29, 27-09-2026) se siguio con estos
+cambios, todos registrados como decisiones o commits:
+
+| Cambio | Motivo | Donde |
+|---|---|---|
+| Se excluyeron 4 referencias con nombre NCBI de otro filo | Riesgo de ensamblaje quimerico o contaminado | D30, paso 2 |
+| El nivel T1 "Latinoamerica" se elimino; T1 pasa a ser el habitat petreo o arido | Sin preferencia regional en la seleccion | D31, paso 3 |
+| Bakta por lotes (3 tareas de 10 CPU y 32 GB) en lugar de un array de 118 tareas de 8 CPU y 24 GB | Limite de 5 trabajos enviados de la cuenta; el piloto llego a 30 GB | Paso 7, commits `93811cf` y `bf65e22` |
+| F5 y F6 por la URL API de NCBI con `curl` y `blast_formatter -rid`, no con `blastp -remote` | El cliente `blastp -remote` no respondia en Khipu y fallaba en WSL | Paso 11, commit `2257fdf` |
+| F5 con lotes de 10 y division automatica | NCBI cancelo una busqueda por limite de CPU | Paso 11, commit `d90effa` |
+| Se agregaron F5b y la advertencia por identidad casi total | En la v1, 5 genes "especificos" estaban en cepas de la especie depositadas con otro nombre | Seccion 9.2, commit `2dfbe1f` |
+| Los genes que Panaroo elimino pasan a ser candidatos | El modo `moderate` poda los genes de extremo de contig presentes en < 2 genomas, justo el tipo de gen que se busca | Seccion 9.3, commit `2dfbe1f` |
+| Se agrego la sensibilidad a Panaroo `sensitive` | Medir cuanto depende el pangenoma de la poda | Seccion 5.2, commit `102fd3e` |
+| No se hizo la comparacion funcional con COG | Cobertura de COG de Bakta de 4-31 % | Seccion 10; se hace en la Fase 4 con DRAM |
+
+Problemas que obligaron a repetir un paso (sin efecto en los resultados):
+`phase2_selection.tsv` de Khipu sin taxonomia (el censo daba 0 linajes; se uso
+la version del repositorio), envio de dRep rechazado por el limite de cola
+(`QOSMaxSubmitJobPerUserLimit`; se envio por tramos), entorno `blast`
+incompleto (`makeblastdb: command not found`; se recreo) y la incompatibilidad
+de ggtree 3.16 con ggplot2 4 para dibujar matrices junto al arbol (se usaron
+`geom_tile` y `aplot`).
 
 ---
 
@@ -426,7 +843,7 @@ cerca del limite de especie). Se reportan ambos valores.
 
 ### 5.2 Sensibilidad al modo de limpieza de Panaroo
 
-Panaroo se corrio en modo `moderate` (seccion 3.3), que elimina los genes de
+Panaroo se corrio en modo `moderate` (seccion 3.5), que elimina los genes de
 extremo de contig presentes en un solo genoma. Para medir cuanto dependen los
 resultados de esa eleccion se repitio el pangenoma en modo `sensitive`, que no
 hace esa poda (`trailing_recursive = 0`), con los mismos genomas y la misma
@@ -670,7 +1087,7 @@ no permite afirmar adaptacion al sustrato petreo.
 
 Un gen especifico de la cepa responde a una sola pregunta: **este gen del bin
 de la Estela existe en algun otro genoma conocido de su especie?** Si no se
-encuentra en ninguno (con los umbrales de la seccion 3.2), es especifico de la
+encuentra en ninguno (con los umbrales de la seccion 3.4), es especifico de la
 cepa de la Estela frente a todo lo secuenciado hasta hoy.
 
 No significa que el gen sea nuevo para la ciencia, ni que sea una adaptacion a
@@ -881,8 +1298,9 @@ El resultado oficial es el de NCBI; el del EBI queda en `<especie>/ebi/`.
 ## 11. Pendientes
 
 - Terminar la parte remota de la v2 (F5 de las proteinas nuevas, F5b y F6 de
-  los 10 contigs huerfanos) y actualizar las secciones 9.4-9.6, las figuras 14
-  y 15, la figura 16 (genes especificos) y la seccion 10.
+  los 10 contigs huerfanos) con el script corregido (`d90effa`), exportar y
+  actualizar las secciones 3.3 (paso 11), 9.4-9.6, las figuras 14 y 15, la
+  figura 16 (genes especificos) y la seccion 10.
 
 
 Archivos de esta fase en `results/fase3/` (tablas por especie en

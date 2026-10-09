@@ -6,7 +6,7 @@
 # las referencias descargadas y verificadas; los bins propios NO se desreplican.
 #   - genomeInfo: completitud/contaminacion de CheckM2 tomadas del metadata de
 #     GTDB (no se corre CheckM2).
-#   - extraW: T0 +1000, T1/T2 +500, T3 0, para que dentro de cada cluster al 99 %
+#   - extraW: T0 +1000, T1 +500, T2 0, para que dentro de cada cluster al 99 %
 #     gane el genoma prioritario (decision D23).
 #   - Mismo algoritmo secundario que la Fase 2 (fastANI) y mismo entorno 'drep'.
 # El numero de clusters secundarios es el N de genomas no redundantes que decide

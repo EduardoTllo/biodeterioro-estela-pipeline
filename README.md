@@ -14,7 +14,7 @@ la fraccion cultivable, provistos por el Laboratorio de Genomica Microbiana
 |---|---|---|---|
 | 1 | Control de calidad y seleccion de genomas (OE1) | Ejecutada | [`results/fase1/`](results/fase1/) |
 | 2 | Asignacion taxonomica y definicion de linajes (OE2) | Ejecutada | [`results/fase2/`](results/fase2/) |
-| 3 | Analisis pangenomico comparativo (OE3) | En ejecucion (pasos 1-9 corridos en Khipu) | [`results/fase3/`](results/fase3/) |
+| 3 | Analisis pangenomico comparativo (OE3) | Ejecutada; falta la parte remota de la v2 de genes especificos | [`results/fase3/phase3_resultados.md`](results/fase3/phase3_resultados.md) |
 | 4 | Potencial metabolico y de riesgo (OE4) | Pendiente | - |
 
 En la Fase 1, de 97 bins crudos 66 pasan el filtro por dominio (Tiara) y quedan
@@ -35,6 +35,13 @@ publicas (GTDB R220 + NCBI) mas el bin de la Estela, todo anotado con Bakta y
 agrupado con Panaroo; la particion core/shell/cloud se calcula solo con las
 referencias, y los genes candidatos a exclusivos de la Estela pasan por seis
 filtros de verificacion. El detalle esta en [README_fase3.md](README_fase3.md).
+
+Pasaron el umbral 3 especies: *Bacillus altitudinis* (L16, 50 referencias),
+*Peribacillus frigoritolerans* (L12, 42) y *Acinetobacter schindleri* (L8, 23).
+Los tres pangenomas son abiertos (7 059, 16 125 y 7 599 familias). El flujo
+completo con sus parametros, la ejecucion en Khipu y la interpretacion de cada
+figura estan en
+[results/fase3/phase3_resultados.md](results/fase3/phase3_resultados.md).
 
 ## Estructura del repositorio
 
@@ -96,7 +103,8 @@ filtros de verificacion. El detalle esta en [README_fase3.md](README_fase3.md).
     │   ├── phase2_genomeInfo.csv
     │   ├── phase2_versions.txt
     │   └── figuras_drep/                     # dendrogramas y graficos de dRep
-    └── fase3/                                # (se llena al ejecutar la fase)
+    └── fase3/
+        ├── phase3_resultados.md              # flujo, parametros y resultados de la fase
         ├── phase3_viabilidad.tsv             # decision de viabilidad por linaje
         ├── phase3_ranking_especies.tsv       # ranking por genomas no redundantes
         ├── phase3_referencias_finales.tsv    # referencias de cada pangenoma
@@ -111,8 +119,9 @@ viven en el cluster y en el almacenamiento local.
 ## Por donde empezar
 
 Para entender que se hizo, lee los reportes
-[`results/fase1/phase1_report.md`](results/fase1/phase1_report.md) y
-[`results/fase2/phase2_report.md`](results/fase2/phase2_report.md).
+[`results/fase1/phase1_report.md`](results/fase1/phase1_report.md),
+[`results/fase2/phase2_report.md`](results/fase2/phase2_report.md) y
+[`results/fase3/phase3_resultados.md`](results/fase3/phase3_resultados.md).
 
 Para reproducir una fase, sigue su README ([Fase 1](README_fase1.md),
 [Fase 2](README_fase2.md), [Fase 3](README_fase3.md)), con el paso a paso de
