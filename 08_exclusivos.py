@@ -420,6 +420,13 @@ def cmd_integrar(args):
     f5 = leer_blast(args.f5)
     f6 = leer_blast(args.f6)
     f5b = {r["consulta"]: r for r in leer_tsv(args.f5b)} if args.f5b and os.path.exists(args.f5b) else {}
+
+    def leer_lista(path):
+        if not path or not os.path.exists(path):
+            return set()
+        return {l.strip() for l in open(path, encoding="utf-8") if l.strip()}
+    f5_fallidas = leer_lista(args.f5_fallidas)
+    f6_fallidas = leer_lista(args.f6_fallidas)
     if args.f5b and not f5b:
         warn("sin resultados de F5b (%s): no se aplica la comprobacion por ANI" % args.f5b)
     lin = leer_linajes(args.linajes)
@@ -445,8 +452,12 @@ def cmd_integrar(args):
         if f["f3"] != "ok":
             banderas.append(f["f3"])
         if f["f2_anclaje"] == "huerfano":
-            h6 = (f6.get("%s__%s" % (f["bin"], f["contig"])) or [None])[0]
-            if h6 is None:
+            clave6 = "%s__%s" % (f["bin"], f["contig"])
+            h6 = (f6.get(clave6) or [None])[0]
+            if h6 is None and clave6 in f6_fallidas:
+                f["f6"] = "bandera_F6_sin_resultado"
+                banderas.append(f["f6"])
+            elif h6 is None:
                 f["f6"] = "bandera_F6_huerfano_sin_hit"
                 banderas.append(f["f6"])
             else:
@@ -460,7 +471,10 @@ def cmd_integrar(args):
                     continue
         embudo["pasa_F6"] += 1
         hits5 = f5.get(f["consulta"], [])
-        if not hits5:
+        if not hits5 and f["consulta"] in f5_fallidas:
+            f["f5_origen"] = "sin_resultado_F5"
+            banderas.append("bandera_F5_sin_resultado")
+        elif not hits5:
             f["f5_origen"] = "sin_hit_ORFan"
         else:
             h5 = hits5[0]
@@ -659,6 +673,8 @@ def main():
     p.add_argument("--linajes", required=True, help="taxid<TAB>filo;familia;genero;especie")
     p.add_argument("--taxid-especie", required=True, help="taxid NCBI de la especie del bin")
     p.add_argument("--f5b", default="", help="salida de 'ani' (F5b); opcional")
+    p.add_argument("--f5-fallidas", default="", help="consultas sin resultado de F5 (NCBI las cancelo)")
+    p.add_argument("--f6-fallidas", default="", help="contigs sin resultado de F6 (NCBI los cancelo)")
     p.add_argument("--f5-id", type=float, default=DEF_F5_ID)
     p.add_argument("--f5-cov", type=float, default=DEF_F5_COV)
     p.add_argument("--casi-id", type=float, default=DEF_CASI_ID)

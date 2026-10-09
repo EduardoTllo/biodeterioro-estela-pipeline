@@ -49,7 +49,7 @@ TAXDUMP_DIR="${TAXDUMP_DIR:-$HOME/dbs/taxdump}"
 CENSO_CAND="$WORKDIR/results/00_censo/phase3_genomas_candidatos.tsv"
 NR_DB="${NR_DB:-nr}"
 NT_DB="${NT_DB:-core_nt}"
-LOTE=50
+LOTE=10                              # proteinas por envio (NCBI corta las busquedas que exceden su limite de CPU)
 PAUSA_S=15
 OUTFMT="6 qseqid sseqid pident length qcovs evalue bitscore staxids"
 BLAST_URL="https://blast.ncbi.nlm.nih.gov/Blast.cgi"
@@ -114,15 +114,60 @@ blast_ncbi() {
   done
   [[ "$st" == "READY" ]] || { echo "ERROR: RID $rid sin terminar tras $ESPERA_MAX_H h" >&2; return 1; }
   for i in 1 2 3 4 5; do
-    if blast_formatter -rid "$rid" -outfmt "$OUTFMT" > "$out"; then
+    if blast_formatter -rid "$rid" -outfmt "$OUTFMT" > "$out" 2> "${out}.err"; then
+      rm -f "${out}.err"
       echo "       listo ($(date +%H:%M)): $(wc -l < "$out") hits"
       return 0
+    fi
+    if grep -q "has failed\|search failed\|CPU usage limit" "${out}.err"; then
+      echo "       NCBI cancelo la busqueda: $(grep -o 'CPU usage limit[^.]*' "${out}.err" | head -n1)" >&2
+      rm -f "${out}.rid" "$out"
+      return 2                       # fallo de la busqueda en NCBI: no sirve reintentar el RID
     fi
     echo "       blast_formatter fallo (intento $i); reintento en 1 min" >&2
     sleep 60
   done
   echo "ERROR: no se pudo recuperar el RID $rid" >&2
   return 1
+}
+
+# blast_ncbi_robusto <programa> <bd> <evalue> <consulta> <salida> [extra...]
+# Si NCBI cancela la busqueda (p. ej. por exceder su limite de CPU), la divide
+# en secuencias individuales y las envia una por una. Las que fallan incluso
+# solas se anotan en <salida>.fallidas y la corrida continua.
+blast_ncbi_robusto() {
+  local prog="$1" db="$2" ev="$3" q="$4" out="$5"; shift 5
+  local rc=0 n partes f id
+  blast_ncbi "$prog" "$db" "$ev" "$q" "$out" "$@" || rc=$?
+  [[ "$rc" == 0 ]] && return 0
+  [[ "$rc" == 2 ]] || return "$rc"
+  n=$(grep -c '^>' "$q")
+  : > "$out"; : > "${out}.fallidas"
+  if [[ "$n" -le 1 ]]; then
+    grep '^>' "$q" | sed 's/^>//; s/ .*//' >> "${out}.fallidas"
+    echo "       AVISO: sin resultado para $(cat "${out}.fallidas") (la busqueda falla incluso sola)" >&2
+    return 0
+  fi
+  partes="${out}.partes"
+  mkdir -p "$partes"
+  awk -v d="$partes" '/^>/{id=substr($1,2); gsub(/[^A-Za-z0-9_.-]/,"_",id); f=d "/" id ".fa"} {print > f}' "$q"
+  echo "       Se divide en $n busquedas individuales"
+  for f in "$partes"/*.fa; do
+    id="$(basename "$f" .fa)"
+    if [[ -f "$partes/$id.tsv.ok" ]]; then cat "$partes/$id.tsv" >> "$out"; continue; fi
+    rc=0
+    blast_ncbi "$prog" "$db" "$ev" "$f" "$partes/$id.tsv" "$@" || rc=$?
+    if [[ "$rc" == 0 ]]; then
+      touch "$partes/$id.tsv.ok"; cat "$partes/$id.tsv" >> "$out"
+    elif [[ "$rc" == 2 ]]; then
+      echo "$id" >> "${out}.fallidas"
+      echo "       AVISO: sin resultado para $id (la busqueda falla incluso sola)" >&2
+    else
+      return "$rc"
+    fi
+    sleep "$PAUSA_S"
+  done
+  return 0
 }
 
 SOLO="$1"
@@ -173,7 +218,7 @@ tail -n +2 "$SEL_DIR/especies_seleccionadas.tsv" | while IFS=$'\t' read -r RANGO
     for Q in "$OUT"/f5_lotes/lote_*.faa; do      # lotes a medias: se rearman
       [[ -f "$Q" && ! -f "${Q%.faa}.tsv.ok" ]] && rm -f "$Q" "${Q%.faa}.tsv" "${Q%.faa}.tsv.rid"
     done
-    SIG=$(( $(ls "$OUT"/f5_lotes/lote_*.tsv.ok 2>/dev/null | wc -l) + 1 ))
+    SIG=$(( $(find "$OUT/f5_lotes" -maxdepth 1 -name "lote_*.tsv.ok" | wc -l) + 1 ))
     awk -v hechas="$HECHAS" -v n="$LOTE" -v d="$OUT/f5_lotes" -v k="$SIG" '
       BEGIN { while ((getline l < hechas) > 0) h[l] = 1 }
       /^>/  { id = substr($1, 2); keep = !(id in h)
@@ -187,20 +232,22 @@ tail -n +2 "$SEL_DIR/especies_seleccionadas.tsv" | while IFS=$'\t' read -r RANGO
         python "$SCRIPTS_DIR/08_exclusivos.py" ebi --query "$Q" --out "$R" \
             --estado "$OUT/f5_lotes/ebi_json" --email "$EBI_EMAIL" --db "$EBI_DB"
       else
-        blast_ncbi blastp "$NR_DB" 1e-5 "$Q" "$R"
+        blast_ncbi_robusto blastp "$NR_DB" 1e-5 "$Q" "$R"
       fi
       touch "${R}.ok"
       grep '^>' "$Q" | sed 's/^>//; s/ .*//' >> "$HECHAS"
       sleep "$PAUSA_S"
     done
     cat "$OUT"/f5_lotes/lote_*.tsv > "$OUT/f5_blastp_nr.tsv"
+    cat "$OUT"/f5_lotes/lote_*.tsv.fallidas 2>/dev/null > "$OUT/f5_fallidas.txt" || true
   fi
 
   # F6: contigs huerfanos
   if [[ -s "$OUT/f6_query.fna" && ! -f "$OUT/f6_blastn_nt.tsv.ok" ]]; then
     echo "     F6: $(grep -c '^>' "$OUT/f6_query.fna") contigs huerfanos"
-    blast_ncbi blastn "$NT_DB" 1e-10 "$OUT/f6_query.fna" "$OUT/f6_blastn_nt.tsv" \
+    blast_ncbi_robusto blastn "$NT_DB" 1e-10 "$OUT/f6_query.fna" "$OUT/f6_blastn_nt.tsv" \
                --data-urlencode "MEGABLAST=on"
+    cp -f "$OUT/f6_blastn_nt.tsv.fallidas" "$OUT/f6_fallidas.txt" 2>/dev/null || : > "$OUT/f6_fallidas.txt"
     touch "$OUT/f6_blastn_nt.tsv.ok"
   elif [[ ! -s "$OUT/f6_query.fna" ]]; then
     : > "$OUT/f6_blastn_nt.tsv"
@@ -222,7 +269,8 @@ tail -n +2 "$SEL_DIR/especies_seleccionadas.tsv" | while IFS=$'\t' read -r RANGO
 
   python "$SCRIPTS_DIR/08_exclusivos.py" integrar \
       --outdir "$OUT" --f5 "$OUT/f5_blastp_nr.tsv" --f6 "$OUT/f6_blastn_nt.tsv" \
-      --linajes "$OUT/linajes.tsv" --taxid-especie "$TAXID" --f5b "$OUT/f5b_ani.tsv"
+      --linajes "$OUT/linajes.tsv" --taxid-especie "$TAXID" --f5b "$OUT/f5b_ani.tsv" \
+      --f5-fallidas "$OUT/f5_fallidas.txt" --f6-fallidas "$OUT/f6_fallidas.txt"
 done
 
 echo
