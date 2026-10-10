@@ -1,10 +1,17 @@
 \chapter{PRUEBAS Y RESULTADOS}
+% --- MARCAS DE REVISION (temporal; quitar despues) ---
+\providecommand{\cambio}{\color{blue}}
+\providecommand{\fincambio}{\normalcolor}
 
 % ======================================================================
 % CAPITULO VII - PRUEBAS Y RESULTADOS
 % Estructura exigida por la guia: 7.1 Plan de pruebas, 7.2 Analisis de
 % resultados, 7.3 Verificacion de especificaciones, 7.4 Verificacion de
-% restricciones. Alcance: Fases 1 y 2 (OE1 y OE2).
+\cambio
+% restricciones. Alcance: Fases 1, 2 y 3 (OE1, OE2 y OE3). La Fase 3 se
+% agrego el 2026-10-09; las cifras finales de genes especificos (version 2
+% de la busqueda remota) estan marcadas con \pendiente{}.
+\fincambio
 %
 % El texto de las secciones 7.2.1 y 7.2.2 proviene del capitulo de
 % resultados previo y se conserva sin cambios; solo se rebajo el nivel
@@ -15,11 +22,24 @@
 %   fig3_arbol_filogenomico.pdf    fig4_matriz_mash.pdf
 %   fig5_novedad_taxonomica.pdf    fig6_prevalencia_linajes.pdf
 %   fig7_composicion_taxonomica.pdf
+\cambio
+% Fase 3 (copiar desde figuras/figs/):
+%   fig_f3_curvas_acumulacion.pdf  fig_f3_diagnostico_heaps.pdf
+%   fig_f3_posicion_bin.pdf        fig_f3_ani_bins.pdf
+%   fig_f3_arbol_core_L12_Peribacillus_frigoritolerans.pdf
+\fincambio
 % ======================================================================
+\cambio
+
+% Marca para las cifras que dependen de la version 2 de la busqueda remota.
+\providecommand{\pendiente}[1]{\textbf{[pendiente\if\relax\detokenize{#1}\relax\else: #1\fi]}}
+\fincambio
 
 Este capítulo presenta el desempeño del flujo bioinformático diseñado en el
 Capítulo VI. Primero se define bajo qué condiciones se probó el flujo. Luego se
-exponen los resultados obtenidos en las Fases, junto con los ajustes de
+\cambio
+exponen los resultados obtenidos en las Fases 1, 2 y 3, junto con los ajustes de
+\fincambio
 diseño que esos resultados obligaron a realizar. Por último se verifica si la
 solución cumple las especificaciones técnicas y las restricciones del proyecto.
 
@@ -37,11 +57,14 @@ escenarios alternativos con los que se evaluó la sensibilidad del diseño.
 
 \subsection{Caso base}
 
-El caso base es la configuración con la que se ejecutaron las dos fases en el
-clúster Khipu. Corresponde a los trabajos SLURM 49286 (Fase 1) y 49316
-(Fase 2). Todos los resultados de la Sección 7.2 provienen de esta
-configuración, salvo los del análisis de sensibilidad, que se identifican de
-forma explícita. La Tabla~\ref{tab:caso_base} resume sus parámetros.
+\cambio
+El caso base es la configuración con la que se ejecutaron las fases en el
+clúster Khipu. En las Fases 1 y 2 corresponde a los trabajos SLURM 49286 y
+49316. Todos los resultados de la Sección~\ref{sec:analisis_resultados}
+provienen de esta configuración, salvo los del análisis de sensibilidad, que se
+identifican de forma explícita. La Tabla~\ref{tab:caso_base} resume los
+parámetros de las Fases 1 y 2.
+\fincambio
 
 \begin{table}[H]
 \centering
@@ -60,11 +83,56 @@ Filtrado de dominio & Criterio de decisión           & dominio mayoritario    &
 Calidad genómica   & Completitud                    & $> 70\%$               & CheckM2 \\
 Calidad genómica   & Contaminación                  & $< 5\%$                & CheckM2 \\
 Clasificación      & Base de datos                  & GTDB R220              & GTDB-Tk 2.6.1 \\
-Confirmación de especie & ANI                       & $\ge 95\%$             & FastANI \\
-Confirmación de especie & Fracción alineada (AF)    & $\ge 65\%$             & FastANI \\
-Definición de linaje & Umbral primario / secundario  & 0.90 / 0.95            & dRep \\
-Cómputo            & Núcleos, memoria, tiempo       & 32, 98 GB, 24 h        & SLURM \\
+\cambio Confirmación de especie & \cambio ANI & \cambio $\ge 95\%$ & \cambio GTDB-Tk (skani) \\
+\cambio Confirmación de especie & \cambio Fracción alineada (AF) & \cambio $\ge 65\%$ & \cambio GTDB-Tk (skani) \\
+\cambio Definición de linaje & \cambio Umbral primario / secundario & \cambio 0.90 / 0.95 & \cambio dRep (fastANI) \\
+\cambio Cómputo & \cambio Núcleos, memoria, tiempo & \cambio 32, 90 GB, 24 h & \cambio SLURM \\
 \bottomrule
+\cambio
+\end{tabular}%
+}
+
+\vspace{0.5em}
+\begin{minipage}{0.95\textwidth}
+\footnotesize
+\textit{Nota.} GTDB-Tk 2.6.1 calcula el ANI de confirmación de especie con
+skani \cite{shaw2023skani}; fastANI solo interviene en la desreplicación con
+dRep.
+\end{minipage}
+\end{table}
+
+El caso base de la Fase 3 se ejecutó entre el 4 y el 8 de octubre de 2026. Sus
+parámetros se resumen en la Tabla~\ref{tab:caso_base_f3}, y su implementación
+en la Tabla~\ref{tab:parametros_f3} del Capítulo VI. Para la búsqueda de genes
+específicos, el caso base es la segunda versión del análisis; la primera se
+documenta como iteración en la Sección~\ref{subsubsec:iter_exclusivos}.
+
+\begin{table}[H]
+\cambio
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption[Parámetros del caso base de la Fase 3]{Parámetros del caso base de la
+Fase 3 y trabajo SLURM en que se ejecutó cada etapa.}
+\label{tab:caso_base_f3}
+\makebox[\textwidth][c]{%
+\begin{tabular}{llll}
+\toprule
+\cambio \textbf{Etapa} & \cambio \textbf{Parámetro} & \cambio \textbf{Valor} & \cambio \textbf{Herramienta y trabajo} \\
+\midrule
+\cambio Censo & \cambio Calidad de referencias & \cambio $\ge 95\%$, $\le 5\%$, $\le 300$ contigs & \cambio metadatos GTDB R220 \\
+\cambio Censo y selección & \cambio Genomas por especie & \cambio $\ge 15$ no redundantes & \cambio --- \\
+\cambio Desreplicación & \cambio Umbral primario / secundario & \cambio 0.90 / 0.99 & \cambio dRep 3.7.1 \\
+\cambio Selección & \cambio Referencias por especie & \cambio $\le 50$; 3 especies & \cambio --- \\
+\cambio Anotación & \cambio Base de datos & \cambio v6.0 \textit{full} & \cambio Bakta 1.12.1 (54664) \\
+\cambio Pangenoma & \cambio Modo de limpieza & \cambio \texttt{moderate} & \cambio Panaroo 1.8.0 (54744) \\
+\cambio Partición & \cambio Core / cloud & \cambio $\ge 95\%$ / $< 15\%$ & \cambio solo referencias \\
+\cambio Árbol & \cambio Modelo; soporte & \cambio BIC; 1000 UFBoot & \cambio IQ-TREE 3.1.3 (54753) \\
+\cambio ANI de los bins & \cambio Genomas de comparación & \cambio todos los válidos & \cambio fastANI 1.34 (54890) \\
+\cambio Genes específicos & \cambio F1--F4, versión 2 & \cambio ver Tabla~\ref{tab:parametros_f3} & \cambio BLAST+ 2.17.0 (54889) \\
+\cambio Genes específicos & \cambio F5, F5b y F6, versión 2 & \cambio nr, core\_nt & \cambio NCBI, nodo de login \\
+\bottomrule
+\fincambio
 \end{tabular}%
 }
 \end{table}
@@ -94,6 +162,16 @@ Clasificación       & Número de filos, órdenes y géneros; número de genomas
                     & especie confirmada; ANI y AF frente a la referencia más próxima \\
 Desreplicación      & Número de linajes; ANI y cobertura dentro de cada clúster \\
 Prevalencia         & Número de muestras distintas en que aparece cada linaje \\
+\midrule
+\cambio Censo y descarga & \cambio Genomas por especie tras el control de calidad; genomas \\
+                     & \cambio válidos tras la verificación \\
+\cambio Desreplicación & \cambio Genomas no redundantes; ANI medio y mínimo entre referencias \\
+\cambio Anotación & \cambio CDS por genoma frente a la mediana de su especie \\
+\cambio Pangenoma & \cambio Familias core, shell y cloud; singletons; exponente $\alpha$ \\
+\cambio Posición del bin & \cambio Genes del bin por categoría; porcentaje del core recuperado \\
+\cambio Árbol & \cambio Modelo; soporte UFBoot; pariente más cercano y distancia \\
+\cambio ANI de los bins & \cambio ANI máximo y mediano; correlación con la distancia en el árbol \\
+\cambio Genes específicos & \cambio Candidatos que sobreviven a cada filtro; origen probable \\
 \bottomrule
 \end{tabular}%
 }
@@ -111,7 +189,11 @@ herramientas del caso base ya entregan, para cada genoma, el valor numérico
 sobre el que actúa cada filtro. La selección se recalculó sobre esas tablas de
 salida. El procedimiento es equivalente porque los filtros son comparaciones
 directas sobre valores ya calculados. La Tabla~\ref{tab:escenarios} detalla los
-cinco escenarios evaluados.
+\cambio
+escenarios evaluados. Los escenarios E6 a E13 corresponden a la Fase 3. La
+mayoría también se recalculó sobre tablas ya producidas; solo E8, E10 y E11
+exigieron una nueva ejecución.
+\fincambio
 
 \begin{table}[H]
 \centering
@@ -130,20 +212,38 @@ E3 & Criterio de dominio       & mayoría simple; 25 a 90\% & Bins retenidos \\
    &                           & de longitud procariota     &  \\
 E4 & Umbral de ANI de linaje   & 95, 98, 99, 99.5\%         & Linajes definidos \\
 E5 & Continuidad del ensamblaje & sin filtro; $\le 300$ contigs & Genomas retenidos \\
+\midrule
+\cambio E6 & \cambio Umbral de desreplicación & \cambio 99, 99.5, 99.9\% & \cambio Genomas no redundantes \\
+\cambio E7 & \cambio Umbral del core & \cambio 90, 95\% & \cambio Familias core \\
+\cambio E8 & \cambio Modo de limpieza de Panaroo & \cambio moderate, sensitive & \cambio Partición, $\alpha$, candidatos \\
+\cambio E9 & \cambio Genomas en el pangenoma & \cambio 23 por especie; solo cerrados & \cambio $\alpha$, tamaño del pangenoma \\
+\cambio E10 & \cambio Base de datos de F5 & \cambio nr, UniProtKB & \cambio Genes específicos \\
+\cambio E11 & \cambio Especie del genoma portador & \cambio por nombre, por ANI & \cambio Genes específicos \\
+\cambio E12 & \cambio Contigs de las referencias & \cambio 200, 300, 1000 & \cambio Especies viables \\
+\cambio E13 & \cambio Distancia al borde en F1 & \cambio 0, 50, 100 pb & \cambio Candidatos retenidos \\
 \bottomrule
 \end{tabular}%
 }
 \end{table}
 
 \section{Análisis de los resultados de las pruebas}
+\cambio
+\label{sec:analisis_resultados}
+\fincambio
 
-Esta sección presenta los resultados de las dos fases ejecutadas. Las
-Secciones 7.2.1 y 7.2.2 exponen los resultados del caso base. La Sección 7.2.3
-evalúa cuánto dependen esos resultados de los umbrales elegidos. La
-Sección 7.2.4 documenta los dos ajustes de diseño que los resultados obligaron a
-realizar.
+\cambio
+Esta sección presenta los resultados de las tres fases ejecutadas. Las
+Secciones~\ref{subsec:res_fase1}, \ref{subsec:res_fase2} y
+\ref{subsec:res_fase3} exponen los resultados del caso base. La
+Sección~\ref{subsec:sensibilidad} evalúa cuánto dependen esos resultados de los
+umbrales elegidos. La Sección~\ref{subsec:iteraciones} documenta los ajustes de
+diseño que los resultados obligaron a realizar.
+\fincambio
 
 \subsection{Resultados de la Fase 1: control de calidad y selección de genomas (OE1)}
+\cambio
+\label{subsec:res_fase1}
+\fincambio
 
 La Fase 1 se ejecutó en el clúster Khipu mediante el controlador
 \texttt{run\_fase1.slurm} (trabajo SLURM 49286), sobre los 97 bins genómicos
@@ -313,6 +413,9 @@ El detalle de todos los 97 bins evaluados, con los motivos específicos para su
 exclusión, se presenta en el Anexo~\ref{anexo:tabla_completa_bins}.
 
 \subsection{Resultados de la Fase 2: asignación taxonómica y definición de linajes (OE2)}
+\cambio
+\label{subsec:res_fase2}
+\fincambio
 
 La Fase 2 se ejecutó en Khipu mediante \texttt{run\_fase2.slurm} (trabajo SLURM
 49316) sobre los 21 genomas seleccionados en la fase anterior. El flujo
@@ -379,15 +482,19 @@ El alcance de este resultado es limitado. El árbol es de distancias y se
 calculó únicamente sobre los genomas de consulta, sin incorporar genomas de
 referencia de GTDB, de modo que verifica la coherencia interna del conjunto pero
 no constituye una prueba filogenética independiente de la asignación taxonómica.
-Tal como se justificó en el Capítulo IV, el árbol de novo focalizado por linaje,
-con referencias del taxón asignado y grupo externo, queda previsto para la
-Fase 4.
+\cambio
+La ubicación de cada genoma entre las cepas de su especie se resolvió en la
+Fase 3, con un árbol de máxima verosimilitud por especie
+(Sección~\ref{subsubsec:res_arboles}).
+\fincambio
 
 \subsubsection{Confirmación de especie y candidatos a novedad taxonómica}
 
 Se calculó la Identidad Nucleotídica Promedio de cada genoma frente a su
 referencia GTDB más próxima, aplicando los criterios de confirmación de especie
-definidos en el Capítulo IV (ANI $\ge 95\%$ y fracción alineada $\ge 65\%$).
+\cambio
+definidos en el Capítulo V (ANI $\ge 95\%$ y fracción alineada $\ge 65\%$).
+\fincambio
 Dieciséis de los 21 genomas satisfacen ambos criterios, con valores de ANI entre
 95.61\% y 99.99\% y mediana de 98.53\%. Doce de los 16 superan el 98\% de ANI, lo que indica correspondencias con especies
 descritas.
@@ -571,7 +678,663 @@ corresponden a la nomenclatura propia del GTDB.
 \end{minipage}
 \end{table}
 
+\cambio
+\subsection{Resultados de la Fase 3: análisis pangenómico comparativo (OE3)}
+\label{subsec:res_fase3}
+
+La Fase 3 se ejecutó en Khipu entre el 4 y el 8 de octubre de 2026. Compara
+cada bin de la Estela con los genomas públicos de su especie para responder tres
+preguntas: cómo es el repertorio de genes de la especie, a qué cepa conocida se
+parece la cepa de la Estela y qué genes tiene esa cepa que ninguna otra cepa
+conocida de su especie tiene. Las cifras por especie se dan siempre en el orden
+\textit{Bacillus altitudinis} (L16), \textit{Peribacillus frigoritolerans}
+(L12) y \textit{Acinetobacter schindleri} (L8).
+
+\subsubsection{Selección de especies y de genomas de referencia}
+\label{subsubsec:res_seleccion}
+
+De los 19 linajes de la Fase 2, solo 12 tienen nombre de especie en GTDB y
+pudieron someterse al censo de genomas públicos. Quedaron fuera los cuatro
+linajes que GTDB-Tk clasificó solo hasta género (L2, L4, L5 y L10), que son los
+candidatos a especies no descritas, y los tres con un nombre provisional de
+GTDB formado por \texttt{sp} y un número (L6, L7 y L19), que no corresponde a un
+nombre estable en el NCBI.
+
+Para cada uno de los 12 linajes se contaron los genomas públicos que GTDB R220
+asigna a su especie y se aplicó el control de calidad de las referencias:
+completitud de al menos 95\,\%, contaminación de hasta 5\,\% y no más de 300
+contigs. Se excluyeron además los genomas que el NCBI registra como derivados de
+un metagenoma, de una muestra ambiental o de una sola célula. Estos genomas
+excluidos no son los bins de la Estela: son genomas públicos de otros estudios,
+reconstruidos de la misma forma que los bins. Se excluyeron para que las
+referencias fueran lo más confiables posible. La asimetría es deliberada: los
+bins entran al análisis aunque sean MAGs porque son el objeto de estudio,
+mientras que a las referencias, que sí pueden elegirse, se les exige más. La
+Tabla~\ref{tab:viabilidad} muestra el resultado de cada paso.
+
+\begin{table}[H]
+\cambio
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\caption[Viabilidad de las especies para el pangenoma]{Genomas públicos
+disponibles para cada especie en cada paso de la selección. Post-QC: genomas
+que pasan el control de calidad. Válidos: descargados y verificados, sin las
+exclusiones manuales. No redundantes: tras la desreplicación al 99\,\% de ANI.}
+\label{tab:viabilidad}
+\makebox[\textwidth][c]{%
+\begin{tabular}{llrrrrrl}
+\toprule
+\cambio \textbf{Linaje} & \cambio \textbf{Especie (GTDB)} & \cambio \textbf{Clúster} & \cambio \textbf{MAGs excl.} & \cambio \textbf{Post-QC} & \cambio \textbf{Válidos} & \cambio \textbf{No redund.} & \cambio \textbf{Resultado} \\
+\midrule
+\cambio L16 & \cambio \textit{Bacillus altitudinis} & \cambio 217 & \cambio 3 & \cambio 209 & \cambio 208 & \cambio 137 & \cambio Seleccionada \\
+\cambio L12 & \cambio \textit{Peribacillus frigoritolerans} & \cambio 82 & \cambio 3 & \cambio 72 & \cambio 69 & \cambio 42 & \cambio Seleccionada \\
+\cambio L8 & \cambio \textit{Acinetobacter schindleri} & \cambio 37 & \cambio 8 & \cambio 29 & \cambio 29 & \cambio 23 & \cambio Seleccionada \\
+\cambio L18 & \cambio \textit{Cytobacillus firmus\_B} & \cambio 18 & \cambio 0 & \cambio 18 & \cambio 18 & \cambio 12 & \cambio No viable \\
+\cambio L11 & \cambio \textit{Staphylococcus warneri\_A} & \cambio 27 & \cambio 1 & \cambio 24 & \cambio 24 & \cambio 4 & \cambio No viable \\
+\cambio L9 & \cambio \textit{Priestia flexa} & \cambio 31 & \cambio 1 & \cambio 29 & \cambio 29 & \cambio 4 & \cambio No viable \\
+\cambio L14 & \cambio \textit{Bacillus licheniformis} & \cambio 307 & \cambio 6 & \cambio 279 & \cambio 279 & \cambio 1 & \cambio No viable \\
+\cambio L3 & \cambio \textit{Bacillus\_AB infantis} & \cambio 12 & \cambio 2 & \cambio 9 & \cambio --- & \cambio --- & \cambio No viable \\
+\cambio L1 & \cambio \textit{Telluria timonae} & \cambio 8 & \cambio 5 & \cambio 3 & \cambio --- & \cambio --- & \cambio No viable \\
+\cambio L13 & \cambio \textit{Rossellomorea marisflavi} & \cambio 4 & \cambio 0 & \cambio 4 & \cambio --- & \cambio --- & \cambio No viable \\
+\cambio L15 & \cambio \textit{Metabacillus halosaccharovorans} & \cambio 4 & \cambio 0 & \cambio 4 & \cambio --- & \cambio --- & \cambio No viable \\
+\cambio L17 & \cambio \textit{Cytobacillus oceanisediminis} & \cambio 1 & \cambio 0 & \cambio 1 & \cambio --- & \cambio --- & \cambio No viable \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+Siete especies superaron el umbral de 15 genomas en el censo. El caso de
+\textit{Telluria timonae} (L1) muestra el efecto del nuevo criterio: es el
+linaje más prevalente de la Estela, pero solo tiene ocho genomas en GTDB, cinco
+de ellos MAGs, y queda fuera del pangenoma. El censo debió resolver además dos
+diferencias de nomenclatura entre GTDB y el NCBI. La especie que GTDB llama
+\textit{Telluria timonae} se registra en el NCBI como \textit{Massilia timonae},
+de modo que una búsqueda por el nombre de GTDB no devuelve ningún genoma. Y los
+sufijos de GTDB como \texttt{\_A}, \texttt{\_B} o \texttt{\_AB} marcan especies
+que el NCBI no separa, por lo que el conteo del NCBI para esos nombres sale
+inflado. Por ambos motivos el censo cuenta los genomas del clúster de especie de
+GTDB y no los del NCBI.
+
+Los 660 genomas de las siete especies viables se descargaron y los 660
+coincidieron en longitud con lo registrado por GTDB. Al revisar los nombres que
+cada genoma lleva en el NCBI aparecieron cuatro asignados por GTDB a una de estas
+especies pero rotulados en el NCBI con un género de otro filo: tres en
+\textit{P.~frigoritolerans} (dos como \textit{Brevibacterium} sp. y uno como
+\textit{Vibrio vulnificus}) y uno en \textit{B.~altitudinis} (como
+\textit{Micromonospora} sp.). Su calidad según CheckM2 era buena, pero una
+discrepancia de esa magnitud sugiere un ensamblaje quimérico o contaminado, y se
+excluyeron. Quedaron 656 genomas válidos.
+
+La desreplicación al 99\,\% de ANI cambió el orden de las especies. Las bases
+públicas contienen muchas cepas secuenciadas decenas de veces, y si todas
+entraran al pangenoma esas cepas pesarían más que las demás. El caso extremo es
+\textit{Bacillus licheniformis}: sus 279 genomas forman un solo grupo al
+99\,\% de ANI, con un ANI medio de 99.58\,\% entre ellos. La especie con más
+genomas públicos resulta ser, en la práctica, un solo clon muy secuenciado, y no
+sirve para estimar un pangenoma. Tras la desreplicación solo tres especies
+conservaron al menos 15 genomas no redundantes: \textit{B.~altitudinis} (137),
+\textit{P.~frigoritolerans} (42) y \textit{A.~schindleri} (23). Como el número
+de especies viables coincidió con el máximo de tres previsto, el ranking no tuvo
+que descartar ninguna.
+
+Solo \textit{B.~altitudinis} superó el tope de 50 referencias por especie, de
+modo que solo en ella hubo que elegir. Se incluyeron primero los dos genomas
+representantes o de cepa tipo de la especie y el único aislado de sustrato
+pétreo o árido (un residuo minero de Portugal). Los 47 restantes se tomaron por
+rotación entre hábitats y, dentro de cada hábitat, entre continentes, eligiendo
+en cada paso el genoma de mejor calidad todavía no elegido. El resultado cubre
+10 hábitats y 8 continentes. En \textit{P.~frigoritolerans} entraron los 42
+genomas no redundantes, dominados por aislados de suelo y plantas (28 de 42) y
+de Asia y Europa (30 de 42). En \textit{A.~schindleri} entraron los 23, de los
+cuales 11 son aislados clínicos. Ese sesgo viene de las bases públicas, que
+tienen más cepas de hospital de esta especie, y no de la selección. En total
+entraron al pangenoma 115 referencias y los 3 bins.
+
+Dos limitaciones de esta clasificación deben tenerse presentes al leer los
+resultados por hábitat. El 28\,\% de los 656 genomas no declara su fuente de
+aislamiento. Y los cinco genomas clasificados como de sustrato pétreo o árido
+proceden de drenaje minero, sal de mina, arena del desierto, residuo minero y un
+ánfora romana. Ninguno procede de patrimonio pétreo, porque en las bases
+públicas no hay aislados de ese origen para estas especies.
+
+\subsubsection{Anotación de los genomas}
+\label{subsubsec:res_anotacion}
+
+Los 118 genomas se anotaron con Bakta, con la misma versión, la misma base de
+datos y las mismas opciones. El control de la anotación compara el número de
+secuencias codificantes (CDS) de cada referencia con la mediana de su especie y
+emite una alerta si se aleja más del 20\,\%. No hubo ninguna alerta. La
+Tabla~\ref{tab:anotacion} compara los bins con sus referencias.
+
+\begin{table}[H]
+\cambio
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption[Anotación de referencias y bins]{Resultado de la anotación con Bakta.
+Para las referencias se da la mediana y el rango; para el bin, el valor
+observado y su proporción respecto de la mediana de CDS de la especie.}
+\label{tab:anotacion}
+\makebox[\textwidth][c]{%
+\begin{tabular}{lcccc}
+\toprule
+\cambio \textbf{Especie} & \cambio \textbf{CDS de las referencias} & \cambio \textbf{Bin: CDS / contigs / Mpb} & \cambio \textbf{Bin / mediana} & \cambio \textbf{Completitud del bin} \\
+\midrule
+\cambio \textit{B.~altitudinis} & \cambio 3789 (3513--4238) & \cambio 2738 / 90 / 2.76 & \cambio 72\,\% & \cambio 72.5\,\% \\
+\cambio \textit{P.~frigoritolerans} & \cambio 5337 (5089--6282) & \cambio 4164 / 49 / 4.31 & \cambio 78\,\% & \cambio 92.3\,\% \\
+\cambio \textit{A.~schindleri} & \cambio 3123 (2781--3552) & \cambio 3265 / 96 / 3.50 & \cambio 105\,\% & \cambio 99.9\,\% \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+En \textit{B.~altitudinis} y \textit{A.~schindleri} el número de genes del bin
+corresponde a lo que su completitud hace esperar. En \textit{P.~frigoritolerans}
+no: el bin tiene el 78\,\% de los genes de una cepa típica, aunque su completitud
+estimada es del 92.3\,\%. La diferencia tiene una explicación conocida. CheckM2
+estima la completitud a partir de genes marcadores conservados, que se
+reconstruyen con facilidad, mientras que lo que suele perderse al reconstruir un
+MAG son regiones variables, repetidas o móviles, es decir, genoma accesorio. La
+consecuencia práctica, que se repite en toda esta sección, es que la presencia de
+un gen en el bin es confiable y su ausencia no lo es.
+
+\subsubsection{Pangenoma de cada especie}
+\label{subsubsec:res_pangenoma}
+
+El pangenoma de cada especie se construyó con Panaroo y se dividió en tres
+categorías según la fracción de referencias en que aparece cada familia de
+genes: core (al menos el 95\,\%), shell (del 15 al 95\,\%) y cloud (menos del
+15\,\%). El genoma accesorio es la suma de shell y cloud. El umbral del 95\,\%
+corresponde a lo que Roary llama \textit{soft core}, ya que en esa herramienta
+el core estricto exige el 99\,\% \cite{Page2015}. La partición se calculó solo
+con las referencias, por el motivo expuesto en el Capítulo VI. La
+Tabla~\ref{tab:pangenoma} resume el resultado.
+
+\begin{table}[H]
+\cambio
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption[Tamaño y partición del pangenoma]{Tamaño y partición del pangenoma de
+cada especie, calculados solo con las referencias. Singletons: familias
+presentes en una sola referencia. $\alpha$: exponente de la ley de Heaps; entre
+paréntesis, el rango al quitar un genoma cada vez.}
+\label{tab:pangenoma}
+\makebox[\textwidth][c]{%
+\begin{tabular}{lrrrrrrl}
+\toprule
+\cambio \textbf{Especie} & \cambio \textbf{Ref.} & \cambio \textbf{Core} & \cambio \textbf{Shell} & \cambio \textbf{Cloud} & \cambio \textbf{Pangenoma} & \cambio \textbf{Singletons} & \cambio \textbf{$\alpha$} \\
+\midrule
+\cambio \textit{B.~altitudinis} & \cambio 50 & \cambio 3303 & \cambio 847 & \cambio 2909 & \cambio 7059 & \cambio 1546 (22\,\%) & \cambio 0.66 (0.64--0.68) \\
+\cambio \textit{P.~frigoritolerans} & \cambio 42 & \cambio 3961 & \cambio 2142 & \cambio 10022 & \cambio 16125 & \cambio 6103 (38\,\%) & \cambio 0.57 (0.55--0.58) \\
+\cambio \textit{A.~schindleri} & \cambio 23 & \cambio 2389 & \cambio 1114 & \cambio 4096 & \cambio 7599 & \cambio 2782 (37\,\%) & \cambio 0.55 (0.52--0.57) \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+Las curvas de acumulación de la Figura~\ref{fig:curvas_f3} muestran que en las
+tres especies el pangenoma sigue creciendo con la última referencia añadida. La
+ley de Heaps resume ese crecimiento con un exponente $\alpha$: un valor menor que
+1 indica un pangenoma abierto, en el que cada genoma nuevo sigue aportando
+familias \cite{tettelin2008}. Los tres valores están entre 0.55 y 0.66, de modo
+que los tres pangenomas son abiertos. El exponente se estimó con 500
+permutaciones del orden de los genomas, con el mismo procedimiento que
+implementa el paquete micropan \cite{snipen2015}. Debe leerse como un resumen
+estadístico de la muestra de genomas disponible y no como una propiedad fija de
+la especie \cite{guerra2026}.
+
+\begin{figure}[H]
+\cambio
+    \centering
+    \includegraphics[width=\textwidth]{images/fig_f3_curvas_acumulacion.pdf}
+    \caption[Curvas de acumulación del pangenoma]{Curvas de acumulación del
+    pangenoma (rojo) y del genoma core (azul) de cada especie, calculadas solo
+    con las referencias. Cada curva es la mediana de 100 órdenes aleatorios de
+    los genomas y la banda, el rango intercuartil.}
+    \label{fig:curvas_f3}
+\end{figure}
+
+\textit{P.~frigoritolerans} tiene un pangenoma mucho mayor que las otras dos
+especies, con 16\,125 familias, y una fracción de singletons del 38\,\%. Como el
+tamaño del pangenoma crece con el número de genomas y las tres especies tienen
+50, 42 y 23 referencias, se repitió la comparación con submuestras de 23
+genomas. El orden se mantuvo: con 23 genomas, el pangenoma de
+\textit{P.~frigoritolerans} reúne unas 12\,900 familias, frente a unas 6\,000 en
+\textit{B.~altitudinis} y 7\,599 en \textit{A.~schindleri}. En las tres especies
+el número de familias por número de genomas que las contienen tiene la forma de
+U habitual en los pangenomas bacterianos, con muchas familias raras, muchas
+universales y pocas intermedias \cite{horesh2021}.
+
+Un pangenoma puede parecer abierto por un artefacto: si los ensamblajes muy
+fragmentados tuvieran genes partidos, cada fragmento se contaría como una familia
+nueva. La Figura~\ref{fig:heaps_f3} pone a prueba esa posibilidad de tres
+formas. Primero, el número de familias únicas de cada referencia no aumenta con
+el número de contigs de su ensamblaje (panel a): la correlación de Spearman es
+nula en \textit{B.~altitudinis} ($\rho = -0.05$) y en
+\textit{P.~frigoritolerans} ($\rho = -0.08$), y negativa en
+\textit{A.~schindleri} ($\rho = -0.52$, $p = 0.01$), lo contrario de lo que
+produciría el artefacto. Segundo, $\alpha$ casi no cambia al quitar cualquier
+genoma, y calculado solo con genomas cerrados da 0.64 y 0.55 en
+\textit{B.~altitudinis} y \textit{A.~schindleri} (panel b). En
+\textit{P.~frigoritolerans} sube a 0.74, aunque con solo siete genomas cerrados
+la estimación es imprecisa: parte de la apertura de esta especie viene de
+borradores y de dos genomas atípicos, y parte es real, porque la especie tiene
+linajes muy separados, con un ANI mínimo entre referencias del 95.8\,\%, cerca
+del límite de especie. Por eso se reportan ambos valores. Tercero, la proporción
+de proteínas hipotéticas crece del core (13 a 17\,\%) al cloud (29 a 45\,\%),
+como es habitual, sin que el cloud esté dominado por ellas (panel c). Se concluye
+que la apertura de los tres pangenomas es real.
+
+\begin{figure}[H]
+\cambio
+    \centering
+    \includegraphics[width=0.85\textwidth]{images/fig_f3_diagnostico_heaps.pdf}
+    \caption[Diagnóstico de la apertura del pangenoma]{Diagnóstico de la
+    apertura del pangenoma. \textbf{(a)} Familias únicas de cada referencia
+    frente al número de contigs de su ensamblaje; en rojo, los genomas con más
+    familias únicas que la mediana más tres desviaciones absolutas medianas.
+    \textbf{(b)} Exponente $\alpha$ de Heaps con todas las referencias (azul;
+    la barra es el rango al quitar un genoma cada vez) y solo con genomas
+    cerrados (naranja). La línea discontinua marca $\alpha = 1$, el límite
+    entre pangenoma abierto y cerrado. \textbf{(c)} Porcentaje de familias
+    anotadas como proteína hipotética en cada categoría; el número sobre cada
+    barra es el total de familias de la categoría.}
+    \label{fig:heaps_f3}
+\end{figure}
+
+La decisión de calcular la partición sin el bin se evaluó midiendo qué habría
+pasado si el bin contara como un genoma más. Con las referencias usadas, el core
+habría bajado solo 15, 32 y 5 familias (del 0.2 al 0.8\,\%), porque el bin es un
+genoma entre 24 y 51. La pérdida de core por incompletitud que describen Li y
+Yin \cite{liyin2022} es importante cuando hay pocos genomas o muchos MAGs: en el
+piloto, con cuatro genomas, contar el bin hacía caer el core de 3\,410 a 2\,539
+familias. El cambio que sí habría producido contar el bin es que sus familias
+propias, 14, 34 y 70, habrían pasado a ser cloud y ya no podrían identificarse
+como candidatas a genes propios de la cepa.
+
+\subsubsection{Posición de cada bin en el pangenoma de su especie}
+\label{subsubsec:res_posicion}
+
+Una vez definidas las categorías con las referencias, cada gen del bin se ubicó
+según la categoría de su familia. La Tabla~\ref{tab:posicion_bin} y la
+Figura~\ref{fig:posicion_bin} muestran el resultado. La última columna cuenta
+los genes del bin que Panaroo eliminó durante su limpieza y que, por tanto, no
+pertenecen a ninguna familia; su origen se explica en la
+Sección~\ref{subsubsec:iter_exclusivos}.
+
+\begin{table}[H]
+\cambio
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption[Genes del bin por categoría del pangenoma]{Genes de cada bin según la
+categoría de su familia en el pangenoma de las referencias. Candidatos: genes
+de familias que no aparecen en ninguna referencia.}
+\label{tab:posicion_bin}
+\makebox[\textwidth][c]{%
+\begin{tabular}{lrrrrrrr}
+\toprule
+\cambio \textbf{Bin} & \cambio \textbf{Genes} & \cambio \textbf{Core} & \cambio \textbf{Shell} & \cambio \textbf{Cloud} & \cambio \textbf{Candidatos} & \cambio \textbf{Eliminados} & \cambio \textbf{Core recuperado} \\
+\midrule
+\cambio bin-5-63 & \cambio 2739 & \cambio 2465 & \cambio 213 & \cambio 15 & \cambio 14 & \cambio 32 & \cambio 75.2\,\% \\
+\cambio bin-1-54 & \cambio 4167 & \cambio 3406 & \cambio 520 & \cambio 200 & \cambio 34 & \cambio 7 & \cambio 85.7\,\% \\
+\cambio bin-4-52 & \cambio 3266 & \cambio 2383 & \cambio 345 & \cambio 367 & \cambio 70 & \cambio 101 & \cambio 99.0\,\% \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{figure}[H]
+\cambio
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/fig_f3_posicion_bin.pdf}
+    \caption[Posición de cada bin en el pangenoma]{Posición de cada bin en el
+    pangenoma de su especie. \textbf{(a)} Reparto de los genes del bin según la
+    categoría de su familia en el pangenoma de las referencias; «fuera del
+    pangenoma» son los genes que Panaroo eliminó. \textbf{(b)} Porcentaje del
+    genoma core de las referencias presente en el bin frente a su completitud
+    según CheckM2. La línea discontinua es la igualdad y la banda gris, un
+    margen de $\pm 10$ puntos.}
+    \label{fig:posicion_bin}
+\end{figure}
+
+El panel b de la Figura~\ref{fig:posicion_bin} es un control de la partición. Si
+el análisis funciona, cada bin debe contener del core de las referencias un
+porcentaje parecido a su completitud, porque sus ausencias deberían explicarse
+solo por lo que le falta al bin. Los tres bins quedan dentro de un margen de 10
+puntos. El control equivalente para las referencias exige que cada una contenga
+al menos el 97\,\% del core, y solo una no lo cumplió: GCF\_018613135.1, de
+\textit{P.~frigoritolerans}, con el 94.6\,\%. Se mantuvo porque su calidad es
+alta (100\,\% de completitud y 0.5\,\% de contaminación), tiene un número normal
+de genes y su ANI medio con las demás cepas es del 96.3\,\%: es una cepa
+divergente, no un ensamblaje defectuoso.
+
+Para saber si los bins tienen muchos o pocos genes propios, se comparó su
+número de candidatos con el número de familias únicas de cada referencia, es
+decir, las que ninguna otra referencia tiene. Las medianas de las referencias
+son 18, 120 y 104 familias únicas, y los bins tienen 14, 34 y 70 candidatos,
+lo que los ubica en los percentiles 34, 2 y 26 de su especie. Cualquier cepa de
+estas especies tiene genes propios, y los bins de la Estela no tienen más que
+una cepa típica. Tener genes que ninguna otra cepa comparte no indica por sí
+mismo una adaptación al ambiente de la Estela.
+
+\subsubsection{Ubicación filogenética de cada bin}
+\label{subsubsec:res_arboles}
+
+Para cada especie se infirió un árbol de máxima verosimilitud con IQ-TREE 3
+\cite{wong2026iqtree3} sobre el alineamiento concatenado de los genes core,
+incluido el bin. Los genes core que le faltan al bin quedan como datos
+faltantes, que el método tolera. La Tabla~\ref{tab:arboles} resume los árboles
+y la posición de cada bin.
+
+\begin{table}[H]
+\cambio
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\caption[Árboles del genoma core]{Árboles del genoma core de cada especie y
+posición del bin. Distancia: suma de las ramas entre el bin y su pariente más
+cercano, en sustituciones por sitio.}
+\label{tab:arboles}
+\makebox[\textwidth][c]{%
+\begin{tabular}{lccc}
+\toprule
+  & \cambio \textbf{\textit{B.~altitudinis}} & \cambio \textbf{\textit{P.~frigoritolerans}} & \cambio \textbf{\textit{A.~schindleri}} \\
+\midrule
+\cambio Genomas en el árbol & \cambio 51 & \cambio 43 & \cambio 24 \\
+\cambio Sitios alineados & \cambio 2.71 Mpb & \cambio 3.24 Mpb & \cambio 2.04 Mpb \\
+\cambio Sitios constantes & \cambio 92.4\,\% & \cambio 87.2\,\% & \cambio 90.6\,\% \\
+\cambio Sitios informativos & \cambio 4.9\,\% & \cambio 6.2\,\% & \cambio 6.1\,\% \\
+\cambio Modelo elegido (BIC) & \cambio GTR+F+I+R5 & \cambio GTR+F+R7 & \cambio GTR+F+R4 \\
+\cambio Nodos con UFBoot $< 95$ & \cambio 18 de 48 & \cambio 2 de 40 & \cambio 0 de 21 \\
+\midrule
+\cambio Pariente más cercano del bin & \cambio GCF\_000828455.1 & \cambio GCA\_024160055.1 & \cambio GCF\_025514435.1 \\
+\cambio Origen del pariente & \cambio cereal fermentado, Países Bajos & \cambio suelo, Corea del Sur & \cambio clínico, EE.\,UU. \\
+\cambio Distancia al pariente & \cambio 0.016 & \cambio 0.0017 & \cambio 0.013 \\
+\cambio UFBoot del agrupamiento & \cambio 100 & \cambio 100 & \cambio 100 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+Los tres bins se agrupan con su pariente más cercano con soporte máximo. En
+\textit{B.~altitudinis}, el bin y su pariente forman un grupo separado del resto
+de la especie, y la rama del bin (0.0083) mide casi lo mismo que la de su
+pariente (0.0077), lo que indica que la incompletitud del bin no alarga su rama.
+En \textit{P.~frigoritolerans} la distancia es de 0.0017 sustituciones por
+sitio, que equivale a cerca del 99.8\,\% de identidad en el core: el bin es
+prácticamente la misma cepa que su pariente
+(Figura~\ref{fig:arbol_l12}). En \textit{A.~schindleri} el bin cae dentro de un
+grupo de cepas clínicas, lo que es coherente con el sesgo clínico de las
+referencias de esa especie.
+
+\begin{figure}[H]
+\cambio
+    \centering
+    \includegraphics[width=0.85\textwidth]{images/fig_f3_arbol_core_L12_Peribacillus_frigoritolerans.pdf}
+    \caption[Árbol del genoma core de \textit{P.~frigoritolerans}]{Árbol de
+    máxima verosimilitud del genoma core de \textit{Peribacillus
+    frigoritolerans} (42 referencias y el bin \texttt{bin-1-54}), inferido con
+    IQ-TREE 3. El color de cada punta indica el hábitat de aislamiento de la
+    referencia. Los puntos negros marcan los nodos con UFBoot igual o superior a
+    95. La raíz se ubicó en el punto medio solo para dibujar el árbol y no
+    representa el ancestro común. Los árboles de las otras dos especies se
+    encuentran en el repositorio del proyecto.}
+    \label{fig:arbol_l12}
+\end{figure}
+
+Ningún bin se agrupa con las referencias de sustrato pétreo o árido. El hábitat
+del pariente más cercano refleja qué cepas se han secuenciado, no el origen del
+bin, y no debe leerse como una pista sobre la ecología de la cepa en la Estela.
+La confiabilidad de los árboles es desigual. La posición de cada bin es sólida,
+pero en \textit{B.~altitudinis} 18 de los 48 nodos internos tienen soporte bajo.
+Las ramas internas de esa especie son muy cortas, porque sus cepas difieren muy
+poco entre sí, y además puede haber recombinación, que no se corrigió. Por eso no
+se hace ninguna afirmación sobre el orden en que se separaron sus cepas.
+
+\subsubsection{ANI de cada bin y coherencia con el árbol}
+\label{subsubsec:res_ani_bins}
+
+El árbol usa solo los genes core y solo las referencias seleccionadas. Para
+contrastarlo se calculó el ANI de cada bin contra todos los genomas válidos de su
+especie (208, 69 y 29) con fastANI \cite{fastANI2018}. La
+Figura~\ref{fig:ani_bins} y la Tabla~\ref{tab:ani_bins} muestran el resultado.
+
+\begin{table}[H]
+\cambio
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption[ANI de cada bin contra su especie]{ANI de cada bin contra todos los
+genomas válidos de su especie. $\rho$: correlación de Spearman entre el ANI y la
+distancia en el árbol del core, calculada sobre las referencias del pangenoma.}
+\label{tab:ani_bins}
+\makebox[\textwidth][c]{%
+\begin{tabular}{lrrrrll}
+\toprule
+\cambio \textbf{Bin} & \cambio \textbf{Genomas} & \cambio \textbf{ANI $\geq 99\%$} & \cambio \textbf{ANI máximo} & \cambio \textbf{Mediana} & \cambio \textbf{Genoma más parecido} & \cambio \textbf{$\rho$} \\
+\midrule
+\cambio bin-5-63 & \cambio 208 & \cambio 2 & \cambio 99.06\,\% & \cambio 98.19\,\% & \cambio GCF\_900119345.1 & \cambio $-0.33$ \\
+\cambio bin-1-54 & \cambio 69 & \cambio 8 & \cambio 99.98\,\% & \cambio 97.18\,\% & \cambio GCA\_900000145.1 & \cambio $-0.90$ \\
+\cambio bin-4-52 & \cambio 29 & \cambio 0 & \cambio 98.39\,\% & \cambio 97.12\,\% & \cambio GCF\_025514435.1 & \cambio $-0.50$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{figure}[H]
+\cambio
+    \centering
+    \includegraphics[width=\textwidth]{images/fig_f3_ani_bins.pdf}
+    \caption[ANI de cada bin y coherencia con el árbol]{ANI de cada bin.
+    \textbf{(a)} ANI del bin contra cada genoma válido de su especie, ordenados
+    de mayor a menor. En azul, las referencias del pangenoma; en naranja, los
+    genomas que quedaron fuera por la desreplicación o por el tope de 50. La
+    línea discontinua marca el 99\,\% (misma cepa o clon) y la punteada, el
+    95\,\% (misma especie). \textbf{(b)} ANI del bin frente a la distancia en el
+    árbol del core, para las referencias del pangenoma.}
+    \label{fig:ani_bins}
+\end{figure}
+
+Los tres bins quedan en situaciones distintas. La cepa de
+\textit{P.~frigoritolerans} de la Estela es prácticamente idéntica a un genoma ya
+secuenciado (99.98\,\% de ANI con GCA\_900000145.1) y pertenece a un clon de ocho
+genomas con ANI de al menos 99\,\% entre sí. Ese clon se ha aislado en cuatro
+continentes y en seis ambientes distintos: manzana y suelo agrícola en Alemania,
+semilla en Francia, suelo en Corea del Sur, nieve en la Antártida, y una sala
+limpia y piel humana en Estados Unidos. Se trata, por tanto, de un linaje
+cosmopolita. La cepa de \textit{B.~altitudinis} pertenece también a un clon
+conocido (99.06\,\%), pero los dos genomas de ese clon quedaron fuera del
+pangenoma por la desreplicación o por el tope. La cepa de
+\textit{A.~schindleri}, en cambio, no alcanza el 99\,\% con ningún genoma de su
+especie: es una cepa distinta de todas las secuenciadas.
+
+El panel b de la Figura~\ref{fig:ani_bins} funciona como control cruzado entre
+dos métodos independientes: el árbol mide parentesco en los genes core y el ANI,
+en todo el genoma compartido. Si ambos son coherentes, el ANI debe bajar cuando
+aumenta la distancia en el árbol. La concordancia fue alta en
+\textit{P.~frigoritolerans} ($\rho = -0.90$) y moderada en
+\textit{A.~schindleri} ($\rho = -0.50$). En \textit{B.~altitudinis} fue débil
+($\rho = -0.33$), pero no por una contradicción entre métodos. El bin y su
+pariente forman un grupo aparte, y para llegar desde el bin a cualquier otra
+referencia hay que recorrer la misma rama larga. Por eso todas las referencias
+quedan casi a la misma distancia del bin, entre 98.0 y 98.4\,\% de ANI, y las
+diferencias que quedan son del orden del error de medición de ambos métodos.
+
+\subsubsection{Contenido accesorio, parentesco y hábitat}
+\label{subsubsec:res_accesorio}
+
+Se comprobó si el genoma accesorio de las referencias se parece más entre cepas
+emparentadas o entre cepas del mismo hábitat. Para ello se midió la distancia
+de Jaccard entre los conjuntos de familias accesorias de cada par de genomas,
+sin contar los singletons. La prueba de Mantel compara esa distancia con la
+distancia en el árbol, y una PERMANOVA mide qué fracción de las diferencias
+explica el hábitat, usando solo los hábitats con al menos tres referencias. La
+Tabla~\ref{tab:accesorio} muestra el resultado.
+
+\begin{table}[H]
+\cambio
+\centering
+\footnotesize
+\caption[Contenido accesorio frente a parentesco y hábitat]{Relación del
+contenido accesorio con el parentesco (prueba de Mantel, 999 permutaciones) y
+con el hábitat (PERMANOVA, 999 permutaciones). Entre paréntesis, genomas y
+hábitats incluidos en la PERMANOVA.}
+\label{tab:accesorio}
+\begin{tabular}{lll}
+\toprule
+\cambio \textbf{Especie} & \cambio \textbf{Mantel: accesorio y árbol} & \cambio \textbf{PERMANOVA por hábitat} \\
+\midrule
+\cambio \textit{B.~altitudinis} & \cambio $r = 0.25$, $p = 0.001$ & \cambio $R^2 = 0.17$, $p \approx 0.35$ (38; 7 hábitats) \\
+\cambio \textit{P.~frigoritolerans} & \cambio $r = 0.73$, $p = 0.001$ & \cambio $R^2 = 0.04$, $p \approx 0.3$ (28; 2 hábitats) \\
+\cambio \textit{A.~schindleri} & \cambio $r = 0.54$, $p = 0.001$ & \cambio $R^2 = 0.15$, $p \approx 0.06$ (17; 3 hábitats) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+En las tres especies las cepas emparentadas comparten más genes accesorios, y el
+hábitat no agrega una señal detectable. Es el mismo patrón descrito en el grupo
+\textit{Bacillus pumilus}, al que pertenece \textit{B.~altitudinis}, donde el
+linaje pesó más que el ambiente en la distribución de las cepas \cite{fu2021}.
+Este resultado tiene poca potencia: hay pocos genomas por hábitat y las
+categorías de hábitat son gruesas. Que no se detecte un efecto no significa que
+no exista. Lo que sí permite afirmar es que el pangenoma, por sí solo, no aporta
+evidencia de adaptación al sustrato pétreo.
+
+\subsubsection{Genes específicos de la cepa}
+\label{subsubsec:res_especificos}
+
+Se denomina gen específico de la cepa a un gen del bin que no tiene copia, con
+al menos 80\,\% de identidad en al menos el 80\,\% de su longitud, en ningún
+genoma de su especie depositado en el NCBI a la fecha de la búsqueda
+(\pendiente{fecha de la búsqueda remota de la versión 2}). La definición es
+deliberadamente estrecha. No implica que el gen sea nuevo para la ciencia, ni
+que sea una adaptación a la piedra, ni que sea raro en la naturaleza: puede
+estar idéntico en otra especie del mismo género. Su número depende de cuántos
+genomas hay de la especie, de qué tan cerca está el pariente secuenciado más
+próximo, de la completitud del bin y de cuánto ADN móvil intercambia el género.
+
+El punto de partida son los genes candidatos: los genes del bin cuya familia no
+aparece en ninguna referencia y, desde la segunda versión del análisis, también
+los genes del bin que Panaroo eliminó (Sección~\ref{subsubsec:iter_exclusivos}).
+Cada candidato pasa por una cadena de filtros que se aplican de los más baratos a
+los más costosos. El filtro F1 descarta los genes mal formados: pseudogenes,
+proteínas de menos de 100 aminoácidos y genes a menos de 100 pb del borde del
+contig, que suelen estar partidos \cite{skovgaard2001,denton2014}. El F2 no
+descarta, sino que clasifica: si el contig del gen no comparte ninguna familia
+con las referencias, se considera huérfano y se revisa después como posible
+contaminación \cite{shaiber2019}. El F4 busca cada proteína con
+\texttt{tblastn} en todos los genomas válidos de la especie y descarta las que
+aparecen. El F3 busca cada gen en los demás bins de la misma muestra y solo
+advierte si aparece, porque un gen compartido con otra bacteria de la piedra
+puede ser ADN intercambiado o un error de reconstrucción. Los filtros remotos
+completan la cadena: F6 compara los contigs huérfanos con core\_nt y descarta
+los que se parecen más a otro género; F5 busca cada proteína en nr y la descarta
+si la tiene un organismo de la misma especie; y F5b comprueba la especie de los
+genomas portadores por su ANI y no por su nombre \cite{ciufo2018}. La
+Tabla~\ref{tab:embudo_especificos} muestra cuántos candidatos sobreviven a cada
+paso en la versión 2.
+
+\begin{table}[H]
+\cambio
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption[Embudo de genes específicos de la cepa]{Genes candidatos que
+sobreviven a cada filtro (versión 2). Entre paréntesis, los candidatos que
+proceden de genes eliminados por Panaroo.}
+\label{tab:embudo_especificos}
+\makebox[\textwidth][c]{%
+\begin{tabular}{lccc}
+\toprule
+\cambio \textbf{Paso} & \cambio \textbf{\textit{B.~altitudinis}} & \cambio \textbf{\textit{P.~frigoritolerans}} & \cambio \textbf{\textit{A.~schindleri}} \\
+\midrule
+\cambio Candidatos & \cambio 46 (32) & \cambio 41 (7) & \cambio 171 (101) \\
+\cambio Descartados por F1 (cortos / borde / pseudogén) & \cambio 12 / 9 / 0 & \cambio 12 / 0 / 0 & \cambio 26 / 4 / 4 \\
+\cambio Pasan F1 & \cambio 25 & \cambio 29 & \cambio 137 \\
+\cambio Presentes en otro genoma de la especie (F4) & \cambio 11 & \cambio 28 & \cambio 40 \\
+\cambio Pasan F4 y van a F5 & \cambio 14 & \cambio 1 & \cambio 97 \\
+\cambio Contigs huérfanos enviados a F6 & \cambio 6 & \cambio 0 & \cambio 4 \\
+\cambio Advertencias por otros bins de la muestra (F3) & \cambio 0 & \cambio 0 & \cambio 0 \\
+\midrule
+\cambio Descartados por F6, F5 y F5b & \cambio \pendiente{} & \cambio \pendiente{} & \cambio \pendiente{} \\
+\cambio Genes específicos de la cepa & \cambio \pendiente{} & \cambio \pendiente{} & \cambio \pendiente{} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+El filtro F4 es el que más descarta, y la razón varía según la especie. En
+\textit{P.~frigoritolerans}, 28 de los 29 candidatos que pasaron F1 están en
+otros genomas de la especie. En la primera versión, 24 de los 26 candidatos
+que F4 descartó estaban en un solo genoma, GCA\_900000145.1, el que tiene
+99.98\,\% de ANI con el bin y que la desreplicación había sacado del
+pangenoma. En \textit{B.~altitudinis}, de los 9 candidatos que F4 descartó en
+la primera versión, 6 estaban en genomas que no entraron por el tope de 50 y 3
+en genomas que sacó la desreplicación.
+En \textit{A.~schindleri}, buena parte estaba en las propias referencias, pero
+con identidades del 80 al 97\,\%: eran integrasas, transposasas y proteínas de
+fago que Panaroo había separado en familias distintas. Sin buscar en todos los
+genomas de la especie, la lista de candidatos habría quedado inflada por la
+desreplicación, por el tope y por la forma en que se agrupan los genes móviles.
+
+\pendiente{Resultado de F5, F5b y F6 de la versión 2: número final de genes
+específicos por especie, su origen probable y las advertencias por identidad
+casi total.}
+
+La primera versión del análisis, cuya parte remota sí terminó, permite anticipar
+la naturaleza de estos genes. En ella quedaron 27 genes específicos en
+\textit{A.~schindleri} y ninguno en las otras dos especies. Los 27 están en ocho
+contigs, agrupados en islas junto a integrasas, transposasas y proteínas de fago.
+Su mejor parecido en nr está en otras especies de \textit{Acinetobacter} en 24
+casos, en un fago en uno, en \textit{Cloacibacterium}, de otro filo, en otro, y
+en \textit{Thauera} en el último. Dieciséis de ellos tienen al menos 99\,\% de
+identidad con una proteína de otra especie. Son, por tanto, ADN móvil adquirido
+por transferencia horizontal, muchas veces de forma reciente, y no genes
+originados en la cepa. El mejor parecido indica un origen probable y no
+identifica al donante \cite{ravenhall2015}. Si alguno de estos genes tiene
+relevancia para el biodeterioro es una pregunta de la Fase 4.
+
+\subsubsection{Implicancia para el OE3}
+\label{subsubsec:implicancia_oe3}
+
+El OE3 se cumple para las tres especies con genomas públicos suficientes. Los
+resultados permiten afirmar lo siguiente:
+
+\begin{itemize}
+    \item Los pangenomas de \textit{B.~altitudinis}, \textit{P.~frigoritolerans}
+    y \textit{A.~schindleri} son abiertos, con un genoma core de 2\,389 a 3\,961
+    familias. La apertura se mantiene a igual número de genomas y no se explica
+    por la fragmentación de los ensamblajes.
+    \item Cada cepa de la Estela se ubica con soporte máximo junto a una cepa ya
+    conocida de otro continente y de otro ambiente. Ninguna se agrupa con las
+    cepas de sustrato pétreo o árido.
+    \item La cepa de \textit{P.~frigoritolerans} es prácticamente idéntica a una
+    cepa secuenciada y pertenece a un clon cosmopolita; la de
+    \textit{B.~altitudinis} pertenece a un clon conocido; la de
+    \textit{A.~schindleri} es distinta de todas las secuenciadas.
+    \item El contenido accesorio sigue al parentesco y no al hábitat de
+    aislamiento.
+    \item Las cepas de la Estela no tienen más genes propios que cualquier otra
+    cepa de su especie, y los genes específicos identificados hasta ahora son ADN
+    móvil adquirido de otras especies del mismo género.
+\end{itemize}
+
+Estas afirmaciones tienen límites que conviene repetir. Los bins son MAGs, de
+modo que la ausencia de un gen no es concluyente, sobre todo en
+\texttt{bin-5-63} (72.5\,\% de completitud). Las referencias se limitan a GTDB
+R220, y los genomas depositados después solo se revisan a través de nr. Y la
+especificidad de un gen es relativa a lo que se ha secuenciado y a la fecha de
+la consulta. Pasan a la Fase 4 la ubicación de cada gen del bin en el pangenoma
+(\texttt{genes\_bin.tsv}) y la lista final de genes específicos.
+
+\fincambio
 \subsection{Sensibilidad de los resultados a los umbrales elegidos}
+\cambio
+\label{subsec:sensibilidad}
+\fincambio
 
 Los resultados anteriores corresponden a una sola configuración. Esta sección
 responde a una pregunta distinta: cuánto habrían cambiado esos resultados con
@@ -608,7 +1371,9 @@ $> 95\%$ & 10 & 12 & 14 & 15 \\
 El conjunto seleccionado resulta poco sensible al umbral de completitud. Bajarlo
 de 70 a 50\% solo añade tres genomas. Subirlo de 70 a 90\% solo retira cinco. La
 explicación está en la distribución de la completitud dentro del conjunto
-retenido, descrita en la Sección 7.2.1: la mediana alcanza el 99.86\% y trece
+\cambio
+retenido, descrita en la Sección~\ref{subsec:res_fase1}: la mediana alcanza el 99.86\% y trece
+\fincambio
 genomas superan el 99\%. La mayoría de los genomas seleccionados está lejos del
 umbral, de modo que moverlo no los afecta.
 
@@ -660,7 +1425,9 @@ organelar y desconocida por separado. Un bin con 40\% de longitud procariota,
 mitad de su longitud lo sea.
 
 Hay 22 bins cuya fracción procariota queda entre el 25 y el 75\%. La afirmación
-de la Sección 7.2.1 sobre la concentración de los bins en los extremos de la
+\cambio
+de la Sección~\ref{subsec:res_fase1} sobre la concentración de los bins en los extremos de la
+\fincambio
 escala describe bien la tendencia general, pero este grupo intermedio existe y
 conviene dimensionarlo.
 
@@ -684,7 +1451,9 @@ con un umbral del 99.5\%. El resto de los genomas está tan separado que ningún
 umbral razonable los uniría.
 
 Por lo tanto, la definición de linaje es insensible al umbral dentro de este
-conjunto. Este resultado refuerza la conclusión de la Sección 7.2.2 sobre la
+\cambio
+conjunto. Este resultado refuerza la conclusión de la Sección~\ref{subsec:res_fase2} sobre la
+\fincambio
 baja redundancia del material recuperado.
 
 \subsubsection{Continuidad del ensamblaje}
@@ -701,17 +1470,169 @@ reducido la descripción taxonómica de la comunidad, que es el objetivo del OE2
 a cambio de una mejora que solo importa en el análisis pangenómico posterior. La
 decisión fue conservarlos en las Fases 1 y 2 y trasladar el control de
 continuidad a la etapa donde la fragmentación sí genera un error, tal como se
-discute en la Sección 7.2.1 a propósito de \texttt{bin-5-50}.
+\cambio
+discute en la Sección~\ref{subsec:res_fase1} a propósito de \texttt{bin-5-50}.
+
+
+\subsubsection{Umbral de desreplicación de las referencias}
+\label{subsubsec:sens_drep}
+
+El escenario E6 repitió el agrupamiento de las referencias con umbrales del
+99, 99.5 y 99.9\,\% de ANI, a partir de la tabla de ANI que dRep ya había
+calculado y con el mismo método de agrupamiento. La
+Tabla~\ref{tab:sens_drep} muestra el número de genomas no redundantes de cada
+especie.
+
+\begin{table}[H]
+\cambio
+\centering
+\footnotesize
+\caption[Sensibilidad al umbral de desreplicación]{Genomas no redundantes por
+especie según el umbral de ANI de la desreplicación. En negrita, el caso base.}
+\label{tab:sens_drep}
+\begin{tabular}{lrrr}
+\toprule
+\cambio \textbf{Especie} & \cambio \textbf{99\,\%} & \cambio \textbf{99.5\,\%} & \cambio \textbf{99.9\,\%} \\
+\midrule
+\cambio \textit{B.~altitudinis} & \cambio \textbf{137} & \cambio 154 & \cambio 167 \\
+\cambio \textit{P.~frigoritolerans} & \cambio \textbf{42} & \cambio 52 & \cambio 58 \\
+\cambio \textit{A.~schindleri} & \cambio \textbf{23} & \cambio 24 & \cambio 25 \\
+\cambio \textit{C.~firmus\_B} & \cambio \textbf{12} & \cambio 17 & \cambio 17 \\
+\cambio \textit{P.~flexa} & \cambio \textbf{4} & \cambio 15 & \cambio 24 \\
+\cambio \textit{S.~warneri\_A} & \cambio \textbf{4} & \cambio 8 & \cambio 17 \\
+\cambio \textit{B.~licheniformis} & \cambio \textbf{1} & \cambio 7 & \cambio 125 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Las tres especies seleccionadas son las mismas al 99 y al 99.5\,\%. Al
+99.9\,\% entrarían otras, pero ese umbral está en el límite de resolución de
+fastANI, que no distingue con fiabilidad diferencias de una décima de punto. Se
+mantuvo el 99\,\%, que es el valor por defecto de dRep para separar cepas
+\cite{olm2017} y que se había fijado antes de ver los datos. La tabla confirma
+también que \textit{B.~licheniformis} no queda fuera por un umbral demasiado
+estricto: incluso al 99.5\,\% sus 279 genomas se reducen a siete. Que su ANI
+mínimo sea de 98.76\,\% y aun así forme un solo grupo al 99\,\% se debe a que
+dRep agrupa por enlace promedio, es decir, con el ANI medio de cada genoma con el
+grupo y no con el par más distante.
+
+\subsubsection{Umbral de contigs de las referencias}
+\label{subsubsec:sens_contigs}
+
+El límite de 300 contigs para las referencias es un criterio propio de este
+trabajo. Es más estricto que el máximo de 1\,000 contigs que emplean GTDB y los
+autores de PPanGGOLiN para admitir un genoma \cite{parks2022,ppanggolin2020},
+porque aquí la fragmentación de las referencias puede producir genes partidos
+que se confundirían con genes accesorios. El escenario E12 midió si la
+viabilidad de las especies depende de ese valor, con límites de 200 y de
+1\,000 contigs. Con un límite de 200 contigs, \textit{B.~altitudinis} pasaría de 209
+a 205 genomas tras el control de calidad, \textit{P.~frigoritolerans} de 72 a
+65 y \textit{A.~schindleri} seguiría con 29. Con un límite de 1\,000, a cada
+especie se le sumarían como mucho los genomas que se descartaron por
+fragmentados, que fueron 3 y 4 en las dos primeras y ninguno en la tercera. En
+ningún caso cambia qué especies son viables ni cuáles se seleccionan: la que
+más cerca queda del umbral, \textit{Bacillus\_AB infantis}, llegaría como mucho a
+10 genomas.
+
+\subsubsection{Umbral del genoma core}
+\label{subsubsec:sens_core}
+
+El escenario E7 redujo el umbral del core del 95 al 90\,\%, lo que en
+\textit{B.~altitudinis} equivale a exigir presencia en 45 de 50 referencias en
+lugar de 48. El core creció solo 88, 117 y 20 familias, entre el 0.8 y el
+3.0\,\%. Hay pocas familias cerca de la frontera, y el genoma core queda bien
+definido con cualquiera de los dos umbrales.
+
+\subsubsection{Modo de limpieza de Panaroo}
+\label{subsubsec:sens_panaroo}
+
+Panaroo se ejecutó en modo \texttt{moderate}. El escenario E8 repitió el
+pangenoma en modo \texttt{sensitive}, que no elimina los genes de borde de
+contig poco respaldados, con los mismos genomas y la misma partición. La
+Tabla~\ref{tab:sens_panaroo} compara ambos modos. Los valores de $\alpha$ de esta
+tabla se calcularon con un mismo conjunto de permutaciones para los dos modos, y
+por eso el de \textit{B.~altitudinis} difiere en una centésima del de la
+Tabla~\ref{tab:pangenoma}.
+
+\begin{table}[H]
+\cambio
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption[Sensibilidad al modo de limpieza de Panaroo]{Pangenoma de cada especie
+con los modos de limpieza \texttt{moderate} (caso base) y \texttt{sensitive}.}
+\label{tab:sens_panaroo}
+\makebox[\textwidth][c]{%
+\begin{tabular}{llrrrrrr}
+\toprule
+\cambio \textbf{Especie} & \cambio \textbf{Modo} & \cambio \textbf{Core} & \cambio \textbf{Shell} & \cambio \textbf{Cloud} & \cambio \textbf{$\alpha$} & \cambio \textbf{Genes del bin eliminados} & \cambio \textbf{Candidatos del bin} \\
+\midrule
+\cambio \textit{B.~altitudinis} & \cambio moderate & \cambio 3303 & \cambio 847 & \cambio 2909 & \cambio 0.65 & \cambio 32 & \cambio 14 \\
+                             & \cambio sensitive & \cambio 3303 & \cambio 847 & \cambio 3293 & \cambio 0.61 & \cambio 1 & \cambio 45 \\
+\cambio \textit{P.~frigoritolerans} & \cambio moderate & \cambio 3961 & \cambio 2142 & \cambio 10022 & \cambio 0.57 & \cambio 7 & \cambio 34 \\
+                             & \cambio sensitive & \cambio 3961 & \cambio 2143 & \cambio 12295 & \cambio 0.49 & \cambio 3 & \cambio 38 \\
+\cambio \textit{A.~schindleri} & \cambio moderate & \cambio 2389 & \cambio 1114 & \cambio 4096 & \cambio 0.55 & \cambio 101 & \cambio 70 \\
+                             & \cambio sensitive & \cambio 2389 & \cambio 1117 & \cambio 5237 & \cambio 0.46 & \cambio 1 & \cambio 171 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+El core y el shell no cambian, de modo que todo lo dicho sobre el genoma común
+de cada especie y sobre la posición de los bins es independiente del modo. El
+cloud crece entre el 13 y el 28\,\%, casi todo con familias de un solo genoma,
+que son los genes de borde de contig que el modo \texttt{moderate} elimina en las
+referencias. Con ellos $\alpha$ baja entre 0.04 y 0.09: el pangenoma parece más
+abierto, pero la conclusión de pangenoma abierto no cambia. El valor de
+$\alpha$, en cambio, sí depende del modo, y por eso debe reportarse junto con
+él. La última columna confirma además la corrección aplicada en la segunda
+versión de los genes específicos: los candidatos del bin en modo
+\texttt{sensitive} (45, 38 y 171) son prácticamente los mismos que la versión 2
+recupera en modo \texttt{moderate} (46, 41 y 171).
+
+\subsubsection{Base de datos y definición de especie en la verificación}
+\label{subsubsec:sens_bd}
+
+Los escenarios E10 y E11 midieron cuánto depende la lista de genes específicos
+de la base de datos consultada y de cómo se decide que un genoma pertenece a la
+especie. Ambos se evaluaron sobre la primera versión. Con UniProtKB, consultada
+a través del EBI, en lugar de nr, habrían pasado como específicos siete genes
+que nr sí encontró en la especie (uno en \textit{P.~frigoritolerans} y seis en
+\textit{A.~schindleri}), porque UniProtKB elimina proteomas redundantes y le
+faltan muchos genomas de los géneros más secuenciados. Si la especie de cada
+genoma portador se hubiera decidido por su nombre en el NCBI y no por su ANI,
+habrían pasado cinco genes más. La lista de genes específicos depende, por
+tanto, de ambas decisiones, y el resultado oficial es el de nr con la especie
+decidida por ANI.
+
+\subsubsection{Distancia mínima al borde del contig}
+\label{subsubsec:sens_borde}
+
+El filtro F1 descarta los genes a menos de 100 pb del borde del contig. Este
+margen es un criterio propio, basado en que los genes de borde de los
+ensamblajes en borrador suelen estar partidos \cite{denton2014}. El escenario
+E13 revisó los 13 candidatos descartados por este motivo en la versión 2: con un
+margen de 50 pb habrían vuelto 4, y sin margen, los 13. Esos genes tendrían que
+pasar después por F4 y F5, de modo que el efecto sobre el resultado final está
+acotado a lo sumo a esas cifras.
+\fincambio
 
 \subsection{Iteraciones de diseño derivadas de los resultados}
+\cambio
+\label{subsec:iteraciones}
+\fincambio
 
-El diseño del flujo no se mantuvo fijo durante la ejecución. Dos resultados
-obligaron a modificarlo. Esta sección documenta ambos casos siguiendo el ciclo
+\cambio
+El diseño del flujo no se mantuvo fijo durante la ejecución. Varios resultados
+obligaron a modificarlo. Esta sección documenta cada caso siguiendo el ciclo
+\fincambio
 de prueba, evaluación y rediseño.
 
 Conviene precisar en qué consiste cada cambio. El diseño descrito en el
-Capítulo IV es el punto de partida, y las pruebas de este capítulo son
-precisamente el mecanismo previsto para ponerlo a prueba. En los dos casos siguientes, los cambios se hicieron a partir de resultados obtenidos durante el análisis. Uno se debió a un requerimiento de memoria mayor al disponible y el otro a una métrica que no permitió diferenciar adecuadamente los resultados. Para mantener la trazabilidad, se presentan por separado el diseño original, la evidencia que motivó el cambio y el diseño corregido.
+\cambio
+Capítulo V es el punto de partida, y las pruebas de este capítulo son
+precisamente el mecanismo previsto para ponerlo a prueba. En todos los casos siguientes, los cambios se hicieron a partir de resultados obtenidos durante el análisis: un requerimiento de memoria mayor al disponible, una métrica que no permitió diferenciar los linajes, y varios problemas detectados al ejecutar la Fase 3. Para mantener la trazabilidad, se presentan por separado el diseño original, la evidencia que motivó el cambio y el diseño corregido. El Capítulo V conserva el diseño original.
+\fincambio
 
 
 \subsubsection{Primera iteración: alcance del árbol filogenómico}
@@ -729,7 +1650,29 @@ coherencia de las asignaciones taxonómicas.
 El rediseño consistió en dos cambios. Para la Fase 2 se calculó un árbol de
 distancias sobre el alineamiento concatenado de los 120 marcadores, restringido
 a los nuestros genomas. Ese árbol es el que aparece en la
-Figura~\ref{fig:arbol} y cumple la función de verificación interna.
+\cambio
+Figura~\ref{fig:arbol} y cumple la función de verificación interna. Para la
+Fase 3, la ubicación de cada bin entre las cepas de su especie se resolvió con
+un árbol de máxima verosimilitud por especie, inferido con IQ-TREE 3 (versión
+3.1.3) \cite{wong2026iqtree3} sobre el alineamiento del genoma core generado
+por Panaroo. El modelo de sustitución se eligió con ModelFinder
+\cite{kalyaanamoorthy2017modelfinder} según el criterio BIC y el soporte de
+las ramas se estimó con 1000 réplicas de UFBoot \cite{hoang2018ufboot}.
+
+En la Fase 3 la pregunta cambia y con ella el método. Ya no se trata de
+verificar la coherencia de asignaciones entre filos, sino de ubicar una cepa
+entre otras de su misma especie, que difieren muy poco. Dentro de cada especie
+entre el 87 y el 92\,\% de los sitios del alineamiento del core son constantes,
+y la señal que separa a las cepas está en pocos sitios. Un árbol de distancias
+como el de Neighbor-Joining \cite{saitou1987} resume el alineamiento en una sola
+distancia por par de genomas y pierde esa información sitio a sitio. La máxima
+verosimilitud \cite{felsenstein1981} usa cada sitio con un modelo explícito de
+evolución, que incluye la variación de velocidad entre sitios, y entrega un
+soporte por rama. Su costo fue de dos a tres horas por especie, asumible dentro
+de la cuota. El árbol de Neighbor-Joining de la Fase 2 queda, por tanto, como
+una verificación interna con las limitaciones ya señaladas, y no como la prueba
+filogenética que preveía la Tabla 5.3.
+\fincambio
 
 \subsubsection{Segunda iteración: criterio de selección de linajes para el pangenoma}
 
@@ -737,7 +1680,9 @@ El diseño original preveía seleccionar los linajes del análisis pangenómico 
 prevalencia espacial. La lógica era que un linaje presente en varios puntos del
 monumento resulta más relevante para el biodeterioro que una detección aislada.
 
-La prueba invalidó ese criterio. Como muestra la Sección 7.2.2, diecisiete de
+\cambio
+La prueba invalidó ese criterio. Como muestra la Sección~\ref{subsec:res_fase2}, diecisiete de
+\fincambio
 los 19 linajes aparecen en una sola muestra y solo dos alcanzan una prevalencia
 de dos. Con
 esa distribución no es posible construir un ranking ni separar bacterias colonizadoras
@@ -752,40 +1697,223 @@ referencias.
 
 El rediseño reemplazó la prevalencia espacial por la disponibilidad genómica
 pública. Un linaje ingresa al análisis pangenómico si existe para su especie un
-número suficiente de genomas públicos de calidad adecuada. El umbral adoptado es
-de 15 genomas.
+\cambio
+número suficiente de genomas públicos de calidad adecuada. La ejecución obligó
+a precisar ese criterio en varios puntos respecto de lo previsto en el
+Capítulo V, que la Tabla~\ref{tab:cambios_f3} resume.
+\fincambio
 
-Es importante mencionar que la inclusión de genomas filogenéticamente redundantes infla de
-forma artificial el tamaño del core y subestima el genoma accesorio, lo que
-puede llevar a describir como cerrado un pangenoma que en realidad es
-abierto~\cite{guerra2026}. Quince genomas redundantes no equivalen a quince
-genomas informativos. Por lo tanto, este parámetro está abierto a iteración. 
+\cambio
+{\footnotesize
+\setstretch{1.15}
+\setlength{\tabcolsep}{4pt}
+\cambio
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}X}
+\caption[Diferencias entre el diseño original y la ejecución de la Fase 3]{
+Diferencias entre la Fase 3 descrita en el Capítulo V y la ejecutada.}
+\label{tab:cambios_f3} \\
+\toprule
+\cambio \textbf{Aspecto} & \cambio \textbf{Capítulo V} & \cambio \textbf{Ejecutado} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{l}{\textit{Tabla~\ref{tab:cambios_f3} (continuación)}} \\
+\toprule
+\cambio \textbf{Aspecto} & \cambio \textbf{Capítulo V} & \cambio \textbf{Ejecutado} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\cambio Criterio de selección & \cambio Prevalencia espacial & 
+\cambio Disponibilidad de genomas públicos \\
+\addlinespace
+\cambio Umbral de genomas & \cambio Aproximadamente diez & 
+\cambio 15, contados después de la desreplicación \\
+\addlinespace
+\cambio Linajes evaluados & \cambio Los seleccionados por prevalencia & 
+\cambio Los 12 con nombre de especie en GTDB \\
+\addlinespace
+\cambio Origen de las referencias & \cambio RefSeq y GTDB, con prioridad de RefSeq & 
+\cambio Clúster de especie de GTDB R220, con ensamblajes de RefSeq y de GenBank \\
+\addlinespace
+\cambio Control de calidad de las referencias & \cambio Sin especificar & 
+\cambio Completitud $\geq 95\%$, contaminación $\leq 5\%$, $\leq 300$ contigs, solo
+\cambio aislados \\
+\addlinespace
+\cambio Referencias insuficientes & \cambio Ampliar al género & 
+\cambio No se amplió: una especie sin referencias suficientes queda fuera \\
+\addlinespace
+\cambio Número de referencias & \cambio Hasta estabilizar la curva de acumulación & 
+\cambio Todas las no redundantes, con un tope de 50 \\
+\addlinespace
+\cambio Prioridad en la elección & \cambio Cepas latinoamericanas & 
+\cambio Sin preferencia regional; prioridad a cepas tipo y a aislados de sustrato
+\cambio pétreo o árido \\
+\addlinespace
+\cambio Exclusiones manuales & \cambio No previstas & 
+\cambio Cuatro genomas con nombre de otro filo en el NCBI \\
+\end{xltabular}
+}
+
+Cada cambio tiene una razón concreta. El umbral de diez genomas no tenía
+respaldo bibliográfico, y se elevó a 15, el número mínimo de genomas con que los
+autores de PPanGGOLiN evaluaron la partición de pangenomas \cite{ppanggolin2020}.
+Se aplica después de la desreplicación porque la inclusión de genomas
+filogenéticamente redundantes infla de forma artificial el core y subestima el
+genoma accesorio, lo que puede llevar a describir como cerrado un pangenoma que
+en realidad es abierto~\cite{guerra2026}: quince genomas redundantes no equivalen
+a quince genomas informativos. El caso de \textit{B.~licheniformis}, que pasa de
+279 genomas a uno solo, muestra que la precaución era necesaria. Solo se
+evaluaron los linajes con nombre de especie porque el censo necesita un clúster
+de especie bien definido. No se amplió al género porque un pangenoma solo
+distingue con fiabilidad el genoma core del accesorio entre genomas
+estrechamente emparentados, como se argumentó en el Capítulo V.
+
+El número de referencias no se fijó con la curva de acumulación porque los
+pangenomas resultaron abiertos, y en un pangenoma abierto la curva no se
+estabiliza. Se usaron todas las referencias no redundantes, con un tope de 50
+para acotar el costo. El tope solo afectó a \textit{B.~altitudinis}, y sus
+efectos se controlaron de dos formas: el exponente $\alpha$ casi no cambia con
+el número de genomas, y la búsqueda de genes específicos se hizo contra los 208
+genomas válidos de la especie y no solo contra los 50 elegidos. La preferencia
+por cepas latinoamericanas se eliminó por tres razones: el pangenoma debe
+representar la diversidad global de la especie, solo 19 de los 656 genomas
+válidos eran latinoamericanos, y la búsqueda de genes específicos ya incluye
+todos los genomas descargados. Las exclusiones manuales se documentaron en la
+Sección~\ref{subsubsec:res_seleccion}.
+\fincambio
 
 La prevalencia espacial se conserva como resultado descriptivo del OE2 y se
 reporta en la Tabla~\ref{tab:linajes}, pero deja de cumplir función de criterio
-de selección. 
+\cambio
+de selección.
+
+\subsubsection{Tercera iteración: herramienta y modo de limpieza del pangenoma}
+\label{subsubsec:iter_panaroo}
+
+El Capítulo V preveía reconstruir el pangenoma con Panaroo en modo estricto
+(\texttt{strict}) y dejaba PPanGGOLiN como alternativa. Antes de ejecutar se
+revisó el efecto de ese modo sobre la pregunta de esta fase. El modo estricto
+elimina de forma agresiva los genes poco respaldados, es decir, los que aparecen
+en un solo genoma, porque en un pangenoma de aislados suelen ser errores. Pero un
+gen propio de la cepa de la Estela es, por definición, un gen de un solo genoma,
+y el modo estricto lo eliminaría antes de poder examinarlo. Se adoptó el modo
+intermedio, \texttt{moderate}, y se descartó PPanGGOLiN para no duplicar el
+análisis; la ley de Heaps, que PPanGGOLiN calcula de forma nativa, se estimó por
+separado \cite{snipen2015}.
+
+La ejecución mostró que el modo \texttt{moderate} tampoco era inocuo para esa
+pregunta, como se explica en la iteración siguiente. Mostró también que la
+elección del modo no afecta al core ni al shell
+(Sección~\ref{subsubsec:sens_panaroo}). Se mantuvo \texttt{moderate} porque
+produce un pangenoma de referencias más limpio, sin fragmentos de borde de
+contig, y los genes del bin que poda se recuperan por otra vía.
+
+La ejecución obligó además a fijar cómo se calcula la partición. Panaroo agrupa
+las familias con todos los genomas que recibe, incluido el bin, y en el piloto,
+con cuatro genomas, contar el bin hacía caer el core de 3\,410 a 2\,539 familias.
+Por eso la frecuencia de cada familia se calcula solo con las referencias, como
+se describe en el Capítulo VI.
+
+\subsubsection{Cuarta iteración: verificación de genes específicos}
+\label{subsubsec:iter_exclusivos}
+
+El diseño original definía los genes candidatos como las familias del bin
+ausentes en todas las referencias, y los contrastaba con nr y nt para descartar
+contaminación. La primera ejecución completa, terminada el 8 de octubre, dejó 2
+genes específicos en \textit{B.~altitudinis}, ninguno en
+\textit{P.~frigoritolerans} y 30 en \textit{A.~schindleri}. Su revisión detectó
+dos problemas.
+
+El primero estaba en Panaroo. En el modo \texttt{moderate}, Panaroo elimina todo
+gen situado en el extremo de un contig que aparezca en menos de dos genomas, y
+repite la poda hacia el interior del contig hasta encontrar un gen compartido
+\cite{panaroo2020}. Es un filtro razonable para pangenomas de aislados, pero va
+en contra de lo que aquí se busca: un gen propio de la cepa está en un solo
+genoma, y un MAG tiene muchos extremos de contig. En los tres bins Panaroo había
+eliminado 140 genes, 136 de ellos en tramos continuos desde el borde de un
+contig. Por la misma razón, el filtro de contigs huérfanos (F6) no había
+recibido ningún contig: Panaroo ya los había quitado.
+
+El segundo estaba en la forma de decidir la especie. El filtro F5 descartaba un
+gen si lo tenía un organismo con el nombre de la misma especie en el NCBI. Cinco
+de los genes considerados específicos estaban, sin embargo, en dos cepas
+depositadas como \textit{Bacillus} sp. y \textit{Acinetobacter} sp. Según su
+ANI, calculado por el propio NCBI contra las cepas tipo \cite{ciufo2018}, la
+primera pertenece a \textit{B.~altitudinis} y la segunda a
+\textit{A.~schindleri}. Ambas proceden de rizosfera en China y se publicaron en
+agosto de 2025, después del release R220 de GTDB.
+
+El rediseño corrigió ambos problemas. Los genes del bin que Panaroo eliminó
+pasaron a ser también candidatos, sin cambiar el pangenoma de las referencias. Se
+agregó el filtro F5b, que obtiene todos los genomas que contienen la proteína
+idéntica y decide la especie de cada uno por su ANI y no por su nombre. Y se
+agregó una advertencia para los genes cuyo mejor parecido, en otra especie, tiene
+al menos 99\,\% de identidad en al menos el 90\,\% de su longitud, como señal de
+una posible transferencia reciente. Aplicada solo la corrección por ANI, la
+primera versión pasa de 2, 0 y 30 genes específicos a 0, 0 y 27. La segunda
+versión, que incluye además los genes eliminados por Panaroo, eleva los
+candidatos a 46, 41 y 171 (Tabla~\ref{tab:embudo_especificos}).
+
+\subsubsection{Quinta iteración: ejecución de la búsqueda remota}
+\label{subsubsec:iter_remota}
+
+El diseño preveía consultar nr y nt con la opción remota de BLAST+. En el clúster
+esa opción quedaba esperando sin devolver resultados, y se reemplazó por el envío
+directo a la interfaz web de BLAST del NCBI, descrito en el Capítulo VI. Para
+los contigs se consultó core\_nt, una versión reducida de nt que el NCBI ofrece
+para búsquedas remotas, en lugar de nt completa. Durante la primera versión la cola
+del NCBI llegó a demorar hasta siete horas por especie, y se probó como
+alternativa la búsqueda en UniProtKB a través del EBI. La comparación mostró que
+no sirve como reemplazo (Sección~\ref{subsubsec:sens_bd}), de modo que el
+resultado oficial es el de nr. Durante la segunda versión el NCBI canceló una
+búsqueda por exceder su límite de tiempo de procesador, y el programa se
+modificó para enviar lotes más pequeños y dividirlos si se cancelan.
+
+\subsubsection{Sexta iteración: comparación funcional del core y el accesorio}
+\label{subsubsec:iter_cog}
+
+El diseño preveía comparar la función de los genes core y accesorios con las
+categorías COG. Bakta asigna una categoría COG a solo entre el 4 y el 31\,\% de
+los genes, según el genoma, y un número KEGG a una proporción parecida. Con esa
+cobertura, baja y desigual entre genomas, la comparación no es confiable. La
+comparación funcional se traslada a la Fase 4, que anota todos los genes con
+DRAM.
+\fincambio
 
 \section{Verificación del cumplimiento de las especificaciones técnicas}
 
 Esta sección
 dictamina si el desempeño del \textit{pipeline} alcanza los valores comprometidos. Las
-especificaciones se derivan de los objetivos específicos OE1 y OE2 y son las
-únicas que admiten una verificación cuantitativa directa. La
+\cambio
+especificaciones se derivan de los objetivos específicos OE1, OE2 y OE3 y son
+las que admiten una verificación cuantitativa directa. La
+\fincambio
 Tabla~\ref{tab:matriz_especificaciones} cruza cada especificación con su método
 de verificación y con el resultado obtenido.
 
-\begin{table}[H]
-\centering
-\footnotesize
+\cambio
+{\footnotesize
+\setstretch{1.15}
+\fincambio
 \setlength{\tabcolsep}{4pt}
+\cambio
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{2.7cm}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{1.3cm}}
 \caption[Matriz de verificación de especificaciones técnicas]{Matriz de
 verificación del cumplimiento de las especificaciones técnicas.}
-\label{tab:matriz_especificaciones}
-\makebox[\textwidth][c]{%
-\begin{tabular}{p{3.5cm}p{3.2cm}p{2.6cm}p{3.4cm}c}
+\label{tab:matriz_especificaciones} \\
 \toprule
 \textbf{Especificación} & \textbf{Método de verificación} & \textbf{Objetivo} & \textbf{Resultado obtenido} & \textbf{Cumple} \\
 \midrule
+\endfirsthead
+\multicolumn{5}{l}{\textit{Tabla~\ref{tab:matriz_especificaciones} (continuación)}} \\
+\toprule
+\cambio \textbf{Especificación} & \cambio \textbf{Método de verificación} & \cambio \textbf{Objetivo} & \cambio \textbf{Resultado obtenido} & \cambio \textbf{Cumple} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\multicolumn{5}{l}{\textit{Fases 1 y 2 (OE1 y OE2)}} \\*
+\addlinespace\nopagebreak
 Calidad del conjunto final de genomas &
 CheckM2 sobre cada genoma &
 Completitud $> 70\%$ y contaminación $< 5\%$ &
@@ -813,12 +1941,55 @@ Sí \\
 Reproducibilidad de la ejecución &
 Registro de versiones y control de versiones del código &
 Versiones de herramientas y bases registradas &
-Registro de versiones por fase; scripts y resultados versionados en repositorio &
+\cambio Registro de versiones por fase; scripts, resultados y archivos de bloqueo de los entornos versionados en repositorio & 
 Sí \\
-\bottomrule
-\end{tabular}%
+\midrule
+\multicolumn{5}{l}{\textit{Fase 3 (OE3)}} \\*
+\addlinespace\nopagebreak
+\cambio Especies con pangenoma comparativo & 
+\cambio Censo, descarga y desreplicación de genomas públicos & 
+\cambio Al menos 15 genomas no redundantes por especie & 
+\cambio 3 especies, con 137, 42 y 23 genomas no redundantes & 
+\cambio Sí \\
+\addlinespace
+\cambio Anotación homogénea & 
+\cambio Misma versión, base de datos y opciones de Bakta; control de CDS & 
+\cambio Todos los genomas anotados, sin alertas & 
+\cambio 118 de 118 anotados; 0 alertas & 
+\cambio Sí \\
+\addlinespace
+\cambio Partición estable del pangenoma & 
+\cambio Sensibilidad al umbral del core y al modo de Panaroo & 
+\cambio Core estable ante ambos cambios & 
+\cambio Core +0.8 a 3.0\,\% con umbral del 90\,\%; idéntico entre modos & 
+\cambio Sí \\
+\addlinespace
+\cambio Calidad del bin dentro del pangenoma & 
+\cambio Core de las referencias recuperado en el bin & 
+\cambio A $\pm 10$ puntos de su completitud & 
+\cambio 3 de 3 bins (75.2, 85.7 y 99.0\,\%) & 
+\cambio Sí \\
+\addlinespace
+\cambio Ubicación filogenética del bin & 
+\cambio Árbol de máxima verosimilitud por especie & 
+\cambio Soporte UFBoot $\ge 95$ en el agrupamiento del bin & 
+\cambio UFBoot 100 en los 3 bins & 
+\cambio Sí \\
+\addlinespace
+\cambio Genes específicos verificados & 
+\cambio Filtros F1 a F6 contra todos los genomas de la especie y contra nr & 
+\cambio Lista final verificada & 
+\cambio Parte local completa; parte remota \pendiente{} & 
+\cambio \pendiente{} \\
+\addlinespace
+\cambio Selección reproducible & 
+\cambio Reglas deterministas y semillas fijas & 
+\cambio Mismo resultado al repetir la ejecución & 
+\cambio Selección sin azar; semillas fijas en IQ-TREE y R & 
+\cambio Sí \\
+\end{xltabular}
+\fincambio
 }
-\end{table}
 
 \section{Verificación del cumplimiento de restricciones}
 
@@ -826,26 +1997,35 @@ Las restricciones son límites que el diseño no podía cruzar, a diferencia de 
 especificaciones, que son metas de desempeño. La
 Tabla~\ref{tab:matriz_restricciones} verifica cada una.
 
-\begin{table}[H]
-\centering
-\footnotesize
+\cambio
+{\footnotesize
+\setstretch{1.15}
+\fincambio
 \setlength{\tabcolsep}{4pt}
+\cambio
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{1.3cm}}
 \caption[Matriz de verificación de restricciones]{Matriz de verificación del
 cumplimiento de las restricciones del proyecto.}
-\label{tab:matriz_restricciones}
-\makebox[\textwidth][c]{%
-\begin{tabular}{p{3.2cm}p{3.0cm}p{4.4cm}c}
+\label{tab:matriz_restricciones} \\
 \toprule
 \textbf{Restricción} & \textbf{Origen} & \textbf{Forma en que el diseño la respeta} & \textbf{Cumple} \\
 \midrule
-Cuota de cómputo de 32 núcleos, 98 GB de memoria y 24 h por trabajo &
+\endfirsthead
+\multicolumn{4}{l}{\textit{Tabla~\ref{tab:matriz_restricciones} (continuación)}} \\
+\toprule
+\cambio \textbf{Restricción} & \cambio \textbf{Origen} & \cambio \textbf{Forma en que el diseño la respeta} & \cambio \textbf{Cumple} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\cambio Cuota de cómputo de 32 núcleos, 98~GB de memoria y 24~h por trabajo & 
 Política de asignación del clúster Khipu &
-Ambas fases se ejecutaron como trabajos únicos y finalizaron dentro del límite de tiempo asignado. El árbol de referencia completo se reemplazó por un árbol focalizado tras exceder la memoria disponible &
+\cambio Las Fases 1 y 2 se ejecutaron como trabajos únicos. En la Fase 3, el límite de cinco trabajos enviados obligó a anotar en tres lotes y a enviar los arreglos por tramos o de a una tarea; la memoria de Bakta se ajustó con un piloto. Todos los trabajos terminaron dentro del límite de tiempo. El árbol de referencia completo se reemplazó por árboles focalizados tras exceder la memoria disponible & 
 Sí \\
 \addlinespace
 Los nodos de cómputo no tienen acceso a internet &
 Arquitectura del clúster &
-Las bases de datos de CheckM2 y GTDB R220 se descargaron en el nodo de login antes de la ejecución. Ninguna etapa del flujo requiere conexión durante el cálculo &
+\cambio Las bases de datos de CheckM2, GTDB R220 y Bakta y los genomas públicos se descargaron en el nodo de login antes de cada cálculo. Las únicas etapas que requieren conexión, el censo, la descarga y la búsqueda remota de genes específicos, se ejecutan en el login y no en los nodos de cómputo & 
 Sí \\
 \addlinespace
 No se dispone de las lecturas crudas de secuenciación &
@@ -860,51 +2040,18 @@ Sí \\
 \addlinespace
 Uso exclusivo de software de licencia libre y bases de datos públicas &
 Restricción presupuestal del proyecto &
-Todas las herramientas y bases empleadas son de acceso abierto &
+\cambio Todas las herramientas y bases empleadas son de acceso abierto, incluidos los servicios remotos del NCBI & 
 Sí \\
-\bottomrule
-\end{tabular}%
+\addlinespace
+\cambio Dependencia de servicios externos del NCBI & 
+\cambio Tamaño de nr y core\_nt, que no pueden instalarse en el clúster & 
+\cambio La búsqueda remota guarda el identificador de cada consulta, reanuda tras un corte, divide los lotes que el NCBI cancela y distingue «sin resultado» de «sin parecidos». La fecha de consulta se reporta con el resultado & 
+\cambio Sí \\
+\addlinespace
+\cambio Bases públicas con muestreo desigual & 
+\cambio Cepas muy secuenciadas y sesgo clínico en algunas especies & 
+\cambio Desreplicación al 99\,\% de ANI, rotación de hábitats en la selección y verificación de genes contra todos los genomas de la especie. El sesgo restante se declara como limitación & 
+\cambio Sí \\
+\end{xltabular}
+\fincambio
 }
-\end{table}
-
-
-% ======================================================================
-% ENTRADAS BIBLIOGRAFICAS NUEVAS - agregar a referencias.bib
-% ======================================================================
-%
-% @article{gautreau2020,
-%   author  = {Gautreau, Guillaume and Bazin, Adelme and Gachet, Mathieu and
-%              Planel, Remi and Burlot, Laura and Dubois, Mathieu and
-%              Perrin, Amandine and Medigue, Claudine and Calteau, Alexandra and
-%              Cruveiller, Stephane and Matias, Catherine and Ambroise, Christophe and
-%              Rocha, Eduardo P. C. and Vallenet, David},
-%   title   = {{PPanGGOLiN}: Depicting microbial diversity via a partitioned pangenome graph},
-%   journal = {PLOS Computational Biology},
-%   volume  = {16},
-%   number  = {3},
-%   pages   = {e1007732},
-%   year    = {2020},
-%   doi     = {10.1371/journal.pcbi.1007732}
-% }
-%
-% @article{tettelin2005,
-%   author  = {Tettelin, Herve and Masignani, Vega and Cieslewicz, Michael J. and others},
-%   title   = {Genome analysis of multiple pathogenic isolates of {Streptococcus agalactiae}: Implications for the microbial pan-genome},
-%   journal = {Proceedings of the National Academy of Sciences},
-%   volume  = {102},
-%   number  = {39},
-%   pages   = {13950--13955},
-%   year    = {2005},
-%   doi     = {10.1073/pnas.0506758102}
-% }
-%
-% @article{guerra2026,
-%   author  = {Guerra, Alberto},
-%   title   = {The pangenome: a statistical model, not a fixed biological property},
-%   journal = {Bioinformatics Advances},
-%   volume  = {6},
-%   number  = {1},
-%   pages   = {vbag069},
-%   year    = {2026},
-%   doi     = {10.1093/bioadv/vbag069}
-% }
