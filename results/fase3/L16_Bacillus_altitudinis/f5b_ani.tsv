@@ -1,0 +1,15 @@
+consulta	hits_revisados	genomas	especies_por_ani	genomas_misma_especie	f5b
+bin_5_63_00090	10	14	Neobacillus driksii x7; Neobacillus drentensis x3; Neobacillus niacini x2; Neobacillus canaveralius x2		ok
+bin_5_63_00092	10	19	Neobacillus canaveralius x17; Neobacillus driksii x2		ok
+bin_5_63_00095	1	5	Bacillus subtilis x3; Bacillus aerius x2	GCA_052044605.1 (Bacillus aerius, ANI 98.30 %); GCF_052044605.1 (Bacillus aerius, ANI 98.30 %)	descartado_F5b_misma_especie_por_ANI
+bin_5_63_00096	1	5	Bacillus subtilis x3; Bacillus aerius x2	GCA_052044605.1 (Bacillus aerius, ANI 98.30 %); GCF_052044605.1 (Bacillus aerius, ANI 98.30 %)	descartado_F5b_misma_especie_por_ANI
+bin_5_63_01143	10	19	Neobacillus canaveralius x15; Neobacillus niacini x2; Neobacillus driksii x2		ok
+bin_5_63_01144	10	18	Neobacillus canaveralius x13; Neobacillus driksii x5		ok
+bin_5_63_01146	10	88	Bacillus subtilis x80; Bacillus stercoris x4; Bacillus halotolerans x3; Bacillus spizizenii x1		ok
+bin_5_63_01147	10	74	Bacillus subtilis x43; Bacillus spizizenii x15; Bacillus inaquosorum x10; Bacillus rugosus x2; Bacillus vallismortis x2; Bacillus cabrialesii x2		ok
+bin_5_63_01149	10	161	Bacillus subtilis x137; Bacillus cabrialesii x8; Bacillus halotolerans x5; Bacillus stercoris x4; Bacillus velezensis x3; Bacillus rugosus x2		ok
+bin_5_63_01153	10	271	Bacillus subtilis x271		ok
+bin_5_63_01154	10	307	Bacillus subtilis x307		ok
+bin_5_63_01903	0	0			sin_genomas
+bin_5_63_01904	10	2439	Bacillus subtilis x2427; Bacillus stercoris x4; Bacillus licheniformis x4; Bacillus spizizenii x2; Streptococcus pneumoniae x1; sin_ANI x1		ok
+bin_5_63_01905	10	2126	Bacillus subtilis x2124; Bacillus spizizenii x2		ok

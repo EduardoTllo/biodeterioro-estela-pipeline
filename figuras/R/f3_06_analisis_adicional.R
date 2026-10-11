@@ -111,10 +111,13 @@ for (s in especies_f3$slug) {
   arbol <- read.tree(file.path(RES_F3, s, "core.treefile"))
   dp <- cophenetic(arbol)[rownames(a)[refs], rownames(a)[refs]]
   djr <- vegdist(a[refs, ], method = "jaccard", binary = TRUE)
-  mt <- mantel(as.dist(dp), djr, method = "spearman", permutations = 999)
+  # Semilla por especie y 9999 permutaciones: p reproducible y estable (con 999,
+  # el p de PERMANOVA de L8 variaba entre 0,055 y 0,064 de una corrida a otra).
+  set.seed(23)
+  mt <- mantel(as.dist(dp), djr, method = "spearman", permutations = 9999)
   hab <- habitat_de(rownames(a)[refs], s)
   ok <- hab %in% names(which(table(hab) >= 3)) & !hab %in% c("desconocido", "sin_clasificar")
-  pm <- adonis2(vegdist(a[refs, ][ok, ], "jaccard", binary = TRUE) ~ hab[ok], permutations = 999)
+  pm <- adonis2(vegdist(a[refs, ][ok, ], "jaccard", binary = TRUE) ~ hab[ok], permutations = 9999)
   estad[[s]] <- tibble(slug = s, mantel_r = mt$statistic, mantel_p = mt$signif,
                        permanova_r2 = pm$R2[1], permanova_p = pm$`Pr(>F)`[1],
                        n_permanova = sum(ok), grupos = length(unique(hab[ok])))
@@ -133,8 +136,10 @@ paneles <- map(especies_f3$slug, function(s) {
     scale_fill_manual(values = PAL_HABITAT, name = "Habitat", drop = FALSE,
                       limits = setdiff(names(PAL_HABITAT), "Estela de Raimondi")) +
     labs(title = e$etiqueta,
-         subtitle = sprintf("Mantel vs filogenia r = %.2f (p = %.3f)\nPERMANOVA habitat R2 = %.2f (p = %.2f, n = %d)",
-                            e$mantel_r, e$mantel_p, e$permanova_r2, e$permanova_p, e$n_permanova),
+         subtitle = sprintf("Mantel vs filogenia r = %.2f (p %s)\nPERMANOVA habitat R2 = %.2f (p = %.2f, n = %d)",
+                            e$mantel_r,
+                            ifelse(e$mantel_p < 0.001, "< 0.001", sprintf("= %.3f", e$mantel_p)),
+                            e$permanova_r2, e$permanova_p, e$n_permanova),
          x = sprintf("PCoA 1 (%.0f %%)", d$ex1[1]), y = sprintf("PCoA 2 (%.0f %%)", d$ex2[1])) +
     theme(plot.title = element_text(size = 9, face = "italic"), plot.subtitle = element_text(size = 7))
 })

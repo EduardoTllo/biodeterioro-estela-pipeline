@@ -162,7 +162,7 @@ Fase 2: 21 genomas en 19 linajes (12 con nombre de especie)
    |
 [10] Genes especificos, parte local (F1-F4) .......... v2: 46, 41 y 171 candidatos -> 14, 1 y 97 a F5
    |
-[11] Genes especificos, parte remota (F5, F5b, F6) ... v1 terminada; v2 pendiente
+[11] Genes especificos, parte remota (F5, F5b, F6) ... v2 + D36: 0, 0 y 44 especificos
    |
 [12] Analisis complementarios ........................ ANI de los bins, Panaroo sensitive
    |
@@ -503,8 +503,11 @@ Bakta -> conversion -> Panaroo antes de anotar 118 genomas.
   de 10 proteinas y, si una busqueda se cancela, se divide en secuencias
   individuales; las que fallan solas quedan marcadas como "sin resultado de
   F5/F6" en lugar de "sin parecidos". Las proteinas ya buscadas no se
-  repiten. **Resultado pendiente.**
-- **Salidas:** `<especie>/f5_blastp_nr.tsv`, `exclusivos_verificados.tsv`,
+  repiten. Termino el 10-10-2026 (18:09) sin busquedas fallidas. Al revisar
+  el resultado se agrego a F6 la regla de la decision D36 (commit `e91d973`)
+  y se repitio solo la clasificacion final, con las busquedas guardadas.
+  Resultado en la seccion 9.4.
+- **Salidas:** `<especie>/f5_blastp_nr.tsv`, `f6_blastn_nt.tsv`, `exclusivos_verificados.tsv`,
   `embudo_exclusivos.tsv`, `exclusivos_report.md`, `versions_remoto.txt`;
   `phase3_f5b_ipg.tsv` y `phase3_f5b_especie_por_ani.tsv`; comparacion del EBI
   en `<especie>/ebi/`.
@@ -534,7 +537,7 @@ Bakta -> conversion -> Panaroo antes de anotar 118 genomas.
 | `f3_04_exclusivos.R` | 14 (embudo y origen) | `tab_f3_embudo_exclusivos` |
 | `f3_05_diagnostico_heaps.R` | 4 (diagnostico de Heaps) | `tab_f3_diagnostico_heaps`, `tab_f3_genes_unicos_por_genoma`, `tab_f3_hipoteticas_por_categoria` |
 | `f3_06_analisis_adicional.R` | 2 (igual N), 3 (espectro), 7 (unicos frente a vecino), 12 (PCoA), 13 (matrices), 15 (contexto genomico) | `tab_f3_alpha_igual_n`, `tab_f3_accesorio_filogenia_habitat` |
-| `f3_07_especificos.R` | 16 (genes especificos, pendiente de la v2) | `tab_f3_especificos_catalogo`, `tab_f3_especificos_islas` |
+| `f3_07_especificos.R` | 16 (genes especificos) | `tab_f3_especificos_catalogo`, `tab_f3_especificos_islas` |
 | `f3_08_sensibilidad_panaroo.R` | 5 (moderate frente a sensitive) | `tab_f3_sensibilidad_panaroo` |
 | `f3_09_ani_bins.R` | 8 (ANI de los bins) | `tab_f3_ani_bins` |
 
@@ -552,13 +555,14 @@ Se aplican en este orden; un gen descartado no sigue.
 | F2 | Anclaje del contig | Revisa si el contig del gen tiene al menos un gen de una familia presente en las referencias. Si lo tiene, el contig es de la especie ("anclado"); si no, es un "contig huerfano" que puede ser contaminacion y va a F6 | Clasifica |
 | F4 | Presencia en la especie | Busca el gen (tblastn) en **todos** los genomas descargados de la especie (208, 69 y 29), no solo en las referencias. Si aparece con >= 80 % de identidad en >= 80 % de su largo, no es especifico | Descarta |
 | F3 | Otros bins de la misma muestra | Busca el gen (blastn) en los demas bins reconstruidos de la misma muestra. Si aparece (>= 95 % / >= 80 %), puede ser ADN compartido entre bacterias de la piedra o un error de reconstruccion | Advierte |
-| F6 | Contigs huerfanos | Compara cada contig huerfano (blastn megablast) con core_nt. Si su mejor parecido es de otro genero, se descarta como contaminacion | Descarta o advierte |
+| F6 | Contigs huerfanos | Compara cada contig huerfano (blastn megablast) con core_nt. Se descarta como contaminacion si su mejor parecido es de otro genero, o si es otra especie del mismo genero con nombre propio (no "sp.") con >= 99 % de identidad y >= 90 % de cobertura: un contig entero casi identico a otra especie es ADN de otra bacteria de la muestra asignado al bin (D36) | Descarta o advierte |
 | F5 | Busqueda en nr | Compara la proteina (blastp) con todas las proteinas conocidas (nr). Si una con el nombre de la misma especie la tiene (>= 80 % / >= 80 %), no es especifico. El mejor parecido indica el origen probable | Descarta y clasifica |
 | F5b | Especie por ANI de los genomas portadores | Para cada parecido de F5 (>= 80 % / >= 80 %), consulta el IPG (todos los genomas que tienen esa proteina) y la especie de cada genoma segun su ANI contra las cepas tipo, calculado por NCBI. Si alguno es de la especie del bin, no es especifico. Corrige genomas de la especie depositados como "sp." o con un sinonimo | Descarta |
 | - | Advertencia por identidad casi total | Si el mejor parecido tiene >= 99 % de identidad y >= 90 % de cobertura en **otra** especie, el gen se marca como posible transferencia reciente (no se descarta) | Advierte |
 
 F1-F6 vienen de la decision D26; F5b y la advertencia se agregaron el 08-10 a
-partir del analisis critico (seccion 9.2).
+partir del analisis critico (seccion 9.2), y la segunda condicion de F6 el
+10-10 (D36, seccion 9.4).
 
 ### 3.5 Herramientas, versiones y parametros
 
@@ -595,7 +599,7 @@ files en `envs/`); las figuras y las estadisticas, en R 4.5.0.
 | F3 | BLAST+ 2.17.0 `blastn` | Contra los demas bins de la misma muestra; `-evalue 1e-10`; advertencia si >= 95 % / >= 80 % |
 | F5 | `blastp` en NCBI por su URL API, resultado con `blast_formatter` 2.17.0 | Base `nr`; e-valor <= 1e-5; 10 parecidos por proteina; lotes de 50 en la v1 y de 10 en la v2 (con division en secuencias individuales si NCBI cancela la busqueda); descarta si un parecido >= 80 % / >= 80 % lleva el taxid de la especie; taxonomia de los parecidos con taxonkit 0.20.0 y el taxdump de NCBI del 04-10-2026 |
 | F5b | NCBI E-utilities (`efetch db=ipg`) y NCBI Datasets API v2 (`dataset_report`) | Parecidos >= 80 % / >= 80 %; especie de cada genoma = mejor ANI contra cepas tipo (`best_ani_match`); misma especie si ANI >= 95 % y la cepa tipo pertenece al cluster GTDB de la especie o lleva su nombre |
-| F6 | `blastn` en NCBI por su URL API | Base `core_nt`; `megablast`; e-valor <= 1e-10; 10 parecidos; descarta si el mejor parecido es de otro genero |
+| F6 | `blastn` en NCBI por su URL API | Base `core_nt`; `megablast`; e-valor <= 1e-10; 10 parecidos; descarta si el mejor parecido es de otro genero, o de otra especie con nombre del mismo genero con >= 99 % de identidad y >= 90 % de cobertura (D36) |
 | Advertencia | `08_exclusivos.py integrar` | Mejor parecido en otra especie con >= 99 % de identidad y >= 90 % de cobertura |
 | Comparacion | BLAST del EBI (REST `ncbiblast`, BLAST+ 2.16.0) | Base UniProtKB; `blastp`, e-valor <= 1e-5, 10 parecidos |
 
@@ -609,8 +613,8 @@ files en `envs/`); las figuras y las estadisticas, en R 4.5.0.
 | Genomas atipicos | Genes unicos > mediana + 3 MAD (desviacion absoluta mediana) |
 | Comparacion a igual N | 100 submuestras de 23 genomas para las curvas; 30 para alpha |
 | Correlaciones | Spearman (`cor.test`) |
-| Mantel | vegan 2.7.2, `mantel(method = "spearman", permutations = 999)`; distancia de Jaccard binaria del accesorio (2 a N-1 referencias) frente a distancia patristica del arbol (ape 5.8.1, `cophenetic`) |
-| PERMANOVA | vegan 2.7.2, `adonis2(permutations = 999)`; solo habitats con >= 3 referencias |
+| Mantel | vegan 2.7.2 (2.7-5 en la Mac desde el 10-10), `mantel(method = "spearman", permutations = 9999)` con `set.seed(23)` por especie; distancia de Jaccard binaria del accesorio (2 a N-1 referencias) frente a distancia patristica del arbol (ape 5.8.1, `cophenetic`) |
+| PERMANOVA | vegan 2.7.2 (2.7-5), `adonis2(permutations = 9999)`, misma semilla; solo habitats con >= 3 referencias |
 | PCoA | `cmdscale` sobre la distancia de Jaccard |
 | Arboles | ggtree 3.16.3; raiz en el punto medio (phangorn 2.12.1, `midpoint`) solo para dibujar |
 | Mapas de genes | gggenes 0.7.0 |
@@ -629,6 +633,8 @@ cambios, todos registrados como decisiones o commits:
 | F5 con lotes de 10 y division automatica | NCBI cancelo una busqueda por limite de CPU | Paso 11, commit `d90effa` |
 | Se agregaron F5b y la advertencia por identidad casi total | En la v1, 5 genes "especificos" estaban en cepas de la especie depositadas con otro nombre | Seccion 9.2, commit `2dfbe1f` |
 | Los genes que Panaroo elimino pasan a ser candidatos | El modo `moderate` poda los genes de extremo de contig presentes en < 2 genomas, justo el tipo de gen que se busca | Seccion 9.3, commit `2dfbe1f` |
+| F6 descarta tambien los contigs huerfanos casi identicos (>= 99 % / >= 90 %) a otra especie con nombre del mismo genero | Los 8 genes especificos de *B. altitudinis* en la v2 estaban en 4 contigs cortos identicos a *B. subtilis* | D36, seccion 9.4, commit `e91d973` |
+| Mantel y PERMANOVA con semilla fija y 9999 permutaciones | Con 999 y sin semilla el p cambiaba en cada corrida (PERMANOVA de *A. schindleri* entre 0,055 y 0,064) | Seccion 8, 10-10 |
 | Se agrego la sensibilidad a Panaroo `sensitive` | Medir cuanto depende el pangenoma de la poda | Seccion 5.2, commit `102fd3e` |
 | No se hizo la comparacion funcional con COG | Cobertura de COG de Bakta de 4-31 % | Seccion 10; se hace en la Fase 4 con DRAM |
 
@@ -1057,9 +1063,13 @@ singletons, que no aportan parecido entre genomas.
 
 | | Mantel accesorio ~ arbol | PERMANOVA por habitat |
 |---|---|---|
-| *B. altitudinis* | r = 0,25, p = 0,001 | R2 = 0,17, p ~ 0,35 (38 genomas, 7 habitats) |
-| *P. frigoritolerans* | r = 0,73, p = 0,001 | R2 = 0,04, p ~ 0,3 (28, 2) |
-| *A. schindleri* | r = 0,54, p = 0,001 | R2 = 0,15, p ~ 0,06 (17, 3) |
+| *B. altitudinis* | r = 0,25, p < 0,001 | R2 = 0,17, p = 0,36 (38 genomas, 7 habitats) |
+| *P. frigoritolerans* | r = 0,73, p < 0,001 | R2 = 0,04, p = 0,33 (28, 2) |
+| *A. schindleri* | r = 0,54, p < 0,001 | R2 = 0,15, p = 0,057 (17, 3) |
+
+9999 permutaciones con semilla fija (`set.seed(23)`): el p de Mantel es el
+minimo posible (1/10 000). En *A. schindleri* el habitat queda en el borde
+(p = 0,057) con solo 17 genomas en 3 habitats; no se interpreta como efecto.
 
 ### Figura 13. Matriz de presencia/ausencia junto al arbol
 
@@ -1166,7 +1176,8 @@ helicasas, dinamina, dominios WYL).
 
 ### 9.4 Segunda corrida (v2): con los genes eliminados por Panaroo y F5b
 
-Parte local terminada el 08-10; **parte remota (F5, F5b y F6) en curso**.
+Parte local terminada el 08-10; parte remota (F5, F5b y F6) terminada el
+10-10-2026, sin busquedas fallidas.
 
 | | Candidatos (de ellos, eliminados por Panaroo) | Pasan F1 | Pasan F4 (van a F5) | Contigs huerfanos a F6 |
 |---|---:|---:|---:|---:|
@@ -1175,18 +1186,66 @@ Parte local terminada el 08-10; **parte remota (F5, F5b y F6) en curso**.
 | *A. schindleri* | 171 (101) | 137 | 97 | 4 |
 
 Los genes eliminados por Panaroo aportan 12 proteinas nuevas a F5 en
-*B. altitudinis* y 61 en *A. schindleri*. **Resultado final: pendiente.**
+*B. altitudinis* y 61 en *A. schindleri*.
 
-### 9.5 Que son los genes especificos (resultados de la v1)
+**Resultado final (con D36):**
+
+| | Candidatos | Pasan F1 | Pasan F4 | Pasan F6 | Pasan F5 | **Especificos (pasan F5b)** | Con advertencia |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| *B. altitudinis* | 46 | 25 | 14 | 2 | 2 | **0** | 0 |
+| *P. frigoritolerans* | 41 | 29 | 1 | 1 | 0 | **0** | 0 |
+| *A. schindleri* | 171 | 137 | 97 | 96 | 51 | **44** | 23 |
+
+Todas las advertencias son por identidad casi total con otra especie
+(>= 99 % / >= 90 %).
+
+**F6 y la decision D36.** Con la regla original (descartar solo si el mejor
+parecido es de otro genero), *B. altitudinis* terminaba con 8 genes
+especificos. Los 8 estaban en 4 contigs huerfanos cortos (`contig_40`,
+`contig_41`, `contig_58` y `contig_59`; 1,6-3,4 kb, GC 0,40-0,42), y los
+cuatro contigs completos son identicos a *B. subtilis* en core_nt (99,86-100 %
+de identidad, 100 % de cobertura). Sus genes son de profagos y elementos de
+*B. subtilis* (yqaL, yqaM y rusA del elemento skin/PBSX; ydgC/ydgD;
+yocK/yocL). Un contig entero identico a otra especie y sin ningun gen de
+*B. altitudinis* que lo ancle no es un gen adquirido: es ADN de otra bacteria
+de la muestra que la reconstruccion del bin asigno a bin-5-63. Por eso F6
+descarta ahora tambien los contigs huerfanos casi identicos a otra especie con
+nombre propio del mismo genero (D36). Otros 2 contigs del mismo bin
+(`contig_6` y `contig_39`, 4 genes) ya se descartaban por parecerse a
+*Neobacillus*. En *A. schindleri* la regla solo descarta `contig_68`
+(identico a *A. johnsonii*), cuyo gen tambien caia en F5. Los parecidos
+rotulados "sp." no cuentan, porque pueden ser la propia especie con otro
+nombre: `contig_73` es identico a *Acinetobacter* sp. PC34 y sus genes estan
+en *A. schindleri* segun nr.
+
+**Descartes de la v2 por filtro:**
+- *B. altitudinis*: F1 21, F4 11, F6 12 (4 de otro genero y 8 por D36),
+  F5b 2 (los 2 de la v1, presentes en *Bacillus* sp. 22483, seccion 9.2).
+- *P. frigoritolerans*: F1 12, F4 28, F5 1.
+- *A. schindleri*: F1 34, F4 40, F6 1, F5 45, F5b 7.
+
+### 9.5 Que son los genes especificos (v2)
+
+Solo *A. schindleri* tiene genes especificos de la cepa: 44. En
+*B. altitudinis* y *P. frigoritolerans* ningun candidato sobrevive a los
+filtros.
 
 ### Figura 14. Embudo de los filtros y origen
 
 ![Embudo](../../figuras/figs/fig_f3_exclusivos.png)
 
 **Panel a.** Cuantos candidatos quedan despues de cada filtro. **Panel b.**
-Origen probable segun el mejor parecido en nr: mismo genero, misma familia
-taxonomica, mismo filo u otro filo; "sin parecido" (ORFan) si no hay ninguno.
-(Figura de la v1; se regenera con la v2.)
+Origen probable segun el mejor parecido en nr: misma especie, mismo genero,
+mismo filo u otro filo.
+
+**Resultado.** En *A. schindleri* el mejor parecido es de otra especie de
+*Acinetobacter* en 39 de los 44 genes (*A. lwoffii*, *A. radioresistens*,
+*A. johnsonii*, *A. baumannii*, *A. indicus*, *Acinetobacter* sp. UBA2581,
+entre otras). Otros 2 tienen su mejor parecido en *A. schindleri*, pero con
+62-63 % de identidad, muy por debajo del 80 % que haria falta para
+considerarlos el mismo gen. 1 se parece a *Thauera* (55,6 %) y 2 a un fago de
+la clase *Caudoviricetes* (95 %). Identidad del mejor parecido: >= 99 % en 23
+genes, 90-99 % en 9 y < 90 % en 12.
 
 ### Figura 15. Contexto genomico
 
@@ -1194,24 +1253,16 @@ taxonomica, mismo filo u otro filo; "sin parecido" (ORFan) si no hay ninguno.
 
 **Que muestra.** Los genes alrededor de cada gen especifico, como flechas en
 su contig, coloreados por categoria; triangulo negro = gen movil (integrasa,
-recombinasa, transposasa, fago, IS).
+recombinasa, transposasa, fago, IS). Incluye `contig_7` de *B. altitudinis*,
+con los 2 genes que F5b mostro presentes en otra cepa de la especie.
 
-**Resultado (v1).**
-- *B. altitudinis*: los 2 genes estan juntos al inicio de un contig, justo
-  despues de una integrasa, seguidos por genes core de la especie: un elemento
-  movil insertado. Son los que F5b mostro presentes en otra cepa de la
-  especie.
-- *A. schindleri*: los 27 genes estan en 8 contigs, en islas junto a
-  integrasas, transposasas y proteinas de fago (profagos). Identidad del mejor
-  parecido: >= 99 % en 16, 90-99 % en 7, < 90 % en 4. Origen: 24 en otras
-  especies de *Acinetobacter* (*A. lwoffii*, *A. radioresistens*,
-  *A. variabilis*, *A. johnsonii*...), 1 en un fago, 1 en *Cloacibacterium*
-  (filo Bacteroidota, 99 %) y 1 en *Thauera* (55 %). Hipoteticas: 24 % de los
-  candidatos frente a 8 % del genoma.
-
-**Lectura.** Son genes adquiridos por transferencia horizontal, muchos de
-forma reciente (identidad casi total con otras especies). Su relevancia para
-el biodeterioro es una pregunta de la Fase 4.
+**Resultado.** Los 44 genes de *A. schindleri* estan en 13 contigs: 41 en
+contigs anclados a la especie y 3 en contigs huerfanos que no cumplen D36
+(`contig_1`, 93,5 % con *Acinetobacter* sp.; `contig_19`, 88,7 %). Varios
+estan junto a integrasas, transposasas y proteinas de fago (`contig_6`,
+`contig_40`, `contig_71`, `contig_93`), y otros, aislados entre genes core de
+la especie (`contig_76`, `contig_94`): estan insertos en el genoma de
+*A. schindleri*, no en ADN ajeno.
 
 ### 9.6 Analisis de los genes especificos (metodo; resultados con la v2)
 
@@ -1232,7 +1283,35 @@ anotacion de Bakta; Bakta asigna KO a solo ~25 % de los genes, asi que el cruce
 con los marcadores puede pasar por alto genes sin KO. La anotacion funcional
 uniforme (DRAM) se hace en la Fase 4 sobre los mismos genes.
 
-**Resultados:** pendientes de la v2.
+### Figura 16. Genes especificos: clase funcional e islas
+
+![Especificos](../../figuras/figs/fig_f3_especificos.png)
+
+**Panel a.** Clase funcional de los 44 genes de *A. schindleri*. **Panel b.**
+Cada isla segun su largo y la diferencia entre su GC y el del bin; rojo = con
+un gen movil a <= 5 kb.
+
+**Resultados (v2).**
+- **Clase funcional:** hipoteticas 17, metabolismo 11, otra 6, movil/fago 5,
+  transporte 3, regulacion 1, defensa 1. Las hipoteticas son el 39 % de los
+  genes especificos frente al 8 % del genoma del bin (253 de 3 265 CDS).
+- **Islas:** 17 islas. En 15 el GC es menor que el del bin (en 11, por mas de
+  5 puntos; la mas baja, 0,26 frente a 0,42) y 10 tienen un gen movil a
+  <= 5 kb. Son las dos senales de ADN adquirido por transferencia horizontal.
+- **Sin advertencia (21 genes)** quedan sobre todo genes de metabolismo (9) e
+  hipoteticos (7). Destaca una isla de 5 genes en `contig_62` (5,4 kb, GC
+  0,26): O-antigeno ligasa, glicosiltransferasa, UDP-glucosa 6-deshidrogenasa,
+  proteina ATP-grasp y proteina de sintesis de polisacarido. Es un grupo de
+  sintesis de polisacarido de superficie, con parecidos de solo 62-85 % en el
+  genero: una variante propia de la cepa de un tipo de locus que en
+  *Acinetobacter* cambia mucho entre cepas.
+- **Con advertencia (23 genes)** quedan sobre todo hipoteticos (10) y moviles
+  (5: transposasas, integrasa, proteinas de fago), identicos a otras especies
+  del genero: transferencias recientes.
+- **Cruce con la Fase 4:** Bakta asigno KO a 1 de los 44 genes (K06076, un
+  transportador de acidos grasos de cadena larga), que no es un marcador de la
+  tabla de la Fase 4. Ningun gen especifico es marcador de riesgo o de
+  supervivencia con la anotacion actual; DRAM lo revisara en la Fase 4.
 
 ### 9.7 Sensibilidad a la base de datos: NCBI frente a EBI
 
@@ -1267,11 +1346,15 @@ El resultado oficial es el de NCBI; el del EBI queda en `<especie>/ebi/`.
    *A. schindleri* es una cepa distinta de las secuenciadas (98,39 %).
 4. El contenido accesorio sigue al parentesco y no al habitat de aislamiento.
 5. Las cepas de la Estela no tienen mas genes propios que cualquier otra cepa
-   de su especie. Los genes especificos (cifra final pendiente) son en su
-   mayoria ADN movil adquirido de otras especies del mismo genero.
-6. La especificidad depende de la base de datos y de la definicion de
-   especie: con UniProtKB en lugar de nr habrian pasado 7 genes mas, y con
-   nombres de NCBI en lugar de ANI, 5 mas.
+   de su especie. Solo la de *A. schindleri* tiene genes especificos (44); son
+   en su mayoria ADN adquirido de otras especies de *Acinetobacter*, en islas
+   con GC bajo y genes moviles. Las de *B. altitudinis* y
+   *P. frigoritolerans* no tienen ninguno.
+6. La especificidad depende de la base de datos, de la definicion de especie
+   y del control de contaminacion: con UniProtKB en lugar de nr habrian pasado
+   7 genes mas (v1); con nombres de NCBI en lugar de ANI, 9 mas (F5b en la
+   v2), y sin D36, 8 genes de *B. subtilis* habrian pasado como especificos de
+   *B. altitudinis*.
 
 **Limites:**
 
@@ -1283,6 +1366,10 @@ El resultado oficial es el de NCBI; el del EBI queda en `<especie>/ebi/`.
   genomas (por ejemplo MgtC, 210 genomas) puede tener una copia en la especie
   fuera de esos 10.
 - Se excluyeron los MAG de las referencias y de F4 (8, 3 y 3 por especie).
+- D36 no distingue un contig de otra especie de un plasmido o elemento movil
+  completo, identico al de otra especie, que la cepa si lleve. Sin lecturas no
+  se puede comprobar la cobertura de esos contigs; se eligio la lectura
+  conservadora.
 - El arbol no corrige la recombinacion; las relaciones profundas de
   *B. altitudinis* estan mal resueltas.
 - alpha depende del modo de limpieza de Panaroo: sin poda de extremos
@@ -1297,10 +1384,8 @@ El resultado oficial es el de NCBI; el del EBI queda en `<especie>/ebi/`.
 
 ## 11. Pendientes
 
-- Terminar la parte remota de la v2 (F5 de las proteinas nuevas, F5b y F6 de
-  los 10 contigs huerfanos) con el script corregido (`d90effa`), exportar y
-  actualizar las secciones 3.3 (paso 11), 9.4-9.6, las figuras 14 y 15, la
-  figura 16 (genes especificos) y la seccion 10.
+- Ninguno en esta fase. La descripcion funcional de los 44 genes especificos
+  de *A. schindleri* con DRAM queda para la Fase 4 (D34).
 
 
 Archivos de esta fase en `results/fase3/` (tablas por especie en

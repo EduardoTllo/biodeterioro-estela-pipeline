@@ -1,31 +1,54 @@
 1029823	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. P8-3-8
+1056810	Pseudomonadota;Neisseriaceae;Prolinoborus;Prolinoborus fasciculus
 106648	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter bereziniae
 106649	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter guillouiae
+106651	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter genomosp. 15BJ
 106654	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter nosocomialis
 108980	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter ursingii
 108981	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter schindleri
 1120926	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter gerneri
 1120927	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter tandoii
 1120929	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter towneri
+1144663	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CIP 102082
 1144665	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CIP 102136
+1144667	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CIP 102159
 1144668	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CIP 102529
+1144669	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CIP 102637
+1144670	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CIP 51.11
 1144671	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CIP 53.82
+1144673	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CIP 64.7
 1144674	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CIP A162
+1147131	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter nosocomialis
+1147132	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter pittii
+1148157	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter oleivorans
 1197884	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter venetianus
+1204684	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. A22
 1217629	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter baumannii
+1217651	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter bereziniae
+1217663	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter johnsonii
 1217664	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter junii
 1217666	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter junii
 1217668	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter lwoffii
+1217704	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. NIPH 284
 1217985	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter nosocomialis
+1221252	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter baumannii
+1221299	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter haemolyticus
+1221300	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter johnsonii
+1221301	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter johnsonii
 1221306	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter junii
+1221307	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter lwoffii
 1221310	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter radioresistens
 1224	Pseudomonadota;;;
 1226327	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter kookii
+1242245	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter johnsonii
 1256050	Pseudomonadota;Porticoccaceae;Porticoccus;uncultured Porticoccus sp.
 1257043	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter ursingii
 1301620	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. SM34
 1310613	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter baumannii
 1310618	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter baumannii
+1310621	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 869535
+1310647	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 1461402
+1310651	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 230853
 1310659	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter baumannii
 1310684	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter baumannii
 1310695	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 259052
@@ -33,17 +56,39 @@
 1310705	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 694762
 1310734	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 216872
 1310761	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 88816
+1315181	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter baumannii
 134533	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter parvus
+134534	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter gyllenbergii
+1353941	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter harbinensis
+1380368	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. UNC436CL71CviS28
+1408451	Pseudomonadota;Methylococcaceae;Methylobacter;Methylobacter tundripaludum
+1435036	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter bohemicus
+1451233	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter soli
 147825	Pseudomonadota;Moraxellaceae;Psychrobacter;Psychrobacter proteolyticus
 1481665	Pseudomonadota;Alcaligenaceae;Advenella;Advenella alkanexedens
+1495331	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas sp. WCS374
+1507807	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter idrijaensis
+1513354	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. MN12
 1530123	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter seifertii
 1582270	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter populi
+1600	Bacillota;Lactobacillaceae;Lactobacillus;Lactobacillus acetotolerans
+1646498	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. TTH0-4
+165433	Pseudomonadota;Moraxellaceae;Acinetobacter;uncultured Acinetobacter sp.
+1661044	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas sp. NBRC 111129
 1661746	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. C15
 1673609	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter albensis
+1675530	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter genomosp. 33YU
+173365	Pseudomonadota;Methylococcaceae;Methylobacter;Methylobacter tundripaludum
+1736444	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Root1280
+1740721	Bacillota;Bacillaceae;Neobacillus;Neobacillus cucumis
 1758189	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. ACNIH2
 1775557	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CFCC 10889
 1776740	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter modestus
+1776742	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter vivianii
+1785128	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter lactucae
 1795629	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. BMW17
+1797234	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. GWC1_38_13
+1805635	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. SFD
 1839785	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter portensis
 1841507	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. AR_0276
 1843371	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter guerrae
@@ -52,58 +97,93 @@
 1848937	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Ac_5812
 1856846	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 51m
 1862567	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. SA01
+1868793	Bacillota;Carnobacteriaceae;Jeotgalibaca;Jeotgalibaca porci
+1869214	Pseudomonadota;Chromatiaceae;Rheinheimera;Rheinheimera sp.
+1871047	Bacteroidota;Weeksellaceae;Chryseobacterium;Chryseobacterium sp.
+1871111	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter defluvii
 1872427	Pseudomonadota;Alcanivoracaceae;Alcanivorax;Alcanivorax sp.
 1879050	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter wuhouensis
+1891969	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. AR2-3
+1898104	Bacteroidota;;;Bacteroidota bacterium
+1898203	Bacillota;Lachnospiraceae;;Lachnospiraceae bacterium
+1907941	Pseudomonadota;Moraxellaceae;Alkanindiges;Alkanindiges hydrocarboniclasticus
 1913682	Bacteroidota;Weeksellaceae;Cloacibacterium;Cloacibacterium sp.
 1920175	Bacteroidota;Flavobacteriaceae;Polaribacter;Polaribacter sp.
 1945925	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. UBA1297
 1945932	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. UBA2581
+1945937	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. UBA3132
 1945939	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. UBA3461
+1945949	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. UBA6007
 1960826	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. MF4640
+1960940	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. ANC 5600
 196816	Pseudomonadota;Moraxellaceae;Acinetobacter;
+197183	Pseudomonadota;Moraxellaceae;Alkanindiges;Alkanindiges illinoisensis
 1977087	Pseudomonadota;;;Pseudomonadota bacterium
 1977880	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. ANC 4218
+2	;;;
+2004646	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. WCHA55
 2006115	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter piscicola
 2013711	Pseudomonadota;;;Betaproteobacteria bacterium HGW-Betaproteobacteria-2
+2021370	Bacteroidota;Sphingobacteriaceae;;Sphingobacteriaceae bacterium
 202950	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter baylyi
 202951	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter bouvetii
 202952	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter gerneri
 202954	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter tandoii
 202956	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter towneri
 2053287	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter pseudolwoffii
+2053555	Fusobacteriota;Fusobacteriaceae;;Fusobacteriaceae bacterium
 2053631	Bacillota;;;Tissierellales bacterium
 2070537	Pseudomonadota;Acetobacteraceae;Commensalibacter;Commensalibacter melissae
 2126983	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter stercoris
 2136182	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter cumulans
+2136183	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sichuanensis
+2201998	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas sp. PLMAX
+2211372	Pseudomonadota;Rhodanobacteraceae;Frateuria;Frateuria sp.
 2213016	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. WCHAc060042
+2219225	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas asiatica
 2293834	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. SWAC57
 2293835	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. SWAC5
 2321116	Campylobacterota;Arcobacteraceae;Aliarcobacter;Aliarcobacter sp.
+2419601	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter rongchengensis
+2420307	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. FDAARGOS_515
 2420312	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. FDAARGOS_541
 2420889	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. WCHAc060006
 2483802	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter ihumii
 2518624	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. WCHAc060033
 2518625	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. WCHAc060025
+2529843	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter terrestris
+2529849	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. ANC 4862
 2563897	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 10FS3-1
+2590869	Pseudomonadota;Oxalobacteraceae;Janthinobacterium;Janthinobacterium tructae
 2597225	Candidatus Acidulodesulfobacteriota;Candidatus Acidulidesulfobacteraceae;Candidatus Acidulidesulfobacter;Candidatus Acidulidesulfobacter guangdongensis
+2597770	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas sp. BJP69
 2601014	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Q22-2
 2601015	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Q278-1
 2601017	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Q85-2
 2601020	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH01004
+2601026	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH01010
 2601027	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH01011
 2601031	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH01016
 2601032	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH01018
+2601033	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH01019
 2601034	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH01020
 2601038	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH01025
 2601039	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH01026
 2601045	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12035
+2601046	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12036
 2601047	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12039
 2601052	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12046
+2601055	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12052
+2601059	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12061
+2601060	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12062
 2601061	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12063
 2601067	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12071
+2601073	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12080
 2601081	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12090
 2601085	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12096
 2601090	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12101
+2601095	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12108
+2601096	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12109
 2601097	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12110
 2601098	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12111
 2601099	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12112
@@ -116,7 +196,9 @@
 2601108	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12123
 2601109	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12124
 2601110	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12125
+2601111	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12126
 2601112	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12127
+2601115	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12131
 2601116	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12132
 2601117	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12133
 2601120	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12136
@@ -125,6 +207,7 @@
 2601130	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12147
 2601135	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12155
 2601137	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12157
+2601138	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12158
 2601148	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12212
 2601149	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12214
 2601150	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12216
@@ -132,18 +215,24 @@
 2601154	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12222
 2601155	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12223
 2601156	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12224
+2601157	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12226
 2601159	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12230
 2601161	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12233
 2601167	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12241
 2601168	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12242
 2601169	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12243
 2601172	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12247
+2601177	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12252
 2601178	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH12254
 2601184	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH16039
+2601187	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH16044
+2601191	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH16052
 2601192	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH16053
 2601194	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH16056
 2601197	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH18001
+2601198	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH1901130
 2601203	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH1901152
+2608355	Pseudomonadota;Erwiniaceae;Pantoea;Candidatus Pantoea formicae
 2609143	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. TUM15362
 2609144	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. TUM15363
 2609146	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. TUM15371
@@ -153,16 +242,28 @@
 2609150	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. TUM15379
 2609151	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. TUM15380
 261164	Pseudomonadota;Moraxellaceae;Psychrobacter;Psychrobacter alimentarius
+262668	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter beijerinckii
+2652288	Fibrobacterota;Fibrobacteraceae;;Fibrobacteraceae bacterium
 266126	Pseudomonadota;Azonexaceae;Azonexus;Azonexus caeni
 2665161	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter faecalis
+2666183	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas juntendi
 2676445	Pseudomonadota;Acetobacteraceae;Commensalibacter;Commensalibacter sp. ESL0382
+2681972	;;;bacterium LRH843
+2703885	Pseudomonadota;Yersiniaceae;Rahnella;Rahnella aceris
+2712220	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. GFQ9D192M
+2712221	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. GFQ9D191M
+2726078	Pseudomonadota;Yersiniaceae;Rahnella;Rahnella sp. CG8
+2730922	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter geminorum
 2731249	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. ANC 5378
 2731251	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. ANC 5414
 2743575	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. NEB 394
+2746722	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas sp. 165
 2749087	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Swhac1
 2749437	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. SwsAc4
 2749438	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. SwsAc5
 2749439	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. SwsAc6
+2749440	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. SwsAc7
+2773709	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. ASP199
 2777944	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Res13-Abat-PEC02-P3-01
 2777945	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Res13-Abat-PEC04-P4b-01
 2777946	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Res13-Abat-PEC06-P4-01
@@ -192,66 +293,140 @@
 2799603	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. KAM404
 2799604	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. KAM405
 2799605	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. KAM406
+280145	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter colistiniresistens
+2804564	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 40AMC3-4
+2804638	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. TWP2-2-3
 28090	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter lwoffii
 2815724	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CWB-B33
 2831996	Bacillota;;;Eubacteriales bacterium
 2832643	Uroviricota;;;Caudoviricetes sp.
 2839946	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. UC24323
+2855444	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CWB-G5
+286	Pseudomonadota;Pseudomonadaceae;Pseudomonas;
 2865162	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. PW68
+287	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas aeruginosa
+2878093	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas sp. MWU16-30316
 2919383	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. AOR33_HL
+2919921	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter zhairuonensis
+2929512	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH16040_T
 2929514	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. YH16056_T
 2942470	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter amyesii
 29430	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter haemolyticus
+2953889	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. S4400-12
+2962585	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. RG5
+2962586	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. RRD8
+2967169	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 5862
 297	Pseudomonadota;Hydrogenophilaceae;Hydrogenophilus;Hydrogenophilus thermoluteolus
 2989714	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter entericus
+2998078	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter thutiue
+3003392	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. TR3
+3027567	Pseudomonadota;Erwiniaceae;;Erwiniaceae bacterium L1_54_3
+3029187	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. AS5
+303	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas putida
+3035705	Kiritimatiellota;Pontiellaceae;;Pontiellaceae bacterium B12219
 305700	Pseudomonadota;Zoogloeaceae;Thauera;Thauera sp. 27
 3081771	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 16
+3083108	Bacillota;Caryophanaceae;Kurthia;Candidatus Kurthia equi
 3093920	Pseudomonadota;Acetobacteraceae;Commensalibacter;Commensalibacter sp. A3DC
 3110915	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Brlt_5
 3110920	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Lyrl_1
+3114697	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 199
+3114698	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 207
 3127956	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. NS-4
+3136280	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. HZNU-JH01
 3151487	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter thermotolerans
+3151490	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter thermotolerans
 3156489	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. A1-4-2
 3273234	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. AL9
+329885	Ascomycota;Teratosphaeriaceae;Friedmanniomyces;Friedmanniomyces endolithicus
+3341851	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter endophylla
 3344662	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter uliginosus
+3366266	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. P1332
+3367196	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. TYF_19
+3376992	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. ABJ_C5_2
+3394331	Pseudomonadota;Bruguierivoracaceae;Sodalis;Sodalis sp. RH16
+34037	Pseudomonadota;Yersiniaceae;Rahnella;
+34062	Pseudomonadota;Moraxellaceae;Faucicola;Faucicola osloensis
 3414736	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. AND/436
 3415978	Pseudomonadota;Burkholderiaceae;Puribacter;Puribacter membranae
 3434463	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter pengchengensis
+3453032	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. PC34
 3453910	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 22323
+3453914	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas sp. 22373
 3467820	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Abx-0640-BR
 3469223	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. T63
+3470755	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. GXMZU3951
+3472697	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. L-24
 3474994	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. NigerLNRRAM0016
+353218	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas sp. s4
+3683248	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. AB03
+3686421	;;;
 3686422	;;;
 3687697	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. SW-226
+3697653	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. ANC_7682
+3697892	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 129952
+3698347	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. N1-1
+3699020	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. B-6
+3714565	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CAU_H_29a_1
 3714569	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CAU_H_S139_7
 3714570	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CAU_H_S142_4
+3721708	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. LipI_23
+3721710	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. LipI_18
+3721711	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. LipI_17
+3721712	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. LipI_15
+3721713	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. LipI_14
+3721714	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 802_lipA
+3721715	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 797_lipA
+3721716	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 791_lipA
+3721717	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 789_lipA
 3721719	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. 231_lipA
+3735417	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. KZH-33
 3735419	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. DTH-28
 3738388	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CY17
+3738391	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. FY683
+3753932	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. GQ146
+3836019	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. FR7-9
+3897736	Pseudomonadota;Moraxellaceae;Psychrobacter;Psychrobacter sp. QH60
 396323	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter brisouii
+399045	Arthropoda;Cyprididae;Notodromas;Notodromas monacha
 401467	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. A1
 40214	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter johnsonii
 40215	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter junii
 40216	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter radioresistens
 40373	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. CIP-A165
+418	Pseudomonadota;Methylococcaceae;Methylomonas;Methylomonas sp.
+44273	Bacillota;Streptococcaceae;Lactococcus;Lactococcus sp.
 465797	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter septicus
+468	Pseudomonadota;Moraxellaceae;;
 469	Pseudomonadota;Moraxellaceae;Acinetobacter;
 470	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter baumannii
+470931	Pseudomonadota;Erwiniaceae;Pantoea;Pantoea anthophila
 471	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter calcoaceticus
 472	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp.
 48296	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter pittii
 487316	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter soli
 52133	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter venetianus
+525244	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. ATCC 27244
 529	Pseudomonadota;Brucellaceae;Brucella;Brucella anthropi
+53408	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas citronellolis
+54388	Pseudomonadota;Enterobacteriaceae;Salmonella;Salmonella enterica
+562	Pseudomonadota;Enterobacteriaceae;Escherichia;Escherichia coli
 573	Pseudomonadota;Enterobacteriaceae;Klebsiella;Klebsiella pneumoniae
 575585	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter calcoaceticus
+575586	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter johnsonii
 575588	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter lwoffii
+58169	Pseudomonadota;Yersiniaceae;Rahnella;Rahnella inusitata
 632955	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter rudis
 70346	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter variabilis
+70347	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter higginsii
+707232	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter haemolyticus
+70775	Pseudomonadota;Pseudomonadaceae;Pseudomonas;Pseudomonas plecoglossicida
+710648	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter sp. Tol 5
 756892	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter indicus
 77133	;;;uncultured bacterium
 903900	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter radioresistens
 909768	Pseudomonadota;Moraxellaceae;Acinetobacter;
+981324	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter bereziniae
 981327	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter lwoffii
 981334	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter radioresistens
 981336	Pseudomonadota;Moraxellaceae;Acinetobacter;Acinetobacter ursingii
