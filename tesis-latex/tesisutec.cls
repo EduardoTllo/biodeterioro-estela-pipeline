@@ -99,6 +99,7 @@
 % Configuraciones de TOC
 \renewcommand\cftaftertoctitle{\hfill\mbox{}}
 \renewcommand{\cftchapfont}{\bfseries CAPÍTULO }
+\setlength{\cftchapnumwidth}{2.5em}
 \addtocontents{toc}{\hfill{Pág.}\par}
 
 % Configurar numeracion de secciones
