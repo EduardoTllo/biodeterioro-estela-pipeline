@@ -461,8 +461,17 @@ def cmd_integrar(args):
                 f["f6"] = "bandera_F6_huerfano_sin_hit"
                 banderas.append(f["f6"])
             else:
-                t6, l6, _ = taxid_mas_cercano(h6, lin, ref)
-                f["f6_hit"] = "%s %s (%.1f %% id)" % (t6, l6.get("especie", ""), h6["pident"])
+                t6, l6, o6 = taxid_mas_cercano(h6, lin, ref)
+                f["f6_hit"] = "%s %s (%.1f %% id, %.0f %% cov)" % (
+                    t6, l6.get("especie", ""), h6["pident"], h6["qcovs"])
+                # Contig entero casi identico a otra especie con nombre (no "sp.", que
+                # puede ser la propia especie mal rotulada): ADN de otra especie de la
+                # muestra asignado al bin, no un gen adquirido.
+                if (o6 == "mismo_genero" and " sp." not in l6.get("especie", "")
+                        and h6["pident"] >= args.casi_id and h6["qcovs"] >= args.casi_cov):
+                    f["f6"] = "descartado_F6_otra_especie_casi_identica"
+                    f["clase"], f["motivo"] = "descartado", f["f6"]
+                    continue
                 if l6.get("genero") and l6.get("genero") == ref.get("genero"):
                     f["f6"] = "ok_mismo_genero"
                 else:

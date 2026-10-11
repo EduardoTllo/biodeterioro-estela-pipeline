@@ -70,7 +70,7 @@ for d in "$R"/07_exclusivos/*/; do
   s="$(basename "$d")"
   for f in exclusivos_verificados.tsv embudo_exclusivos.tsv exclusivos_report.md \
            candidatos_local.tsv versions_local.txt versions_remoto.txt \
-           f5_blastp_nr.tsv f5b_ani.tsv linajes.tsv; do
+           f5_blastp_nr.tsv f5b_ani.tsv f6_blastn_nt.tsv linajes.tsv; do
     cp_si "$d/$f" "$E/$s/$f"
   done
 done
