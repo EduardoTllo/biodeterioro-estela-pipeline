@@ -46,13 +46,10 @@ la infraestructura disponible, implementarlo en código y describir la
 arquitectura que resulta de integrar todas sus piezas.
 \cambio
 
-Las Fases 1 y 2 y la Fase 3 plantean problemas de diseño distintos, y por eso
-cada sección las trata por separado. Las dos primeras procesan solo los genomas
-propios y consultan bases de datos locales. La Fase 3 compara cada genoma de la
-Estela con los genomas públicos de su especie, de modo que el sistema pasa a
-descargar, anotar y comparar cientos de genomas ajenos y a consultar servicios
-remotos del NCBI. Ese cambio de escala y la dependencia de servicios externos
-son los que determinan las decisiones de diseño que se agregan en este capítulo.
+La Fase 3 plantea problemas de diseño distintos a los de las Fases 1 y 2, por lo
+que cada sección la trata por separado. Las dos primeras fases procesan solo los
+genomas propios y consultan bases de datos locales. La Fase 3 compara cada
+genoma de la Estela con los genomas públicos de su especie.
 \fincambio
 
 \section{Cálculo de los parámetros y dimensionamiento de los componentes}
@@ -102,17 +99,17 @@ no está, por tanto, en el tamaño de los datos propios, sino en el tamaño de l
 bases de datos de referencia que el flujo debe consultar.
 
 \cambio
-En la Fase 3 la entrada cambia de naturaleza. Los genomas propios que llegan a
-esta fase son pocos, y la mayor parte del volumen procede de genomas públicos de
-las mismas especies. La Tabla~\ref{tab:bases_diseno_f3} resume las cifras que
-dimensionan esta fase, medidas en la ejecución.
+Solo 3 bins llegan a la Fase 3, y el
+resto son genomas públicos de las especies seleccionadas. La
+Tabla~\ref{tab:bases_diseno_f3} resume las cifras que dimensionan esta fase.
 
 \begin{table}[H]
 \cambio
 \centering
 \small
 \caption[Bases de diseño de la Fase 3]{Características del conjunto de entrada
-de la Fase 3, medidas en la ejecución.}
+de la Fase 3. Las medianas se dan en el orden
+\textit{B.~altitudinis}, \textit{P.~frigoritolerans} y \textit{A.~schindleri}.}
 \label{tab:bases_diseno_f3}
 \begin{tabular}{lr}
 \toprule
@@ -123,20 +120,18 @@ de la Fase 3, medidas en la ejecución.}
 \cambio Genomas públicos válidos tras la verificación & \cambio 656 \\
 \cambio Especies que pasan al análisis pangenómico & \cambio 3 \\
 \cambio Genomas anotados (115 referencias y 3 bins) & \cambio 118 \\
-\cambio Tamaño mediano de las referencias & \cambio 3.32 a 5.52 Mpb \\
-\cambio Contigs por referencia (mediana) & \cambio 15 a 46 \\
+\cambio Tamaño del genoma de referencia (mediana por especie) & \cambio 3.74 / 5.52 / 3.32 Mpb \\
+\cambio Contigs por genoma de referencia (mediana por especie) & \cambio 15 / 39.5 / 46 \\
 \cambio Proteínas sometidas a la búsqueda remota (versión 2) & \cambio 112 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-La cifra que dimensiona esta fase es la de 656 genomas públicos. Solo 115 de
-ellos entran al pangenoma, pero todos se descargan y se conservan, porque la
-verificación de los genes propios de cada bin y el cálculo de su ANI se hacen
-contra el conjunto completo de la especie y no solo contra las referencias
-elegidas. El cuello de botella vuelve a estar fuera de los datos propios: en la
-anotación de los 118 genomas y en la consulta de las bases de datos remotas del
-NCBI.
+La fase parte de 656 genomas públicos válidos, de los cuales 115 se incluyen en el
+ pangenoma. Se conservan todos los genomas de las tres especies seleccionadas
+ (208, 69 y 29) para verificar los genes propios de cada bin y calcular su ANI.
+ El mayor costo computacional está en anotar los 118 genomas y consultar las bases
+ de datos del NCBI.
 
 \fincambio
 \subsection{Parámetros operativos del diseño}
@@ -183,11 +178,10 @@ una sola línea, y el valor efectivo queda registrado de forma automática en el
 archivo de versiones que el propio script ejecutado escribe. El análisis de
 sensibilidad del Capítulo VII se apoya en esa propiedad.
 \cambio
-
-La Fase 3 sigue la misma regla. En los programas escritos en Python los
-parámetros se declaran como valores por omisión al inicio del archivo, con el
-prefijo \texttt{DEF\_}, y pueden cambiarse desde la línea de comandos sin editar
-el código. La Tabla~\ref{tab:parametros_f3} los reúne.
+La Fase 3 aplica la misma regla y la Tabla~\ref{tab:parametros_f3} los reúne.
+Los códigos F1 a F6 de esta tabla y de las siguientes designan los filtros que
+verifican los genes específicos de cada cepa; la
+Sección~\ref{subsec:impl_verificacion} los describe.
 
 {\footnotesize
 \setstretch{1.15}
@@ -288,7 +282,7 @@ completitud ni contaminación \\
 
 La asignación final de recursos se declara en la cabecera de cada script de ejecución.
 Ambas fases solicitan 32 núcleos y 90 GB de memoria, es decir, ocho gigabytes por
-debajo del límite máximo de la cuenta. Ese margen es deliberado: el planificador rechaza
+debajo del límite máximo de la cuenta. Ese margen es deliberado: SLURM rechaza
 el trabajo si la solicitud excede la cuota, y algunas herramientas reservan
 memoria adicional fuera del proceso principal. La Fase 1 solicita 24 horas y la
 Fase 2, doce.
@@ -304,13 +298,11 @@ conjunto completo de referencias del dominio bacteriano, como se documenta en
 el Capítulo VII.
 
 \cambio
-En la Fase 3 la cuota se comporta de otra forma. El límite que más pesó no fue
-la memoria de un trabajo, sino el número de trabajos: la cuenta admite cinco
-trabajos enviados y tres en ejecución a la vez, y en un arreglo de trabajos de
-SLURM cada tarea cuenta como un trabajo. Un arreglo con una tarea por genoma,
-que es la forma natural de anotar 118 genomas, queda rechazado por el
-planificador. La Tabla~\ref{tab:dimensionamiento_f3} resume la decisión
-adoptada en cada etapa.
+En la Fase 3, la principal limitación fue el número de trabajos permitidos, 
+no la memoria. SLURM admite cinco trabajos enviados y tres en ejecución 
+simultáneamente, por lo que rechazaba un arreglo con una tarea por cada uno de 
+los 118 genomas. La Tabla~\ref{tab:dimensionamiento_f3} resume las decisiones 
+tomadas en cada etapa.
 
 {\footnotesize
 \setstretch{1.15}
@@ -342,48 +334,36 @@ etapa de la Fase 3 y decisión de dimensionamiento adoptada.}
 \cambio Una tarea por especie (16 núcleos, 32 GB, hasta 6 h). Las siete especies se
 \cambio enviaron en dos tramos para no superar el límite de trabajos de la cuenta \\
 \addlinespace
-\cambio Bakta & 
-\cambio Memoria y número de trabajos & 
-\cambio Tres lotes en paralelo de 10 núcleos y 32 GB. Cada lote anota en serie la
-\cambio tercera parte del conjunto, de modo que el arreglo tiene tres tareas y no 118 \\
+\cambio Bakta &
+\cambio Memoria y número de trabajos &
+\cambio Tres lotes en paralelo de 10 núcleos y 32 GB. Cada lote anota en serie un tercio
+\cambio de los genomas, así que el arreglo tiene tres tareas y no 118 \\
 \addlinespace
-\cambio Panaroo & 
-\cambio Memoria & 
-\cambio Una especie a la vez (32 núcleos, 90 GB). El consumo real quedó muy por debajo
-\cambio de lo pedido, con un máximo de 14 GB \\
+\cambio Panaroo &
+\cambio Memoria &
+\cambio Una especie a la vez (32 núcleos, 90 GB). El consumo máximo fue de 14 GB,
+\cambio muy por debajo de lo pedido \\
 \addlinespace
-\cambio IQ-TREE & 
-\cambio Tiempo & 
-\cambio Una especie a la vez (32 núcleos, 24 h). Se previó un respaldo por si un árbol
-\cambio no cabía en 24 h: reducir el alineamiento a sus sitios variables con
-\cambio \texttt{snp-sites} y corregir el sesgo de esa reducción en el modelo. No hizo
-\cambio falta \\
+\cambio IQ-TREE &
+\cambio Tiempo &
+\cambio Una especie a la vez (32 núcleos, 24 h). \\
 \addlinespace
 \cambio BLAST local (F3, F4) & 
 \cambio Procesador & 
 \cambio Una tarea por especie (16 núcleos, 32 GB). Tardó menos de un minuto por especie \\
 \addlinespace
-\cambio BLAST remoto (F5, F6) & 
-\cambio Cola externa del NCBI & 
-\cambio Se ejecuta en el nodo de login dentro de una sesión persistente
-\cambio (\texttt{tmux}). El tiempo no lo controla el diseño sino la cola del NCBI, por
-\cambio lo que el programa espera hasta 24 h por búsqueda y puede reanudarse \\
+\cambio BLAST remoto (F5, F6) &
+\cambio Cola externa del NCBI &
+\cambio Se ejecuta en el nodo de login, dentro de una sesión persistente
+\cambio (\texttt{tmux}). El tiempo depende de la cola del NCBI y no del diseño. Por eso el
+\cambio programa espera hasta 24 h por búsqueda y puede reanudarse \\
 \end{xltabular}
 }
 
-La memoria de Bakta se fijó con una medición y no con una estimación. Antes de
-anotar los 118 genomas se ejecutó un piloto con tres referencias de
-\textit{B.~altitudinis} y su bin. El piloto anotó los cuatro genomas en 2 h 01
-min con 10 núcleos, y su consumo máximo de memoria fue de 30.0 GB, exactamente
-el límite que se había pedido. Un consumo igual al límite indica que el trabajo
-estuvo a punto de ser terminado por falta de memoria, de modo que la solicitud
-por lote se subió a 32 GB. El tiempo del piloto sirvió como cota superior: a
-unos 30 min por genoma, cada lote de unos 40 genomas necesitaría cerca de 20 h,
-todavía por debajo del límite de 24 h por trabajo. Con tres lotes, por tanto, la
-anotación cabía en un solo envío incluso en el peor caso. La corrida real fue
-bastante más rápida, unos 7 min por genoma y 4.5 h en total, con un consumo
-máximo de 30.5 a 31.0 GB por lote, dentro de lo previsto. La
-Tabla~\ref{tab:consumo_f3} reúne los consumos medidos en las etapas pesadas.
+Antes de anotar los 118 genomas en Bakta, se ejecutó un piloto con tres referencias
+de \textit{B.~altitudinis} y su bin. 
+La Tabla~\ref{tab:consumo_f3} reúne los consumos medidos en las etapas de mayor
+costo.
 
 \begin{table}[H]
 \cambio
@@ -410,10 +390,7 @@ orden \textit{B.~altitudinis}, \textit{P.~frigoritolerans} y
 }
 \end{table}
 
-Salvo la memoria de Bakta, que el piloto permitió ajustar, las etapas locales
-caben con holgura en la cuota. El tiempo de
-la búsqueda remota es el mayor de toda la fase, y casi todo es espera en la cola
-del NCBI, no cálculo.
+
 
 \fincambio
 \subsection{Dimensionamiento del almacenamiento}
@@ -437,8 +414,8 @@ Base de datos de GTDB R220            & Insumo de referencia & $\sim$110 GB \\
 Resultados completos de la Fase 2     & Salida            & 406 MB \\
 Alineamiento concatenado bac120       & Salida intermedia & 230 MB \\
 \midrule
-\cambio Base de datos de Bakta v6.0 (\textit{full}) & \cambio Insumo de referencia & \cambio $\sim$130 GB \\
-\cambio Datos y salidas de la Fase 3 & \cambio Datos y salidas & \cambio $\sim$30 GB \\
+\cambio Base de datos de Bakta v6.0 (\textit{full}) & \cambio Insumo de referencia & \cambio $\sim$84 GB \\
+\cambio Datos y salidas de la Fase 3 & \cambio Datos y salidas & \cambio $\sim$19 GB \\
 \bottomrule
 \end{tabular}
 \cambio
@@ -446,10 +423,7 @@ Alineamiento concatenado bac120       & Salida intermedia & 230 MB \\
 \vspace{0.5em}
 \begin{minipage}{0.9\textwidth}
 \footnotesize
-\textit{Nota.} Las dos filas de la Fase 3 corresponden al espacio libre que se
-reservó en el clúster antes de la ejecución, no a una medición posterior.
-% PENDIENTE: reemplazar por lo que devuelva en Khipu
-%   du -sh ~/dbs/bakta* ~/estela/fase3/data ~/estela/fase3/results
+
 \end{minipage}
 \fincambio
 \end{table}
@@ -462,12 +436,11 @@ preparación de la Fase 2 verifica el espacio disponible antes de iniciar la
 descompresión y está diseñado para ejecutarse en un segundo plano.
 
 \cambio
-En la Fase 3 la base de datos de Bakta ocupa el lugar que GTDB ocupaba en la
-Fase 2: es el componente más grande del sistema y se descarga una sola vez en
-el nodo de login. Los genomas públicos ocupan bastante menos, pero deben
-conservarse completos hasta el final de la fase. La razón es funcional: la
-búsqueda de los genes propios de cada bin y el cálculo de su ANI se hacen
-contra todos los genomas descargados de la especie, incluidos los que no
+En la Fase 3 la base de datos de Bakta (84 GB) es el segundo componente
+más grande del sistema, después de GTDB (110 GB), y se descarga una sola vez en
+el nodo de login. Los genomas públicos ocupan bastante menos, pero no se descartan
+hasta el final de la fase: la búsqueda de los genes propios de cada bin y el cálculo
+de su ANI usan todos los genomas descargados de la especie, incluidos los que no
 entraron al pangenoma.
 
 \fincambio
@@ -507,9 +480,9 @@ criterio de selección de cada una.}
 \bottomrule
 \endlastfoot
 GTDB-Tk & 2.6.1 &
-Fijada de forma explícita por compatibilidad con el release R220 de la base de
+Fijada de forma explícita por compatibilidad con la versión R220 de la base de
 datos. La tabla de compatibilidad oficial de la herramienta vincula cada versión
-del programa con un release de datos determinado, y una combinación incorrecta
+del programa con una versión de datos determinada, y una combinación incorrecta
 produce clasificaciones erróneas sin emitir error \\
 \addlinespace
 Python & 3.11 &
@@ -517,14 +490,14 @@ Fijada de forma explícita en todos los entornos. Sin esta restricción el
 resolvedor instala Python 3.14, con el que GTDB-Tk no arranca porque la versión
 de su biblioteca de validación de datos no es compatible con esa versión \\
 \addlinespace
-\cambio Tiara, CheckM2 & \cambio 1.0.3; 1.1.0 & 
+\cambio Tiara, CheckM2 & \cambio 1.0.3; 1.1.0 &
 \cambio Sin restricción de versión al crear el entorno, porque ninguna de las dos
-\cambio depende de un release externo de datos. Las versiones que se reportan son las
+\cambio depende de una versión concreta de datos externos. Se reportan las versiones
 \cambio que quedaron instaladas \\
 \addlinespace
-\cambio dRep, fastANI, Mash & \cambio 3.7.1; 1.34; 2.3 & 
+\cambio dRep, fastANI, Mash & \cambio 3.7.1; 1.34; 2.3 &
 \cambio Instaladas en un entorno propio con Python 3.11, para evitar la misma clase de
-\cambio incompatibilidad. El mismo entorno se reutilizó en la Fase 3 \\
+\cambio incompatibilidad. El entorno se reutilizó en la Fase 3 \\
 \midrule
 \cambio NCBI Datasets CLI & \cambio 18.38.0 & 
 \cambio Descarga cada genoma por su accesión exacta, con la versión del ensamblaje que
@@ -534,9 +507,9 @@ de su biblioteca de validación de datos no es compatible con esa versión \\
 \cambio La base de datos v6.0 exige Bakta 1.11 o superior. Se fijó la versión para que
 \cambio los 118 genomas se anotaran con el mismo programa \\
 \addlinespace
-\cambio Panaroo & \cambio 1.8.0 & 
-\cambio Fijada junto con su conversor de formato, que se descarga del mismo número de
-\cambio versión del código fuente (ver texto). Incluye CD-HIT 4.8.1 y MAFFT 7.526 \\
+\cambio Panaroo & \cambio 1.8.0 &
+\cambio Fijada junto con su conversor de formato, que se descarga de la misma versión
+\cambio del código fuente (ver texto). Incluye CD-HIT 4.8.1 y MAFFT 7.526 \\
 \addlinespace
 \cambio IQ-TREE, snp-sites & \cambio 3.1.3; 2.5.1 & 
 \cambio snp-sites solo se instaló para el respaldo previsto, que no hizo falta \\
@@ -553,16 +526,15 @@ de su biblioteca de validación de datos no es compatible con esa versión \\
 }
 \cambio
 
-En la Fase 3 la decisión de compatibilidad más importante fue la del formato de
-anotación. Bakta entrega sus anotaciones en GFF3, y Panaroo espera el formato
-que produce Prokka. Aunque Panaroo acepta archivos GFF3, con los de Bakta pierde
-o malinterpreta genes. La solución fue convertir cada archivo con
-\texttt{convert\_bakta\_to\_prokka\_gff.py}, un programa que los propios autores
-de Panaroo distribuyen en su repositorio. El conversor se descarga del mismo
-número de versión del código fuente que el programa instalado (v1.8.0), para que
-ambas piezas sean compatibles. La conversión descarta las secuencias
-codificantes que no se pueden traducir, y el sistema registra cuántas se
-pierden: fueron 5 en total, todas en \textit{A.~schindleri}.
+En la Fase 3 la decisión de compatibilidad más importante fue el formato de
+anotación. Bakta entrega GFF3 y Panaroo espera el formato de Prokka. Panaroo
+acepta archivos GFF3, pero con los de Bakta pierde o malinterpreta genes. Por
+eso cada archivo se convirtió con \texttt{convert\_bakta\_to\_prokka\_gff.py},
+un programa que los propios autores de Panaroo distribuyen en su repositorio. El
+conversor se descarga de la misma versión del código fuente que el programa
+instalado (v1.8.0), para que ambos sean compatibles. La conversión descarta las
+secuencias codificantes que no se pueden traducir, y el sistema registra cuántas
+se pierden: fueron 5 en total, todas en \textit{A.~schindleri}.
 \fincambio
 
 La fijación de la versión de Python es la decisión de selección más importante
@@ -605,27 +577,27 @@ Base de datos de GTDB            & R220                              & Clasifica
 \end{table}
 
 La versión del insumo forma parte del resultado. Un genoma clasificado contra
-R220 puede recibir un nombre distinto contra un release posterior, porque la
-taxonomía del GTDB se reorganiza entre versiones. Por ese motivo el release se
+R220 puede recibir un nombre distinto contra una versión posterior, porque la
+taxonomía del GTDB se reorganiza entre versiones. Por ese motivo la versión se
 registra en el archivo de versiones de cada ejecución y se declara junto a los
 resultados.
 \cambio
 
-En la Fase 3 este principio se extiende a las bases remotas. La base de Bakta
-v6.0 integra a su vez versiones fijas de otras bases, como RefSeq 228,
-UniProtKB/\allowbreak Swiss-Prot 2025\_01 y Pfam 37.2, de modo que basta con registrar su
-número de versión. Las bases nr y core\_nt del NCBI, en cambio, se consultan en
-línea y cambian a diario. Un gen que hoy no tiene copias conocidas en su especie
-puede tenerlas mañana, si se deposita un genoma nuevo. Por eso la fecha de cada
-búsqueda forma parte del resultado y se reporta con él.
+En la Fase 3 el mismo principio se aplica a las bases remotas. La base de Bakta
+v6.0 incluye versiones fijas de otras bases, como RefSeq 228,
+UniProtKB/\allowbreak Swiss-Prot 2025\_01 y Pfam 37.2, por lo que basta
+registrar su número de versión. Las bases nr y core\_nt del NCBI, en cambio, se
+consultan en línea y cambian a diario. Un gen sin copias conocidas hoy en su
+especie puede tenerlas mañana, si se deposita un genoma nuevo. Por eso la fecha
+de cada búsqueda se reporta junto con el resultado.
 
-Dos insumos de la Fase 3 no son bases de datos externas, sino tablas construidas
-para este trabajo: un diccionario de expresiones regulares que asigna un hábitat
-a cada genoma según la fuente de aislamiento declarada, y una tabla que asigna un
-continente a cada uno de los 258 países que aparecen en los metadatos. Ambos se
-versionan junto con el código, porque cambiar una palabra clave cambia la
-clasificación de las referencias. A ellos se suma la lista de exclusiones
-manuales de genomas, cuya justificación se presenta en el Capítulo VII.
+En la Fase 3 se construyeron dos tablas para procesar los metadatos: 
+un diccionario de expresiones regulares que clasifica los genomas según 
+su hábitat de aislamiento y una tabla que relaciona los 258 países 
+identificados con su continente. Ambas se mantienen junto con el código, ya 
+que los cambios en las palabras clave pueden modificar la clasificación. También se 
+mantiene una lista de genomas excluidos manualmente, cuyas razones se detallan en el
+ Capítulo VII.
 \fincambio
 
 \subsection{Entorno de ejecución}
@@ -658,23 +630,21 @@ Para dejar constancia del entorno efectivamente utilizado, el guion de
 preparación exporta al final un archivo de bloqueo por cada entorno creado, con
 la lista completa de paquetes y sus versiones exactas. Esos archivos se
 \cambio
-versionan junto con el código, en la carpeta \texttt{envs/} del repositorio.
+colocan junto con el código, en la carpeta \texttt{envs/} del repositorio.
 
-La Fase 3 agregó cinco entornos, llamados \texttt{ncbi-datasets},
-\texttt{bakta}, \texttt{panaroo}, \texttt{iqtree} y \texttt{blast}. Los crea
-el guion \texttt{03\_setup\_fase3\_khipu.sh}, con las mismas reglas: solo
+La Fase 3 agregó cinco entornos: \texttt{ncbi-datasets}, \texttt{bakta},
+\texttt{panaroo}, \texttt{iqtree} y \texttt{blast}. Los crea el guion
+\texttt{03\_setup\_fase3\_khipu.sh} con las mismas reglas: solo
 \texttt{conda-forge} y \texttt{bioconda}, Python 3.11 y versiones de
-herramienta fijadas. El entorno de dRep de la Fase 2 se reutilizó tal cual. Al
-terminar, el guion comprueba que cada entorno responde con su versión, que la
-base de Bakta es la v6 y que los metadatos de GTDB contienen las columnas que el
-censo necesita. Esa comprobación detectó un fallo real: el entorno
-\texttt{blast} había quedado creado sin sus programas, y hubo que recrearlo antes
-de la búsqueda local de la Fase 3.
+herramienta fijadas. El entorno de dRep de la Fase 2 se reutilizó sin cambios.
+Al terminar, el script comprueba que cada entorno responde con su versión, que
+la base de Bakta es la v6 y que los metadatos de GTDB contienen las columnas
+que necesita el censo.
 \fincambio
 
 \subsection{Plataforma de cómputo}
 
-El sistema se ejecuta en el clúster Khipu de la UTEC, bajo el planificador SLURM.
+El sistema se ejecuta en el clúster Khipu de la UTEC, bajo el gestor de colas SLURM.
 Se emplea la partición \texttt{standard}, que agrupa los nodos de propósito
 \cambio
 general, de 32 núcleos y 224 GB de memoria en su mayoría. No se emplean las particiones de
@@ -690,17 +660,13 @@ de forma interactiva en el login. Los scripts de ejecución ejecutan el análisi
 envían a la cola, sin requerir conexión alguna.
 \cambio
 
-La Fase 3 rompe en parte esta separación, porque una de sus etapas no puede
-ejecutarse sin conexión: la búsqueda de los genes propios de cada bin en las
-bases nr y core\_nt, que son demasiado grandes para instalarse en el clúster y
-se consultan en los servidores del NCBI. Esa etapa se ejecuta en el nodo de
-login. Como puede durar varias horas, se lanza dentro de una sesión de
-\texttt{tmux}, que sigue corriendo aunque se cierre la conexión SSH. Las demás
-etapas de la Fase 3 se reparten así: el censo, la descarga, la clasificación y
-la selección de referencias corren en el login, porque necesitan red y tardan
-minutos; la desreplicación, la anotación, el pangenoma, los árboles y la
-búsqueda local se envían a la cola; y la estadística y las figuras se calculan
-en una estación local con R, a partir de las tablas exportadas del clúster.
+La Fase 3 rompe en parte esta separación, porque una etapa del análisis necesita
+conexión: la búsqueda de los genes propios de cada bin en las bases de datos nr y
+core\_nt. Esas bases de datos son demasiado grandes para instalarse en el clúster y se
+consultan en los servidores del NCBI. La etapa se ejecuta en el nodo de login.
+Como puede durar varias horas, se lanza dentro de una sesión de \texttt{tmux},
+que sigue activa aunque se cierre la conexión SSH. Las demás etapas de la Fase 3
+se reparten así.
 \fincambio
 
 \section{Integración e implementación de los componentes en la solución final}
@@ -711,21 +677,31 @@ y qué mecanismos garantizan que el encadenamiento no se rompa.
 
 \subsection{Organización del sistema en programas}
 
-El sistema se implementa en seis programas, que se agrupan en tres clases según
-dónde y cuándo se ejecutan. La Tabla~\ref{tab:programas} los describe.
+Las Fases 1 y 2 se implementan en seis programas, que se agrupan en tres clases
+según dónde y cuándo se ejecutan. La Tabla~\ref{tab:programas} los describe
+\cambio junto con los de la Fase 3.\fincambio
 
-\begin{table}[H]
-\centering
-\footnotesize
+{\footnotesize
+\setstretch{1.15}
 \setlength{\tabcolsep}{4pt}
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{4.9cm}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X}
 \caption[Programas que componen el sistema]{Programas del sistema, clase a la
-que pertenecen y función que cumplen.}
-\label{tab:programas}
-\makebox[\textwidth][c]{%
-\begin{tabular}{p{4cm}p{2.2cm}p{6.6cm}}
+que pertenecen y función que cumplen. Los de la Fase 3 se listan en orden de
+ejecución.}
+\label{tab:programas} \\
 \toprule
 \textbf{Programa} & \textbf{Clase} & \textbf{Función} \\
 \midrule
+\endfirsthead
+\multicolumn{3}{l}{\textit{Tabla~\ref{tab:programas} (continuación)}} \\
+\toprule
+\textbf{Programa} & \textbf{Clase} & \textbf{Función} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\multicolumn{3}{l}{\textit{Fases 1 y 2}} \\*
+\addlinespace
 \texttt{00\_setup\_khipu.sh} & Preparación (login) &
 Crea los entornos de Tiara y CheckM2 y descarga la base de datos de CheckM2 \\
 \addlinespace
@@ -745,45 +721,9 @@ Ejecuta la clasificación taxonómica, la desreplicación y el cálculo de preva
 \texttt{summarize\_phase1.py}, \texttt{summarize\_phase2.py} & Procesamiento &
 Convierten las salidas de cada herramienta en las tablas de decisión del flujo
 y en los reportes legibles \\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
-
-La separación entre script de ejecución y procesamiento es deliberada. El script de ejecución se
-ocupa de activar entornos, invocar herramientas y
-verificar condiciones. Los programas de procesamiento contienen la lógica de
-decisión del flujo, escrita en Python y empleando únicamente la biblioteca
-estándar. Esta última restricción permite ejecutarlos con el intérprete de
-cualquiera de los entornos, sin instalar dependencias adicionales.
-
-\cambio
-La Fase 3 se implementa en quince programas, con la misma división entre
-programas que invocan herramientas y programas que contienen la lógica de
-decisión, también escritos en Python con la biblioteca estándar. Aparece además
-una cuarta clase: la de los programas que ejecutan cálculos en el nodo de login
-porque necesitan conexión. La Tabla~\ref{tab:programas_f3} los describe en el
-orden en que se ejecutan.
-
-{\footnotesize
-\setstretch{1.15}
-\setlength{\tabcolsep}{4pt}
-\cambio
-\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{4.9cm}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X}
-\caption[Programas de la Fase 3]{Programas de la Fase 3, clase a la que
-pertenecen y función que cumplen, en orden de ejecución.}
-\label{tab:programas_f3} \\
-\toprule
-\cambio \textbf{Programa} & \cambio \textbf{Clase} & \cambio \textbf{Función} \\
 \midrule
-\endfirsthead
-\multicolumn{3}{l}{\textit{Tabla~\ref{tab:programas_f3} (continuación)}} \\
-\toprule
-\cambio \textbf{Programa} & \cambio \textbf{Clase} & \cambio \textbf{Función} \\
-\midrule
-\endhead
-\bottomrule
-\endlastfoot
+\multicolumn{3}{l}{\cambio\textit{Fase 3}} \\*
+\addlinespace
 \cambio \texttt{03\_setup\_fase3\_khipu.sh} & \cambio Preparación (login) & 
 \cambio Crea los cinco entornos nuevos, descarga la base de Bakta, el conversor de
 \cambio formato de Panaroo, la taxonomía del NCBI y los metadatos de GTDB \\
@@ -828,6 +768,18 @@ pertenecen y función que cumplen, en orden de ejecución.}
 \end{xltabular}
 }
 
+La separación entre script de ejecución y procesamiento es deliberada. El script de ejecución se
+ocupa de activar entornos, cargar herramientas y
+verificar condiciones. Los programas de procesamiento contienen la lógica de
+decisión del flujo, escrita en Python y empleando únicamente la biblioteca
+estándar. Esta última restricción permite ejecutarlos con el intérprete de
+cualquiera de los entornos, sin instalar dependencias adicionales.
+
+\cambio
+La Fase 3 se implementa en quince programas y mantiene la misma división. Se agrega una cuarta clase, la de los
+programas que se ejecutan en el nodo de login porque necesitan conexión. La
+Tabla~\ref{tab:programas} los describe, en el orden en que se ejecutan.
+
 \fincambio
 \subsection{Normalización de la entrada y trazabilidad}
 
@@ -861,18 +813,15 @@ una advertencia en caso contrario. Esta comprobación protege contra el error m�
 probable de esta etapa, que es tomar como origen una carpeta equivocada.
 \cambio
 
-En la Fase 3 la trazabilidad se extiende a los genomas públicos. Cada genoma se
-identifica por su accesión del NCBI, en la que el punto se reemplaza por un
-guion bajo para que el nombre sea válido en todas las herramientas, y los bins
-conservan su nombre de origen con la misma regla. Ese identificador se mantiene
-igual desde la descarga hasta el pangenoma y llega sin cambios a la Fase 4. Cada
-accesión se pide además con la versión exacta del ensamblaje que lista GTDB
-(por ejemplo, \texttt{.1}), y si esa versión ya no está disponible el genoma no
-se reemplaza por otra. La razón es que las métricas de calidad con que se
-seleccionó el genoma corresponden a esa versión y no a otra. Para comprobar que
-el archivo descargado es el esperado, el sistema compara su longitud total con
-la que registra GTDB y acepta una diferencia de hasta el 1\,\%. Este control no
-es un filtro de calidad, sino una verificación de integridad de la descarga.
+En la Fase 3, cada genoma público se identifica por su accesión del NCBI, reemplazando 
+el punto por un guion bajo para asegurar la compatibilidad con las herramientas. Además, 
+los bins conservan sus nombres originales. Estos identificadores se mantienen durante todo 
+el análisis, hasta el pangenoma y la Fase 4. Se descarga la versión exacta del ensamblaje 
+indicada por GTDB (por ejemplo, \texttt{.1}). Si ya no está disponible, no se sustituye por
+ otra versión, ya que las métricas de calidad utilizadas para seleccionarlo corresponden al
+  ensamblaje original. Finalmente, se compara la longitud del archivo descargado con la 
+  registrada en GTDB, aceptando una diferencia máxima del 1\,\%. Este control verifica la 
+  integridad de la descarga, no la calidad del genoma.
 \fincambio
 
 \subsection{Encadenamiento entre etapas}
@@ -956,7 +905,7 @@ dRep dereplicate "$DREP_OUT" \
 \end{lstlisting}
 
 \cambio
-La Fase 3 conserva el mismo principio de comunicación por archivos. La
+La Fase 3 conserva el principio de comunicación por archivos. La
 Tabla~\ref{tab:artefactos_f3} documenta su cadena.
 
 {\footnotesize
@@ -968,12 +917,12 @@ Tabla~\ref{tab:artefactos_f3} documenta su cadena.
 etapas de la Fase 3.}
 \label{tab:artefactos_f3} \\
 \toprule
-\cambio \textbf{Archivo} & \cambio \textbf{Lo produce} & \cambio \textbf{Lo consume} \\
+\cambio \textbf{Archivo} & \cambio \textbf{Lo crea} & \cambio \textbf{Lo usa} \\
 \midrule
 \endfirsthead
 \multicolumn{3}{l}{\textit{Tabla~\ref{tab:artefactos_f3} (continuación)}} \\
 \toprule
-\cambio \textbf{Archivo} & \cambio \textbf{Lo produce} & \cambio \textbf{Lo consume} \\
+\cambio \textbf{Archivo} & \cambio \textbf{Lo crea} & \cambio \textbf{Lo usa} \\
 \midrule
 \endhead
 \bottomrule
@@ -1020,16 +969,20 @@ etapas de la Fase 3.}
 
 En esta cadena hay dos puntos que resuelven problemas de integración.
 
-El primero es la partición. Panaroo agrupa en familias los genes de todos los
-genomas que recibe, incluido el bin, y calcula la frecuencia de cada familia
-sobre ese conjunto. Ese cálculo no sirve para esta pregunta, porque el bin está
-incompleto: una familia presente en 48 de las 50 referencias y ausente en el
-bin quedaría en 48 de 51 genomas, por debajo del 95\,\%, y pasaría de core a
-shell solo por la incompletitud del bin. Por la misma razón, una familia
-presente solo en el bin quedaría como cloud y no como candidata a gen propio de
-la cepa. El sistema conserva el agrupamiento de Panaroo, pero recalcula la
-frecuencia de cada familia solo con las referencias y después ubica al bin
-dentro de esas categorías. El Código~\ref{lst:particion} muestra ese cálculo.
+El primer problema es la partición del pangenoma, es decir, cómo se clasifican
+las familias de genes según su frecuencia. Panaroo agrupa en familias los genes
+de todos los genomas que recibe, incluido el bin, y las clasifica como core,
+shell o cloud según cuántos genomas las contienen. Como el bin está incompleto,
+incluirlo en este cálculo distorsiona las categorías. Por ejemplo, una familia
+presente en 48 de las 50 referencias tiene una frecuencia de 96\% y debería
+clasificarse como core. Sin embargo, si está ausente en el bin, su frecuencia
+baja a 48 de 51 genomas (94.1\%), queda por debajo del umbral de 95\% y
+pasa a shell solo por la incompletitud del bin. Del mismo modo, una familia
+presente solo en el bin quedaría como cloud, aunque podría ser un gen propio de
+la cepa. Para evitar estos errores, el sistema conserva las familias definidas
+por Panaroo, pero recalcula su frecuencia usando solo las referencias y, a
+partir de esas categorías, ubica los genes del bin. El
+Código~\ref{lst:particion} muestra este procedimiento.
 
 \begin{lstlisting}[language=Python, caption={Frecuencia de cada familia
 calculada solo con las referencias y ubicación del bin (extracto simplificado de
@@ -1050,19 +1003,18 @@ def categoria(n_ref, n_total, core, cloud, en_bin):
     return "cloud"
 \end{lstlisting}
 
-El segundo es la lista completa de genomas válidos de cada especie. El pangenoma usa solo las referencias
-seleccionadas, pero la búsqueda de los genes propios del bin y el cálculo de su
-ANI usan esta lista, que incluye los genomas descartados por la desreplicación y
-por el tope de 50. Separar ambas listas permite que el pangenoma sea manejable
-sin que la verificación pierda genomas en los que un gen podría estar.
+El segundo es la lista completa de genomas válidos de cada especie. El pangenoma
+usa solo las referencias seleccionadas. La búsqueda de los genes propios del bin
+y el cálculo de su ANI usan toda la lista, incluidos los genomas descartados por
+la desreplicación y por el tope de 50.
 
 \subsection{Implementación de la verificación de genes específicos}
 \label{subsec:impl_verificacion}
 
 La identificación de genes propios de cada cepa de la Estela es la etapa de la
-Fase 3 con más componentes. Un gen candidato es un gen del bin que no tiene
-equivalente en ninguna referencia del pangenoma, y el sistema lo somete a una
-cadena de filtros antes de considerarlo propio de la cepa. La
+Fase 3 con más componentes. Un gen candidato es un gen del bin sin equivalente
+en ninguna referencia del pangenoma. El sistema lo somete a una cadena de
+filtros antes de considerarlo propio de la cepa. La
 Tabla~\ref{tab:filtros_impl} resume cómo se implementó cada filtro. Su
 fundamento y sus resultados se presentan en el Capítulo VII.
 
@@ -1100,17 +1052,17 @@ los filtros de genes específicos de la cepa, en el orden en que se aplican.}
 \end{xltabular}
 }
 
-El orden responde al costo. Los filtros locales se ejecutan en segundos y
+Los filtros se ordenan por costo. Los locales se ejecutan en segundos y
 descartan la mayoría de los candidatos, de modo que solo los que sobreviven
-llegan a los filtros remotos, que pueden tardar horas por búsqueda. Por eso la
-etapa está partida en dos programas: uno se envía a la cola y deja escritas las
+llegan a los filtros ejecutados remotamente, que pueden tardar horas por búsqueda. Por eso la
+etapa está dividida en dos programas: uno se envía a la cola y deja escritas las
 consultas para el NCBI, y el otro se ejecuta después en el nodo de login.
 
-La parte remota se implementó contra la interfaz web de BLAST del NCBI y no con
-la opción \texttt{-remote} de BLAST+, que en el clúster quedaba esperando sin
-devolver resultados. El programa envía cada consulta con \texttt{curl}, guarda
-el identificador que devuelve el servidor, consulta su estado cada 60 segundos,
-que es el intervalo mínimo que pide el NCBI, y recupera el resultado con
+La parte remota se implementó con la interfaz web de BLAST del NCBI y no con la
+opción \texttt{-remote} de BLAST+, que en el clúster quedaba esperando sin
+devolver resultados. El programa envía cada consulta con \texttt{curl} y guarda
+el identificador que devuelve el servidor. Luego consulta su estado cada 60
+segundos, el intervalo mínimo que pide el NCBI, y recupera el resultado con
 \texttt{blast\_formatter}. El Código~\ref{lst:blast_remoto} muestra el envío.
 
 \begin{lstlisting}[language=bash, caption={Envío de una búsqueda a la interfaz
@@ -1131,13 +1083,13 @@ echo "$rid" > "${out}.rid"
 \subsection{Implementación de los scripts de ejecución}
 \fincambio
 
-Cada script de ejecución declara primero los recursos que solicita al planificador del clúster y
+Cada script de ejecución declara primero los recursos que solicita a SLURM y
 después la configuración del análisis. El Código~\ref{lst:sbatch} reproduce la
 cabecera de la Fase 1, que materializa el dimensionamiento de la
 Sección 6.1.3.
 
-\begin{lstlisting}[language=bash, caption={Cabecera de solicitud de recursos al
-planificador (extracto de \texttt{run\_fase1.slurm}).}, label={lst:sbatch}]
+\begin{lstlisting}[language=bash, caption={Cabecera de solicitud de recursos a
+SLURM (extracto de \texttt{run\_fase1.slurm}).}, label={lst:sbatch}]
 # Limites de la cuenta: 32 cores, 98 GB RAM, 24 h por trabajo.
 #SBATCH --job-name=fase1_estela
 #SBATCH --partition=standard
@@ -1184,34 +1136,20 @@ consultada al propio programa. Ese archivo acompaña a los resultados y es la
 evidencia de reproducibilidad que se reporta en el Capítulo VII.
 
 \cambio
-La Fase 3 agregó mecanismos propios, porque dos de sus etapas dependen de
-condiciones que el sistema no controla.
+La Fase 3 incorporó tolerancia a fallos en las dos etapas que dependen de condiciones
+externas. La anotación con Bakta se dividió en tres tareas para respetar el límite de
+trabajos de la cuenta; si una tarea se interrumpe, al reenviarla se omiten los genomas
+ya anotados. Las búsquedas en el NCBI se envían en lotes de diez proteínas, y el
+programa guarda el identificador de cada consulta para retomarla sin repetirla.
+Si el NCBI cancela un lote, sus proteínas se reenvían una por una. Las que vuelven a
+fallar se marcan como «sin resultado», para no confundirlas con las proteínas «sin
+parecidos».
 
-La primera es el límite de trabajos de la cuenta. La anotación con Bakta se
-envía como un arreglo de tres tareas, y cada tarea anota las filas
-$k, k+3, k+6, \ldots$ del manifiesto. Si un trabajo se interrumpe, al
-reenviarlo se saltan los genomas que ya tienen su anotación completa.
-
-La segunda es la cola del NCBI. Una búsqueda remota puede quedar horas en
-espera, o el servidor puede cancelarla si supera su límite de tiempo de
-procesador. El programa remoto responde a ambas situaciones. Guarda el
-identificador de cada búsqueda, de modo que si se corta la sesión retoma la
-espera en lugar de reenviar la consulta. Envía las proteínas en lotes de diez,
-y si el NCBI cancela un lote lo divide y reenvía cada proteína por separado.
-Una proteína que falla sola queda marcada como «sin resultado», que es distinto
-de «sin parecidos»: lo primero es una falla técnica y lo segundo, un resultado.
-Por último, lleva un registro de las proteínas ya consultadas, de modo que si la
-lista de candidatos cambia solo se envían las nuevas.
-
-A esto se suman comprobaciones entre etapas que detienen el flujo si algo no
-cuadra. El programa de selección se detiene si dRep no aplicó los pesos de
-prioridad que se le pasaron. La partición se detiene si Panaroo recibió un
-genoma que no figura en el manifiesto. Y en cada punto de control de la fase
-(C0 a C8) se compara el resultado con lo esperado antes de seguir: que cada
-anotación tenga un número de genes cercano a la mediana de su especie, que cada
-referencia contenga al menos el 97\,\% del genoma core y que cada bin recupere
-del core un porcentaje cercano a su completitud. Los resultados de esos
-controles se reportan en el Capítulo VII.
+Además, el flujo se detiene en cada punto de control (C0 a C8) si un resultado no
+es el esperado. Por ejemplo, el C5 exige que cada anotación tenga un número de
+genes dentro de $\pm 20$\,\% de la mediana de su especie, y el C6, que cada referencia
+contenga al menos el 97\,\% del genoma core. El Capítulo VII presenta los resultados
+de estos controles.
 
 \fincambio
 \subsection{Control de versiones}
@@ -1222,14 +1160,7 @@ que no aportan a la reproducibilidad, como el alineamiento concatenado de 230 MB
 quedan excluidos de forma explícita y se conservan solo en el almacenamiento
 local. Esta separación mantiene el repositorio manejable sin perder la capacidad
 de reconstruir el análisis.
-\cambio
 
-En la Fase 3 el criterio es el mismo. Un programa de exportación reúne en el
-clúster las tablas, los reportes, los árboles y las anotaciones de los tres
-bins, y esa selección es la que se copia al repositorio. Quedan fuera los
-genomas públicos, las anotaciones de las referencias y los alineamientos, que
-pueden regenerarse a partir de las accesiones y del código.
-\fincambio
 
 \section{Representación gráfica de la solución y su verificación}
 
@@ -1414,12 +1345,12 @@ at (-4.00,-7.60)
 \end{tikzpicture}
 
 \caption[Diagrama de flujo del sistema]{
-Diagrama de flujo del sistema implementado. Los bloques continuos representan
-etapas de transformación y los bloques discontinuos, las corrientes de entrada
-y salida. Las etiquetas sobre las flechas indican los archivos de datos que
-conectan las etapas. La flecha discontinua lateral representa la reutilización
-de la evaluación de calidad de la Fase 1 por parte de la desreplicación de la
-Fase 2, descrita en la Sección 6.3.3.
+Diagrama de flujo de las Fases 1 y 2. Los recuadros de borde continuo son
+etapas de procesamiento; los de borde discontinuo, los datos de entrada (97
+bins) y el resultado final (19 linajes). Las etiquetas sobre las flechas son los
+archivos que pasan de una etapa a la siguiente. La flecha discontinua lateral
+indica que la desreplicación de la Fase 2 reutiliza la evaluación de calidad de
+la Fase 1 (Sección 6.3.3).
 }
 \label{fig:pfd}
 \end{figure}
@@ -1429,12 +1360,7 @@ fases: la reutilización de la evaluación de calidad. Esta conexión evita repe
 el cálculo de calidad antes de la desreplicación.
 
 \cambio
-La Fase 3 se representa en un diagrama aparte, la Figura~\ref{fig:pfd_f3}, con
-las mismas convenciones. A diferencia de las fases anteriores, su flujo no es
-una sola cadena: después del pangenoma se divide en dos ramas independientes, y
-una corriente lateral lleva la lista completa de genomas de cada especie desde
-la descarga hasta la verificación de genes, sin pasar por la desreplicación ni
-por la selección.
+La Fase 3 se representa en la Figura~\ref{fig:pfd_f3}.
 
 \begin{figure}[H]
 \cambio
@@ -1498,20 +1424,23 @@ por la selección.
 
 \end{tikzpicture}
 \caption[Diagrama de flujo de la Fase 3]{Diagrama de flujo de la Fase 3. Los
-bloques continuos representan etapas de transformación y los discontinuos, las
-corrientes de entrada y salida. Las etiquetas sobre las flechas indican los
+recuadros de borde continuo son etapas de procesamiento; los de borde discontinuo,
+los datos de entrada (19 linajes) y los resultados (posición filogenética de
+cada bin y genes específicos de la cepa). Las etiquetas sobre las flechas son los
 archivos o las cifras que pasan de una etapa a la siguiente. La flecha
-discontinua lateral lleva la lista completa de genomas válidos de cada especie
-hasta la búsqueda local de genes y el cálculo de ANI de los bins, sin pasar por
-la desreplicación ni por la selección.}
+discontinua lateral lleva todos los genomas válidos de cada especie directamente
+a la búsqueda local de genes y al cálculo de ANI de los bins, sin pasar por la
+desreplicación ni por la selección.}
 \label{fig:pfd_f3}
 \end{figure}
 
-El diagrama muestra la decisión de integración más importante de la fase: el
-pangenoma y la verificación de genes trabajan sobre conjuntos de genomas
-distintos. El pangenoma usa las referencias seleccionadas, que son pocas y no
-redundantes, para describir la especie. La verificación usa todos los genomas
-válidos, porque su objetivo es no pasar por alto ninguna copia de un gen.
+El diagrama muestra cómo se reduce el conjunto de datos en cada etapa. De los 19
+linajes de la Fase 2, 12 tienen nombre de especie y 7 superan el censo. De esas
+siete especies se descargan 656 genomas válidos; tras la desreplicación y la
+selección quedan 3 especies con 115 referencias, que se anotan junto con los 3
+bins. Después del pangenoma, el flujo se divide en dos ramas: el árbol del
+genoma core ubica a cada bin entre las cepas de su especie, y los filtros de
+genes específicos producen la lista que pasa a la Fase 4.
 
 \fincambio
 \subsection{Arquitectura de cómputo}
@@ -1521,9 +1450,9 @@ división entre el nodo de login y los nodos de cómputo no es un detalle de
 operación sino una restricción de diseño, porque determina qué programas pueden
 descargar insumos y cuáles deben encontrarlos ya disponibles.
 \cambio
-En la Fase 3 la figura agrega dos elementos externos al clúster: los servicios
+En la Fase 3 se agregan dos elementos externos al clúster: los servicios
 del NCBI, que el nodo de login consulta durante el análisis y no solo durante
-la preparación, y la estación local donde se generan la estadística y las
+la preparación, y el equipo local donde se generan la estadística y las
 figuras.
 \fincambio
 
@@ -1579,11 +1508,11 @@ figuras.
 \node[disco] (alm) at (5.75, -0.4)
       {Almacenamiento compartido\\[4pt] GTDB R220\\BD de Bakta\\genomas públicos};
 
-% --- Servicios externos y estacion local ---
+% --- Servicios externos y equipo local ---
 \node[ext] (ncbi) at (-6.3, 2.3)
       {Servicios del NCBI\\[2pt] Datasets, BLAST, E-utilities};
 \node[ext] (pc) at (-6.3, -3.1)
-      {Estación local\\[2pt] R 4.5.0\\(figuras)};
+      {Equipo local\\[2pt] R 4.5.0\\(figuras)};
 
 % --- Relaciones ---
 \draw[arr] (login.south) -- node[etq, right=3pt, fill=none]
@@ -1610,7 +1539,7 @@ necesitan red (censo, descarga y verificación remota de genes de la Fase 3) se
 ejecutan en el nodo de login, único con acceso a internet. Los scripts de
 ejecución se envían a la cola con \texttt{sbatch} y corren en nodos de cómputo
 sin conexión, que solo leen lo que el login dejó en el almacenamiento
-compartido. Las tablas de resultados se copian a una estación local, donde se
+compartido. Las tablas de resultados se copian a un equipo local, donde se
 calculan la estadística y las figuras.}
 \fincambio
 \label{fig:arquitectura}
@@ -1619,14 +1548,14 @@ calculan la estadística y las figuras.}
 \subsection{Verificación de la correspondencia entre el diagrama y la implementación}
 
 \cambio
-Las figuras anteriores describen un sistema que existe y que se ejecutó. La
-correspondencia entre ellas y el código puede comprobarse de forma directa. Cada
+Las figuras describen el sistema que se ejecutó. Su correspondencia con el
+código puede comprobarse directamente. Cada
 \fincambio
 bloque de la Figura~\ref{fig:pfd} corresponde a una invocación identificable
 \cambio
-dentro de uno de los dos scripts de ejecución de las Fases 1 y 2, y cada bloque
-de la Figura~\ref{fig:pfd_f3}, a uno de los programas de la
-Tabla~\ref{tab:programas_f3}, y cada archivo rotulado sobre las
+dentro de uno de los dos scripts de ejecución de las Fases 1 y 2. Cada bloque de
+la Figura~\ref{fig:pfd_f3} corresponde a uno de los programas de la
+Tabla~\ref{tab:programas}. Cada archivo rotulado sobre las
 \fincambio
 flechas corresponde a un archivo que el sistema escribe en disco y que se
 conserva en el repositorio junto con los resultados. Las cifras de genomas que
