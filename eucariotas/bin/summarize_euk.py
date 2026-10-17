@@ -16,7 +16,7 @@ Subcomandos:
   busco-genes   Un FASTA por gen BUSCO de copia unica compartido (arbol).
   concat        Concatena los alineamientos recortados (matriz del arbol).
   genomeinfo    genomeInfo.csv para dRep desde EukCC.
-  fase2         Taxonomia en cascada + linajes dRep + prevalencia + reporte.
+  fase2         Taxonomia en cascada + linajes dRep + reporte (sin prevalencia).
 
 Taxonomia en cascada (Fase 2):
   1. skani contra genomas de referencia de hongos de NCBI:
@@ -602,7 +602,8 @@ def cmd_fase2(args):
                 "conflicto": conflicto}
         filas.append(fila)
 
-    # Linajes: clusteres de dRep ordenados por prevalencia (prefijo E de eucariota)
+    # Linajes: clusteres de dRep (prefijo E de eucariota). No se calcula
+    # prevalencia: se dejo de usar (decision del 17-10-2026). Orden: n.º de genomas y taxonomia.
     por_cl = {}
     for f in filas:
         por_cl.setdefault(f["linaje_cluster"], []).append(f)
@@ -610,13 +611,11 @@ def cmd_fase2(args):
     for cl, miembros in por_cl.items():
         rep = reps.get(cl) or miembros[0]["genome"]
         frep = next(m for m in miembros if m["genome"] == rep)
-        muestras = sorted(set(m["muestra"] for m in miembros), key=lambda x: int(x) if x.isdigit() else 0)
         linajes.append({"linaje_cluster": cl, "representante": rep, "n_genomas": len(miembros),
-                        "prevalencia": len(muestras), "muestras": ",".join(muestras),
                         "taxonomia": ";".join(frep[r] for r in RANGOS[1:] if frep[r]),
                         "nivel_asignacion": frep["nivel_asignacion"],
                         "miembros": ",".join(m["genome"] for m in miembros)})
-    linajes.sort(key=lambda x: (-x["prevalencia"], -x["n_genomas"], x["taxonomia"]))
+    linajes.sort(key=lambda x: (-x["n_genomas"], x["taxonomia"]))
     cl_a_id = {}
     for i, l in enumerate(linajes):
         l["linaje_id"] = "E%d" % (i + 1)
@@ -631,7 +630,7 @@ def cmd_fase2(args):
                "eukcc_linaje", "conflicto"])
     escribir_tsv(args.out_tsv, filas, cols)
     escribir_tsv(args.out_linajes, linajes, ["linaje_id", "linaje_cluster", "representante",
-                                             "n_genomas", "prevalencia", "muestras",
+                                             "n_genomas",
                                              "taxonomia", "nivel_asignacion", "miembros"])
     reporte_fase2(args, filas, linajes)
     print("    Genomas: %d | linajes: %d | especie por ANI: %d" % (
@@ -653,11 +652,11 @@ def reporte_fase2(args, filas, linajes):
             fh.write("| Asignados a nivel: %s | %d |\n" % (k, v))
         fh.write("| Con ITS recuperado | %d |\n" % sum(1 for f in filas if f["its_copias"]))
         fh.write("| Conflictos de genero skani vs ITS | %d |\n\n" % sum(1 for f in filas if f["conflicto"]))
-        fh.write("## Linajes\n\n| Linaje | Prev. | Genomas | Muestras | Representante | Taxonomia | Nivel |\n")
-        fh.write("|---|---:|---:|---|---|---|---|\n")
+        fh.write("## Linajes\n\n| Linaje | Genomas | Miembros | Representante | Taxonomia | Nivel |\n")
+        fh.write("|---|---:|---|---|---|---|\n")
         for l in linajes:
-            fh.write("| %s | %d | %d | %s | %s | %s | %s |\n" % (
-                l["linaje_id"], l["prevalencia"], l["n_genomas"], l["muestras"],
+            fh.write("| %s | %d | %s | %s | %s | %s |\n" % (
+                l["linaje_id"], l["n_genomas"], l["miembros"],
                 l["representante"], l["taxonomia"] or "-", l["nivel_asignacion"]))
         fh.write("\n## Detalle por genoma\n\n| Genoma | Linaje | Asignacion | Nivel | Metodo | "
                  "Vecino skani | ANI | AF | ITS UNITE (%) | ITS RefSeq (%) | Conflicto |\n")
