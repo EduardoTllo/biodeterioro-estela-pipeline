@@ -1,0 +1,9 @@
+Fase 1 eucariota - Fri Oct 16 18:34:25 -05 2026 - job 57148
+Umbrales: completitud>70, contaminacion<5 (EukCC)
+EukCC DB: /home/eduardo.tello/dbs/eukcc/eukcc2_db_ver_1.2 | BUSCO: fungi_odb12.2 eukaryota_odb12.2
+eukcc=2.2.0=pyhdfd78af_0
+metaeuk=4.a0f584d=h95f258a_2
+python=3.11.9=hb806964_0_cpython
+busco=6.1.0=pyhdfd78af_2
+miniprot=0.18=h577a1d6_0
+python=3.11.17=h5f976f7_1_cpython

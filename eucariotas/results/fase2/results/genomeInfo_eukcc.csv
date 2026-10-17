@@ -1,0 +1,14 @@
+genome,completeness,contamination
+bin-1-55.fasta,100.0,0.0
+bin-1-65.fasta,99.25,2.26
+bin-2-49.fasta,99.62,0.0
+bin-2-65.fasta,91.8,0.2
+bin-3-53.fasta,99.62,0.0
+bin-3-56.fasta,98.5,0.0
+bin-3-57.fasta,98.5,1.5
+bin-3-58.fasta,98.12,0.0
+bin-3-65.fasta,83.46,0.38
+bin-4-57.fasta,98.5,1.5
+bin-4-60.fasta,89.47,1.13
+bin-4-64.fasta,100.0,0.38
+bin-5-62.fasta,99.25,0.0

@@ -1,0 +1,13 @@
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-1-55.fasta
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-1-65.fasta
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-2-49.fasta
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-2-65.fasta
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-3-53.fasta
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-3-56.fasta
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-3-57.fasta
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-3-58.fasta
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-3-65.fasta
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-4-57.fasta
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-4-60.fasta
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-4-64.fasta
+/home/eduardo.tello/estela/euk/fase1/results/phase1_euk_selected_genomes/bin-5-62.fasta

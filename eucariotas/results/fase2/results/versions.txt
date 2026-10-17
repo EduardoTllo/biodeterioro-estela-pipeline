@@ -1,0 +1,13 @@
+Fase 2 eucariota - Sat Oct 17 17:29:16 -05 2026 - job 57295
+Referencias: 5588 genomas (NCBI, descarga 2026-10-17)
+UNITE: no disponible | RefSeq ITS: /home/eduardo.tello/dbs/its/ITS_RefSeq_Fungi
+Umbrales: especie ANI>=95 AF>=65 | dRep -pa 0.90 -sa 0.95 | BUSCO arbol fungi_odb12.2 (>= 0.5)
+barrnap=0.9=hdfd78af_4
+itsx=1.1.3=hdfd78af_1
+mafft=7.525=h56fdecd_0
+skani=0.3.2=h79ce301_0
+trimal=1.5.1=h9948957_0
+blast=2.17.0=hb02a186_1
+drep=3.7.1=pyhdfd78af_0
+fastani=1.34=hb66fcc3_7
+mash=2.3=hf85e966_11

@@ -42,7 +42,6 @@ PHASE1_TSV="$FASE1/phase1_euk_selection.tsv"
 BIN_EXT="fasta"
 WORKDIR="$HOME/estela/euk/fase2"
 REFS_DIR="$HOME/dbs/euk_refs"
-SKANI_DB="$REFS_DIR/skani_db"
 ITS_DIR="$HOME/dbs/its"
 BUSCO_ARBOL="fungi_odb12.2"   # cambiar a eukaryota_odb12.2 si algun seleccionado no es hongo
 MIN_FRAC_BUSCO=0.5            # gen en >= 50 % de los genomas para entrar al arbol
@@ -90,13 +89,11 @@ printf "%s\n" "${GENOMES[@]}" > "$RESULTS/genomas.txt"
 
 echo "---> PASO 1: skani contra referencias"
 conda activate euktax
-if [[ ! -s "$SKANI_DB/markers.bin" ]]; then
-  echo "     Armando el sketch de las referencias (una sola vez)..."
-  rm -rf "$SKANI_DB"
-  skani sketch -l "$REFS_DIR/refs_fasta.txt" -o "$SKANI_DB" -t "$THREADS"
-fi
-skani search -d "$SKANI_DB" --ql "$RESULTS/genomas.txt" -o "$SKANI_OUT/skani_bins_vs_refs.tsv" \
-    -n 10 -t "$THREADS"
+# skani dist compara cada bin contra todas las referencias (~15 min con 32 CPU).
+# No se usa 'skani search': en el job 57295 omitio a bin-2-49 frente a
+# P. olsonii aunque 'skani dist' da ANI 97,65 % y AF 94,8 % (17-10-2026).
+skani dist --ql "$RESULTS/genomas.txt" --rl "$REFS_DIR/refs_fasta.txt" \
+    -o "$SKANI_OUT/skani_bins_vs_refs.tsv" -n 10 -t "$THREADS"
 
 echo "---> PASO 2: ITS (barrnap -> ITSx -> BLAST)"
 for f in "${GENOMES[@]}"; do

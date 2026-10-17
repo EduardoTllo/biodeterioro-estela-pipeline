@@ -1,0 +1,14 @@
+genome,secondary_cluster,threshold,cluster_method,comparison_algorithm,primary_cluster
+bin-2-49.fasta,1_1,0.050000000000000044,average,fastANI,1
+bin-3-56.fasta,1_1,0.050000000000000044,average,fastANI,1
+bin-5-62.fasta,1_1,0.050000000000000044,average,fastANI,1
+bin-4-64.fasta,2_0,0.050000000000000044,average,fastANI,2
+bin-1-65.fasta,3_1,0.050000000000000044,average,fastANI,3
+bin-3-53.fasta,3_2,0.050000000000000044,average,fastANI,3
+bin-3-58.fasta,4_0,0.050000000000000044,average,fastANI,4
+bin-3-65.fasta,5_0,0.050000000000000044,average,fastANI,5
+bin-3-57.fasta,6_1,0.050000000000000044,average,fastANI,6
+bin-4-60.fasta,6_1,0.050000000000000044,average,fastANI,6
+bin-4-57.fasta,7_0,0.050000000000000044,average,fastANI,7
+bin-1-55.fasta,8_0,0.050000000000000044,average,fastANI,8
+bin-2-65.fasta,9_0,0.050000000000000044,average,fastANI,9

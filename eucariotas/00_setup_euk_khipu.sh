@@ -184,5 +184,5 @@ if [[ "$ETAPA" == "refs" ]]; then
   conda deactivate
   echo
   echo "Etapa 'refs' lista: $REFS_DIR/refs_fungi.tsv"
-  echo "El sketch de skani se arma dentro de run_fase2_euk.slurm (usa 32 CPU)."
+  echo "skani compara los bins con estas referencias dentro de run_fase2_euk.slurm."
 fi

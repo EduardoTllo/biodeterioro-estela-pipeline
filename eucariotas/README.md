@@ -133,8 +133,8 @@ Requiere la Fase 1 terminada y la etapa `refs` completa.
 cd ~/estela/euk && sbatch --account=tesis --mail-type=END,FAIL --mail-user="$CORREO" ~/estela/fase3/scripts/eucariotas/run_fase2_euk.slurm
 ```
 
-La primera vez arma el sketch de skani de las referencias (~1–2 h). El resto
-tarda menos de 2 h.
+Tarda alrededor de 1 h: skani compara cada bin con las 5 588 referencias
+(~15 min) y el resto es ITS, árbol y dRep.
 
 ### 8) Revisar la Fase 2 (checkpoint)
 
