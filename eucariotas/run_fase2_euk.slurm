@@ -13,7 +13,7 @@
 #                      calcula en R, igual que la Fig. 7.4.
 #   Paso 4 (dRep)   -> linaje = cluster a 95 % de ANI (umbral operativo),
 #                      con la calidad de EukCC via genomeInfo.
-#   Paso 5 (resumen)-> taxonomia en cascada, linajes y reporte (sin prevalencia).
+#   Paso 5 (resumen)-> taxonomia en cascada, prevalencia y reporte.
 #
 # Requiere: 00_setup_euk_khipu.sh base y refs, y run_fase1_euk.slurm terminado.
 # Envio (desde ~/estela/euk):

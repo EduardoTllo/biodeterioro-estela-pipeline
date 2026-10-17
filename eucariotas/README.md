@@ -16,7 +16,7 @@ figuras (`figuras/`). Las tablas de las fases bacterianas no se tocan. El fin es
 | Segunda línea | — | **ITS** (barrnap + ITSx) contra UNITE y RefSeq ITS, umbrales de Vu et al. 2019 |
 | Linaje | dRep 95 % ANI | dRep 95 % ANI (umbral operativo en hongos) |
 | Árbol | NJ sobre `user_msa` bac120 | NJ sobre la matriz concatenada de genes BUSCO de copia única |
-| Prevalencia | n.º de muestras por linaje (Fig. 7.7) | **No se calcula** (se dejó de usar) |
+| Prevalencia | n.º de muestras por linaje | Igual |
 
 Los 5 bins de mayoría `unknown` con fracción clasificada eucariota (bin-2-64,
 1-58, 1-70, 11-71, 6-70) quedan fuera. Tienen entre el 52 y el 68 % de su
@@ -175,6 +175,7 @@ Con los resultados en `eucariotas/results/`, se adaptan los scripts de
 | Fig. 7.4 árbol | NJ sobre la matriz BUSCO (`phase2_euk_busco_concat.faa`) |
 | Fig. 7.5 novedad | ANI vs AF de skani |
 | Fig. 7.6 matriz | Similitud Mash de dRep (`Mdb.csv`) |
+| Fig. 7.7 prevalencia | Linaje × muestra |
 | S1 | Completitud y duplicación BUSCO (en lugar de `msa_percent`) |
 
 Además, una tabla de contraste con el Kraken2 del centro de secuenciación
@@ -187,7 +188,7 @@ Además, una tabla de contraste con el Kraken2 del centro de secuenciación
 | `fase1/results/phase1_euk_selection.tsv` | Una fila por bin: tamaño, N50, GC, EukCC, BUSCO, linaje de EukCC, decisión y motivo |
 | `fase1/results/phase1_euk_report.md` | Embudo y detalle legible |
 | `fase2/results/phase2_euk_selection.tsv` | Una fila por genoma: taxonomía en 8 rangos, nivel y método de asignación, skani, ITS, linaje |
-| `fase2/results/phase2_euk_linajes.tsv` | Una fila por linaje (E1, E2…): genomas miembros, representante, taxonomía |
+| `fase2/results/phase2_euk_linajes.tsv` | Una fila por linaje (E1, E2…): prevalencia, muestras, representante |
 | `fase2/results/phase2_euk_busco_concat.faa` | Matriz del árbol |
 | `fase2/results/04_drep/data_tables/` | `Cdb`, `Wdb`, `Mdb`, `Ndb` de dRep |
 
