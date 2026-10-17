@@ -100,7 +100,7 @@ cd ~/estela/fase3/scripts && bash eucariotas/00_setup_euk_khipu.sh refs
 ```
 
 Baja un genoma de referencia por especie de hongo de NCBI (~5 600 genomas,
-~200 GB comprimidos; hay espacio de sobra en `/home`). Puede tardar varias
+~215 Gb de secuencia, unos 60–70 GB en disco porque se guardan comprimidos con gzip; hay espacio de sobra en `/home`). Puede tardar varias
 horas. Si se corta, vuelve a correr el mismo comando y continúa. Al terminar
 revisa el conteo:
 
