@@ -492,9 +492,13 @@ def taxo_unite(titulo):
 
 
 def especie_refseq(titulo):
-    """'NR_xxx.1 Fusarium oxysporum strain CBS ... ITS region' -> 'Fusarium oxysporum'"""
+    """Titulo de RefSeq ITS -> 'Genero especie'. BLAST lo entrega sin accesion
+    ('Papiliotrema fonsecae EX F-4087 ITS region; ...'); si viniera con ella
+    ('NR_xxx.1 Fusarium ...'), se salta."""
     w = titulo.split()
-    return " ".join(w[1:3]) if len(w) >= 3 else ""
+    if w and re.match(r"^[A-Z]{1,2}_?\d+(\.\d+)?$", w[0]):
+        w = w[1:]
+    return " ".join(w[:2]) if len(w) >= 2 else ""
 
 
 def recortar(lin, hasta):
@@ -584,6 +588,13 @@ def cmd_fase2(args):
         elif rs and rs["pid"] >= args.its_genero:
             g_its = especie_refseq(rs["titulo"]).split(" ")[0]
         conflicto = "genero skani=%s vs ITS=%s" % (g_sk, g_its) if g_sk and g_its and g_sk != g_its else ""
+        # Otras especies que tambien pasan ANI/AF: la especie no queda resuelta
+        # (p. ej. Alternaria seccion Alternaria). Se reporta, no se decide.
+        otras = sorted({h["ref"].get("especie", "") for h in sk[1:]
+                        if h["ani"] is not None and h["af_query"] is not None
+                        and h["ani"] >= args.min_ani and h["af_query"] >= args.min_af
+                        and h["ref"].get("especie") and h["ref"].get("especie") != lin.get("especie")})
+        otras = "; ".join(otras)
         fila = {"genome": n, "muestra": sample_of(n), "linaje_cluster": clusters[n],
                 **{r: lin.get(r, "") for r in RANGOS},
                 "nivel_asignacion": nivel, "metodo": metodo,
@@ -599,7 +610,8 @@ def cmd_fase2(args):
                 "its_refseq": especie_refseq(rs["titulo"]) if rs else "",
                 "its_refseq_pid": rs["pid"] if rs else "",
                 "eukcc_linaje": f1.get("eukcc_linaje", ""),
-                "conflicto": conflicto}
+                "conflicto": conflicto,
+                "otras_especies_ani": otras}
         filas.append(fila)
 
     # Linajes: clusteres de dRep ordenados por prevalencia (prefijo E de eucariota)
@@ -628,7 +640,7 @@ def cmd_fase2(args):
             + ["nivel_asignacion", "metodo", "skani_ref", "skani_organismo", "ani",
                "af_query", "af_ref", "especie_confirmada_ani", "its_copias", "its_unite",
                "its_unite_pid", "its_unite_qcov", "its_refseq", "its_refseq_pid",
-               "eukcc_linaje", "conflicto"])
+               "eukcc_linaje", "conflicto", "otras_especies_ani"])
     escribir_tsv(args.out_tsv, filas, cols)
     escribir_tsv(args.out_linajes, linajes, ["linaje_id", "linaje_cluster", "representante",
                                              "n_genomas", "prevalencia", "muestras",
@@ -652,7 +664,8 @@ def reporte_fase2(args, filas, linajes):
         for k, v in sorted(niveles.items()):
             fh.write("| Asignados a nivel: %s | %d |\n" % (k, v))
         fh.write("| Con ITS recuperado | %d |\n" % sum(1 for f in filas if f["its_copias"]))
-        fh.write("| Conflictos de genero skani vs ITS | %d |\n\n" % sum(1 for f in filas if f["conflicto"]))
+        fh.write("| Conflictos de genero skani vs ITS | %d |\n" % sum(1 for f in filas if f["conflicto"]))
+        fh.write("| Especie por ANI con otras especies sobre el umbral | %d |\n\n" % sum(1 for f in filas if f["otras_especies_ani"]))
         fh.write("## Linajes\n\n| Linaje | Prev. | Genomas | Muestras | Representante | Taxonomia | Nivel |\n")
         fh.write("|---|---:|---:|---|---|---|---|\n")
         for l in linajes:
@@ -660,16 +673,16 @@ def reporte_fase2(args, filas, linajes):
                 l["linaje_id"], l["prevalencia"], l["n_genomas"], l["muestras"],
                 l["representante"], l["taxonomia"] or "-", l["nivel_asignacion"]))
         fh.write("\n## Detalle por genoma\n\n| Genoma | Linaje | Asignacion | Nivel | Metodo | "
-                 "Vecino skani | ANI | AF | ITS UNITE (%) | ITS RefSeq (%) | Conflicto |\n")
-        fh.write("|---|---|---|---|---|---|---:|---:|---|---|---|\n")
+                 "Vecino skani | ANI | AF | ITS UNITE (%) | ITS RefSeq (%) | Conflicto | Otras especies >= umbral |\n")
+        fh.write("|---|---|---|---|---|---|---:|---:|---|---|---|---|\n")
         for f in sorted(filas, key=lambda x: x["linaje_id"]):
             nombre = f["especie"] or f["genero"] or f["familia"] or f["orden"] or f["clase"] or "-"
-            fh.write("| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |\n" % (
+            fh.write("| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |\n" % (
                 f["genome"], f["linaje_id"], nombre, f["nivel_asignacion"], f["metodo"],
                 f["skani_organismo"] or "-", f["ani"] or "-", f["af_query"] or "-",
                 ("%s (%s)" % (f["its_unite"], f["its_unite_pid"])) if f["its_unite"] else "-",
                 ("%s (%s)" % (f["its_refseq"], f["its_refseq_pid"])) if f["its_refseq"] else "-",
-                f["conflicto"] or "-"))
+                f["conflicto"] or "-", f["otras_especies_ani"] or "-"))
         fh.write("\n## Reglas\n\n")
         fh.write("1. skani: ANI >= %g %% y AF del bin >= %g %% -> especie.\n" % (args.min_ani, args.min_af))
         fh.write("2. ITS (cobertura >= %g %%), umbrales de Vu et al. 2019: especie >= %g, genero >= %g, "
