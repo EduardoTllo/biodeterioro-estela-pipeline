@@ -70,7 +70,7 @@ def leer_tsv(path, delim="\t"):
 
 def escribir_tsv(path, filas, cols):
     with open(path, "w", encoding="utf-8", newline="") as fh:
-        w = csv.DictWriter(fh, cols, delimiter="\t", extrasaction="ignore")
+        w = csv.DictWriter(fh, cols, delimiter="\t", extrasaction="ignore", lineterminator="\n")
         w.writeheader()
         for f in filas:
             w.writerow({c: ("" if f.get(c) is None else f.get(c)) for c in cols})
@@ -428,7 +428,7 @@ def cmd_genomeinfo(args):
     sel = {f["bin"]: f for f in leer_tsv(args.phase1_tsv) if f["decision_final"] == "SELECCIONADO"}
     genomas = sorted(glob.glob(os.path.join(args.genomes_dir, "*." + args.bin_ext)))
     with open(args.out, "w", encoding="utf-8", newline="") as fh:
-        w = csv.writer(fh)
+        w = csv.writer(fh, lineterminator="\n")
         w.writerow(["genome", "completeness", "contamination"])
         for g in genomas:
             f = sel[bin_name(g)]
