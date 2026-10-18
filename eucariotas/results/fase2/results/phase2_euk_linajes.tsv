@@ -1,11 +1,11 @@
 linaje_id	linaje_cluster	representante	n_genomas	prevalencia	muestras	taxonomia	nivel_asignacion	miembros
-E1	1_1	bin-2-49	3	3	49,56,62	Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae	familia	bin-2-49,bin-3-56,bin-5-62
-E2	6_1	bin-3-57	2	2	57,60	Fungi;Ascomycota;Dothideomycetes;Mycosphaerellales;Mycosphaerellaceae	familia	bin-3-57,bin-4-60
+E1	1_1	bin-2-49	3	3	49,56,62	Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae;Penicillium;Penicillium olsonii	especie	bin-2-49,bin-3-56,bin-5-62
+E2	6_1	bin-3-57	2	2	57,60	Fungi;Ascomycota;Dothideomycetes;Cladosporiales;Cladosporiaceae;Cladosporium;Cladosporium dominicanum	especie	bin-3-57,bin-4-60
 E3	3_1	bin-1-65	1	1	65	Fungi;Ascomycota;Dothideomycetes;Mycosphaerellales;Mycosphaerellaceae	familia	bin-1-65
 E4	3_2	bin-3-53	1	1	53	Fungi;Ascomycota;Dothideomycetes;Mycosphaerellales;Mycosphaerellaceae	familia	bin-3-53
-E5	7_0	bin-4-57	1	1	57	Fungi;Ascomycota;Dothideomycetes;Pleosporales;Didymosphaeriaceae	familia	bin-4-57
+E5	7_0	bin-4-57	1	1	57	Fungi;Ascomycota;Dothideomycetes;Pleosporales;Periconiaceae;Periconia	genero (vecino skani)	bin-4-57
 E6	8_0	bin-1-55	1	1	55	Fungi;Ascomycota;Dothideomycetes;Pleosporales;Pleosporaceae;Alternaria;Alternaria alternata	especie	bin-1-55
-E7	4_0	bin-3-58	1	1	58	Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae	familia	bin-3-58
-E8	2_0	bin-4-64	1	1	64	Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae	familia	bin-4-64
+E7	2_0	bin-4-64	1	1	64	Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae	familia	bin-4-64
+E8	4_0	bin-3-58	1	1	58	Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae;Penicillium;Penicillium coffeae	especie	bin-3-58
 E9	5_0	bin-3-65	1	1	65	Fungi;Ascomycota;Sordariomycetes;Microascales;Microascaceae;Scopulariopsis;Scopulariopsis brevicaulis	especie	bin-3-65
-E10	9_0	bin-2-65	1	1	65	Fungi;Basidiomycota;Tremellomycetes;Tremellales;Cuniculitremaceae	familia	bin-2-65
+E10	9_0	bin-2-65	1	1	65	Fungi;Basidiomycota;Tremellomycetes;Tremellales;Rhynchogastremaceae;Papiliotrema;Papiliotrema fonsecae	especie	bin-2-65

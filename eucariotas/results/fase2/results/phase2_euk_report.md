@@ -1,48 +1,50 @@
 # Fase 2 eucariota — Taxonomia y linajes de los bins eucariotas
 
-**Job SLURM:** `57295` — **Fecha:** 2026-10-17 17:59
+**Job SLURM:** `57311` — **Fecha:** 2026-10-17 19:59
 
 | Metrica | Valor |
 |---|---:|
 | Genomas (Fase 1 eucariota) | 13 |
 | Linajes (dRep, 0.95 ANI) | 10 |
-| Asignados a nivel: especie | 4 |
-| Asignados a nivel: familia | 9 |
+| Asignados a nivel: especie | 9 |
+| Asignados a nivel: familia | 3 |
+| Asignados a nivel: genero (vecino skani) | 1 |
 | Con ITS recuperado | 1 |
 | Conflictos de genero skani vs ITS | 1 |
+| Especie por ANI con otras especies sobre el umbral | 2 |
 
 ## Linajes
 
 | Linaje | Prev. | Genomas | Muestras | Representante | Taxonomia | Nivel |
 |---|---:|---:|---|---|---|---|
-| E1 | 3 | 3 | 49,56,62 | bin-2-49 | Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae | familia |
-| E2 | 2 | 2 | 57,60 | bin-3-57 | Fungi;Ascomycota;Dothideomycetes;Mycosphaerellales;Mycosphaerellaceae | familia |
+| E1 | 3 | 3 | 49,56,62 | bin-2-49 | Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae;Penicillium;Penicillium olsonii | especie |
+| E2 | 2 | 2 | 57,60 | bin-3-57 | Fungi;Ascomycota;Dothideomycetes;Cladosporiales;Cladosporiaceae;Cladosporium;Cladosporium dominicanum | especie |
 | E3 | 1 | 1 | 65 | bin-1-65 | Fungi;Ascomycota;Dothideomycetes;Mycosphaerellales;Mycosphaerellaceae | familia |
 | E4 | 1 | 1 | 53 | bin-3-53 | Fungi;Ascomycota;Dothideomycetes;Mycosphaerellales;Mycosphaerellaceae | familia |
-| E5 | 1 | 1 | 57 | bin-4-57 | Fungi;Ascomycota;Dothideomycetes;Pleosporales;Didymosphaeriaceae | familia |
+| E5 | 1 | 1 | 57 | bin-4-57 | Fungi;Ascomycota;Dothideomycetes;Pleosporales;Periconiaceae;Periconia | genero (vecino skani) |
 | E6 | 1 | 1 | 55 | bin-1-55 | Fungi;Ascomycota;Dothideomycetes;Pleosporales;Pleosporaceae;Alternaria;Alternaria alternata | especie |
-| E7 | 1 | 1 | 58 | bin-3-58 | Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae | familia |
-| E8 | 1 | 1 | 64 | bin-4-64 | Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae | familia |
+| E7 | 1 | 1 | 64 | bin-4-64 | Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae | familia |
+| E8 | 1 | 1 | 58 | bin-3-58 | Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae;Penicillium;Penicillium coffeae | especie |
 | E9 | 1 | 1 | 65 | bin-3-65 | Fungi;Ascomycota;Sordariomycetes;Microascales;Microascaceae;Scopulariopsis;Scopulariopsis brevicaulis | especie |
-| E10 | 1 | 1 | 65 | bin-2-65 | Fungi;Basidiomycota;Tremellomycetes;Tremellales;Cuniculitremaceae | familia |
+| E10 | 1 | 1 | 65 | bin-2-65 | Fungi;Basidiomycota;Tremellomycetes;Tremellales;Rhynchogastremaceae;Papiliotrema;Papiliotrema fonsecae | especie |
 
 ## Detalle por genoma
 
-| Genoma | Linaje | Asignacion | Nivel | Metodo | Vecino skani | ANI | AF | ITS UNITE (%) | ITS RefSeq (%) | Conflicto |
-|---|---|---|---|---|---|---:|---:|---|---|---|
-| bin-2-49 | E1 | Aspergillaceae | familia | colocacion EukCC | - | - | - | - | - | - |
-| bin-3-56 | E1 | Penicillium olsonii | especie | ANI (skani) | Penicillium olsonii | 99.39 | 98.19 | - | - | - |
-| bin-5-62 | E1 | Penicillium olsonii | especie | ANI (skani) | Penicillium olsonii | 99.32 | 96.2 | - | - | - |
-| bin-2-65 | E10 | Cuniculitremaceae | familia | colocacion EukCC | - | - | - | - | - | - |
-| bin-3-57 | E2 | Mycosphaerellaceae | familia | colocacion EukCC | - | - | - | - | - | - |
-| bin-4-60 | E2 | Mycosphaerellaceae | familia | colocacion EukCC | - | - | - | - | - | - |
-| bin-1-65 | E3 | Mycosphaerellaceae | familia | colocacion EukCC | - | - | - | - | - | - |
-| bin-3-53 | E4 | Mycosphaerellaceae | familia | colocacion EukCC | - | - | - | - | - | - |
-| bin-4-57 | E5 | Didymosphaeriaceae | familia | colocacion EukCC | - | - | - | - | - | - |
-| bin-1-55 | E6 | Alternaria alternata | especie | ANI (skani) | Alternaria alternata | 98.26 | 89.45 | - | - | - |
-| bin-3-58 | E7 | Aspergillaceae | familia | colocacion EukCC | - | - | - | - | - | - |
-| bin-4-64 | E8 | Aspergillaceae | familia | colocacion EukCC | - | - | - | - | - | - |
-| bin-3-65 | E9 | Scopulariopsis brevicaulis | especie | ANI (skani) | Scopulariopsis brevicaulis | 99.59 | 97.22 | - | sphaerospermum CBS (100.0) | genero skani=Scopulariopsis vs ITS=sphaerospermum |
+| Genoma | Linaje | Asignacion | Nivel | Metodo | Vecino skani | ANI | AF | ITS UNITE (%) | ITS RefSeq (%) | Conflicto | Otras especies >= umbral |
+|---|---|---|---|---|---|---:|---:|---|---|---|---|
+| bin-2-49 | E1 | Penicillium olsonii | especie | ANI (skani) | Penicillium olsonii | 97.65 | 94.8 | - | - | - | - |
+| bin-3-56 | E1 | Penicillium olsonii | especie | ANI (skani) | Penicillium olsonii | 99.39 | 98.19 | - | - | - | - |
+| bin-5-62 | E1 | Penicillium olsonii | especie | ANI (skani) | Penicillium olsonii | 99.32 | 96.2 | - | - | - | - |
+| bin-2-65 | E10 | Papiliotrema fonsecae | especie | ANI (skani) | Papiliotrema fonsecae | 96.82 | 95.7 | - | - | - | - |
+| bin-3-57 | E2 | Cladosporium dominicanum | especie | ANI (skani) | Cladosporium dominicanum | 96.32 | 89.54 | - | - | - | - |
+| bin-4-60 | E2 | Cladosporium dominicanum | especie | ANI (skani) | Cladosporium dominicanum | 96.12 | 82.8 | - | - | - | - |
+| bin-1-65 | E3 | Mycosphaerellaceae | familia | colocacion EukCC | - | - | - | - | - | - | - |
+| bin-3-53 | E4 | Mycosphaerellaceae | familia | colocacion EukCC | - | - | - | - | - | - | - |
+| bin-4-57 | E5 | Periconia | genero (vecino skani) | skani ANI 83.30 % < 95 | Periconia digitata | 83.3 | 15.94 | - | - | - | - |
+| bin-1-55 | E6 | Alternaria alternata | especie | ANI (skani) | Alternaria alternata | 98.26 | 89.45 | - | - | - | Alternaria alstroemeriae; Alternaria alternarina; Alternaria angustiovoidea; Alternaria arborescens; Alternaria brassicae; Alternaria burnsii; Alternaria gaisen; Alternaria longipes; Alternaria porri; Alternaria postmessia; Alternaria tenuissima |
+| bin-4-64 | E7 | Aspergillaceae | familia | colocacion EukCC | - | - | - | - | - | - | - |
+| bin-3-58 | E8 | Penicillium coffeae | especie | ANI (skani) | Penicillium coffeae | 96.46 | 90.7 | - | - | - | - |
+| bin-3-65 | E9 | Scopulariopsis brevicaulis | especie | ANI (skani) | Scopulariopsis brevicaulis | 99.59 | 97.22 | - | Cladosporium sphaerospermum (100.0) | genero skani=Scopulariopsis vs ITS=Cladosporium | Scopulariopsis alboflavescens |
 
 ## Reglas
 
