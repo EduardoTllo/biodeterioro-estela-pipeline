@@ -90,10 +90,13 @@ printf "%s\n" "${GENOMES[@]}" > "$RESULTS/genomas.txt"
 echo "---> PASO 1: skani contra referencias"
 conda activate euktax
 # skani dist compara cada bin contra todas las referencias (~15 min con 32 CPU).
-# No se usa 'skani search': en el job 57295 omitio a bin-2-49 frente a
-# P. olsonii aunque 'skani dist' da ANI 97,65 % y AF 94,8 % (17-10-2026).
+# Sin '-n': skani agrupa los resultados por el nombre del PRIMER CONTIG de la
+# consulta, no por archivo. Todos los bins empiezan con 'contig_1', asi que
+# '-n 10' dejaba solo 10 filas para los 13 bins juntos y bin-2-49 (ANI 97,65 %
+# con P. olsonii) quedaba fuera (jobs 57295 y 57297, 17-10-2026). El mejor hit
+# por bin lo elige summarize_euk.py usando Query_file.
 skani dist --ql "$RESULTS/genomas.txt" --rl "$REFS_DIR/refs_fasta.txt" \
-    -o "$SKANI_OUT/skani_bins_vs_refs.tsv" -n 10 -t "$THREADS"
+    -o "$SKANI_OUT/skani_bins_vs_refs.tsv" -t "$THREADS"
 
 echo "---> PASO 2: ITS (barrnap -> ITSx -> BLAST)"
 for f in "${GENOMES[@]}"; do
