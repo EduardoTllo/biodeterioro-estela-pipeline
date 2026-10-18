@@ -1,0 +1,6 @@
+Linaje de A	Taxon de A	Genoma A	Genoma B	ANI (%)	Cobertura (%)	Mismo linaje (>= 95 %)
+E3	Mycosphaerellaceae (sin genero)	bin-1-65	bin-3-53	94.55	90.6	no
+E1	Penicillium olsonii	bin-2-49	bin-3-56	97.6	95.2	si
+E1	Penicillium olsonii	bin-2-49	bin-5-62	97.58	95	si
+E1	Penicillium olsonii	bin-3-56	bin-5-62	99.69	96	si
+E2	Cladosporium dominicanum	bin-3-57	bin-4-60	99.14	77.4	si

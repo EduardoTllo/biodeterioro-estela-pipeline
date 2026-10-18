@@ -1,0 +1,14 @@
+Genoma	Muestra	Linaje	Representante	Filo	Clase	Orden	Familia	Genero	Especie	Nivel de asignacion	Vecino skani	ANI (%)	AF (%)	Otras especies >= umbral	Tamano (Mb)	Contigs	N50 (kb)	GC (%)	EukCC compl. (%)	EukCC cont. (%)	BUSCO C (%)	BUSCO D (%)
+bin-2-49	49	E1	si	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium olsonii	especie	Penicillium olsonii	97.65	94.8		27.56	134	337.1	50.86	99.62	0	98.8	0.7
+bin-3-56	56	E1		Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium olsonii	especie	Penicillium olsonii	99.39	98.19		26.63	160	275.5	51.1	98.5	0	97	0.5
+bin-5-62	62	E1		Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium olsonii	especie	Penicillium olsonii	99.32	96.2		27.89	222	456.5	50.92	99.25	0	97.3	0.8
+bin-3-57	57	E2	si	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium dominicanum	especie	Cladosporium dominicanum	96.32	89.54		25.75	818	76.7	54.56	98.5	1.5	97.4	0.5
+bin-4-60	60	E2		Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium dominicanum	especie	Cladosporium dominicanum	96.12	82.8		25.72	4482	7.4	54.41	89.47	1.13	84.8	0.1
+bin-1-65	65	E3	si	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae			familia					29.64	322	155.3	53.08	99.25	2.26	99.4	0.8
+bin-3-53	53	E4	si	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae			familia					29.24	301	172.9	53.19	99.62	0	99.4	0
+bin-4-57	57	E5	si	Ascomycota	Dothideomycetes	Pleosporales				orden (consenso skani/EukCC)	Periconia digitata	83.3	15.94		39.08	977	84.5	49.96	98.5	1.5	98.4	0.9
+bin-1-55	55	E6	si	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria alternata	especie	Alternaria alternata	98.26	89.45	Alternaria alstroemeriae; Alternaria alternarina; Alternaria angustiovoidea; Alternaria arborescens; Alternaria brassicae; Alternaria burnsii; Alternaria gaisen; Alternaria longipes; Alternaria porri; Alternaria postmessia; Alternaria tenuissima	34.24	247	403.6	51.1	100	0	98.9	0
+bin-4-64	64	E7	si	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae			familia					29.69	428	164.2	49.66	100	0.38	99.1	0.6
+bin-3-58	58	E8	si	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium coffeae	especie	Penicillium coffeae	96.46	90.7		29.65	265	493.7	49.52	98.12	0	97.7	0.7
+bin-3-65	65	E9	si	Ascomycota	Sordariomycetes	Microascales	Microascaceae	Scopulariopsis	Scopulariopsis brevicaulis	especie	Scopulariopsis brevicaulis	99.59	97.22	Scopulariopsis alboflavescens	27.71	5256	6.5	56.91	83.46	0.38	81.5	0.5
+bin-2-65	65	E10	si	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Papiliotrema fonsecae	especie	Papiliotrema fonsecae	96.82	95.7		17.06	141	257.1	52.8	91.8	0.2	94.9	0.2

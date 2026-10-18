@@ -1,0 +1,14 @@
+Genoma	Asignacion final	Genero final	Genero mas frecuente en Kraken2	% de contigs en ese genero	% de contigs en Fungi	Coincide
+bin-2-49	Penicillium olsonii	Penicillium	Aspergillus	50	91.04	no
+bin-3-56	Penicillium olsonii	Penicillium	Aspergillus	51.25	89.38	no
+bin-5-62	Penicillium olsonii	Penicillium	Aspergillus	33.33	61.26	no
+bin-3-57	Cladosporium dominicanum	Cladosporium	Homo	11.61	50.12	no
+bin-4-60	Cladosporium dominicanum	Cladosporium	Homo	4.55	33.22	no
+bin-1-65	Mycosphaerellaceae (sin genero)		Fusarium	16.77	69.88	sin genero final
+bin-3-53	Mycosphaerellaceae (sin genero)		Fusarium	18.27	71.43	sin genero final
+bin-4-57	Pleosporales (sin familia)		Homo	23.64	36.75	sin genero final
+bin-1-55	Alternaria alternata	Alternaria	Ascochyta	60.73	68.02	no
+bin-4-64	Aspergillaceae (sin genero)		Penicillium	25.7	52.8	sin genero final
+bin-3-58	Penicillium coffeae	Penicillium	Penicillium	19.62	41.51	si
+bin-3-65	Scopulariopsis brevicaulis	Scopulariopsis	Fusarium	8.58	43.02	no
+bin-2-65	Papiliotrema fonsecae	Papiliotrema	Cryptococcus	39.01	55.32	no

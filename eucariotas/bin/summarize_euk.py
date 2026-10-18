@@ -527,9 +527,24 @@ def asignar(name, skani, unite, refseq, eukcc_lin, a):
                 etiqueta = "especie (hipotesis ITS)" if nivel == "especie" else "genero"
                 return recortar(lin_its, nivel), etiqueta, "ITS %s (%.2f %%)" % (its["fuente"], its["pid"]), ""
     its = unite
-    if best and best["ref"].get("genero"):
+    # Vecino skani: solo da genero si alinea al menos a.vecino_min_af % del bin.
+    if best and best["ref"].get("genero") and (best["af_query"] or 0) >= a.vecino_min_af:
         return (recortar(best["ref"], "genero"), "genero (vecino skani)",
-                "skani ANI %.2f %% < %g" % (best["ani"], a.min_ani), "")
+                "skani ANI %.2f %% < %g, AF %.1f %%" % (best["ani"], a.min_ani, best["af_query"]), "")
+    # Vecino con AF bajo: se usa el rango mas profundo que comparte con EukCC.
+    if best and best["ref"] and eukcc_lin:
+        comun = {}
+        for r in RANGOS:
+            if best["ref"].get(r) and best["ref"].get(r) == eukcc_lin.get(r):
+                comun[r] = eukcc_lin[r]
+            else:
+                break
+        if comun:
+            prof = [r for r in RANGOS if comun.get(r)][-1]
+            return (comun, prof + " (consenso skani/EukCC)",
+                    "vecino skani %s (ANI %.2f %%, AF %.1f %% < %g) y EukCC coinciden hasta %s" % (
+                        best["ref"].get("genero", "?"), best["ani"], best["af_query"],
+                        a.vecino_min_af, prof), "")
     if its and its["qcov"] >= a.its_min_qcov and its["fuente"] == "UNITE":
         lin_its = taxo_unite(its["titulo"])
         for umbral, nivel in ((a.its_familia, "familia"), (a.its_orden, "orden")):
@@ -688,7 +703,8 @@ def reporte_fase2(args, filas, linajes):
         fh.write("2. ITS (cobertura >= %g %%), umbrales de Vu et al. 2019: especie >= %g, genero >= %g, "
                  "familia >= %g, orden >= %g %% de identidad.\n" % (
                      args.its_min_qcov, args.its_especie, args.its_genero, args.its_familia, args.its_orden))
-        fh.write("3. Sin lo anterior: genero del vecino mas cercano de skani (ANI < %g %%).\n" % args.min_ani)
+        fh.write("3. Sin lo anterior: genero del vecino mas cercano de skani (ANI < %g %%) si alinea >= %g %% del bin; "
+                 "si alinea menos, el rango mas profundo que comparten ese vecino y EukCC.\n" % (args.min_ani, args.vecino_min_af))
         fh.write("4. Ultimo recurso: linaje de la colocacion de EukCC (orientativo).\n")
         fh.write("\nEl 95 % de ANI es un umbral operativo: no hay un umbral de especie validado para hongos.\n")
 
@@ -773,6 +789,8 @@ def main():
     s.add_argument("--drep-sa", default="0.95")
     s.add_argument("--min-ani", type=float, default=95)
     s.add_argument("--min-af", type=float, default=65)
+    s.add_argument("--vecino-min-af", type=float, default=50,
+                   help="AF minima del bin para asignar genero por el vecino skani")
     s.add_argument("--its-min-qcov", type=float, default=90)
     s.add_argument("--its-especie", type=float, default=98.41)
     s.add_argument("--its-genero", type=float, default=94.3)

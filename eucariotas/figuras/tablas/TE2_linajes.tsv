@@ -1,0 +1,11 @@
+Linaje	Taxon	Clase	Genomas	Prevalencia	Muestras	Representante	Miembros	Nivel
+E1	Penicillium olsonii	Eurotiomycetes	3	3	495662	bin-2-49	bin-2-49,bin-3-56,bin-5-62	especie
+E2	Cladosporium dominicanum	Dothideomycetes	2	2	5760	bin-3-57	bin-3-57,bin-4-60	especie
+E3	Mycosphaerellaceae (sin genero)	Dothideomycetes	1	1	65	bin-1-65	bin-1-65	familia
+E4	Mycosphaerellaceae (sin genero)	Dothideomycetes	1	1	53	bin-3-53	bin-3-53	familia
+E5	Pleosporales (sin familia)	Dothideomycetes	1	1	57	bin-4-57	bin-4-57	orden (consenso skani/EukCC)
+E6	Alternaria alternata	Dothideomycetes	1	1	55	bin-1-55	bin-1-55	especie
+E7	Aspergillaceae (sin genero)	Eurotiomycetes	1	1	64	bin-4-64	bin-4-64	familia
+E8	Penicillium coffeae	Eurotiomycetes	1	1	58	bin-3-58	bin-3-58	especie
+E9	Scopulariopsis brevicaulis	Sordariomycetes	1	1	65	bin-3-65	bin-3-65	especie
+E10	Papiliotrema fonsecae	Tremellomycetes	1	1	65	bin-2-65	bin-2-65	especie

@@ -162,24 +162,33 @@ en Khipu.
 rsync -avh --prune-empty-dirs --exclude='bins_euk/' --exclude='phase1_euk_selected_genomes/' --exclude='01_eukcc/*/' --exclude='02_busco/' --exclude='gff/' --exclude='genes/' --exclude='aln/' --exclude='trim/' --exclude='04_drep/data/' --include='*/' --include='*.tsv' --include='*.md' --include='*.txt' --include='*.csv' --include='*.faa' --include='itsx.full.fasta' --exclude='*' eduardo.tello@khipu.utec.edu.pe:~/estela/euk/ ~/Documents/Tesis-EstelaRaimondi/fase1_khipu/eucariotas/results/
 ```
 
-### 10) Figuras y tablas (Mac, con Claude)
+### 10) Figuras y tablas (Mac)
 
-Con los resultados en `eucariotas/results/`, se adaptan los scripts de
-`figuras/R/` y la versión eucariota de cada figura queda en `eucariotas/figuras/`:
+Con los resultados en `eucariotas/results/`, desde `fase1_khipu/`:
+
+```bash
+MAMBA_ROOT_PREFIX=~/micromamba ~/micromamba/bin/micromamba run -n r-fase3 Rscript eucariotas/figuras/R/euk_run_all.R
+```
+
+Tarda ~20 s. Deja PDF y PNG (600 dpi) en `eucariotas/figuras/figs/` y TSV en
+`eucariotas/figuras/tablas/`:
 
 | Bacterias | Eucariotas |
 |---|---|
-| Fig. 7.1 embudo | 97 → 31 eucariotas → seleccionados por EukCC → linajes |
-| Fig. 7.2 calidad | Completitud vs contaminación (EukCC); tamaño vs GC; BUSCO por bin |
-| Fig. 7.3 composición | Filo, orden y género (taxonomía NCBI/UNITE) |
-| Fig. 7.4 árbol | NJ sobre la matriz BUSCO (`phase2_euk_busco_concat.faa`) |
-| Fig. 7.5 novedad | ANI vs AF de skani |
-| Fig. 7.6 matriz | Similitud Mash de dRep (`Mdb.csv`) |
-| Fig. 7.7 prevalencia | Linaje × muestra |
-| S1 | Completitud y duplicación BUSCO (en lugar de `msa_percent`) |
+| Fig. 7.1 embudo | `figE1_embudo_seleccion`: 97 → 31 → 19 → 13 → 10, motivos y tamaño de cada bin |
+| Fig. 7.2 calidad | `figE2_calidad_genomica`: EukCC, tamaño vs GC, EukCC vs BUSCO |
+| Fig. 7.4 árbol | `figE3_arbol_filogenomico`: NJ sobre 1 019 genes BUSCO, bootstrap 500 |
+| Fig. 7.6 matriz | `figE4_matriz_mash` |
+| Fig. 7.5 novedad | `figE5_novedad_taxonomica`: ANI vs AF de skani |
+| Fig. 7.7 prevalencia | `figE6_prevalencia_linajes` |
+| Fig. 7.3 composición | `figE7_composicion_taxonomica` |
+| S1 | `figES1_perfil_busco` |
 
-Además, una tabla de contraste con el Kraken2 del centro de secuenciación
-(local, `Datos/Shotgun Analysis/<muestra>/<bin>/*_taxonomy.tsv`).
+Tablas: `TE1_genomas`, `TE2_linajes`, `TE3_kraken2_vs_final`,
+`TE4_ani_intracluster`, `TE5_bins_eucariotas`. Los colores van por **clase**:
+las tres de Ascomycota usan los tres primeros colores de la paleta validada y
+la única Basidiomycota va en gris (un cuarto color no pasa la validación de
+daltonismo).
 
 ## Archivos de salida principales
 
