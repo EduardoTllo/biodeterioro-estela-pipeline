@@ -72,7 +72,16 @@ conda activate dram
 
 if [[ ! -s "$OUT/anotacion/annotations.tsv" ]]; then
   rm -rf "$OUT/anotacion"
-  DRAM.py annotate_genes -i "$ENTRADA/*.faa" -o "$OUT/anotacion" --threads "$THREADS"
+  # DRAM 1.5.0 trae roto 'DRAM.py annotate_genes': annotate_called_genes_cmd no
+  # acepta config_loc y pasa los argumentos en otro orden. Se llama a la funcion
+  # directamente; renombra los genes como <fasta>_<locus> igual que la CLI.
+  ENTRADA="$ENTRADA" SALIDA="$OUT/anotacion" THREADS="$THREADS" python - <<'EOF'
+import os
+from glob import glob
+from mag_annotator.annotate_bins import annotate_called_genes
+annotate_called_genes(sorted(glob(os.environ["ENTRADA"] + "/*.faa")), os.environ["SALIDA"],
+                      threads=int(os.environ["THREADS"]), keep_tmp_dir=False)
+EOF
 fi
 
 rm -rf "$OUT/resumen"
