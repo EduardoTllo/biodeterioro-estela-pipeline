@@ -75,12 +75,26 @@ if [[ ! -s "$OUT/anotacion/annotations.tsv" ]]; then
   # DRAM 1.5.0 trae roto 'DRAM.py annotate_genes': annotate_called_genes_cmd no
   # acepta config_loc y pasa los argumentos en otro orden. Se llama a la funcion
   # directamente; renombra los genes como <fasta>_<locus> igual que la CLI.
+  # Ademas, el genes.faa anotado falla sin Pfam (los genes de rango D buscan
+  # pfam_hits); se escribe sin descripciones, que esta fase no usa.
   ENTRADA="$ENTRADA" SALIDA="$OUT/anotacion" THREADS="$THREADS" python - <<'EOF'
 import os
 from glob import glob
-from mag_annotator.annotate_bins import annotate_called_genes
-annotate_called_genes(sorted(glob(os.environ["ENTRADA"] + "/*.faa")), os.environ["SALIDA"],
-                      threads=int(os.environ["THREADS"]), keep_tmp_dir=False)
+from skbio.io import read, write
+import mag_annotator.annotate_bins as ab
+
+def fasta_sin_descripcion(input_fasta, annotations, output_fasta, name=None, **_):
+    def secuencias():
+        for seq in read(input_fasta, format="fasta"):
+            if name is not None:
+                seq.metadata["id"] = f"{name}_{seq.metadata['id']}"
+            seq.metadata["description"] = ""
+            yield seq
+    write(secuencias(), format="fasta", into=output_fasta)
+
+ab.create_annotated_fasta = fasta_sin_descripcion
+ab.annotate_called_genes(sorted(glob(os.environ["ENTRADA"] + "/*.faa")), os.environ["SALIDA"],
+                         threads=int(os.environ["THREADS"]), keep_tmp_dir=False)
 EOF
 fi
 
