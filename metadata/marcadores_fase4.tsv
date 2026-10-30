@@ -20,5 +20,5 @@ supervivencia	desecacion_trehalosa	A	ots	K00697,K01087	2	otsAB	ruta OtsA-OtsB
 supervivencia	desecacion_trehalosa	B	treYZ	K06044,K01236	2	treYZ	ruta TreY-TreZ desde glucogeno
 supervivencia	desecacion_trehalosa	C	treS	K05343	1	treS	ruta TreS desde maltosa
 supervivencia	reparacion_uv	A	phr	K01669,K06876	1	fotoliasas	
-contexto	ciclo_tca	A	M00009	K01647,K01681,K00031,K00239,K01676	3	gltA,acnA,icd,sdhA,fumA	universal en aerobios; no puntua
+contexto	ciclo_tca	A	M00009	K01647,K01659,K01681,K01682,K27802,K00031,K00030,K00239,K01676,K01679	3	gltA/prpC,acnA/acnB,icd,sdhA,fumA/fumC	universal en aerobios; no puntua; sinonimos KEGG/KOfam (D41)
 contexto	ureolisis	A	ure	K01430,K01429,K01428	3	ureABC	ambivalente (carbonato); no puntua

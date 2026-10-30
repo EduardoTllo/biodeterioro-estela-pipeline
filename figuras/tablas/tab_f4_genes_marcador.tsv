@@ -1,0 +1,38 @@
+slug	bin	categoria	locus_tag	gen	producto	ko	funcion	categoria_95	categoria_90	f_ref
+L16_Bacillus_altitudinis	bin_5_63	riesgo	bin_5_63_01307	NA	Capsular biosynthesis protein	K19420	eps_biopelicula	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	riesgo	bin_5_63_01309	NA	UDP-N-acetylglucosamine 4,6-dehydratase involved in biofilm matrix formation	K19421	eps_biopelicula	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	riesgo	bin_5_63_01310	NA	Putative extracellular matrix glycosyltransferase	K19422	eps_biopelicula	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	riesgo	bin_5_63_01311	NA	Bifunctional flagellar clutch and glycosyltransferase acting during biofilm formation	K19423	eps_biopelicula	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	riesgo	bin_5_63_01312	NA	Putative glycosyltransferase involved in matrix formation (Chain-length determination)	K19424	eps_biopelicula	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	riesgo	bin_5_63_01313	epsG	EpsG family protein	K19419	eps_biopelicula	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	riesgo	bin_5_63_01314	NA	Putative glycosyltransferase involved in biofilm formation	K19425	eps_biopelicula	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	riesgo	bin_5_63_01315	NA	Putative polysaccharide pyruvyl transferase involved in biofilm matrix formation	K19426	eps_biopelicula	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	riesgo	bin_5_63_01318	NA	O-acetyltransferase involved in synthesis of N,N'-diacetylbacillosamine and in biofilm matrix formation	K19429	eps_biopelicula	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	riesgo	bin_5_63_01319	NA	UDP 2,6-dideoxy 2-acetamido 4-keto glucose aminotransferase involved in N,N'-diacetylbacillosamine synthesis and in biofilm matrix formation	K19430	eps_biopelicula	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	supervivencia	bin_5_63_00432	NA	superoxide dismutase	K04564	estres_oxidativo	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	supervivencia	bin_5_63_01236	NA	Catalase	K03781	estres_oxidativo	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	supervivencia	bin_5_63_01683	spoIIAA	anti-sigma F factor antagonist	K06378	esporulacion	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	supervivencia	bin_5_63_01970	NA	Deoxyribodipyrimidine photo-lyase	K01669	reparacion_uv	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	supervivencia	bin_5_63_02661	spo0A	sporulation transcription factor Spo0A	K07699	esporulacion	core	core	1.0000
+L16_Bacillus_altitudinis	bin_5_63	supervivencia	bin_5_63_02740	spoIIE	stage II sporulation protein E	K06382	esporulacion	core	core	0.9800
+L12_Peribacillus_frigoritolerans	bin_1_54	supervivencia	bin_1_54_00043	dps	Starvation-inducible DNA-binding protein	K04047	estres_oxidativo	core	core	1.0000
+L12_Peribacillus_frigoritolerans	bin_1_54	supervivencia	bin_1_54_00175	spoIIE	stage II sporulation protein E	K06382	esporulacion	core	core	0.9762
+L12_Peribacillus_frigoritolerans	bin_1_54	supervivencia	bin_1_54_02294	katE	Catalase	K03781	estres_oxidativo	core	core	1.0000
+L12_Peribacillus_frigoritolerans	bin_1_54	supervivencia	bin_1_54_02562	NA	Catalase	K03781	estres_oxidativo	core	core	1.0000
+L12_Peribacillus_frigoritolerans	bin_1_54	supervivencia	bin_1_54_02734	spoIIAA	anti-sigma F factor antagonist	K06378	esporulacion	core	core	1.0000
+L12_Peribacillus_frigoritolerans	bin_1_54	supervivencia	bin_1_54_02751	NA	superoxide dismutase	K04564	estres_oxidativo	core	core	1.0000
+L12_Peribacillus_frigoritolerans	bin_1_54	supervivencia	bin_1_54_03291	NA	Catalase-related peroxidase	K03781	estres_oxidativo	core	core	1.0000
+L12_Peribacillus_frigoritolerans	bin_1_54	supervivencia	bin_1_54_03559	sodA	Superoxide dismutase	K04564	estres_oxidativo	core	core	1.0000
+L12_Peribacillus_frigoritolerans	bin_1_54	supervivencia	bin_1_54_04034	spo0A	sporulation transcription factor Spo0A	K07699	esporulacion	core	core	1.0000
+L12_Peribacillus_frigoritolerans	bin_1_54	supervivencia	bin_1_54_04244	katA	catalase KatA	K03781	estres_oxidativo	core	core	1.0000
+L8_Acinetobacter_schindleri	bin_4_52	riesgo	bin_4_52_00742	pgaB	poly-beta-1,6-N-acetyl-D-glucosamine N-deacetylase PgaB	K11931	eps_biopelicula	core	core	1.0000
+L8_Acinetobacter_schindleri	bin_4_52	riesgo	bin_4_52_00743	pgaD	poly-beta-1,6-N-acetyl-D-glucosamine biosynthesis protein PgaD	K11937	eps_biopelicula	core	core	1.0000
+L8_Acinetobacter_schindleri	bin_4_52	riesgo	bin_4_52_00744	pgaC	poly-beta-1,6-N-acetyl-D-glucosamine synthase	K11936	eps_biopelicula	core	core	1.0000
+L8_Acinetobacter_schindleri	bin_4_52	riesgo	bin_4_52_00745	pgaB	poly-beta-1,6-N-acetyl-D-glucosamine N-deacetylase PgaB	K11931	eps_biopelicula	core	core	1.0000
+L8_Acinetobacter_schindleri	bin_4_52	riesgo	bin_4_52_00746	pgaA	Poly-beta-1,6 N-acetyl-D-glucosamine export porin PgaA	K11935	eps_biopelicula	core	core	1.0000
+L8_Acinetobacter_schindleri	bin_4_52	riesgo	bin_4_52_01907	NA	Glycosyltransferase 2-like domain-containing protein	K11936	eps_biopelicula	core	core	1.0000
+L8_Acinetobacter_schindleri	bin_4_52	supervivencia	bin_4_52_00018	NA	Superoxide dismutase	K04564	estres_oxidativo	core	core	1.0000
+L8_Acinetobacter_schindleri	bin_4_52	supervivencia	bin_4_52_00986	katE	catalase HPII	K03781	estres_oxidativo	core	core	1.0000
+L8_Acinetobacter_schindleri	bin_4_52	supervivencia	bin_4_52_01523	NA	Catalase	K03781	estres_oxidativo	core	core	1.0000
+L8_Acinetobacter_schindleri	bin_4_52	supervivencia	bin_4_52_01609	phrB	deoxyribodipyrimidine photo-lyase	K01669	reparacion_uv	core	core	1.0000
+L8_Acinetobacter_schindleri	bin_4_52	supervivencia	bin_4_52_02990	NA	Ferritin/DPS protein domain-containing protein	K04047	estres_oxidativo	core	core	1.0000

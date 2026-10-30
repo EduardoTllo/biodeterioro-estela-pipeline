@@ -1,0 +1,11 @@
+Fase 4 - DRAM
+Fecha: Thu Oct 29 18:47:43 -05 2026   Job: 59060   Nodo: n003
+dram-bio=1.5.0=pypi_0
+hmmer=3.3.2=hdbdd923_4
+mmseqs2=13.45111=pl5321hf1761c0_2
+python=3.10.14=hd12c33a_0_cpython
+KOfam db: /home/eduardo.tello/dbs/dram/kofam_profiles.hmm
+KOfam KO list: /home/eduardo.tello/dbs/dram/kofam_ko_list.tsv
+dbCAN db: /home/eduardo.tello/dbs/dram/dbCAN-HMMdb-V11.txt
+MEROPS peptidase db: /home/eduardo.tello/dbs/dram/peptidases.20261006.mmsdb
+dbCAN family activities: /home/eduardo.tello/dbs/dram/CAZyDB.08062022.fam-activities.txt
