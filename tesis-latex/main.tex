@@ -27,6 +27,12 @@
 \usepackage{verbatim} 
 % Librería para hipervínculos
 \usepackage{hyperref}
+% Tablas largas (xltabular): xltabular desfasa el ancla de hyperref en uno.
+% \anclatabla crea el ancla en el sitio del caption y fija el número de la
+% tabla para \label y para el índice de tablas.
+\makeatletter
+\newcommand{\anclatabla}{\phantomsection\protected@edef\@currentlabel{\thetable}}
+\makeatother
  % Librería necesaria para arreglar el orden de referencias en overleaf.com
 \usepackage{notoccite}
 \usepackage{tikz}

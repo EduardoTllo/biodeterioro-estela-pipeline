@@ -94,12 +94,14 @@ que facilita la reproducibilidad y permite realizar el análisis de sensibilidad
 {\footnotesize
 \setstretch{1.15}
 \setlength{\tabcolsep}{4pt}
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{2.3cm}>{\raggedright\arraybackslash}p{4.8cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{1.7cm}}
-\caption[Parámetros operativos implementados]{Parámetros operativos y variable
+\caption{Parámetros operativos y variable
 o argumento con que se implementan. Los de las Fases 1 y 2 se justifican en el
 Capítulo V. Los que se agregaron en la ejecución de la Fase 3 se justifican en
 el Capítulo VII. F1 a F6 son los filtros de genes específicos
 (Tabla~\ref{tab:filtros_impl}).}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Parámetros operativos implementados}}
 \label{tab:parametros_operativos} \\
 \toprule
 \textbf{Etapa} & \textbf{Parámetro} & \textbf{Variable o argumento} & \textbf{Valor} \\
@@ -136,6 +138,7 @@ F5b & ANI de misma especie (\%) & \texttt{DEF\_ANI} & 95 \\
 Advertencia & Identidad y cobertura (\%) & \texttt{DEF\_CASI\_ID}, \texttt{DEF\_CASI\_COV} & 99 / 90 \\
 F5 remoto & Proteínas por envío; espera máxima por búsqueda (h) & \texttt{LOTE}, \texttt{ESPERA\_MAX\_H} & 10; 24 \\
 \end{xltabular}
+\captionsetup{list=yes}
 }
 
 \subsection{Dimensionamiento del cómputo}
@@ -150,11 +153,13 @@ tomada en base a los limites computacionales.
 {\footnotesize
 \setstretch{1.15}
 \setlength{\tabcolsep}{4pt}
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{2.1cm}>{\raggedright\arraybackslash}p{2.0cm}>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}X}
-\caption[Dimensionamiento de cómputo por etapa]{Recurso crítico, recursos
+\caption{Recurso crítico, recursos
 pedidos y consumo medido de cada etapa. Los valores por especie se dan en el
 orden \textit{B.~altitudinis}, \textit{P.~frigoritolerans} y
 \textit{A.~schindleri}.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Dimensionamiento de cómputo por etapa}}
 \label{tab:dimensionamiento} \\
 \toprule
 \textbf{Etapa} & \textbf{Recurso crítico} & \textbf{Pedido y medido} & \textbf{Decisión de dimensionamiento} \\
@@ -200,6 +205,7 @@ BLAST remoto (F5, F6) & Cola externa del NCBI & nodo de login; $\sim$7 / 6 / 4 h
 Sesión persistente (\texttt{tmux}). El programa espera hasta 24 h por búsqueda
 y puede reanudarse \\
 \end{xltabular}
+\captionsetup{list=yes}
 }
 
 Los trabajos piden 90 GB y no los 98 GB disponibles. El motivo por el cual se
@@ -258,9 +264,11 @@ criterio con que se fijó.
 {\footnotesize
 \setstretch{1.15}
 \setlength{\tabcolsep}{4pt}
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{1.9cm}>{\raggedright\arraybackslash}X}
-\caption[Versiones de software seleccionadas]{Versiones de software empleadas y
+\caption{Versiones de software empleadas y
 criterio de selección de cada una.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Versiones de software seleccionadas}}
 \label{tab:versiones} \\
 \toprule
 \textbf{Componente} & \textbf{Versión} & \textbf{Criterio de selección de la versión} \\
@@ -301,6 +309,7 @@ R & 4.5.0 &
 Estadística y figuras en el equipo local: vegan 2.7.2, ape 5.8.1, phangorn
 2.12.1, ggtree 3.16.3 y gggenes 0.7.0 \\
 \end{xltabular}
+\captionsetup{list=yes}
 }
 
 
@@ -417,7 +426,7 @@ bases de datos desde el nodo de acceso (\textit{login}). En segundo lugar, los s
 de ejecución se envían a la cola de SLURM. En tercer lugar, los programas que
 requieren conexión con los servidores del NCBI se ejecutan desde el nodo de
 acceso. Por último, los programas de procesamiento contienen la lógica de decisión
-del flujo y están escritos en Python utilizando únicamente la biblioteca estándar,
+del flujo y están escritos en Python,
 por lo que no requieren dependencias adicionales. El Anexo~\ref{anexo:programas}
 detalla la función de cada programa y los archivos que conectan las etapas.
 
@@ -432,53 +441,42 @@ origen, el número de bin, la cantidad de contigs y la longitud de cada genoma.
 Finalmente, comprueba que se hayan procesado los 97 genomas esperados para
 detectar posibles errores en la selección de la carpeta de origen.
 
-En la Fase 3, los genomas públicos se identifican mediante su accesión del NCBI,
-reemplazando el punto por un guion bajo. Se descarga la versión exacta del
-ensamblaje registrada en GTDB, sin sustituirla por versiones posteriores,
-debido a que las métricas de calidad corresponden al ensamblaje original. Además,
-se compara la longitud del genoma descargado con la registrada en GTDB y se
-admite una diferencia máxima del 1\,\%. Esta comprobación verifica la integridad
-de la descarga, pero no la calidad del genoma.
+En la Fase 3, los genomas públicos se identifican mediante sus números de acceso del NCBI, 
+reemplazando el punto por un guion bajo. Se descarga la versión exacta de cada ensamblaje 
+registrada en GTDB, sin reemplazarla por versiones posteriores, ya que las métricas de calidad 
+corresponden a esa versión. Además, se compara la longitud del genoma descargado con la registrada 
+en GTDB y se admite una diferencia máxima del 1\,\%. Esta verificación permite detectar posibles 
+errores en la descarga, aunque no evalúa la calidad del genoma.
 
 \subsection{Encadenamiento entre etapas}
 \label{subsec:encadenamiento}
 
-Las etapas intercambian sus resultados mediante archivos almacenados en disco
-(Anexo~\ref{anexo:programas}). Se establecieron cuatro mecanismos para mantener la
-consistencia de los datos entre las fases.
+Las etapas intercambian resultados mediante archivos almacenados en disco (Anexo~\ref{anexo:programas}). 
+Para mantener la consistencia de los datos entre fases, se implementaron cuatro mecanismos.
 
-En primer lugar, la Fase 2 utiliza directamente la carpeta que contiene los genomas
-seleccionados en la Fase 1, en lugar de recibir una lista de nombres. De esta
-manera, los criterios de selección se aplican una sola vez y se evita que ambas
-fases utilicen conjuntos diferentes de genomas.
+En primer lugar, la Fase 2 utiliza directamente la carpeta de genomas seleccionados en la Fase 1,
+en lugar de recibir una lista independiente de nombres. Así, los criterios de selección se aplican 
+una sola vez y se evita que ambas fases trabajen con conjuntos diferentes.
 
-En segundo lugar, dRep evalúa por defecto la calidad de los genomas mediante
-su propio procedimiento, lo que repetiría el análisis y podría excluir genomas
-previamente aceptados. Para evitarlo, el sistema adapta el reporte de CheckM2 al
-formato requerido por dRep y desactiva sus filtros de calidad predeterminados
-(Anexo~\ref{anexo:codigo}).
+En segundo lugar, dRep realiza por defecto su propia evaluación de calidad, lo que repetiría 
+el análisis y podría excluir genomas previamente aceptados. Para evitarlo, el reporte de CheckM2
+se adapta al formato requerido por dRep y se desactivan sus filtros de calidad predeterminados (Anexo~\ref{anexo:codigo}).
 
-En tercer lugar, la clasificación de las familias génicas del pangenoma debe
-considerar la incompletitud del bin. Panaroo clasifica las familias como
-\textit{core}, \textit{shell} o \textit{cloud} según su frecuencia entre los genomas
-analizados, incluyendo el bin. Sin embargo, esto puede alterar la clasificación
-de algunas familias. Por ejemplo, una familia presente en 48 de 50 referencias
-tiene una frecuencia del 96\,\% y se considera \textit{core}. Si está ausente en
-el bin, su frecuencia disminuye a 48 de 51 genomas (94.1\,\%) y pasa a
-clasificarse como \textit{shell}, aunque su presencia entre las referencias no haya
-cambiado. Asimismo, una familia presente únicamente en el bin se clasificaría
-como \textit{cloud}, pese a que podría representar un gen específico de la cepa.
-Para evitar estas distorsiones, el sistema conserva las familias identificadas por
-Panaroo, pero recalcula sus frecuencias utilizando únicamente los genomas de
-referencia. Posteriormente, relaciona los genes del bin con las categorías
-obtenidas (Anexo~\ref{anexo:codigo}).
+En tercer lugar, se ajusta la clasificación de las familias génicas del pangenoma para considerar
+la incompletitud de los bins. Panaroo clasifica las familias como \textit{core}, \textit{shell} o
+\textit{cloud} según su frecuencia entre todos los genomas analizados, incluido el bin. Esto
+puede alterar la clasificación de algunas familias. Por ejemplo, una familia presente en 48 de 50
+referencias tiene una frecuencia del 96\,\% y se clasifica como \textit{core}. Si está ausente en el bin,
+su frecuencia baja a 48 de 51 (94,1\,\%) y pasa a \textit{shell}, aunque su presencia entre las referencias
+no haya cambiado. De manera similar, una familia presente únicamente en el bin se clasificaría como \textit{cloud},
+aunque podría corresponder a un gen específico de la cepa. Para evitar estas distorsiones, se conservan las familias
+identificadas por Panaroo, pero sus frecuencias se recalculan considerando únicamente los genomas de referencia.
+Luego, los genes del bin se relacionan con estas categorías (Anexo~\ref{anexo:codigo}).
 
-Por último, se utilizan dos conjuntos de genomas de referencia según el análisis.
-El pangenoma se construye únicamente con las referencias seleccionadas después
-de la desreplicación y la aplicación del límite de 50 genomas. En cambio, la
-búsqueda de genes específicos del bin y el cálculo de su ANI utilizan el conjunto
-completo de genomas válidos de cada especie, incluidos aquellos excluidos durante
-la desreplicación o por el límite establecido.
+Por último, se utilizan dos conjuntos de referencia según el análisis. El pangenoma incluye únicamente los genomas
+seleccionados tras la desreplicación y la aplicación del límite de 50 genomas. En cambio, la búsqueda de genes
+específicos del bin y el cálculo de ANI utilizan todos los genomas válidos de cada especie, incluidos aquellos
+excluidos durante la desreplicación o por el límite establecido.
 
 \subsection{Implementación de la verificación de genes específicos}
 \label{subsec:impl_verificacion}
@@ -491,9 +489,11 @@ se presentan en la Tabla~\ref{tab:parametros_operativos}.
 {\footnotesize
 \setstretch{1.15}
 \setlength{\tabcolsep}{4pt}
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{1.0cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{3.4cm}}
-\caption[Implementación de los filtros de genes específicos]{Filtros de genes
+\caption{Filtros de genes
 específicos de la cepa, en el orden en que se aplican.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Implementación de los filtros de genes específicos}}
 \label{tab:filtros_impl} \\
 \toprule
 \textbf{Filtro} & \textbf{Qué comprueba y qué descarta} & \textbf{Dónde se ejecuta} & \textbf{Herramienta} \\
@@ -528,28 +528,26 @@ F5b & Especie de los genomas portadores, decidida por el ANI que el NCBI
 calcula contra las cepas tipo \cite{ciufo2018} y no por el nombre depositado &
 Login, NCBI & IPG y NCBI Datasets \cite{oleary2024} \\
 \end{xltabular}
+\captionsetup{list=yes}
 }
 
-Los filtros se distribuyen en dos etapas según su costo computacional. La
-primera se ejecuta en los nodos de cómputo y aplica los filtros locales, que
-permiten descartar la mayoría de los candidatos en pocos segundos. La segunda
-consulta las bases de datos del NCBI desde el nodo de acceso y puede requerir
-varias horas. Para ello, el primer programa genera las consultas y el segundo
-las envía mediante la interfaz web de BLAST utilizando \texttt{curl}, debido a
-que la opción \texttt{-remote} de BLAST+ no devolvía resultados desde el clúster.
+Los filtros se distribuyen en dos etapas según su costo computacional. La primera se ejecuta en 
+los nodos de cómputo y aplica filtros locales que permiten descartar la mayoría de los candidatos 
+en pocos segundos. La segunda consulta las bases de datos del NCBI desde el nodo de acceso y puede 
+tomar varias horas. Para ello, el primer programa prepara las consultas y el segundo las envía a 
+través de la interfaz web de BLAST mediante \texttt{curl}, ya que la opción \texttt{-remote} de BLAST+ no devolvía resultados desde el clúster.
 
-El programa registra el identificador de cada consulta, comprueba su estado
-cada 60 segundos, según el intervalo mínimo indicado por el NCBI, y recupera
-los resultados mediante \texttt{blast\_formatter}. Las proteínas se envían en
-lotes de diez y, si un lote es cancelado, se reenvían individualmente. Las
-consultas que vuelven a fallar se registran como «sin resultado», para
-diferenciarlas de aquellas que terminan correctamente sin encontrar coincidencias.
+El segundo programa registra el identificador de cada consulta y verifica su estado cada 60 segundos,
+respetando el intervalo mínimo establecido por el NCBI. Una vez finalizadas, recupera las respuestas
+mediante \texttt{blast\_formatter}. Las proteínas se envían en lotes de diez; si un lote es cancelado,
+sus consultas se reenvían individualmente. Los intentos que vuelven a fallar se registran como «sin 
+resultado», diferenciándolos de las consultas completadas correctamente que no encontraron coincidencias.
 
 \subsection{Implementación de los scripts de ejecución}
 
 Cada script de ejecución declara los recursos solicitados a SLURM y los parámetros del análisis 
 (Anexo~\ref{anexo:codigo}). Además, incorpora tres mecanismos de robustez. En primer lugar, 
-detiene la ejecución ante errores y los propaga a través de las tuberías, pero permite variables 
+detiene la ejecución ante errores y los propaga a través de los scripts de ejecución, pero permite variables 
 no definidas debido a una incompatibilidad con el sistema de módulos del clúster. En segundo lugar, 
 comprueba la existencia de los bins, las bases de datos y los entornos conda antes de iniciar el 
 procesamiento. En tercer lugar, registra la fecha, el identificador del trabajo, el nodo, los 
@@ -558,17 +556,20 @@ umbrales utilizados y las versiones de las herramientas en un archivo que acompa
 La Fase 3 incorpora dos mecanismos adicionales. La anotación con Bakta se distribuye en tres 
 tareas y permite reanudar una ejecución interrumpida sin repetir los genomas ya anotados. Además, 
 se establecen puntos de control de C0 a C8 que detienen el flujo cuando los resultados no cumplen 
-las condiciones esperadas. Por ejemplo, C5 exige que el número de genes anotados esté dentro 
+las condiciones esperadas (Tabla~\ref{tab:puntos_control}, Anexo~\ref{anexo:programas}). Por ejemplo, C5 exige que el número de genes anotados esté dentro 
 de $\pm 20$\,\% de la mediana de su especie, mientras que C6 requiere que cada referencia contenga 
 al menos el 97\,\% del genoma \textit{core}. Los resultados de ambos controles se presentan en el 
 Capítulo VII.
 
 \subsection{Control de versiones}
 
-El código, las tablas de resultados y los archivos de bloqueo de los entornos se mantienen en un 
-repositorio de control de versiones (Anexo~\ref{anexo:repositorio}). Los archivos de gran tamaño 
-que no son necesarios para reproducir el análisis, como el alineamiento concatenado de 230 MB, 
-se conservan únicamente en el almacenamiento local.
+El código, las tablas de resultados y la lista exacta de paquetes y versiones
+de cada entorno conda se guardan en un repositorio de control de versiones
+(Anexo~\ref{anexo:repositorio}). Con esa lista se puede recrear cada entorno
+tal como se usó. Los archivos grandes que no hacen falta para reproducir el
+análisis se guardan solo en el equipo local. Es el caso del alineamiento de los
+120 genes marcadores que GTDB-Tk generó en la Fase 2 (230 MB), que puede
+volver a calcularse.
 
 
 \section{Representación gráfica de la solución y su verificación}
@@ -802,39 +803,26 @@ verificación de genes específicos de la cepa.
   at (5.5,-8.6) {todos los genomas de cada especie (208, 69 y 29)};
 \end{tikzpicture}
 
-\caption[Diagrama de flujo de la Fase 3]{Diagrama de flujo de la Fase 3. Los
-
+\caption[Diagrama de flujo de la Fase 3]{Diagrama de flujo de la Fase 3. Los 
 recuadros de borde continuo son etapas de procesamiento; los de borde discontinuo,
-
 los datos de entrada (19 linajes) y los resultados (posición filogenética de
-
 cada bin y genes específicos de la cepa). Las etiquetas sobre las flechas son los
-
 archivos o las cifras que pasan de una etapa a la siguiente. La flecha
-
 discontinua lateral lleva todos los genomas válidos de cada especie directamente
-
 a la búsqueda local de genes y al cálculo de ANI de los bins, sin pasar por la
-
 desreplicación ni por la selección.}
 
 \label{fig:pfd_f3}
 
 \end{figure}
 
+
 \subsection{Arquitectura de cómputo}
 
-La Figura~\ref{fig:arquitectura} representa dónde se ejecuta cada pieza. La
-
-división entre el nodo de login y los nodos de cómputo es una restricción de
-
-diseño, porque decide qué programas pueden descargar insumos y cuáles deben
-
-encontrarlos ya disponibles. La Fase 3 agrega dos elementos externos al
-
-clúster: los servicios del NCBI, que el login consulta durante el análisis, y el
-
-equipo local donde se generan la estadística y las figuras.
+La Figura~\ref{fig:arquitectura} muestra la distribución de los programas entre el 
+nodo de acceso y los nodos de cómputo del clúster Khipu. También representa su interacción 
+con el almacenamiento compartido, los servicios externos del NCBI y el equipo local utilizado 
+para el análisis estadístico y la generación de figuras.
 
 \begin{figure}[H]
 
@@ -906,13 +894,14 @@ equipo local donde se generan la estadística y las figuras.
       {La descarga de insumos y las consultas remotas ocurren en el login;\\
        el cálculo pesado, en los nodos de cómputo.};
 \end{tikzpicture}
-
-\subsection{Arquitectura de cómputo}
-
-La Figura~\ref{fig:arquitectura} muestra la distribución de los programas entre el 
-nodo de acceso y los nodos de cómputo del clúster Khipu. También representa su interacción 
-con el almacenamiento compartido, los servicios externos del NCBI y el equipo local utilizado 
-para el análisis estadístico y la generación de figuras.
+\caption[Arquitectura de cómputo del sistema]{Arquitectura de cómputo del
+sistema sobre el clúster Khipu. Los programas de preparación y las etapas que
+necesitan red (censo, descarga y verificación remota de genes de la Fase 3) se
+ejecutan en el nodo de login, único con acceso a internet. Los scripts de
+ejecución se envían a la cola con \texttt{sbatch} y corren en nodos de cómputo
+sin conexión, que solo leen lo que el login dejó en el almacenamiento
+compartido. Las tablas de resultados se copian a un equipo local, donde se
+calculan la estadística y las figuras.}
 
 \label{fig:arquitectura}
 

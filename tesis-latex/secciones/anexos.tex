@@ -42,8 +42,11 @@ En este anexo se presenta la evidencia del trabajo colaborativo desarrollado dur
 \addcontentsline{toc}{section}{Aprendizaje continuo}
 \renewcommand{\arraystretch}{1.3}
 \small
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{|p{1.5cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{3cm}|}
-\caption{Aprendizaje continuo: fuentes consultadas, contenido aprendido y su aplicación en el documento.}\label{tab:aprendizaje}\\
+\caption{Aprendizaje continuo: fuentes consultadas, contenido aprendido y su aplicación en el documento.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Aprendizaje continuo: fuentes consultadas, contenido aprendido y su aplicación en el documento.}}
+\label{tab:aprendizaje}\\
 \hline
 \textbf{Ref.} & \textbf{Información o contenido aprendido} & \textbf{Aplicación (en el documento)} \\
 \hline
@@ -76,6 +79,7 @@ En este anexo se presenta la evidencia del trabajo colaborativo desarrollado dur
 ~\cite{cordycollins1993},~\cite{hernandez2012}, ~\cite{mnaahp2015} & Contexto histórico-arqueológico de la Estela de Raimondi: filiación con la cultura Chavín, hallazgo, traslados sucesivos y custodia museística actual. & Introducción (Presentación del proyecto) \\
 \hline
 \end{xltabular}
+\captionsetup{list=yes}
 
 \section{Anexo: Repositorio de GitHub}
 \label{anexo:repositorio}
@@ -89,15 +93,18 @@ Link: \href{https://github.com/EduardoTllo/biodeterioro-estela-pipeline}{GitHub}
 Este anexo lista los programas que implementan el flujo
 (Tabla~\ref{tab:programas}) y los archivos que conectan cada etapa con la
 siguiente en las Fases 1 y 2 (Tabla~\ref{tab:artefactos}) y en la Fase 3
-(Tabla~\ref{tab:artefactos_f3}).
+(Tabla~\ref{tab:artefactos_f3}). También resume los puntos de control de la
+Fase 3 (Tabla~\ref{tab:puntos_control}).
 
 {\footnotesize
 \setstretch{1.15}
 \setlength{\tabcolsep}{4pt}
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{4.9cm}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X}
-\caption[Programas que componen el sistema]{Programas del sistema, clase a la
+\caption{Programas del sistema, clase a la
 que pertenecen y función que cumplen. Los de la Fase 3 se listan en orden de
 ejecución.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Programas que componen el sistema}}
 \label{tab:programas} \\
 \toprule
 \textbf{Programa} & \textbf{Clase} & \textbf{Función} \\
@@ -176,6 +183,7 @@ Aplica los filtros remotos F5, F5b y F6 contra los servidores del NCBI \\
 \texttt{bin/export\_fase3.sh}, \texttt{figuras/R/f3\_*.R} & Procesamiento & 
 Reúne las tablas del clúster y genera la estadística y las figuras \\
 \end{xltabular}
+\captionsetup{list=yes}
 }
 
 \begin{table}[H]
@@ -218,9 +226,11 @@ El cálculo de linajes, representantes y prevalencia \\
 {\footnotesize
 \setstretch{1.15}
 \setlength{\tabcolsep}{4pt}
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{4.7cm}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}X}
-\caption[Archivos que encadenan la Fase 3]{Archivos de datos que conectan las
+\caption{Archivos de datos que conectan las
 etapas de la Fase 3.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Archivos que encadenan la Fase 3}}
 \label{tab:artefactos_f3} \\
 \toprule
 \textbf{Archivo} & \textbf{Lo crea} & \textbf{Lo usa} \\
@@ -271,6 +281,40 @@ Los filtros remotos: proteínas y contigs que sobrevivieron a F1--F4 \\
 \texttt{exclusivos\_\allowbreak verificados.tsv} & Filtros remotos & 
 El análisis de genes específicos de la cepa y la Fase 4 \\
 \end{xltabular}
+\captionsetup{list=yes}
+}
+
+{\footnotesize
+\setstretch{1.15}
+\setlength{\tabcolsep}{4pt}
+\captionsetup{list=no}
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{0.8cm}>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}X}
+\caption{Puntos de control de la Fase 3. El
+flujo se detiene si un resultado no cumple la condición.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Puntos de control de la Fase 3}}
+\label{tab:puntos_control} \\
+\toprule
+\textbf{Punto} & \textbf{Etapa} & \textbf{Condición que se comprueba} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{l}{\textit{Tabla~\ref{tab:puntos_control} (continuación)}} \\
+\toprule
+\textbf{Punto} & \textbf{Etapa} & \textbf{Condición que se comprueba} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+C0 & Preparación & Cada entorno responde con su versión, la base de Bakta es la v6 y los metadatos de GTDB tienen las columnas del censo \\
+C1 & Censo & Se censan los 12 linajes con nombre de especie y \textit{Telluria timonae} se busca como \textit{Massilia timonae}. Si ninguna especie llega a 15 genomas, se consulta al asesor \\
+C2 & Descarga & Los genomas descargados más los fallidos suman los solicitados, y la longitud de cada genoma difiere a lo más 1\,\% de la registrada en GTDB \\
+C3 & Clasificación de hábitat & Se revisan a mano las fuentes de aislamiento sin clasificar y los aislados prioritarios \\
+C4 & Selección & Las tres especies quedan fijadas, con hasta 50 referencias cada una y el representante de GTDB incluido \\
+C5 & Anotación & Cada genoma tiene sus archivos completos y el número de CDS de cada referencia está dentro de $\pm 20$\,\% de la mediana de su especie \\
+C6 & Pangenoma y árbol & Cada referencia contiene al menos el 97\,\% del core y el bin aparece en el árbol \\
+C7 & Genes específicos & Cada candidato tiene una clase final y un motivo, y se revisan a mano diez genes verificados \\
+C8 & Entrega a la Fase 4 & Cada gen del bin figura en la partición o entre los descartados por el conversor \\
+\end{xltabular}
+\captionsetup{list=yes}
 }
 
 \section{Anexo: Extractos de código}
@@ -412,8 +456,11 @@ los 97 bins con su motivo de descarte.
 \small
 \setlength{\tabcolsep}{2.5pt} % Espaciado entre columnas
 
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{|c|c|c|c|c|c|>{\centering\arraybackslash}X|}
-\caption{Reporte completo de evaluación y filtrado de bins genómicos (Fase 1).} \label{tab:anexo_bins} \\
+\caption{Reporte completo de evaluación y filtrado de bins genómicos (Fase 1).}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Reporte completo de evaluación y filtrado de bins genómicos (Fase 1).}}
+\label{tab:anexo_bins} \\
 \hline
 \textbf{Bin} & \textbf{Contigs} & \textbf{Long (bp)} & \textbf{Dom.} & \textbf{Comp. (\%)} & \textbf{Contam. (\%)} & \textbf{Motivo} \\
 \hline
@@ -531,6 +578,7 @@ bin-7-71 & 95 & 258.968 & unknown & 7.21 & 0.05 & completitud 7.21 $\le$ 70 \\ \
 bin-8-71 & 908 & 2.450.575 & unknown & 81.92 & 35.87 & contaminacion 35.87 $\ge$ 5 \\ \hline
 bin-9-71 & 346 & 1.832.072 & prok & 85.09 & 2.13 & - \\
 \end{xltabular}
+\captionsetup{list=yes}
 \endgroup
 
 \section{Anexo: Figuras complementarias de la Fase 2}
@@ -801,10 +849,12 @@ efecto. Después se detalla cada uno.
 {\footnotesize
 \setstretch{1.15}
 \setlength{\tabcolsep}{4pt}
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{0.7cm}>{\raggedright\arraybackslash}p{3.6cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{3.0cm}}
-\caption[Escenarios de sensibilidad]{Escenarios de sensibilidad y su efecto
+\caption{Escenarios de sensibilidad y su efecto
 sobre el caso base. E1 a E5 corresponden a las Fases 1 y 2, y E6 a E13 a la
 Fase 3.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Escenarios de sensibilidad}}
 \label{tab:escenarios} \\
 \toprule
 \textbf{Esc.} & \textbf{Variable y valores} & \textbf{Resultado} & \textbf{Efecto en las conclusiones} \\
@@ -832,6 +882,7 @@ E11 & Especie por nombre en vez de ANI & 5 genes más pasarían como específico
 E12 & Contigs de las referencias: 200, 300 y 1\,000 & Mismas especies viables & Ninguno \\
 E13 & Borde en F1: 0, 50 y 100 pb & Como máximo 4 o 13 candidatos más antes de F4 y F5 & Ninguno \\
 \end{xltabular}
+\captionsetup{list=yes}
 }
 
 \textbf{Umbrales de calidad (E1 y E2).} La Tabla~\ref{tab:sensibilidad_calidad}
@@ -988,9 +1039,11 @@ detalla cada una.
 {\footnotesize
 \setstretch{1.15}
 \setlength{\tabcolsep}{4pt}
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{4.0cm}}
-\caption[Iteraciones de diseño]{Iteraciones de diseño: diseño original,
+\caption{Iteraciones de diseño: diseño original,
 evidencia que obligó a cambiarlo y diseño corregido.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Iteraciones de diseño}}
 \label{tab:iteraciones} \\
 \toprule
 \textbf{Iteración} & \textbf{Diseño original} & \textbf{Evidencia} & \textbf{Rediseño} \\
@@ -1010,6 +1063,7 @@ evidencia que obligó a cambiarlo y diseño corregido.}
 5. Búsqueda remota & Opción remota de BLAST+ contra nr y nt & La opción quedaba esperando sin resultado y el NCBI canceló búsquedas largas & Interfaz web del NCBI, core\_nt y lotes que se dividen \\
 6. Comparación funcional & Categorías COG del core y el accesorio & Bakta asignó COG a solo 4 a 31\,\% de los genes & Pasa a la Fase 4 con DRAM \\
 \end{xltabular}
+\captionsetup{list=yes}
 }
 
 \textbf{Primera iteración: árbol filogenómico.} El árbol \textit{de novo} con
@@ -1039,9 +1093,11 @@ públicos. La ejecución obligó a precisarlo en varios puntos
 {\footnotesize
 \setstretch{1.15}
 \setlength{\tabcolsep}{4pt}
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}X}
-\caption[Diferencias entre el diseño original y la ejecución de la Fase 3]{
+\caption{
 Diferencias entre la Fase 3 descrita en el Capítulo V y la ejecutada.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Diferencias entre el diseño original y la ejecución de la Fase 3}}
 \label{tab:cambios_f3} \\
 \toprule
 \textbf{Aspecto} & \textbf{Capítulo V} & \textbf{Ejecutado} \\
@@ -1083,6 +1139,7 @@ pétreo o árido \\
 Exclusiones manuales & No previstas & 
 Cuatro genomas con nombre de otro filo en el NCBI \\
 \end{xltabular}
+\captionsetup{list=yes}
 }
 
 El umbral de diez genomas no tenía respaldo bibliográfico y se elevó a 15, el

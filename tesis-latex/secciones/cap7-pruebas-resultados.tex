@@ -13,7 +13,7 @@
 
 Este capítulo presenta el desempeño del flujo diseñado en el Capítulo VI. Primero
 define cómo se probó. Después expone los resultados de las Fases 1, 2 y 3 y los
-ajustes de diseño que obligaron a hacer. Por último verifica las
+ajustes de diseño en base a los resultados obtenidos. Por último verifica las
 especificaciones y las restricciones del proyecto.
 
 \section{Plan de pruebas de la solución}
@@ -564,9 +564,11 @@ cruza cada una con su método de verificación y su resultado.
 {\footnotesize
 \setstretch{1.1}
 \setlength{\tabcolsep}{4pt}
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{1.0cm}}
-\caption[Matriz de verificación de especificaciones técnicas]{Matriz de
+\caption{Matriz de
 verificación del cumplimiento de las especificaciones técnicas.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Matriz de verificación de especificaciones técnicas}}
 \label{tab:matriz_especificaciones} \\
 \toprule
 \textbf{Especificación} & \textbf{Método} & \textbf{Objetivo} & \textbf{Resultado} & \textbf{Cumple} \\
@@ -595,6 +597,7 @@ Ubicación filogenética & Máxima verosimilitud & UFBoot $\geq 95$ & UFBoot 100
 Genes específicos & Filtros F1 a F6 & Lista verificada & 44 en \textit{A.~schindleri}; 0 en las otras & Sí \\
 Selección reproducible & Reglas deterministas & Mismo resultado al repetir & Semillas fijas en IQ-TREE y R & Sí \\
 \end{xltabular}
+\captionsetup{list=yes}
 }
 
 \section{Verificación del cumplimiento de restricciones}
@@ -605,9 +608,11 @@ La Tabla~\ref{tab:matriz_restricciones} verifica cada una.
 {\footnotesize
 \setstretch{1.1}
 \setlength{\tabcolsep}{4pt}
+\captionsetup{list=no}
 \begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{3.4cm}>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{1.1cm}}
-\caption[Matriz de verificación de restricciones]{Matriz de verificación del
+\caption{Matriz de verificación del
 cumplimiento de las restricciones del proyecto.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Matriz de verificación de restricciones}}
 \label{tab:matriz_restricciones} \\
 \toprule
 \textbf{Restricción} & \textbf{Forma en que el diseño la respeta} & \textbf{Cumple} \\
@@ -628,4 +633,5 @@ Software y bases de acceso libre & Todas las herramientas y bases son abiertas, 
 Dependencia del NCBI & La búsqueda remota se reanuda tras un corte y distingue «sin resultado» de «sin parecidos». Se reporta la fecha de consulta & Sí \\
 Bases públicas con muestreo desigual & Desreplicación al 99\,\%, rotación de hábitats y verificación contra todos los genomas de la especie. El sesgo restante se declara & Sí \\
 \end{xltabular}
+\captionsetup{list=yes}
 }
