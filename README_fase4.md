@@ -4,8 +4,8 @@ Caracteriza el potencial metabolico de los bins de la Estela con DRAM y lo
 cruza con una tabla de marcadores de biodeterioro y supervivencia fijada antes
 de ver los datos, y con la particion del pangenoma de la Fase 3.
 
-Estado: codigo completo (instalacion, anotacion y cruce), probado solo con una
-anotacion de DRAM sintetica. Falta correr Bakta en los 18 bins restantes y DRAM.
+Estado: corrida completa con DRAM real (29-10-2026). Para leer los resultados, ver
+[README_resultados_fase4.md](README_resultados_fase4.md).
 
 ## Pasos disponibles
 
