@@ -59,7 +59,7 @@ Especies que pasan al análisis pangenómico & 3 \\
 Genomas anotados (115 referencias y 3 bins) & 118 \\
 Tamaño del genoma de referencia (mediana) & 3.74 / 5.52 / 3.32 Mpb \\
 Contigs por genoma de referencia (mediana) & 15 / 39.5 / 46 \\
-Proteínas sometidas a la búsqueda remota (versión 2) & 112 \\
+Proteínas sometidas a la búsqueda remota & 112 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -122,9 +122,9 @@ Linajes & Umbral primario (MASH) / secundario (ANI) de dRep & \texttt{DREP\_PA},
 Especie & ANI / fracción alineada mínimos (\%) & \texttt{ANI\_ESPECIE}, \texttt{AF\_ESPECIE} & 95 / 65 \\
 \midrule
 \multicolumn{4}{l}{\textit{Fase 3}} \\*
-Censo & Completitud / contaminación de la referencia (\%) & \texttt{DEF\_MIN\_COMPLETITUD}, \texttt{DEF\_MAX\_CONTAMINACION} & 95 / 5 \\
-Censo & Contigs máximos de la referencia & \texttt{DEF\_MAX\_CONTIGS} & 300 \\
-Censo y selección & Genomas mínimos por especie & \texttt{DEF\_UMBRAL} & 15 \\
+Recuento & Completitud / contaminación de la referencia (\%) & \texttt{DEF\_MIN\_COMPLETITUD}, \texttt{DEF\_MAX\_CONTAMINACION} & 95 / 5 \\
+Recuento & Contigs máximos de la referencia & \texttt{DEF\_MAX\_CONTIGS} & 300 \\
+Recuento y selección & Genomas mínimos por especie & \texttt{DEF\_UMBRAL} & 15 \\
 Descarga & Diferencia de longitud tolerada & \texttt{DEF\_TOLERANCIA} & 0.01 \\
 Desreplicación & Umbral primario / secundario de dRep & \texttt{DREP\_PA}, \texttt{DREP\_SA} & 0.90 / 0.99 \\
 Selección & Referencias máximas por especie; especies & \texttt{DEF\_TOPE}, \texttt{DEF\_TOP} & 50; 3 \\
@@ -187,7 +187,7 @@ datos. La especie se confirma igual con el ANI interno \\
 dRep & Tiempo & mismo trabajo &
 \texttt{-{}-genomeInfo}: reutiliza la calidad de CheckM2 y no la recalcula \\
 \midrule
-Censo y descarga & Red & nodo de login &
+Recuento y descarga & Red & nodo de login &
 Primero se piden los metadatos y después las secuencias, con reintentos ante
 cortes \\
 dRep al 99\,\% & Tiempo y número de trabajos & 16 núcleos, 32 GB, hasta 6 h por especie &
@@ -201,7 +201,7 @@ IQ-TREE & Tiempo & 32 núcleos, 90 GB, 24 h; 2 h 08 / 2 h 50 / 25 min &
 Una especie a la vez \\
 BLAST local (F3, F4) & Procesador & 16 núcleos, 32 GB; menos de 1 min por especie &
 Una tarea por especie \\
-BLAST remoto (F5, F6) & Cola externa del NCBI & nodo de login; $\sim$7 / 6 / 4 h en la versión 1 &
+BLAST remoto (F5, F6) & Servidores del NCBI & nodo de login; hasta 7 h por especie &
 Sesión persistente (\texttt{tmux}). El programa espera hasta 24 h por búsqueda
 y puede reanudarse \\
 \end{xltabular}
@@ -316,7 +316,7 @@ Estadística y figuras en el equipo local: vegan 2.7.2, ape 5.8.1, phangorn
 Se identificaron dos aspectos de compatibilidad importantes. El primero fue 
 la versión de Python. Si no se fija desde la creación del entorno, el error puede
 aparecer recién durante la primera ejecución, cuando ya se han descargado 110 GB 
-y enviado un trabajo a cola. Fijar la versión permite detectar este problema desde 
+y enviado un trabajo a los nodos de cómputo. Fijar la versión permite detectar este problema desde 
 la configuración inicial.
 
 El segundo fue el formato de anotación. Bakta genera archivos GFF3, mientras 
@@ -344,7 +344,7 @@ de referencia.}
 \midrule
 Base de datos de CheckM2 & la que distribuye la herramienta & Calidad genómica \\
 Base de datos de GTDB            & R220                              & Clasificación taxonómica y ANI \\
-Metadatos de GTDB (\texttt{bac120\_metadata}) & R220 & Censo y clasificación de referencias \\
+Metadatos de GTDB (\texttt{bac120\_metadata}) & R220 & Recuento y clasificación de referencias \\
 Base de datos de Bakta (\textit{full}) & v6.0 (24-02-2025) & Anotación \\
 Taxonomía del NCBI (\textit{taxdump}) & descargada el 04-10-2026 & F5 \\
 NCBI nr y core\_nt (remotas) & fecha de la consulta & F5 y F6 \\
@@ -390,7 +390,7 @@ versiones exactas. Para la Fase 3 se incorporaron cinco entornos adicionales
 \texttt{blast}), mientras que se reutilizó el entorno de dRep. Finalmente, el
 script verifica que las herramientas estén instaladas y respondan con sus
 versiones, que Bakta utilice la versión 6 y que los metadatos de GTDB contengan
-las columnas necesarias para el censo.
+las columnas necesarias para contar los genomas de cada especie.
 
 En la Fase 3 se incorporaron cinco entornos adicionales (\texttt{ncbi-datasets},
 \texttt{bakta}, \texttt{panaroo}, \texttt{iqtree} y \texttt{blast}), siguiendo el
@@ -398,7 +398,7 @@ mismo procedimiento, y se reutilizó el entorno de dRep. Finalmente, el script
 de preparación verifica que cada entorno esté operativo mediante la consulta de
 la versión de su herramienta correspondiente. También comprueba que la base de
 datos de Bakta corresponda a la versión 6 y que los metadatos de GTDB contengan
-las columnas necesarias para realizar el censo.
+las columnas necesarias para contar los genomas de cada especie.
 
 El sistema se organiza en dos tipos de programas. Los scripts de preparación
 se encargan de descargar las bases de datos y crear los entornos de trabajo desde
@@ -423,7 +423,7 @@ Las Fases 1 y 2 se implementan mediante seis programas y la Fase 3 mediante quin
 Estos se organizan en cuatro clases según su función y lugar de ejecución.
 En primer lugar, los programas de preparación crean los entornos y descargan las
 bases de datos desde el nodo de acceso (\textit{login}). En segundo lugar, los scripts
-de ejecución se envían a la cola de SLURM. En tercer lugar, los programas que
+de ejecución corren en los nodos de cómputo, enviados con SLURM. En tercer lugar, los programas que
 requieren conexión con los servidores del NCBI se ejecutan desde el nodo de
 acceso. Por último, los programas de procesamiento contienen la lógica de decisión
 del flujo y están escritos en Python,
@@ -508,25 +508,25 @@ específicos de la cepa, en el orden en que se aplican.}
 \endlastfoot
 F1 & Estructura del gen. Descarta pseudogenes, proteínas cortas y genes cerca
 del borde del contig, que suelen estar partidos \cite{skovgaard2001,denton2014}
-& Cola, sin red & Anotación de Bakta \\
+& Nodo de cómputo (sin internet) & Anotación de Bakta \\
 F2 & Anclaje del contig. No descarta: marca como huérfano el contig que no
 comparte ninguna familia con las referencias, como posible contaminación
-\cite{shaiber2019} & Cola, sin red & Partición de Panaroo \\
+\cite{shaiber2019} & Nodo de cómputo (sin internet) & Partición de Panaroo \\
 F4 & Presencia en otros genomas de la especie. Descarta los genes que aparecen
-en algún genoma válido & Cola, sin red &
+en algún genoma válido & Nodo de cómputo (sin internet) &
 \texttt{tblastn} \cite{camacho2009} \\
 F3 & Presencia en otros bins de la misma muestra. Solo advierte, porque puede
-ser ADN intercambiado o un error de reconstrucción & Cola, sin red &
+ser ADN intercambiado o un error de reconstrucción & Nodo de cómputo (sin internet) &
 \texttt{blastn} \\
 F6 & Origen de los contigs huérfanos. Descarta el contig cuyo mejor parecido es
-de otro género o casi idéntico a otra especie del mismo género & Login, NCBI &
+de otro género o casi idéntico a otra especie del mismo género & Nodo de login (BLAST remoto) &
 \texttt{blastn} contra core\_nt \\
 F5 & Presencia en nr. Descarta el gen que tiene un organismo de la misma especie
-& Login, NCBI & \texttt{blastp} contra nr; linaje con TaxonKit
+& Nodo de login (BLAST remoto) & \texttt{blastp} contra nr; linaje con TaxonKit
 \cite{shen2021taxonkit} \\
 F5b & Especie de los genomas portadores, decidida por el ANI que el NCBI
 calcula contra las cepas tipo \cite{ciufo2018} y no por el nombre depositado &
-Login, NCBI & IPG y NCBI Datasets \cite{oleary2024} \\
+Nodo de login (BLAST remoto) & IPG y NCBI Datasets \cite{oleary2024} \\
 \end{xltabular}
 \captionsetup{list=yes}
 }
@@ -739,7 +739,7 @@ la Fase 1 (Sección~\ref{subsec:encadenamiento}).
 \end{figure}
 
 La Figura~\ref{fig:pfd_f3} presenta la Fase 3. De los 12 linajes identificados a nivel de 
-especie, siete superan el censo y aportan 656 genomas válidos. Después de la desreplicación y 
+especie, siete tienen al menos 15 genomas públicos de calidad y aportan 656 genomas válidos. Después de la desreplicación y 
 selección, se analizan tres especies con 115 referencias y tres bins. El flujo continúa con la 
 construcción del pangenoma y se divide en dos análisis: la reconstrucción filogenética y la 
 verificación de genes específicos de la cepa.
@@ -763,7 +763,7 @@ verificación de genes específicos de la cepa.
 \node[data, minimum width=4.4cm] (in) at (0,0)
   {19 linajes de la Fase 2\\(12 con nombre de especie)};
 \node[proc] (censo) at (0,-1.7)
-  {Censo y control de calidad\\ \scriptsize metadatos de GTDB R220};
+  {Recuento de genomas y control de calidad\\ \scriptsize metadatos de GTDB R220};
 \node[proc] (desc) at (0,-3.4)
   {Descarga y verificación\\ \scriptsize NCBI Datasets};
 \node[proc] (clas) at (0,-5.1)
@@ -896,10 +896,10 @@ para el análisis estadístico y la generación de figuras.
 \end{tikzpicture}
 \caption[Arquitectura de cómputo del sistema]{Arquitectura de cómputo del
 sistema sobre el clúster Khipu. Los programas de preparación y las etapas que
-necesitan red (censo, descarga y verificación remota de genes de la Fase 3) se
+necesitan red (recuento de genomas públicos, descarga y verificación remota de genes de la Fase 3) se
 ejecutan en el nodo de login, único con acceso a internet. Los scripts de
-ejecución se envían a la cola con \texttt{sbatch} y corren en nodos de cómputo
-sin conexión, que solo leen lo que el login dejó en el almacenamiento
+ejecución se envían con \texttt{sbatch} a los nodos de cómputo.
+Estos no tienen conexión y solo leen lo que el login dejó en el almacenamiento
 compartido. Las tablas de resultados se copian a un equipo local, donde se
 calculan la estadística y las figuras.}
 

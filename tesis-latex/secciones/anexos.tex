@@ -244,9 +244,9 @@ etapas de la Fase 3.}
 \bottomrule
 \endlastfoot
 \texttt{phase2\_selection.tsv} & Fase 2 & 
-El censo, que toma de él la especie GTDB de cada linaje \\
+El recuento de genomas, que toma de él la especie GTDB de cada linaje \\
 \addlinespace
-\texttt{phase3\_viabilidad.tsv} & Censo & 
+\texttt{phase3\_viabilidad.tsv} & Recuento de genomas & 
 La descarga, que solo pide genomas de especies viables \\
 \addlinespace
 \texttt{genomas\_ok\_\allowbreak <especie>.txt} & Verificación de la descarga & 
@@ -304,8 +304,8 @@ flujo se detiene si un resultado no cumple la condición.}
 \endhead
 \bottomrule
 \endlastfoot
-C0 & Preparación & Cada entorno responde con su versión, la base de Bakta es la v6 y los metadatos de GTDB tienen las columnas del censo \\
-C1 & Censo & Se censan los 12 linajes con nombre de especie y \textit{Telluria timonae} se busca como \textit{Massilia timonae}. Si ninguna especie llega a 15 genomas, se consulta al asesor \\
+C0 & Preparación & Cada entorno responde con su versión, la base de Bakta es la v6 y los metadatos de GTDB tienen las columnas necesarias para el recuento \\
+C1 & Recuento & Se cuentan los genomas de los 12 linajes con nombre de especie y \textit{Telluria timonae} se busca como \textit{Massilia timonae}. Si ninguna especie llega a 15 genomas, se consulta al asesor \\
 C2 & Descarga & Los genomas descargados más los fallidos suman los solicitados, y la longitud de cada genoma difiere a lo más 1\,\% de la registrada en GTDB \\
 C3 & Clasificación de hábitat & Se revisan a mano las fuentes de aislamiento sin clasificar y los aislados prioritarios \\
 C4 & Selección & Las tres especies quedan fijadas, con hasta 50 referencias cada una y el representante de GTDB incluido \\
