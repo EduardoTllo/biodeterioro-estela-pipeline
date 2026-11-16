@@ -92,8 +92,8 @@ Link: \href{https://github.com/EduardoTllo/biodeterioro-estela-pipeline}{GitHub}
 
 Este anexo lista los programas que implementan el flujo
 (Tabla~\ref{tab:programas}) y los archivos que conectan cada etapa con la
-siguiente en las Fases 1 y 2 (Tabla~\ref{tab:artefactos}) y en la Fase 3
-(Tabla~\ref{tab:artefactos_f3}). También resume los puntos de control de la
+siguiente en las Fases 1 y 2 (Tabla~\ref{tab:artefactos}) y \nuevotxt{en las Fases 3 y 4
+(Tabla~\ref{tab:artefactos_f3})}. También resume los puntos de control de la
 Fase 3 (Tabla~\ref{tab:puntos_control}).
 
 {\footnotesize
@@ -182,6 +182,21 @@ Aplica los filtros remotos F5, F5b y F6 contra los servidores del NCBI \\
 \addlinespace
 \texttt{bin/export\_fase3.sh}, \texttt{figuras/R/f3\_*.R} & Procesamiento & 
 Reúne las tablas del clúster y genera la estadística y las figuras \\
+\midrule
+\multicolumn{3}{l}{\nuevotxt{\textit{Fase 4}}} \\*
+\addlinespace
+\nuevotxt{\texttt{09\_setup\_dram\_khipu.sh}} & \nuevotxt{Preparación (login)} & \nuevotxt{Crea el entorno de DRAM, corrige sus defectos de instalación y prepara solo las
+bases KOfam, dbCAN y MEROPS} \\
+\addlinespace
+\nuevotxt{\texttt{05\_bakta\_all.slurm}} & \nuevotxt{Ejecución (cola)} & \nuevotxt{El mismo de la Fase 3, con la lista de los 21 bins. Anota los 18 que faltaban} \\
+\addlinespace
+\nuevotxt{\texttt{10\_dram.slurm}} & \nuevotxt{Ejecución (cola)} & \nuevotxt{Anota con DRAM las proteínas de Bakta de los 21 bins y genera su resumen} \\
+\addlinespace
+\nuevotxt{\texttt{figuras/R/f4\_01\_marcadores.R}} & \nuevotxt{Procesamiento (local)} & \nuevotxt{Aplica las reglas por pasos con los tres criterios y calcula los puntajes y la
+prueba de Fisher} \\
+\addlinespace
+\nuevotxt{\texttt{f4\_02\_matriz.R}, \texttt{f4\_03\_cazy.R}, \texttt{f4\_run\_all.R}} & \nuevotxt{Procesamiento (local)} & \nuevotxt{Generan la matriz de funciones y la figura de CAZymes, y ejecutan la fase en
+orden} \\
 \end{xltabular}
 \captionsetup{list=yes}
 }
@@ -229,8 +244,8 @@ El cálculo de linajes, representantes y prevalencia \\
 \captionsetup{list=no}
 \begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{4.7cm}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}X}
 \caption{Archivos de datos que conectan las
-etapas de la Fase 3.}
-\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Archivos que encadenan la Fase 3}}
+etapas de las \nuevotxt{Fases 3 y 4}.}
+\anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Archivos que encadenan las Fases 3 y 4}}
 \label{tab:artefactos_f3} \\
 \toprule
 \textbf{Archivo} & \textbf{Lo crea} & \textbf{Lo usa} \\
@@ -280,6 +295,16 @@ Los filtros remotos: proteínas y contigs que sobrevivieron a F1--F4 \\
 \addlinespace
 \texttt{exclusivos\_\allowbreak verificados.tsv} & Filtros remotos & 
 El análisis de genes específicos de la cepa y la Fase 4 \\
+\midrule
+\multicolumn{3}{l}{\nuevotxt{\textit{Fase 4}}} \\*
+\addlinespace
+\nuevotxt{\texttt{<bin>.faa}} & \nuevotxt{Bakta} & \nuevotxt{DRAM: las proteínas de cada bin, con los identificadores de la Fase 3} \\
+\addlinespace
+\nuevotxt{\texttt{annotations.tsv}} & \nuevotxt{DRAM} & \nuevotxt{El programa de reglas: KO y familias CAZy de cada gen} \\
+\addlinespace
+\nuevotxt{\texttt{marcadores\_fase4.tsv}} & \nuevotxt{Versionada en el repositorio} & \nuevotxt{El programa de reglas: los pasos de cada función} \\
+\addlinespace
+\nuevotxt{\texttt{tab\_f4\_*.tsv}} & \nuevotxt{Programa de reglas} & \nuevotxt{Las figuras de la Fase 4 y las tablas del Capítulo VII} \\
 \end{xltabular}
 \captionsetup{list=yes}
 }
@@ -426,6 +451,80 @@ error, compatible con el sistema de módulos del clúster (extracto de
 set -eo pipefail
 export LD_PRELOAD="${LD_PRELOAD:-}"
 \end{lstlisting}
+
+\begin{nuevo}
+\begin{lstlisting}[language=R, caption={Analizador de las definiciones de los
+pasos, con la sintaxis de los módulos de KEGG y la forma «n de la lista»
+(extracto de \texttt{f4\_01\_marcadores.R}).}, label={lst:reglas}]
+evaluar_def <- function(def, kos) {
+  if (grepl("^\\d+/", def)) {               # "3/K1,K2,..."
+    n <- as.integer(sub("/.*", "", def))
+    return(sum(strsplit(sub("^\\d+/", "", def), ",")[[1]] %in% kos) >= n)
+  }
+  s <- gsub("\\s+", " ", trimws(def)); n <- nchar(s); pos <- 1L
+  ver <- function() if (pos <= n) substr(s, pos, pos) else ""
+  secuencia <- function() {                 # espacio: pasos encadenados
+    v <- alternativas()
+    while (ver() == " ") { pos <<- pos + 1L; v <- alternativas() & v }
+    v
+  }
+  alternativas <- function() {              # coma: alternativas
+    v <- complejo()
+    while (ver() == ",") { pos <<- pos + 1L; v <- complejo() | v }
+    v
+  }
+  complejo <- function() {                  # "+" obligatoria, "-" opcional
+    v <- factor_()
+    while (ver() %in% c("+", "-")) {
+      op <- ver(); pos <<- pos + 1L; f <- factor_()
+      if (op == "+") v <- v & f
+    }
+    v
+  }
+  factor_ <- function() {                   # KO o grupo entre parentesis
+    if (ver() == "(") {
+      pos <<- pos + 1L; v <- secuencia()
+      if (ver() != ")") stop("Falta ')' en: ", def)
+      pos <<- pos + 1L
+      return(v)
+    }
+    ko <- regmatches(substring(s, pos), regexpr("^K\\d{5}", substring(s, pos)))
+    if (!length(ko)) stop("No se entiende la definicion: ", def)
+    pos <<- pos + 6L
+    ko %in% kos
+  }
+  v <- secuencia()
+  if (pos <= n) stop("Sobra texto en la definicion: ", def)
+  v
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=bash, caption={Anotación con DRAM 1.5.0 sin su
+comando \texttt{annotate\_genes}, que pasa los argumentos en otro orden, y sin
+descripciones en el archivo de proteínas anotadas (extracto de
+\texttt{10\_dram.slurm}).}, label={lst:dram}]
+python - <<'EOF'
+import os
+from glob import glob
+from skbio.io import read, write
+import mag_annotator.annotate_bins as ab
+
+def fasta_sin_descripcion(input_fasta, annotations, output_fasta, name=None, **_):
+    def secuencias():
+        for seq in read(input_fasta, format="fasta"):
+            if name is not None:
+                seq.metadata["id"] = f"{name}_{seq.metadata['id']}"
+            seq.metadata["description"] = ""
+            yield seq
+    write(secuencias(), format="fasta", into=output_fasta)
+
+ab.create_annotated_fasta = fasta_sin_descripcion
+ab.annotate_called_genes(sorted(glob(os.environ["ENTRADA"] + "/*.faa")),
+                         os.environ["SALIDA"],
+                         threads=int(os.environ["THREADS"]), keep_tmp_dir=False)
+EOF
+\end{lstlisting}
+\end{nuevo}
 
 \section{Anexo: Calidad y selección de bins (Fase 1)}
 \label{anexo:calidad}
@@ -840,6 +939,82 @@ secuenciado, sino una variante encontrada solo en esta cepa. El único gen con
 número KEGG es un transportador de ácidos grasos que no figura entre los
 marcadores de la Fase 4.
 
+\begin{nuevo}
+\section{Anexo: Resultados complementarios de la Fase 4}
+\label{anexo:fase4}
+
+Este anexo reúne el detalle de la Sección~\ref{subsec:res_fase4}.
+
+\textbf{Prueba de Fisher.} La Tabla~\ref{tab:fisher_f4} muestra las 6 pruebas
+con el criterio principal y con las tres definiciones de accesorio. Los
+marcadores son los genes de las funciones presentes. Los pasos universales de
+la ectoína y la trehalosa no se cuentan como marcadores. Los valores de $p$ se
+corrigieron con Benjamini y Hochberg dentro de cada definición.
+
+{\footnotesize
+\setstretch{1.15}
+\setlength{\tabcolsep}{3pt}
+\captionsetup{font+={color=blue}}% provisional: tabla nueva
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{0.8cm}>{\raggedright\arraybackslash}p{1.2cm}>{\raggedright\arraybackslash}p{2.0cm}>{\centering\arraybackslash}p{1.1cm}>{\centering\arraybackslash}p{1.7cm}>{\centering\arraybackslash}X>{\centering\arraybackslash}p{1.6cm}>{\centering\arraybackslash}p{1.6cm}}
+\caption[Prueba de Fisher de los marcadores en el pangenoma]{Prueba exacta de
+Fisher de los genes marcador en el accesorio frente al core, con el criterio
+principal. Marc.: genes marcador. Otros: resto de los genes del bin ubicados
+en el pangenoma. Los conteos se dan como accesorio / core. OR: razón de momios,
+con su IC del 95\,\%. L16: \textit{B.~altitudinis}. L12:
+\textit{P.~frigoritolerans}. L8: \textit{A.~schindleri}.}
+\label{tab:fisher_f4} \\
+\toprule
+\textbf{Bin} & \textbf{Cat.} & \textbf{Accesorio} & \textbf{Marc.} & \textbf{Otros} & \textbf{OR (IC 95\,\%)} & \textbf{$p$} & \textbf{$p_{\mathrm{BH}}$} \\
+\midrule
+\endfirsthead
+\multicolumn{8}{l}{\textit{Tabla~\ref{tab:fisher_f4} (continuación)}} \\
+\toprule
+\textbf{Bin} & \textbf{Cat.} & \textbf{Accesorio} & \textbf{Marc.} & \textbf{Otros} & \textbf{OR (IC 95\,\%)} & \textbf{$p$} & \textbf{$p_{\mathrm{BH}}$} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+L16 & Riesgo & Shell + cloud & 0 / 12 & 228 / 2453 & 0.00 (0.00--3.90) & 0.615 & 0.738 \\
+ &  & Solo cloud & 0 / 12 & 15 / 2453 & 0.00 (0.00--65.14) & 1.000 & 1.000 \\
+ &  & Core al 90\,\% & 0 / 12 & 171 / 2510 & 0.00 (0.00--5.33) & 1.000 & 1.000 \\
+ & Superv. & Shell + cloud & 1 / 11 & 227 / 2454 & 0.98 (0.02--6.82) & 1.000 & 1.000 \\
+ &  & Solo cloud & 0 / 11 & 15 / 2454 & 0.00 (0.00--72.00) & 1.000 & 1.000 \\
+ &  & Core al 90\,\% & 1 / 11 & 170 / 2511 & 1.34 (0.03--9.34) & 0.546 & 0.655 \\
+\midrule
+L12 & Riesgo & Shell + cloud & 5 / 0 & 715 / 3406 & $\infty$ (4.35--$\infty$) & $1.6 \times 10^{-4}$ & $9.6 \times 10^{-4}$ \\
+ &  & Solo cloud & 5 / 0 & 195 / 3406 & $\infty$ (15.83--$\infty$) & $5.0 \times 10^{-7}$ & $3.0 \times 10^{-6}$ \\
+ &  & Core al 90\,\% & 5 / 0 & 649 / 3472 & $\infty$ (4.89--$\infty$) & $9.9 \times 10^{-5}$ & $5.9 \times 10^{-4}$ \\
+ & Superv. & Shell + cloud & 1 / 14 & 719 / 3392 & 0.34 (0.01--2.22) & 0.493 & 0.738 \\
+ &  & Solo cloud & 1 / 14 & 199 / 3392 & 1.22 (0.03--8.08) & 0.576 & 1.000 \\
+ &  & Core al 90\,\% & 1 / 14 & 653 / 3458 & 0.38 (0.01--2.49) & 0.491 & 0.655 \\
+\midrule
+L8 & Riesgo & Shell + cloud & 0 / 6 & 712 / 2377 & 0.00 (0.00--2.84) & 0.347 & 0.726 \\
+ &  & Solo cloud & 0 / 6 & 367 / 2377 & 0.00 (0.00--5.52) & 1.000 & 1.000 \\
+ &  & Core al 90\,\% & 0 / 6 & 694 / 2395 & 0.00 (0.00--2.94) & 0.348 & 0.655 \\
+ & Superv. & Shell + cloud & 0 / 7 & 712 / 2376 & 0.00 (0.00--2.32) & 0.363 & 0.726 \\
+ &  & Solo cloud & 0 / 7 & 367 / 2376 & 0.00 (0.00--4.51) & 0.604 & 1.000 \\
+ &  & Core al 90\,\% & 0 / 7 & 694 / 2394 & 0.00 (0.00--2.40) & 0.361 & 0.655 \\
+\end{xltabular}
+}
+
+\textbf{CAZymes.} La Figura~\ref{fig:cazy_f4} muestra las familias CAZy de cada
+bin, agrupadas por clase. En el conjunto de los bins, las clases más
+frecuentes son las glucósido hidrolasas (829 asignaciones) y las
+glicosiltransferasas (609). Los bins con más asignaciones son los de
+\textit{Paenibacillus} sp. (L7) y \textit{M.~halosaccharovorans} (L15).
+
+\begin{figure}[htbp]
+\color{blue}\captionsetup{font+={color=blue}}% provisional: figura nueva
+    \centering
+    \includegraphics[width=0.85\textwidth]{images/fig_f4_cazy_bin.pdf}
+    \caption[Familias CAZy por bin]{Asignaciones de familias CAZy por bin y
+    por clase, según dbCAN en DRAM. Un gen con dos familias se cuenta dos veces.
+    Cada fila es un bin, con su especie, su linaje y su completitud según
+    CheckM2.}
+    \label{fig:cazy_f4}
+\end{figure}
+\end{nuevo}
+
 \section{Anexo: Análisis de sensibilidad}
 \label{anexo:sensibilidad}
 
@@ -1062,6 +1237,7 @@ evidencia que obligó a cambiarlo y diseño corregido.}
 4. Genes específicos & Familias ausentes en las referencias, contrastadas con nr y nt & Panaroo eliminó 140 genes del bin. Cinco genes estaban en cepas depositadas solo con el género. Contigs de \textit{B.~subtilis} pasaban F6 & Genes eliminados como candidatos, F5b por ANI, advertencia por identidad casi total y F6 contra otra especie del género \\
 5. Búsqueda remota & Opción remota de BLAST+ contra nr y nt & La opción quedaba esperando sin resultado y el NCBI canceló búsquedas largas & Interfaz web del NCBI, core\_nt y lotes que se dividen \\
 6. Comparación funcional & Categorías COG del core y el accesorio & Bakta asignó COG a solo 4 a 31\,\% de los genes & Pasa a la Fase 4 con DRAM \\
+\nuevotxt{7. Tabla de marcadores} & \nuevotxt{Reglas por número de KO y módulos de KEGG con 66\,\% de completitud} & \nuevotxt{KOfam asigna otros KO a la misma enzima. El TCA salía ausente en 9 de 21 bins, entre ellos \textit{B.~licheniformis} (99.8\,\%)} & \nuevotxt{Reglas por pasos tomadas de KEGG y de la bibliografía, con sideróforos y pigmentos y sin curli} \\
 \end{xltabular}
 \captionsetup{list=yes}
 }
@@ -1204,3 +1380,23 @@ cancelan, y la búsqueda terminó sin consultas fallidas.
 genes, y la proporción con número KEGG fue parecida. Con tan pocos genes
 anotados la comparación del core y el accesorio no es confiable. Por lo que pasa
 a la Fase 4, que anota los genes con DRAM.
+
+\begin{nuevo}
+\textbf{Séptima iteración: tabla de marcadores.} La primera versión de la
+tabla contaba los KO de cada función y aceptaba un módulo de KEGG con 66\,\% de
+completitud. Con la anotación real de DRAM aparecieron dos problemas. En primer
+lugar, KOfam asigna a una misma enzima un KO distinto del de la tabla. Por
+ejemplo, la citrato sintasa de los 12 bins de \textit{Bacillus} y géneros
+cercanos sale como K01659 y no como K01647, por lo que el ciclo TCA salía
+ausente en 9 de 21 bins. En segundo lugar, contar KO no es lo mismo que contar
+pasos, ya que dos KO de un mismo paso sumaban dos veces. Por eso cada función se
+rehízo como una lista de pasos. Donde hay un módulo de KEGG se copia su
+definición, y donde no lo hay la regla sale de bibliografía leída completa. Una
+alternativa se considera presente si tiene sus pasos esenciales y le falta como
+máximo 1 paso, siempre que sea menos de la mitad. Se agregaron los sideróforos
+y los pigmentos, que la bibliografía vincula con el biodeterioro de la piedra
+\cite{gaylarde2021, dakal2012}, y se quitó el curli, que ninguna fuente
+vincula con la piedra. Las reglas completas y sus autopruebas están en el
+repositorio (Anexo~\ref{anexo:repositorio}), y la versión final de la tabla
+está en el Capítulo V (Tabla~\ref{tab:marcadores}).
+\end{nuevo}

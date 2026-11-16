@@ -36,6 +36,11 @@
  % Librería necesaria para arreglar el orden de referencias en overleaf.com
 \usepackage{notoccite}
 \usepackage{tikz}
+% --- VERSION PROVISIONAL (15-11-2026): texto nuevo de los Caps. V, VI y VII
+% y de sus anexos en azul. Para la version final, cambiar estas dos lineas por:
+%   \newenvironment{nuevo}{}{}   y   \newcommand{\nuevotxt}[1]{#1}
+\newenvironment{nuevo}{\color{blue}}{}
+\newcommand{\nuevotxt}[1]{{\leavevmode\color{blue}#1}}
 \usetikzlibrary{positioning}
 
 % Incluir acá los paquetes adicionales que deseas. 

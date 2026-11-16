@@ -7,7 +7,8 @@
 scripts <- c(
   "f3_00_setup.R",
   "f4_01_marcadores.R",
-  "f4_02_matriz.R"
+  "f4_02_matriz.R",
+  "f4_03_cazy.R"
 )
 
 t0 <- Sys.time()

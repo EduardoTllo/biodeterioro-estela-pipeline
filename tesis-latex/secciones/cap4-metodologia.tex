@@ -262,60 +262,141 @@ Los genes candidatos a ser exclusivos de la Estela se definieron como aquellos p
 \subsection{Fase 4. Caracterización del potencial metabólico y del riesgo (OE4)}
 
 \subsubsection{Anotación funcional del potencial metabólico}
-
-
-El potencial metabólico de los linajes seleccionados se caracterizó con la herramienta DRAM \cite{dram2020}, la cual integra la asignación de ortólogos KEGG (KO) y produce resúmenes de los ciclos biogeoquímicos del nitrógeno, el azufre y el carbono, así como el inventario de enzimas activas sobre carbohidratos (CAZymes) basado en las bases dbCAN y CAZy. Para la evaluación de los módulos de KEGG, DRAM modela las vías como redes dirigidas y calcula la completitud como el porcentaje de cobertura de la ruta que presenta la mayor proporción de genes (nodos) detectados \cite{dram2020}. Sobre esta base, en el presente estudio se estableció un umbral operativo estricto: un módulo metabólico se consideró funcionalmente "presente" solo cuando su porcentaje de completitud alcanzó o superó el 66\%. Para las funciones que dependen de varios genes, la presencia se definió mediante una regla explícita para cada función, descrita en la Tabla~\ref{tab:marcadores}.
+\begin{nuevo}
+El potencial metabólico de los 21 bins se caracterizó con DRAM \cite{dram2020}.
+DRAM asigna a cada gen un ortólogo de KEGG (KO) e identifica las enzimas
+activas sobre carbohidratos (CAZymes) con dbCAN \cite{zhang2018}. La presencia
+de cada función no se tomó de la completitud de módulo que calcula DRAM, sino
+de las reglas por pasos que se describen a continuación.
+\end{nuevo}
 
 \subsubsection{Definición de marcadores de riesgo y supervivencia}
+\begin{nuevo}
+La interpretación funcional se basa en la tabla de marcadores
+(Tabla~\ref{tab:marcadores}). Cada marcador corresponde a una función y no a un
+gen aislado, de modo que una función que requiere varios genes se cuenta una
+sola vez. Las reglas se tomaron de los módulos de KEGG \cite{kegg2023} cuando
+existen y, cuando no existen, de bibliografía leída completa. Los genes
+encontrados en los bins no se usaron para definir las reglas, con el fin de
+evitar el sesgo de confirmación.
 
-La interpretación funcional se ancló en una tabla de marcadores genómicos definida \textit{a priori}, es decir, fijada antes de observar los resultados, con el fin de evitar el sesgo de confirmación. Cada marcador corresponde a una función y no a un gen aislado, de modo que una función que requiere varios genes se cuenta una sola vez. La tabla organiza las funciones en tres categorías. La primera reúne los marcadores de riesgo de biodeterioro: la producción de ácido glucónico y de ácido 2-cetoglucónico, que acidifican el sustrato y actúan como quelantes de silicatos \cite{gutarowska2015}; la biosíntesis de sustancias poliméricas extracelulares (EPS) y la adhesión mediante curli, que sostienen la biopelícula \cite{flemming2010}; y la nitrificación y la oxidación del azufre como fuentes de ácidos inorgánicos \cite{dakal2012, zanardini2019}. La segunda reúne los marcadores de supervivencia o persistencia: la esporulación \cite{Galperin2022}, la síntesis de carotenoides, la respuesta al estrés oxidativo, la síntesis de los solutos compatibles ectoína y trehalosa, que protegen frente a la desecación \cite{elistratova2026, alonsoreyes2021}, y la reparación del ADN dañado por radiación ultravioleta \cite{goosen2008}. La tercera reúne funciones de contexto que se reportan pero no se interpretan como marcadores de riesgo: el ciclo de los ácidos tricarboxílicos, presente en prácticamente todas las bacterias aerobias \cite{zanardini2019}, las enzimas activas sobre carbohidratos (CAZymes) \cite{cantarel2009,zhang2018} y la ureólisis, cuya precipitación de carbonato puede tanto proteger como alterar la superficie pétrea \cite{dhami2013, li2018}.
+Las funciones se agrupan en tres categorías. La primera reúne los marcadores de
+riesgo de biodeterioro. En primer lugar, la producción de ácido glucónico y de
+ácido 2-cetoglucónico, que acidifican el sustrato y disuelven los minerales
+\cite{uroz2026}. Esta acidificación depende de dos familias de glucosa
+deshidrogenasa, una dependiente de PQQ y otra de la familia GMC
+\cite{picard2021, blanconouche2024}. En segundo lugar, los sideróforos, que
+extraen el hierro de los minerales por quelación
+\cite{blanconouche2023, dalvie2026}. En tercer lugar, las sustancias
+poliméricas extracelulares (EPS) que forman la matriz de la biopelícula
+\cite{flemming2010, arnaouteli2021}. En cuarto lugar, los pigmentos, que
+decoloran la piedra \cite{basile2025, gaylarde2021}. Por último, la
+nitrificación y la oxidación de azufre, que producen ácidos inorgánicos
+\cite{dakal2012, zanardini2019}. La segunda categoría reúne los marcadores de
+supervivencia: la esporulación \cite{Galperin2022}, los carotenoides
+\cite{basile2025, santanamolina2022}, la respuesta al estrés oxidativo
+\cite{imlay2013}, los solutos compatibles ectoína y trehalosa, que protegen
+frente a la desecación \cite{alonsoreyes2021, elistratova2026, laskowska2020},
+y la reparación del daño UV \cite{goosen2008}. Los carotenoides se cuentan como
+riesgo y como supervivencia, con la misma regla. La tercera categoría reúne
+funciones de contexto que se reportan pero no puntúan: el ciclo de los ácidos
+tricarboxílicos (TCA), las CAZymes \cite{cantarel2009, zhang2018} y la
+ureólisis, cuya precipitación de carbonato puede tanto proteger como alterar la
+piedra \cite{dhami2013, li2018}.
 
-La Tabla~\ref{tab:marcadores} detalla, para cada función, los genes representativos, sus identificadores KEGG Orthology (KO) y la regla con la que se considera presente. Las reglas exigen los genes necesarios para que la función sea operativa. Por ejemplo, la glucosa deshidrogenasa \textit{gcd} solo se cuenta como productora de ácido glucónico si el genoma porta además los genes de síntesis de su cofactor, la pirroloquinolina quinona (\textit{pqqA}--\textit{E}). Del mismo modo, la nitrificación y la oxidación del azufre se evalúan con los módulos KEGG completos (M00528 y M00595) y no con genes aislados. Los genes cuya función no distingue el proceso de interés se excluyeron: la nitrato reductasa \textit{narG} comparte identificador KO con la nitrito oxidorreductasa \textit{nxrA}, y la sulfito reductasa disimilatoria \textit{dsrAB} participa tanto en la reducción como en la oxidación del azufre. Los identificadores KO y los módulos se verificaron directamente contra la base de datos KEGG \cite{kegg2023}. Las CAZymes no poseen un identificador KO único; su detección se realiza mediante la base de datos dbCAN, integrada en DRAM. La detección efectiva de cada función en los genomas se obtiene de DRAM durante la fase de anotación funcional.
+Cada función tiene una o más alternativas, y cada alternativa es una lista de
+pasos. Un paso es una enzima o un complejo, y puede tener varios KO
+equivalentes. En los pasos de KEGG se respeta la sintaxis del módulo: la coma
+separa alternativas y el signo + une las subunidades obligatorias de un
+complejo. En los pasos de bibliografía, una expresión como «3 de 5» indica
+cuántos genes de la lista deben estar. Una alternativa se cumple si se dan las
+siguientes condiciones:
+
+\begin{enumerate}
+    \item Están todos sus pasos esenciales.
+    \item Le faltan como máximo $T$ pasos.
+    \item Le falta menos de la mitad de sus pasos.
+\end{enumerate}
+
+La función está presente si se cumple al menos una de sus alternativas. Los
+pasos esenciales son los que definen la función en la bibliografía, por ejemplo
+\textit{gcd} y \textit{pqq} en el ácido glucónico o \textit{crtM} y
+\textit{crtN} en los carotenoides C30. El criterio principal usa $T = 1$, y la
+sensibilidad se evalúa con un criterio estricto ($T = 0$) y uno flexible
+($T = 2$). La tercera condición impide que una vía de 2 pasos se cumpla con uno
+solo. La completitud de cada bin según CheckM2 se reporta como contexto, ya que
+una función ausente en un bin incompleto no prueba su ausencia. Las reglas se
+programaron con autopruebas, y los KO y módulos se verificaron contra la
+versión vigente de KEGG.
+
+{\footnotesize
+\setstretch{1.1}
+\setlength{\tabcolsep}{4pt}
+% Fuente de trabajo: metadata/marcadores_fase4.tsv del repositorio del pipeline
+% (D42, 15-11-2026). KO y modulos verificados contra rest.kegg.jp.
+\captionsetup{font+={color=blue}}% provisional: tabla nueva
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{2.3cm}>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{2.6cm}}
+\caption[Marcadores genómicos de riesgo, supervivencia y contexto]{Marcadores
+genómicos de riesgo, supervivencia y contexto. Cada letra es una alternativa de
+la función, y sus pasos van separados por comas. Los pasos marcados con * son
+esenciales. Una barra (/) separa KO equivalentes de un mismo paso.}
+\label{tab:marcadores} \\
+\toprule
+\textbf{Categoría} & \textbf{Función} & \textbf{Alternativas y pasos (KO)} & \textbf{Fuente} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{l}{\textit{Tabla~\ref{tab:marcadores} (continuación)}} \\
+\toprule
+\textbf{Categoría} & \textbf{Función} & \textbf{Alternativas y pasos (KO)} & \textbf{Fuente} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Riesgo & Ácido glucónico & A: \textit{gcd}* (K00117), \textit{pqqA--E}*, 3 de 5 (K06135--K06139). B: glucosa deshidrogenasa GMC (K19813) & \cite{uroz2026, picard2021, blanconouche2024} \\
+ & Ácido 2-cetoglucónico & A y B del ácido glucónico, más la gluconato 2-deshidrogenasa*, 2 de 3 subunidades (K06150--K06152) & \cite{uroz2026, blanconouche2024} \\
+ & Sideróforos & A: aerobactina, M00918 (\textit{iucD}, \textit{iucB}, \textit{iucA}, \textit{iucC}). B: petrobactina, M01060 (\textit{asbF}, \textit{asbC}, \textit{asbD}). C: estafiloferrina A, M00876 (\textit{orr}, \textit{sfnaD}, \textit{sfnaB}). D: estafiloferrina B, M00875 (7 pasos \textit{sbn}). E: catecolato (\textit{entC}/\textit{dhbC} K02361, \textit{entB}/\textit{dhbB} K01252, \textit{entA}/\textit{dhbA} K00216, \textit{entE}/\textit{dhbE} K02363, \textit{entF}/\textit{dhbF} K02364/K04780) & \cite{blanconouche2023, dalvie2026, may2001} \\
+ & EPS de biopelícula & A: operón \textit{eps}, 9 de 13 (K19419--K19431). B: \textit{tasA}* (K06336), \textit{tapA}* (K19433). C: \textit{pgaABCD}, 3 de 4 (K11935, K11931, K11936, K11937) & \cite{flemming2010, arnaouteli2021} \\
+ & Pigmentos & A: M00097 (\textit{crtB} K02291/K17841, \textit{crtI} K10027/K15745 o la cadena K02293, K15744, K00514, K09835). B: ruta C30 (\textit{crtM}* K10208, \textit{crtN}* K10209) & \cite{basile2025, santanamolina2022, gaylarde2021} \\
+ & Nitrificación & A: M00528 (\textit{amoCAB} K28504+K10945+K10946, \textit{hao} K10535). B: M00804 (los mismos más \textit{nxrAB} K00370+K00371) & \cite{dakal2012, zanardini2019} \\
+ & Oxidación de azufre & A: M00595 (complejo Sox, K17222--K17227, K22622). B: M00984 (tiosulfato deshidrogenasa K16937+K16936/K05908/K19713, \textit{tetH} K27925) & \cite{dakal2012, zanardini2019} \\
+\midrule
+Supervivencia & Esporulación & \textit{spo0A} (K07699), \textit{spoIIAA} (K06378), \textit{spoIIE} (K06382) & \cite{Galperin2022} \\
+ & Carotenoides & Igual que los pigmentos & \cite{basile2025, santanamolina2022} \\
+ & Estrés oxidativo & Catalasa (K03781/K03782/K07217), superóxido dismutasa (K04564/K04565/K00518), \textit{dps} (K04047) & \cite{imlay2013} \\
+ & Ectoína & M00033 (\textit{lysC} K00928, \textit{asd} K00133, \textit{ectB} K00836, \textit{ectA} K06718, \textit{ectC} K06720) & \cite{alonsoreyes2021, elistratova2026} \\
+ & Trehalosa & A: M00565 (\textit{glgC}, \textit{glgA}, \textit{glgB}, \textit{treX}, \textit{treY} K06044, \textit{treZ} K01236). B: \textit{otsA}* (K00697), \textit{otsB}* (K01087). C: \textit{treS} (K05343) & \cite{elistratova2026, laskowska2020} \\
+ & Reparación del daño UV & A: fotoliasa \textit{phr} (K01669/K06876). B: SP liasa \textit{splB} (K03716) & \cite{goosen2008} \\
+\midrule
+Contexto & Ciclo TCA & M00009 (8 pasos) & \cite{kegg2023} \\
+ & CAZymes & Familias de dbCAN, sin KO (conteo por familia) & \cite{cantarel2009, zhang2018} \\
+ & Ureólisis & \textit{ureABC} (K01430+K01429+K01428) & \cite{dhami2013, li2018} \\
+\end{xltabular}
+}
+\end{nuevo}
 
 \subsubsection{Integración del potencial funcional con la estructura del pangenoma}
 
-En el paso final, cada marcador de la tabla \textit{a priori} se mapeó sobre la partición del pangenoma para determinar si reside en el genoma nuclear o en el accesorio. Para evaluar de forma cuantitativa si los marcadores de riesgo se concentran en el genoma accesorio, se aplicó una prueba exacta de Fisher sobre una tabla de contingencia de dos por dos que cruza la condición de gen de riesgo o no de riesgo con su pertenencia al genoma accesorio o nuclear, reportando tanto el valor de probabilidad como la razón de momios (odds ratio) como medida del tamaño del efecto. Cuando se evaluaron varias categorías funcionales de forma simultánea, los valores de probabilidad se ajustaron por comparaciones múltiples mediante el procedimiento de Benjamini y Hochberg. Esta prueba se interpreta con cautela por dos razones: las familias génicas no constituyen observaciones estadísticamente independientes, debido a la no independencia filogenética, y el número reducido de marcadores de riesgo limita la potencia estadística. Por ello, el resultado se presenta como evidencia de apoyo y no como prueba concluyente. De forma complementaria, se caracterizó la apertura del pangenoma estimando el parámetro de la ley de Heaps \cite{ppanggolin2020}.
+\nuevotxt{En el paso final, los genes marcador de los 3 bins con pangenoma de especie se
+ubicaron en la partición del pangenoma. Un gen marcador es un gen con un KO de
+algún paso de una alternativa cumplida. Los pasos que están en casi todas las
+bacterias (\textit{lysC} y \textit{asd} en la ectoína, y los del glucógeno en la
+trehalosa) cuentan para la presencia, pero no como marcador. Para evaluar si los
+marcadores se concentran en el genoma accesorio, se aplicó una prueba exacta de
+Fisher sobre una tabla de 2 × 2 que cruza la condición de gen marcador o no con
+su pertenencia al accesorio o al core. Se reporta el valor de $p$ y la razón de
+momios (odds ratio), con su intervalo de confianza del 95\,\%, como medida del
+tamaño del efecto. La prueba se hizo por bin y por categoría (riesgo y
+supervivencia), y los valores de $p$ se ajustaron con el procedimiento de
+Benjamini y Hochberg. El accesorio se definió como shell más cloud, y la prueba
+se repitió con solo el cloud y con un core al 90\,\%.} Esta prueba se interpreta
+con cautela por dos razones: las familias génicas no constituyen observaciones
+estadísticamente independientes, debido a la no independencia filogenética, y
+el número reducido de marcadores limita la potencia estadística. Por ello, el
+resultado se presenta como evidencia de apoyo y no como prueba concluyente. De
+forma complementaria, se caracterizó la apertura del pangenoma estimando el
+parámetro de la ley de Heaps \cite{ppanggolin2020}.
 
 La lógica interpretativa es la siguiente. Si los genes de biodeterioro se enriquecen de forma significativa en el genoma accesorio, en particular si son compartidos por varios MAGs del mismo linaje, ello aporta soporte cuantitativo a la hipótesis de que dichas funciones fueron adquiridas como adaptación al nicho del monumento. Si, por el contrario, residen en el genoma nuclear, se interpretan como rasgos intrínsecos y conservados del linaje. En coherencia con el alcance del estudio, estas conclusiones describen el potencial metabólico codificado y no la actividad biológica real en el momento del muestreo.
-
-% Requiere en el preambulo: \usepackage{tabularx}
-% Si el documento es a dos columnas (p. ej. IEEEtran) y la tabla queda muy
-% apretada, cambia \begin{table} por \begin{table*} para que ocupe el ancho
-% completo de la pagina.
-\newcolumntype{Q}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}
-\begin{table*}[htbp]
-\centering
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\caption{Marcadores genómicos \textit{a priori} de biodeterioro, supervivencia y contexto, con la regla de presencia de cada función.}
-\label{tab:marcadores}
-% Fuente de trabajo: metadata/marcadores_fase4.tsv del repositorio del pipeline.
-% KO y modulos verificados contra la API de KEGG (rest.kegg.jp) el 06-10-2026.
-\begin{tabularx}{\linewidth}{Q{0.9} Q{1.1} Q{0.9} Q{1.3} Q{1.1} Q{0.7}}
-\hline
-\textbf{Categoría} & \textbf{Función / mecanismo} & \textbf{Genes} & \textbf{KO} & \textbf{Regla de presencia} & \textbf{Fuente} \\
-\hline
-Riesgo & Ácido glucónico (acidólisis y quelación) & gcd; pqqA--E & K00117; K06135--K06139 & gcd y al menos 3 de 5 genes pqq & \cite{gutarowska2015} \\
-Riesgo & Ácido 2-cetoglucónico (quelación de silicatos) & gcd; pqqA--E; gluconato 2-deshidrogenasa & K00117; K06135--K06139; K06150, K06151, K06152 & regla anterior y al menos 2 de 3 subunidades & \cite{gutarowska2015} \\
-Riesgo & EPS de biopelícula (Gram positivas) & epsA--O; tasA, tapA & K19419--K19431; K06336, K19433 & al menos 66\% del operón eps, o tasA y tapA & \cite{flemming2010} \\
-Riesgo & EPS de biopelícula (Gram negativas) & pgaA, pgaB, pgaC, pgaD & K11935, K11931, K11936, K11937 & al menos 3 de 4 & \cite{flemming2010} \\
-Riesgo & Adhesión (curli) & csgA, csgB & K04334, K04335 & ambos & \cite{flemming2010} \\
-Riesgo & Nitrificación (ácido nítrico) & amoA, amoB, amoC, hao & K28504, K10945, K10946, K10535 & módulo M00528 al 66\% (3 de 4) & \cite{zanardini2019, dram2020} \\
-Riesgo & Oxidación de azufre (ácido sulfúrico) & soxA, soxX, soxY, soxZ, soxB, soxC, soxD & K17222--K17227, K22622 & módulo M00595 al 66\% (5 de 7) & \cite{zanardini2019} \\
-\hline
-Supervivencia & Esporulación (latencia y resistencia) & spo0A, spoIIAA, spoIIE & K07699, K06378, K06382 & al menos 2 de 3 & \cite{Galperin2022} \\
-Supervivencia & Carotenoides (protección UV) & crtB, crtI & K02291 o K17841; K10027 o K15745 & módulo M00097: crtB y crtI & \cite{basile2025} \\
-Supervivencia & Estrés oxidativo & katA, sodA, dps & K03781, K04564, K04047 & al menos 2 de 3 & \cite{alonso2025, basile2025} \\
-Supervivencia & Desecación: ectoína & ectA, ectB, ectC & K06718, K00836, K06720 & al menos 2 de 3 & \cite{elistratova2026, alonsoreyes2021} \\
-Supervivencia & Desecación: trehalosa & otsA, otsB; treY, treZ; treS & K00697, K01087; K06044, K01236; K05343 & otsA y otsB, o treY y treZ, o treS & \cite{elistratova2026} \\
-Supervivencia & Reparación del daño UV & fotoliasas (phr) & K01669, K06876 & al menos 1 & \cite{goosen2008, alonsoreyes2021} \\
-\hline
-Contexto & Ácidos orgánicos del ciclo TCA & gltA, acnA, icd, sdhA, fumA & K01647, K01681, K00031, K00239, K01676 & módulo M00009 (descriptivo) & \cite{zanardini2019, gutarowska2015} \\
-Contexto & CAZymes (polisacáridos) & familias GH, GT & sin KO único (dbCAN) & conteo por familia (descriptivo) & \cite{cantarel2009, zhang2018} \\
-Contexto & Ureólisis (precipitación de carbonato) & ureA, ureB, ureC & K01430, K01429, K01428 & los tres (descriptivo) & \cite{dhami2013, li2018} \\
-\hline
-\end{tabularx}
-\end{table*}
 
 
 \subsection{Reproducibilidad}

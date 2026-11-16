@@ -2,7 +2,7 @@
 
 % ======================================================================
 % CAPITULO VI - DISENO TECNOLOGICO
-% Alcance: Fases 1, 2 y 3 (OE1, OE2 y OE3).
+% Alcance: Fases 1 a 4 (OE1 a OE4). Fase 4 agregada el 2026-11-15.
 % Version reducida del 2026-10-27 (pedido del asesor: 15-25 pp). La version
 % anterior esta en respaldo-2026-10-27-antes-reduccion/.
 %
@@ -13,13 +13,15 @@
 % ======================================================================
 
 Este capítulo documenta cómo se construyó el flujo bioinformático con el que se
-ejecutaron las Fases 1, 2 y 3. Aquí se determinan los recursos que el flujo necesita,
+ejecutaron las Fases \nuevotxt{1 a 4}. Aquí se determinan los recursos que el flujo necesita,
 las versiones y los entornos que lo hacen ejecutable, su implementación en
 código y la arquitectura que resulta. Las Fases 1 y 2 procesan solo los genomas
 propios contra bases de datos locales. La Fase 3, en cambio, compara cada genoma
 de la Estela con los genomas públicos de su especie, es decir, genomas de otras
-cepas depositados en el NCBI por otros estudios. Es por eso que cada sección
-trata a la Fase 3 por separado cuando su diseño es distinto.
+cepas depositados en el NCBI por otros estudios. \nuevotxt{La Fase 4 vuelve a los 21 bins de
+la Fase 1: los anota en el clúster y evalúa sus funciones en un equipo local.} Es
+por eso que cada sección trata a \nuevotxt{las Fases 3 y 4 por separado} cuando su diseño
+es distinto.
 
 \section{Cálculo de los parámetros y dimensionamiento de los componentes}
 
@@ -60,6 +62,12 @@ Genomas anotados (115 referencias y 3 bins) & 118 \\
 Tamaño del genoma de referencia (mediana) & 3.74 / 5.52 / 3.32 Mpb \\
 Contigs por genoma de referencia (mediana) & 15 / 39.5 / 46 \\
 Proteínas sometidas a la búsqueda remota & 112 \\
+\midrule
+\multicolumn{2}{l}{\nuevotxt{\textit{Fase 4}}} \\
+\nuevotxt{Bins anotados (3 de la Fase 3 y 18 nuevos)} & \nuevotxt{21} \\
+\nuevotxt{Genes anotados / con KO} & \nuevotxt{77\,778 / 42\,270} \\
+\nuevotxt{Funciones evaluadas / pasos de las reglas} & \nuevotxt{15 / 81} \\
+\nuevotxt{Bins con pangenoma para la prueba de Fisher} & \nuevotxt{3} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -82,6 +90,12 @@ búsqueda de los genes propios de cada bin y el cálculo de su ANI se hacen cont
 todos los genomas válidos de su especie. El mayor costo de esta fase está en anotar
 los 118 genomas y en consultar las bases de datos del NCBI.
 
+\begin{nuevo}
+La Fase 4 procesa un volumen pequeño, ya que solo anota las proteínas de 21
+bins. Su costo está en preparar las bases de datos de DRAM y no en la
+anotación. Por lo que solo se prepararon las bases que usan los marcadores.
+\end{nuevo}
+
 \subsection{Parámetros operativos del diseño}
 
 La Tabla~\ref{tab:parametros_operativos} resume los parámetros de cada etapa tal
@@ -99,7 +113,7 @@ que facilita la reproducibilidad y permite realizar el análisis de sensibilidad
 \caption{Parámetros operativos y variable
 o argumento con que se implementan. Los de las Fases 1 y 2 se justifican en el
 Capítulo V. Los que se agregaron en la ejecución de la Fase 3 se justifican en
-el Capítulo VII. F1 a F6 son los filtros de genes específicos
+el Capítulo VII\nuevotxt{, y los de la Fase 4, en el Capítulo V}. F1 a F6 son los filtros de genes específicos
 (Tabla~\ref{tab:filtros_impl}).}
 \anclatabla\addcontentsline{lot}{table}{\protect\numberline{\thetable}{\ignorespaces Parámetros operativos implementados}}
 \label{tab:parametros_operativos} \\
@@ -137,6 +151,14 @@ F4 y F5 & Identidad y cobertura mínimas (\%) & \texttt{DEF\_F4\_ID}, \texttt{DE
 F5b & ANI de misma especie (\%) & \texttt{DEF\_ANI} & 95 \\
 Advertencia & Identidad y cobertura (\%) & \texttt{DEF\_CASI\_ID}, \texttt{DEF\_CASI\_COV} & 99 / 90 \\
 F5 remoto & Proteínas por envío; espera máxima por búsqueda (h) & \texttt{LOTE}, \texttt{ESPERA\_MAX\_H} & 10; 24 \\
+\midrule
+\multicolumn{4}{l}{\nuevotxt{\textit{Fase 4}}} \\*
+\nuevotxt{Preparación} & \nuevotxt{Bases de DRAM que se preparan} & \nuevotxt{\texttt{-{}-select\_db}, \texttt{-{}-skip\_uniref}} & \nuevotxt{KOfam, dbCAN y MEROPS} \\
+\nuevotxt{Anotación} & \nuevotxt{Genes del bin que deben coincidir entre Bakta y DRAM} & \nuevotxt{control del programa de reglas} & \nuevotxt{0.95} \\
+\nuevotxt{Reglas} & \nuevotxt{Pasos que pueden faltar (principal; estricto y flexible)} & \nuevotxt{\texttt{CRITERIOS}} & \nuevotxt{1; 0 y 2} \\
+\nuevotxt{Reglas} & \nuevotxt{Pasos faltantes en una alternativa} & \nuevotxt{regla fija} & \nuevotxt{menos de la mitad} \\
+\nuevotxt{Fisher} & \nuevotxt{Accesorio (principal; alternativas)} & \nuevotxt{\texttt{DEFINICIONES}} & \nuevotxt{shell + cloud; solo cloud y core al 90\,\%} \\
+\nuevotxt{Fisher} & \nuevotxt{Corrección por comparaciones múltiples} & \nuevotxt{\texttt{p.adjust}} & \nuevotxt{Benjamini y Hochberg} \\
 \end{xltabular}
 \captionsetup{list=yes}
 }
@@ -204,6 +226,13 @@ Una tarea por especie \\
 BLAST remoto (F5, F6) & Servidores del NCBI & nodo de login; hasta 7 h por especie &
 Sesión persistente (\texttt{tmux}). El programa espera hasta 24 h por búsqueda
 y puede reanudarse \\
+\midrule
+\nuevotxt{Preparación de DRAM} & \nuevotxt{Memoria y red} & \nuevotxt{nodo de login} & \nuevotxt{Solo las bases que usan los marcadores. Se omiten UniRef90 y Pfam, que son las
+que más memoria requieren al procesarse} \\
+\nuevotxt{Bakta (18 bins)} & \nuevotxt{Número de trabajos} & \nuevotxt{3 lotes de 10 núcleos y 32 GB} & \nuevotxt{El mismo programa de la Fase 3, con la lista de los 21 bins. Los 3 ya anotados
+se saltan} \\
+\nuevotxt{DRAM} & \nuevotxt{Procesador} & \nuevotxt{16 núcleos, 60 GB, 24 h} & \nuevotxt{Una sola llamada sobre las proteínas de los 21 bins} \\
+\nuevotxt{Reglas, Fisher y figuras} & \nuevotxt{Ninguno} & \nuevotxt{equipo local; segundos} & \nuevotxt{Se ejecutan fuera del clúster, sobre la tabla de anotación} \\
 \end{xltabular}
 \captionsetup{list=yes}
 }
@@ -234,6 +263,8 @@ Resultados completos de la Fase 2     & Salida            & 406 MB \\
 Alineamiento concatenado bac120       & Salida intermedia & 230 MB \\
 Base de datos de Bakta v6.0 (\textit{full}) & Insumo de referencia & $\sim$84 GB \\
 Datos y salidas de la Fase 3 & Datos y salidas & $\sim$19 GB \\
+\nuevotxt{Bases de datos de DRAM (KOfam, dbCAN y MEROPS)} & \nuevotxt{Insumo de referencia} & \nuevotxt{$\sim$26 GB} \\
+\nuevotxt{Anotación de DRAM de los 21 bins} & \nuevotxt{Salida} & \nuevotxt{7.7 MB} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -257,6 +288,7 @@ se justificó en el Capítulo V. Aquí se selecciona su versión, su insumo y su
 entorno.
 
 \subsection{Versiones de software y compatibilidad}
+\label{subsec:versiones}
 
 La Tabla~\ref{tab:versiones} indica la versión de cada herramienta y el
 criterio con que se fijó.
@@ -286,7 +318,7 @@ Compatible con los datos R220. Una combinación incorrecta de programa y datos
 clasifica mal sin emitir error \\
 Python & 3.11 &
 Fijada en todos los entornos. Sin ella se instala Python 3.14 y GTDB-Tk no
-arranca \\
+arranca. \nuevotxt{DRAM usa la 3.10 de su propio archivo de entorno} \\
 Tiara, CheckM2 & 1.0.3; 1.1.0 &
 Sin restricción, porque no dependen de una versión de datos externa. Se
 reportan las instaladas \\
@@ -305,9 +337,12 @@ snp-sites solo se instaló como respaldo, que no hizo falta \\
 BLAST+, TaxonKit & 2.17.0; 0.20.0 &
 Búsquedas locales (F3, F4) y recuperación de las remotas. TaxonKit asigna el
 linaje con la taxonomía del NCBI del 04-10-2026 \\
+\nuevotxt{DRAM} & \nuevotxt{1.5.0} & \nuevotxt{Instalada con el archivo de entorno que distribuye la herramienta. Incluye
+HMMER 3.3.2 y MMseqs2 13.45111, y requiere setuptools anterior a la 81} \\
 R & 4.5.0 &
 Estadística y figuras en el equipo local: vegan 2.7.2, ape 5.8.1, phangorn
-2.12.1, ggtree 3.16.3 y gggenes 0.7.0 \\
+2.12.1, ggtree 3.16.3 y gggenes 0.7.0. \nuevotxt{En la Fase 4, también las reglas de
+marcadores y la prueba de Fisher} \\
 \end{xltabular}
 \captionsetup{list=yes}
 }
@@ -326,6 +361,22 @@ mediante el script \texttt{convert\_bakta\_to\_prokka\_gff.py},
 distribuido por los autores de Panaroo. La conversión descartó cinco secuencias
 codificantes que no pudieron traducirse, todas correspondientes a \textit{A.~schindleri}.
 
+\begin{nuevo}
+En la Fase 4, DRAM 1.5.0 presentó cinco defectos de la versión publicada, que
+los scripts corrigen sin modificar la herramienta. Tres aparecieron en la
+preparación. En primer lugar, DRAM importa un módulo que setuptools eliminó
+desde su versión 81, por lo que el entorno fija una versión anterior. En
+segundo lugar, el programa de preparación publicado tiene un error de sintaxis,
+que el script corrige antes de usarlo. En tercer lugar, la base dbCAN cambió de
+servidor, y el anterior devuelve una página web en lugar de la base. Por lo que
+el script reemplaza la dirección antes de descargarla. Los otros dos
+aparecieron en la anotación: el comando que anota proteínas ya predichas pasa
+sus argumentos en otro orden, y el archivo de proteínas anotadas falla sin la
+base Pfam. Por eso el script de ejecución llama directamente a la función de
+anotación y escribe ese archivo sin descripciones, que esta fase no usa
+(Anexo~\ref{anexo:codigo}).
+\end{nuevo}
+
 \subsection{Bases de datos como insumo de referencia}
 
 Las bases de datos son material externo que el sistema consume y del que
@@ -333,12 +384,12 @@ depende la validez del resultado. La Tabla~\ref{tab:insumos} las especifica.
 
 \begin{table}[H]
 \centering
-\small
+\footnotesize
+\setstretch{1.15}
 \caption[Insumos de referencia del sistema]{Bases de datos empleadas como insumo
 de referencia.}
 \label{tab:insumos}
-\makebox[\textwidth][c]{%
-\begin{tabular}{lll}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{4.4cm}}
 \toprule
 \textbf{Insumo} & \textbf{Versión} & \textbf{Etapa que lo consume} \\
 \midrule
@@ -351,9 +402,13 @@ NCBI nr y core\_nt (remotas) & fecha de la consulta & F5 y F6 \\
 NCBI IPG y Datasets API v2 (remotas) & fecha de la consulta & F5b \\
 UniProtKB, vía EBI (remota) & fecha de la consulta & Comparación de F5 \\
 Diccionarios propios de hábitat y países & versionados en el repositorio & Clasificación de referencias \\
+\nuevotxt{Perfiles de KOfam y lista de KO \cite{aramaki2020}} & \nuevotxt{descargados el 06-10-2026} & \nuevotxt{Anotación de KO (Fase 4)} \\
+\nuevotxt{dbCAN \cite{zhang2018} y actividades de CAZy} & \nuevotxt{HMMdb V11; CAZyDB 08-06-2022} & \nuevotxt{Anotación de CAZymes} \\
+\nuevotxt{MEROPS} & \nuevotxt{descargada el 06-10-2026} & \nuevotxt{Anotación (no entra en los marcadores)} \\
+\nuevotxt{Módulos de KEGG \cite{kegg2023}} & \nuevotxt{consultados en la API de KEGG} & \nuevotxt{Reglas de marcadores} \\
+\nuevotxt{Tabla de marcadores} & \nuevotxt{versionada en el repositorio} & \nuevotxt{Reglas de marcadores} \\
 \bottomrule
-\end{tabular}%
-}
+\end{tabularx}
 \end{table}
 
 La versión de las bases de datos también forma parte de los resultados, ya que
@@ -368,6 +423,15 @@ las bases nr y core\_nt se consultan en línea y se actualizan diariamente. Esto
 significa que un gen que hoy no presenta copias adicionales en su especie podría
 tenerlas en una búsqueda posterior. Por ello, también se registra la fecha de
 cada consulta.
+
+\begin{nuevo}
+En la Fase 4 ocurre lo mismo con KOfam, ya que el KO que recibe cada gen
+depende de la versión de los perfiles. Por ejemplo, KOfam asigna a la citrato
+sintasa de los bins de \textit{Bacillus} el KO K01659 y no K01647, y a la
+aconitasa de 15 bins un KO que KEGG creó hace poco, K27802. Por lo que cada paso
+de las reglas acepta todos los KO que el módulo de KEGG admite para él, y la
+tabla de marcadores se versiona junto con el código.
+\end{nuevo}
 
 Finalmente, los diccionarios creados clasifican los genomas según su hábitat de
 aislamiento y continente. Tanto estos diccionarios como la lista de genomas
@@ -392,13 +456,12 @@ script verifica que las herramientas estén instaladas y respondan con sus
 versiones, que Bakta utilice la versión 6 y que los metadatos de GTDB contengan
 las columnas necesarias para contar los genomas de cada especie.
 
-En la Fase 3 se incorporaron cinco entornos adicionales (\texttt{ncbi-datasets},
-\texttt{bakta}, \texttt{panaroo}, \texttt{iqtree} y \texttt{blast}), siguiendo el
-mismo procedimiento, y se reutilizó el entorno de dRep. Finalmente, el script
-de preparación verifica que cada entorno esté operativo mediante la consulta de
-la versión de su herramienta correspondiente. También comprueba que la base de
-datos de Bakta corresponda a la versión 6 y que los metadatos de GTDB contengan
-las columnas necesarias para contar los genomas de cada especie.
+\begin{nuevo}
+En la Fase 4 se agregó el entorno \texttt{dram}, creado con el archivo de
+entorno que distribuye la herramienta, y su archivo de bloqueo se guardó en la
+misma carpeta. Las reglas, la prueba de Fisher y las figuras corren en R en el
+equipo local, en el mismo entorno que generó las figuras de la Fase 3.
+\end{nuevo}
 
 El sistema se organiza en dos tipos de programas. Los scripts de preparación
 se encargan de descargar las bases de datos y crear los entornos de trabajo desde
@@ -419,7 +482,8 @@ Esta sección describe la organización de los programas, el intercambio de dato
 
 \subsection{Organización del sistema en programas}
 
-Las Fases 1 y 2 se implementan mediante seis programas y la Fase 3 mediante quince.
+Las Fases 1 y 2 se implementan mediante seis programas, la Fase 3 mediante quince
+\nuevotxt{y la Fase 4 mediante seis más, dos en el clúster y cuatro en el equipo local}.
 Estos se organizan en cuatro clases según su función y lugar de ejecución.
 En primer lugar, los programas de preparación crean los entornos y descargan las
 bases de datos desde el nodo de acceso (\textit{login}). En segundo lugar, los scripts
@@ -427,7 +491,8 @@ de ejecución corren en los nodos de cómputo, enviados con SLURM. En tercer lug
 requieren conexión con los servidores del NCBI se ejecutan desde el nodo de
 acceso. Por último, los programas de procesamiento contienen la lógica de decisión
 del flujo y están escritos en Python,
-por lo que no requieren dependencias adicionales. El Anexo~\ref{anexo:programas}
+por lo que no requieren dependencias adicionales. \nuevotxt{En la Fase 4, esa lógica está
+en programas de R que corren en el equipo local.} El Anexo~\ref{anexo:programas}
 detalla la función de cada programa y los archivos que conectan las etapas.
 
 \subsection{Normalización de la entrada y trazabilidad}
@@ -448,11 +513,20 @@ corresponden a esa versión. Además, se compara la longitud del genoma descarga
 en GTDB y se admite una diferencia máxima del 1\,\%. Esta verificación permite detectar posibles 
 errores en la descarga, aunque no evalúa la calidad del genoma.
 
+\begin{nuevo}
+En la Fase 4, DRAM no vuelve a predecir los genes, sino que anota las proteínas
+que predijo Bakta. Así, cada gen conserva el identificador que tiene en la
+partición del pangenoma de la Fase 3. DRAM antepone el nombre del bin a cada
+identificador, y el programa de reglas lo separa antes de cruzar las tablas.
+Además, el programa se detiene si menos del 95\,\% de los genes del bin en la
+partición aparecen en la anotación de DRAM.
+\end{nuevo}
+
 \subsection{Encadenamiento entre etapas}
 \label{subsec:encadenamiento}
 
 Las etapas intercambian resultados mediante archivos almacenados en disco (Anexo~\ref{anexo:programas}). 
-Para mantener la consistencia de los datos entre fases, se implementaron cuatro mecanismos.
+Para mantener la consistencia de los datos entre fases, se implementaron \nuevotxt{cinco} mecanismos.
 
 En primer lugar, la Fase 2 utiliza directamente la carpeta de genomas seleccionados en la Fase 1,
 en lugar de recibir una lista independiente de nombres. Así, los criterios de selección se aplican 
@@ -473,10 +547,16 @@ aunque podría corresponder a un gen específico de la cepa. Para evitar estas d
 identificadas por Panaroo, pero sus frecuencias se recalculan considerando únicamente los genomas de referencia.
 Luego, los genes del bin se relacionan con estas categorías (Anexo~\ref{anexo:codigo}).
 
-Por último, se utilizan dos conjuntos de referencia según el análisis. El pangenoma incluye únicamente los genomas
+\nuevotxt{En cuarto lugar,} se utilizan dos conjuntos de referencia según el análisis. El pangenoma incluye únicamente los genomas
 seleccionados tras la desreplicación y la aplicación del límite de 50 genomas. En cambio, la búsqueda de genes
 específicos del bin y el cálculo de ANI utilizan todos los genomas válidos de cada especie, incluidos aquellos
 excluidos durante la desreplicación o por el límite establecido.
+
+\begin{nuevo}
+Por último, la Fase 4 no recalcula nada de la Fase 3. Toma la ubicación de cada
+gen del bin en el pangenoma (\texttt{genes\_bin.tsv}) y la lista de genes
+específicos verificados, y las cruza con la anotación de DRAM.
+\end{nuevo}
 
 \subsection{Implementación de la verificación de genes específicos}
 \label{subsec:impl_verificacion}
@@ -543,6 +623,34 @@ mediante \texttt{blast\_formatter}. Las proteínas se envían en lotes de diez; 
 sus consultas se reenvían individualmente. Los intentos que vuelven a fallar se registran como «sin 
 resultado», diferenciándolos de las consultas completadas correctamente que no encontraron coincidencias.
 
+\subsection{Implementación de las reglas de marcadores}
+\label{subsec:impl_reglas}
+
+\begin{nuevo}
+Las reglas de la Tabla~\ref{tab:marcadores} no están escritas en el código,
+sino en una tabla de datos (\texttt{marcadores\_fase4.tsv}). Cada fila es un
+paso e indica la función, la alternativa, la fuente, la definición del paso, si
+es esencial y si cuenta como marcador. Así, cambiar una regla no exige
+modificar el programa, y cada paso queda unido a su fuente.
+
+El programa de reglas evalúa cada definición con un analizador de la sintaxis de
+los módulos de KEGG (Anexo~\ref{anexo:codigo}). Ese analizador reconoce los
+pasos encadenados, las alternativas, las subunidades obligatorias y opcionales
+de un complejo y los grupos entre paréntesis. También reconoce la forma «3 de
+5», que usan los pasos de bibliografía. Con el resultado de cada paso, el
+programa decide en una sola pasada si cada alternativa se cumple con los tres
+criterios (0, 1 y 2 pasos faltantes). Es por eso que el análisis de
+sensibilidad no exige volver a ejecutar nada.
+
+Antes de evaluar los bins, el programa ejecuta 29 autopruebas con conjuntos de
+KO de resultado conocido, y se detiene si alguna falla. Por ejemplo, comprueba
+que un complejo sin una subunidad obligatoria no se cumpla, que la falta de una
+subunidad opcional no lo impida y que una vía de 2 pasos no se cumpla con uno
+solo. Por último, los pasos universales de la ectoína y la trehalosa quedan
+marcados para que cuenten en la presencia de la función, pero no entren a la
+prueba de Fisher.
+\end{nuevo}
+
 \subsection{Implementación de los scripts de ejecución}
 
 Cada script de ejecución declara los recursos solicitados a SLURM y los parámetros del análisis 
@@ -560,6 +668,14 @@ las condiciones esperadas (Tabla~\ref{tab:puntos_control}, Anexo~\ref{anexo:prog
 de $\pm 20$\,\% de la mediana de su especie, mientras que C6 requiere que cada referencia contenga 
 al menos el 97\,\% del genoma \textit{core}. Los resultados de ambos controles se presentan en el 
 Capítulo VII.
+
+\begin{nuevo}
+En la Fase 4, el script de DRAM comprueba antes de empezar que los 21 bins
+tengan su anotación de Bakta, y se detiene si falta alguna. Además, aplica las
+dos correcciones de la anotación descritas en la
+Sección~\ref{subsec:versiones} y registra las versiones de DRAM, HMMER y
+MMseqs2 y las bases que usó.
+\end{nuevo}
 
 \subsection{Control de versiones}
 
@@ -583,7 +699,7 @@ La Figura~\ref{fig:pfd} presenta las Fases 1 y 2, desde la normalización de los
 iniciales hasta la identificación de los 19 linajes. También muestra el intercambio de archivos 
 y la reutilización de los resultados de calidad entre ambas fases.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 
 \centering
 
@@ -748,7 +864,7 @@ verificación de genes específicos de la cepa.
 
 \centering
 
-\begin{tikzpicture}[
+\scalebox{0.88}{\begin{tikzpicture}[
   font=\footnotesize,
   proc/.style={rectangle, draw, rounded corners=2pt, minimum width=4.4cm,
                minimum height=0.95cm, align=center, fill=gray!8},
@@ -801,7 +917,7 @@ verificación de genes específicos de la cepa.
 \draw[reutil] (desc.east) -- (5.3,-3.4) -- (5.3,-13.8) -- (loc.east);
 \node[font=\scriptsize, rotate=-90, anchor=south, fill=white, inner sep=2pt]
   at (5.5,-8.6) {todos los genomas de cada especie (208, 69 y 29)};
-\end{tikzpicture}
+\end{tikzpicture}}
 
 \caption[Diagrama de flujo de la Fase 3]{Diagrama de flujo de la Fase 3. Los 
 recuadros de borde continuo son etapas de procesamiento; los de borde discontinuo,
@@ -817,6 +933,72 @@ desreplicación ni por la selección.}
 \end{figure}
 
 
+
+\begin{nuevo}
+La Figura~\ref{fig:pfd_f4} presenta la Fase 4. Las proteínas de Bakta de los 21
+bins pasan por DRAM en el clúster. La tabla de anotación se copia al equipo
+local, donde se aplican las reglas por pasos y la prueba de Fisher con la
+partición de la Fase 3.
+
+\begin{figure}[htbp]
+\color{blue}\captionsetup{font+={color=blue}}% provisional: figura nueva
+\centering
+\begin{tikzpicture}[
+  font=\footnotesize,
+  proc/.style={rectangle, draw, rounded corners=2pt, minimum width=4.4cm,
+               minimum height=0.95cm, align=center, fill=gray!8},
+  procc/.style={rectangle, draw, rounded corners=2pt, minimum width=3.4cm,
+                minimum height=0.95cm, align=center, fill=gray!8},
+  data/.style={rectangle, draw, dashed, minimum width=3.4cm,
+               minimum height=0.95cm, align=center},
+  arr/.style={->, thick},
+  lbl/.style={font=\scriptsize, midway, right=4pt, fill=white, inner sep=1.5pt},
+  fase/.style={very thick, gray}
+]
+\node[data, minimum width=4.4cm] (in) at (0,0)
+  {21 bins de la Fase 1};
+\node[proc] (bakta) at (0,-1.7)
+  {Anotación\\ \scriptsize Bakta: 18 bins nuevos y 3 de la Fase 3};
+\node[proc] (dram) at (0,-3.4)
+  {Anotación funcional\\ \scriptsize DRAM 1.5.0: KOfam y dbCAN};
+\node[proc] (reglas) at (0,-5.6)
+  {Reglas por pasos\\ \scriptsize 3 criterios, 29 autopruebas};
+\node[data] (tabla) at (4.6,-5.6)
+  {Tabla de marcadores\\ \scriptsize\texttt{marcadores\_fase4.tsv}};
+\node[data] (part) at (-4.6,-5.6)
+  {Partición de la Fase 3\\ \scriptsize\texttt{genes\_bin.tsv}};
+\node[procc] (fisher) at (-4.6,-7.6)
+  {Prueba de Fisher\\ \scriptsize 3 bins, BH};
+\node[data] (fun) at (0,-7.6)
+  {Funciones y puntajes\\ de cada bin};
+\node[data] (cazy) at (4.6,-7.6)
+  {CAZymes por bin\\ (anexo)};
+\node[data] (ubic) at (-4.6,-9.3)
+  {Ubicación de los\\ marcadores};
+\draw[arr] (in) -- node[lbl] {\texttt{<bin>.fasta}} (bakta);
+\draw[arr] (bakta) -- node[lbl] {\texttt{<bin>.faa}} (dram);
+\draw[arr] (dram) -- node[lbl] {\texttt{annotations.tsv}, al equipo local} (reglas);
+\draw[arr] (tabla) -- (reglas);
+\draw[arr] (reglas) -- (fun);
+\draw[arr] (reglas.south west) -- node[font=\scriptsize, fill=white, inner sep=1.5pt, right=3pt] {genes marcador} (fisher.north east);
+\draw[arr] (reglas.south east) -- (cazy.north west);
+\draw[arr] (part) -- (fisher);
+\draw[arr] (fisher) -- (ubic);
+\draw[fase] (-7.0,-1.2) -- (-7.0,-3.9);
+\node[font=\scriptsize\itshape, rotate=90, anchor=south] at (-7.25,-2.55) {Clúster};
+\draw[fase] (-7.0,-5.1) -- (-7.0,-9.8);
+\node[font=\scriptsize\itshape, rotate=90, anchor=south] at (-7.25,-7.45) {Equipo local};
+\end{tikzpicture}
+\caption[Diagrama de flujo de la Fase 4]{Diagrama de flujo de la Fase 4. Los
+recuadros de borde continuo son etapas de procesamiento, y los de borde
+discontinuo, datos de entrada o resultados. Las etiquetas sobre las flechas son
+los archivos que pasan de una etapa a la siguiente. Las líneas grises de la
+izquierda separan lo que corre en el clúster de lo que corre en el equipo
+local.}
+\label{fig:pfd_f4}
+\end{figure}
+\end{nuevo}
+
 \subsection{Arquitectura de cómputo}
 
 La Figura~\ref{fig:arquitectura} muestra la distribución de los programas entre el 
@@ -824,7 +1006,7 @@ nodo de acceso y los nodos de cómputo del clúster Khipu. También representa s
 con el almacenamiento compartido, los servicios externos del NCBI y el equipo local utilizado 
 para el análisis estadístico y la generación de figuras.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 
 \centering
 
@@ -853,7 +1035,7 @@ para el análisis estadístico y la generación de figuras.
 \node[caja] at (0, 3.20)
       {\texttt{00\_setup}, \texttt{02\_setup}: CheckM2 y GTDB R220};
 \node[caja] at (0, 2.45)
-      {\texttt{03\_setup\_fase3\_khipu.sh}: entornos y BD de Bakta};
+      {\texttt{03\_setup\_fase3}, \nuevotxt{\texttt{09\_setup\_dram}}: entornos y BD de Bakta \nuevotxt{y DRAM}};
 \node[caja] at (0, 1.70)
       {\texttt{03\_censo}, \texttt{04\_fetch}, \texttt{04\_clasificar} (Fase 3)};
 \node[caja] at (0, 0.95)
@@ -866,19 +1048,19 @@ para el análisis estadístico y la generación de figuras.
 \node[caja] at (0, -2.20)
       {\texttt{run\_fase1.slurm}, \texttt{run\_fase2.slurm} (Fases 1 y 2)};
 \node[caja] at (0, -2.95)
-      {\texttt{04\_drep\_refs}, \texttt{05\_bakta\_all} (Fase 3)};
+      {\texttt{04\_drep\_refs}, \texttt{05\_bakta\_all} \nuevotxt{(Fases 3 y 4)}};
 \node[caja] at (0, -3.70)
       {\texttt{06\_panaroo}, \texttt{06b\_iqtree}, \texttt{06c\_ani\_bins} (Fase 3)};
 \node[caja] at (0, -4.45)
-      {\texttt{08\_exclusivos\_local.slurm}: F1--F4 (Fase 3)};
+      {\texttt{08\_exclusivos\_local} (Fase 3), \nuevotxt{\texttt{10\_dram} (Fase 4)}};
 % --- Almacenamiento compartido ---
 \node[disco] (alm) at (5.75, -0.4)
-      {Almacenamiento compartido\\[4pt] GTDB R220\\BD de Bakta\\genomas públicos};
+      {Almacenamiento compartido\\[4pt] GTDB R220\\BD de Bakta\\\nuevotxt{BD de DRAM}\\genomas públicos};
 % --- Servicios externos y equipo local ---
 \node[ext] (ncbi) at (-6.3, 2.3)
       {Servicios del NCBI\\[2pt] Datasets, BLAST, E-utilities};
 \node[ext] (pc) at (-6.3, -3.1)
-      {Equipo local\\[2pt] R 4.5.0\\(figuras)};
+      {Equipo local\\[2pt] R 4.5.0\\(figuras \nuevotxt{y reglas}\\\nuevotxt{de la Fase 4})};
 % --- Relaciones ---
 \draw[arr] (login.south) -- node[etq, right=3pt, fill=none]
       {\texttt{sbatch}} (compute.north);
@@ -901,7 +1083,8 @@ ejecutan en el nodo de login, único con acceso a internet. Los scripts de
 ejecución se envían con \texttt{sbatch} a los nodos de cómputo.
 Estos no tienen conexión y solo leen lo que el login dejó en el almacenamiento
 compartido. Las tablas de resultados se copian a un equipo local, donde se
-calculan la estadística y las figuras.}
+calculan la estadística y las figuras \nuevotxt{y, en la Fase 4, se aplican las reglas de
+marcadores}.}
 
 \label{fig:arquitectura}
 
@@ -910,8 +1093,8 @@ calculan la estadística y las figuras.}
 \subsection{Verificación de la correspondencia entre el diagrama y la implementación}
 
 Los bloques de la Figura~\ref{fig:pfd} corresponden a las operaciones implementadas en los dos 
-scripts de ejecución de las Fases 1 y 2, mientras que los de la Figura~\ref{fig:pfd_f3} 
-corresponden a los programas descritos en el Anexo~\ref{anexo:programas}. Los archivos
+scripts de ejecución de las Fases 1 y 2, mientras que los de las
+Figuras~\ref{fig:pfd_f3} \nuevotxt{y~\ref{fig:pfd_f4}} corresponden a los programas descritos en el Anexo~\ref{anexo:programas}. Los archivos
 identificados en los diagramas son generados durante la ejecución y se conservan en el repositorio.
 Asimismo, las cantidades de genomas corresponden a los resultados reales presentados 
 en el Capítulo VII. Las decisiones de implementación se documentan mediante extractos de código en el 

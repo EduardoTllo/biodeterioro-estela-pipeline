@@ -4,7 +4,8 @@
 % CAPITULO VII - PRUEBAS Y RESULTADOS
 % Estructura exigida por la guia: 7.1 Plan de pruebas, 7.2 Analisis de
 % resultados, 7.3 Verificacion de especificaciones, 7.4 Verificacion de
-% restricciones. Alcance: Fases 1, 2 y 3 (OE1, OE2 y OE3).
+% restricciones. Alcance: Fases 1 a 4 (OE1 a OE4). Fase 4 agregada el
+% 2026-11-15 (tabla de marcadores v2, D42).
 % Version reducida del 2026-10-27 (pedido del asesor: 12-18 pp, con espacio
 % para la Fase 4). El detalle (figuras secundarias, sensibilidad, iteraciones)
 % esta en los anexos. La version anterior esta en
@@ -12,7 +13,7 @@
 % ======================================================================
 
 Este capítulo presenta el desempeño del flujo diseñado en el Capítulo VI. Primero se
-define cómo se probó. Después se muestran los resultados de las Fases 1, 2 y 3 y los
+define cómo se probó. Después se muestran los resultados de las Fases \nuevotxt{1 a 4} y los
 ajustes de diseño en base a los resultados obtenidos. Por último se verifica las
 especificaciones y las restricciones del proyecto.
 
@@ -538,6 +539,135 @@ GTDB R220, y los genomas posteriores solo se revisan a través de nr. Por
 la consulta. A la Fase 4 pasan la ubicación de cada gen del bin en el pangenoma
 y la lista de genes específicos.
 
+\begin{nuevo}
+\subsection{Resultados de la Fase 4: potencial de biodeterioro y supervivencia (OE4)}
+\label{subsec:res_fase4}
+
+En esta fase se evaluó qué funciones de biodeterioro y de supervivencia
+codifican los 21 bins y si sus genes están en el core o en el accesorio de su
+especie. Cada función se evaluó con su regla de la
+Tabla~\ref{tab:marcadores} y con el criterio principal, que acepta que falte
+como máximo 1 paso. La Figura~\ref{fig:matriz_f4} resume el resultado.
+
+\begin{figure}[htbp]
+\color{blue}\captionsetup{font+={color=blue}}% provisional: figura nueva
+    \centering
+    \includegraphics[width=\textwidth]{images/fig_f4_matriz_funciones.pdf}
+    \caption[Funciones de riesgo, supervivencia y contexto por bin]{Funciones
+    de riesgo, supervivencia y contexto de cada bin. \textbf{(a)} Presencia de
+    cada función con el criterio principal (falta como máximo 1 paso). Cada
+    fila es un bin, con su especie, su linaje y su completitud según CheckM2.
+    \textbf{(b)} Funciones de riesgo (de 7) y de supervivencia (de 6)
+    presentes. El contexto no puntúa.}
+    \label{fig:matriz_f4}
+\end{figure}
+
+\subsubsection{Funciones de riesgo}
+\label{subsubsec:res_riesgo}
+
+De los 21 bins, 13 tienen al menos una función de riesgo. El bin con más
+funciones es el de \textit{Pantoea} sp. (L5), con 4 de 7. Tiene la glucosa
+deshidrogenasa dependiente de PQQ (\textit{gcd}), los genes de síntesis de su
+cofactor y la gluconato 2-deshidrogenasa. Por lo que puede oxidar la glucosa a
+ácido glucónico y después a 2-cetoglucónico en el periplasma. Esta vía
+oxidativa directa es la forma de acidificación más extendida entre las
+bacterias que meteorizan minerales \cite{uroz2026}. Además, L5 tiene el operón
+completo de aerobactina (\textit{iucABCD}) y la vía de carotenoides de KEGG
+(M00097). La aerobactina es un sideróforo que extrae el hierro de los minerales
+por quelación \cite{blanconouche2023}, y los carotenoides son una de las
+causas de la decoloración de la piedra \cite{gaylarde2021}.
+
+El otro bin que puede acidificar por esta vía es el de \textit{Aristophania}
+sp. (L10). No tiene la enzima dependiente de PQQ, sino una glucosa
+deshidrogenasa de la familia GMC (K19813). Esta familia también produce ácido
+glucónico y meteoriza biotita en \textit{Collimonas} y \textit{Caballeronia}
+\cite{picard2021, blanconouche2024}. Pero su función solo se ha comprobado en
+pocas cepas, y la homología no la garantiza \cite{uroz2026}. Ninguno de los
+bins de \textit{Bacillus} y géneros cercanos tiene una glucosa
+deshidrogenasa, lo que coincide con lo descrito para \textit{Bacillus},
+\textit{Paenibacillus} y \textit{Priestia} \cite{uroz2026}.
+
+En estos bins, el riesgo viene de los sideróforos, las EPS y los pigmentos.
+\textit{Paenibacillus} sp. (L7), \textit{P.~frigoritolerans} (L12) y
+\textit{B.~licheniformis} (L14) tienen el operón de bacilibactina
+(\textit{dhbACEBF}), y \textit{Metabacillus halosaccharovorans} (L15) el de
+petrobactina (\textit{asb}). Los tres bins con bacilibactina tienen también
+\textit{sfp}, la enzima sin la cual el operón no produce el sideróforo
+\cite{may2001}. Los sideróforos aceleran la disolución de los silicatos a pH
+neutro, ya que solubilizan el hierro de la superficie del mineral
+\cite{dalvie2026}. L14, L15 y \textit{B.~altitudinis} (L16) tienen además el
+operón \textit{eps} de la matriz de la biopelícula \cite{arnaouteli2021}. Esa
+matriz retiene agua y, al secarse, puede arrancar escamas de la piedra
+\cite{gaylarde2021}. Los pigmentos de L3, L13 y L16 vienen de la ruta de
+carotenoides C30 (\textit{crtM} y \textit{crtN}), propia de los Bacilli
+\cite{santanamolina2022}.
+
+Ningún bin tiene la nitrificación ni la oxidación de azufre. Estas funciones
+son propias de quimiolitótrofos como \textit{Nitrosomonas},
+\textit{Nitrobacter} y \textit{Thiobacillus} \cite{dakal2012}, y ninguno de los
+19 linajes pertenece a esos grupos.
+
+En supervivencia, los 21 bins responden al estrés oxidativo, y 16 pueden
+reparar el daño UV, 9 de ellos solo con la SP liasa (\textit{splB}) de los
+esporuladores \cite{goosen2008}. La esporulación está en 11 bins, la
+trehalosa en 5 y la ectoína solo en \textit{Brevibacterium} (L6). El ciclo TCA
+y la ureólisis, que se reportan como contexto, están en 16 y 8 bins.
+
+\subsubsection{Ubicación de los marcadores en el pangenoma}
+\label{subsubsec:res_fisher}
+
+La prueba de Fisher se aplicó a los 3 bins con pangenoma de especie, por
+separado para los genes de riesgo y de supervivencia. Solo una prueba fue
+significativa. En \textit{P.~frigoritolerans} (L12), los 5 genes marcador de
+riesgo están en el accesorio y ninguno en el core (OR infinito, IC del 95\,\%
+desde 4.35, $p_{\mathrm{BH}} = 9.6 \times 10^{-4}$). Los 5 genes son el operón
+\textit{dhb} de bacilibactina, contiguo en el bin, y solo 3 de las 42
+referencias de la especie lo tienen. El resultado se mantiene con los tres
+criterios de presencia y con las tres definiciones de accesorio. Por lo que la
+bacilibactina no es un rasgo de la especie, sino de pocas de sus cepas, entre
+ellas la de la Estela. Pero los 5 genes forman un solo operón y se
+ganan o se pierden juntos. Es decir, la prueba cuenta 5 genes donde hay un
+solo evento evolutivo, y el valor de $p$ exagera la evidencia. Es por eso que
+el resultado se lee como «el operón de bacilibactina es accesorio en
+\textit{P.~frigoritolerans}» y no como un enriquecimiento general de los genes
+de riesgo en el accesorio.
+
+Las otras 5 pruebas no fueron significativas (Tabla~\ref{tab:fisher_f4} del
+Anexo~\ref{anexo:fase4}). En \textit{B.~altitudinis} (L16) y
+\textit{A.~schindleri} (L8), todos los genes marcador de riesgo están en el
+core. De los 57 genes marcador de las 3 especies, 50 están en el core, y
+ninguno de los 44 genes específicos de \textit{A.~schindleri} es un marcador.
+Por último, DRAM asignó 2\,073 familias CAZy a 1\,895 genes, y las
+glicosiltransferasas GT2 y GT4 están en los 21 bins
+(Figura~\ref{fig:cazy_f4} del Anexo~\ref{anexo:fase4}).
+
+\subsubsection{Implicancia para el OE4}
+\label{subsubsec:implicancia_oe4}
+
+El OE4 se cumple. Los resultados permiten afirmar lo siguiente:
+
+\begin{itemize}
+    \item De los 21 bins, 13 codifican al menos una función de riesgo. El de
+    \textit{Pantoea} sp. (L5) reúne acidificación, quelación y pigmentos.
+    \item La acidificación por glucosa deshidrogenasa solo aparece en L5 y
+    L10. En los bins de \textit{Bacillus} y géneros cercanos, el riesgo viene
+    de los sideróforos, las EPS y los pigmentos.
+    \item Ningún bin puede producir ácidos inorgánicos por nitrificación u
+    oxidación de azufre.
+    \item Los genes de riesgo son, en su mayoría, parte del core de su
+    especie. La excepción es el operón de bacilibactina de
+    \textit{P.~frigoritolerans}.
+\end{itemize}
+
+Estas afirmaciones tienen tres límites. En primer lugar, describen un
+potencial genético y no una actividad. Por ejemplo, los sideróforos solo se
+producen cuando falta hierro \cite{dalvie2026}. En segundo lugar, una función
+ausente en un bin incompleto no prueba su ausencia, sobre todo en L4 y L16
+(70.1 y 72.5\,\%). Por último, la tabla de marcadores no evalúa la
+acidificación por ácidos del metabolismo central, que sería la vía de las
+bacterias Gram positivas \cite{uroz2026}.
+\end{nuevo}
+
 \subsection{Sensibilidad de los resultados a los umbrales elegidos}
 \label{subsec:sensibilidad}
 
@@ -553,13 +683,18 @@ mismas tres especies con 99 o 99.5\,\% de desreplicación y con 200 a 1\,000
 contigs. El core es idéntico entre los modos de Panaroo y crece menos de
 3\,\% con un umbral del 90\,\%. Por último, usar UniProtKB en lugar de nr o el
 nombre de la especie en lugar del ANI habría dejado pasar 7 y 5 genes falsos
-como específicos. Es por eso que el caso base usa nr y el ANI.
+como específicos. Es por eso que el caso base usa nr y el ANI. \nuevotxt{En la Fase 4,
+las funciones de riesgo son las mismas si no se acepta ningún paso faltante o
+si se aceptan 2. Con 2 pasos faltantes solo se agrega la ectoína en 8 bins, y
+siempre por pasos de la vía de los aminoácidos que están en casi todas las
+bacterias.}
 
 \subsection{Iteraciones de diseño derivadas de los resultados}
 \label{subsec:iteraciones}
 
-El diseño cambió seis veces durante la ejecución porque algunos resultados
-obligaron a modificarlo. El Capítulo V conserva el diseño original, y el
+El diseño cambió \nuevotxt{siete} veces durante la ejecución porque algunos resultados
+obligaron a modificarlo. El Capítulo V conserva el diseño original\nuevotxt{, salvo la
+tabla de marcadores, que se muestra en su versión final}. El
 Anexo~\ref{anexo:iteraciones} detalla cada ciclo de prueba, evaluación y
 rediseño. En primer lugar, el árbol con todas las referencias de GTDB no cupo en
 la memoria y se reemplazó por un árbol interno en la Fase 2 y uno de máxima
@@ -572,14 +707,20 @@ primera versión de los genes específicos perdía los genes que Panaroo elimin�
 confiaba en el nombre de la especie. Por eso se ampliaron los candidatos y se
 agregaron F5b y la regla nueva de F6. En quinto lugar, la opción remota de BLAST+ no devolvía resultados en el
 clúster. Se reemplazó por un programa propio que envía las búsquedas desde el
-nodo de login directamente a los servidores del NCBI. Por
-último, Bakta anotó con COG muy pocos genes, por lo que la comparación funcional
-pasa a la Fase 4.
+nodo de login directamente a los servidores del NCBI. \nuevotxt{En sexto lugar,} Bakta
+anotó con COG muy pocos genes, por lo que la comparación funcional pasa a la
+Fase 4. \nuevotxt{Por último, la primera versión de la tabla de marcadores contaba KO y
+no pasos, y no
+reconocía otros KO de KEGG para la misma enzima. Por ejemplo, el ciclo TCA
+salía ausente en \textit{B.~licheniformis} (L14), con 99.8\,\% de
+completitud. Por eso las reglas se rehicieron paso por paso a partir de los
+módulos de KEGG y de la bibliografía, y se agregaron los sideróforos y los
+pigmentos.}
 
 
 \section{Verificación del cumplimiento de las especificaciones técnicas}
 
-Las especificaciones se derivan de los objetivos OE1, OE2 y OE3 y admiten una
+Las especificaciones se derivan de los objetivos \nuevotxt{OE1 a OE4} y admiten una
 verificación cuantitativa directa. La Tabla~\ref{tab:matriz_especificaciones}
 cruza cada una con su método de verificación y su resultado.
 
@@ -616,6 +757,12 @@ Calidad del bin & Core recuperado (C6) & $\pm 10$ puntos de la completitud & 3 d
 Ubicación filogenética & Máxima verosimilitud & UFBoot $\geq 95$ & UFBoot 100 en los 3 bins & Sí \\
 Genes específicos & Filtros F1 a F6 & Lista verificada & 44 en \textit{A.~schindleri}; 0 en las otras & Sí \\
 Selección reproducible & Reglas deterministas & Mismo resultado al repetir & Semillas fijas en IQ-TREE y R & Sí \\
+\midrule
+\multicolumn{5}{l}{\nuevotxt{\textit{Fase 4 (OE4)}}} \\
+\nuevotxt{Anotación funcional} & \nuevotxt{DRAM (KEGG y dbCAN)} & \nuevotxt{Todos los bins} & \nuevotxt{21 de 21} & \nuevotxt{Sí} \\
+\nuevotxt{Reglas trazables} & \nuevotxt{Pasos de KEGG y bibliografía; autopruebas} & \nuevotxt{Cada regla con su fuente} & \nuevotxt{15 funciones; 29 autopruebas} & \nuevotxt{Sí} \\
+\nuevotxt{Robustez del criterio} & \nuevotxt{Criterios con 0, 1 y 2 pasos faltantes} & \nuevotxt{Riesgo estable} & \nuevotxt{Mismas funciones de riesgo} & \nuevotxt{Sí} \\
+\nuevotxt{Ubicación en el pangenoma} & \nuevotxt{Fisher con corrección BH} & \nuevotxt{Prueba por bin y categoría} & \nuevotxt{6 pruebas; 1 significativa} & \nuevotxt{Sí} \\
 \end{xltabular}
 }
 
