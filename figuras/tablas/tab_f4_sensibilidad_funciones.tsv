@@ -1,0 +1,23 @@
+genoma	linaje_id	genero	especie	completitud	categoria	funcion	presente_estricto	presente	presente_flexible	mejor
+bin-1-68	L2	Corynebacterium	NA	100	contexto	ciclo_tca	FALSE	TRUE	TRUE	A M00009: 7/8
+bin-1-68	L2	Corynebacterium	NA	100	supervivencia	estres_oxidativo	FALSE	TRUE	TRUE	A bibliografia: 2/3
+bin-2-69	L2	Corynebacterium	NA	99.99	contexto	ciclo_tca	FALSE	TRUE	TRUE	A M00009: 7/8
+bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	estres_oxidativo	FALSE	TRUE	TRUE	A bibliografia: 2/3
+bin-1-51	L5	Pantoea	NA	100	contexto	ciclo_tca	FALSE	TRUE	TRUE	A M00009: 7/8
+bin-1-51	L5	Pantoea	NA	100	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	contexto	ciclo_tca	FALSE	TRUE	TRUE	A M00009: 7/8
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	contexto	ciclo_tca	FALSE	TRUE	TRUE	A M00009: 7/8
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	contexto	ciclo_tca	FALSE	TRUE	TRUE	A M00009: 7/8
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5
+bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5
+bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	esporulacion	FALSE	TRUE	TRUE	A bibliografia: 2/3
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	contexto	ciclo_tca	FALSE	TRUE	TRUE	A M00009: 7/8
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	estres_oxidativo	FALSE	TRUE	TRUE	A bibliografia: 2/3
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	contexto	ciclo_tca	FALSE	FALSE	TRUE	A M00009: 6/8
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	estres_oxidativo	FALSE	TRUE	TRUE	A bibliografia: 2/3
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	contexto	ciclo_tca	FALSE	FALSE	TRUE	A M00009: 6/8

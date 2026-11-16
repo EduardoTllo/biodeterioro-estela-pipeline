@@ -1,24 +1,82 @@
-categoria	funcion	alternativa	grupo	kos	minimo	genes	nota
-riesgo	acido_gluconico	A	gcd	K00117	1	gcd	glucosa deshidrogenasa dependiente de PQQ
-riesgo	acido_gluconico	A	pqq	K06135,K06136,K06137,K06138,K06139	3	pqqA-E	biosintesis del cofactor PQQ
-riesgo	acido_2_cetogluconico	A	gcd	K00117	1	gcd	
-riesgo	acido_2_cetogluconico	A	pqq	K06135,K06136,K06137,K06138,K06139	3	pqqA-E	
-riesgo	acido_2_cetogluconico	A	gad	K06150,K06151,K06152	2	gluconato 2-deshidrogenasa	
-riesgo	eps_biopelicula	A	eps	K19419,K19420,K19421,K19422,K19423,K19424,K19425,K19426,K19427,K19428,K19429,K19430,K19431	9	epsA-O	66 % del operon eps (Gram +)
-riesgo	eps_biopelicula	B	tasA	K06336	1	tasA	proteina de matriz (Gram +)
-riesgo	eps_biopelicula	B	tapA	K19433	1	tapA	anclaje de TasA (Gram +)
-riesgo	eps_biopelicula	C	pga	K11935,K11931,K11936,K11937	3	pgaABCD	poli-beta-1,6-GlcNAc (PNAG, Gram -)
-riesgo	curli	A	csg	K04334,K04335	2	csgA,csgB	
-riesgo	nitrificacion	A	M00528	K28504,K10945,K10946,K10535	3	amoABC,hao	modulo M00528 >= 66 %
-riesgo	oxidacion_azufre	A	M00595	K17222,K17223,K17224,K17225,K22622,K17226,K17227	5	soxXYZABCD	modulo M00595 >= 66 %
-supervivencia	esporulacion	A	spo	K07699,K06378,K06382	2	spo0A,spoIIAA,spoIIE	
-supervivencia	carotenoides	A	crtB	K02291,K17841	1	crtB	modulo M00097
-supervivencia	carotenoides	A	crtI	K10027,K15745	1	crtI	modulo M00097
-supervivencia	estres_oxidativo	A	ox	K03781,K04564,K04047	2	katE/katA,sodA,dps	
-supervivencia	desecacion_ectoina	A	ect	K06718,K00836,K06720	2	ectABC	
-supervivencia	desecacion_trehalosa	A	ots	K00697,K01087	2	otsAB	ruta OtsA-OtsB
-supervivencia	desecacion_trehalosa	B	treYZ	K06044,K01236	2	treYZ	ruta TreY-TreZ desde glucogeno
-supervivencia	desecacion_trehalosa	C	treS	K05343	1	treS	ruta TreS desde maltosa
-supervivencia	reparacion_uv	A	phr	K01669,K06876	1	fotoliasas	
-contexto	ciclo_tca	A	M00009	K01647,K01659,K01681,K01682,K27802,K00031,K00030,K00239,K01676,K01679	3	gltA/prpC,acnA/acnB,icd,sdhA,fumA/fumC	universal en aerobios; no puntua; sinonimos KEGG/KOfam (D41)
-contexto	ureolisis	A	ure	K01430,K01429,K01428	3	ureABC	ambivalente (carbonato); no puntua
+categoria	funcion	alternativa	fuente	paso	def	esencial	marcador	genes	nota
+riesgo	acido_gluconico	A	bibliografia	gcd	K00117	si	si	gcd	GDH dependiente de PQQ; Uroz 2026, Blanco Nouche 2024
+riesgo	acido_gluconico	A	bibliografia	pqq	3/K06135,K06136,K06137,K06138,K06139	si	si	pqqA-E	cofactor PQQ; pqq sola no basta (Uroz 2026)
+riesgo	acido_gluconico	B	bibliografia	gdh_gmc	K19813	si	si	gdh (GMC, FAD)	GDH independiente de PQQ; Picard 2020, Blanco Nouche 2024
+riesgo	acido_2_cetogluconico	A	bibliografia	gcd	K00117	si	si	gcd	-
+riesgo	acido_2_cetogluconico	A	bibliografia	pqq	3/K06135,K06136,K06137,K06138,K06139	si	si	pqqA-E	-
+riesgo	acido_2_cetogluconico	A	bibliografia	gad	2/K06150,K06151,K06152	si	si	gluconato 2-deshidrogenasa	Blanco Nouche 2024, Uroz 2026
+riesgo	acido_2_cetogluconico	B	bibliografia	gdh_gmc	K19813	si	si	gdh (GMC, FAD)	-
+riesgo	acido_2_cetogluconico	B	bibliografia	gad	2/K06150,K06151,K06152	si	si	gluconato 2-deshidrogenasa	-
+riesgo	nitrificacion	A	M00528	amo	K28504+K10945+K10946	no	si	amoABC	-
+riesgo	nitrificacion	A	M00528	hao	K10535	no	si	hao	-
+riesgo	nitrificacion	B	M00804	amo	K28504+K10945+K10946	no	si	amoABC	comammox
+riesgo	nitrificacion	B	M00804	hao	K10535	no	si	hao	-
+riesgo	nitrificacion	B	M00804	nxr	K00370+K00371	no	si	nxrAB	comparte KO con narGH
+riesgo	oxidacion_azufre	A	M00595	sox	K17222+K17223+K17224-K17225-K22622+K17226+K17227	no	si	soxAXBYZ (CD opcionales)	un solo paso en KEGG
+riesgo	oxidacion_azufre	B	M00984	tiosulfato_dh	(K16937+K16936,K05908,K19713)	no	si	doxDA,tsdA	via del tetrationato
+riesgo	oxidacion_azufre	B	M00984	tetH	K27925	no	si	tetH	-
+riesgo	sideroforos	A	M00918	iucD	K03897	no	si	iucD	aerobactina
+riesgo	sideroforos	A	M00918	iucB	K03896	no	si	iucB	-
+riesgo	sideroforos	A	M00918	iucA	K03894	no	si	iucA	-
+riesgo	sideroforos	A	M00918	iucC	K03895	no	si	iucC	-
+riesgo	sideroforos	B	M01060	asbF	K15652	no	si	asbF	petrobactina
+riesgo	sideroforos	B	M01060	asbC	K24110	no	si	asbC	-
+riesgo	sideroforos	B	M01060	asbD	K24111	no	si	asbD	-
+riesgo	sideroforos	C	M00876	orr	K21898	no	si	orr	estafiloferrina A
+riesgo	sideroforos	C	M00876	sfnaD	K23446	no	si	sfnaD	-
+riesgo	sideroforos	C	M00876	sfnaB	K23447	no	si	sfnaB	-
+riesgo	sideroforos	D	M00875	sbnI	K23371	no	si	sbnI	estafiloferrina B
+riesgo	sideroforos	D	M00875	sbnA	K21949	no	si	sbnA	-
+riesgo	sideroforos	D	M00875	sbnB	K21721	no	si	sbnB	-
+riesgo	sideroforos	D	M00875	sbnE	K23372	no	si	sbnE	-
+riesgo	sideroforos	D	M00875	sbnH	K23373	no	si	sbnH	-
+riesgo	sideroforos	D	M00875	sbnF	K23374	no	si	sbnF	-
+riesgo	sideroforos	D	M00875	sbnC	K23375	no	si	sbnC	-
+riesgo	sideroforos	E	bibliografia	entC	K02361	no	si	entC/dhbC	catecolato (bacilibactina, enterobactina); May 2001, Harwood 2018
+riesgo	sideroforos	E	bibliografia	entB	K01252	no	si	entB/dhbB	-
+riesgo	sideroforos	E	bibliografia	entA	K00216	no	si	entA/dhbA	-
+riesgo	sideroforos	E	bibliografia	entE	K02363	no	si	entE/dhbE	-
+riesgo	sideroforos	E	bibliografia	nrps	K04780,K02364	no	si	dhbF o entF	-
+riesgo	eps_biopelicula	A	bibliografia	eps	9/K19419,K19420,K19421,K19422,K19423,K19424,K19425,K19426,K19427,K19428,K19429,K19430,K19431	si	si	epsA-O	9 de 13 KO; Vlamakis 2013, Arnaouteli 2021
+riesgo	eps_biopelicula	B	bibliografia	tasA	K06336	si	si	tasA	-
+riesgo	eps_biopelicula	B	bibliografia	tapA	K19433	si	si	tapA	-
+riesgo	eps_biopelicula	C	bibliografia	pga	3/K11935,K11931,K11936,K11937	si	si	pgaABCD	PgaC e IcaA comparten K11936; Itoh 2008
+riesgo	pigmentos	A	M00097	crtB	(K02291,K17841)	no	si	crtB	decoloracion; Basile 2025, Marzanni 2026
+riesgo	pigmentos	A	M00097	crtI	((K02293 K15744 K00514 K09835),K10027,K15745)	no	si	crtI o crtP-Q-H	-
+riesgo	pigmentos	B	bibliografia	crtM	K10208	si	si	crtM	C30; Santana-Molina 2022
+riesgo	pigmentos	B	bibliografia	crtN	K10209	si	si	crtN	-
+supervivencia	esporulacion	A	bibliografia	spo0A	K07699	no	si	spo0A	spo0A sola no basta; Galperin 2022
+supervivencia	esporulacion	A	bibliografia	spoIIAA	K06378	no	si	spoIIAA	-
+supervivencia	esporulacion	A	bibliografia	spoIIE	K06382	no	si	spoIIE	-
+supervivencia	carotenoides	A	M00097	crtB	(K02291,K17841)	no	si	crtB	misma regla que pigmentos (decision 1)
+supervivencia	carotenoides	A	M00097	crtI	((K02293 K15744 K00514 K09835),K10027,K15745)	no	si	crtI o crtP-Q-H	-
+supervivencia	carotenoides	B	bibliografia	crtM	K10208	si	si	crtM	-
+supervivencia	carotenoides	B	bibliografia	crtN	K10209	si	si	crtN	-
+supervivencia	estres_oxidativo	A	bibliografia	catalasa	K03781,K03782,K07217	no	si	katE/katA,katG,catalasa Mn	Imlay 2013
+supervivencia	estres_oxidativo	A	bibliografia	sod	K04564,K04565,K00518	no	si	sodA/B,SOD1,sodN	-
+supervivencia	estres_oxidativo	A	bibliografia	dps	K04047	no	si	dps	-
+supervivencia	desecacion_ectoina	A	M00033	lysC	K00928	no	no	lysC	paso universal (decision 4)
+supervivencia	desecacion_ectoina	A	M00033	asd	K00133	no	no	asd	paso universal (decision 4)
+supervivencia	desecacion_ectoina	A	M00033	ectB	K00836	no	si	ectB	-
+supervivencia	desecacion_ectoina	A	M00033	ectA	K06718	no	si	ectA	-
+supervivencia	desecacion_ectoina	A	M00033	ectC	K06720	no	si	ectC	enzima diagnostica (Czech 2018)
+supervivencia	desecacion_trehalosa	A	M00565	glgC	K00975	no	no	glgC	paso de glucogeno (decision 4)
+supervivencia	desecacion_trehalosa	A	M00565	glgA	K00703	no	no	glgA	paso de glucogeno (decision 4)
+supervivencia	desecacion_trehalosa	A	M00565	glgB	(K00700,K16149)	no	no	glgB	paso de glucogeno (decision 4)
+supervivencia	desecacion_trehalosa	A	M00565	treX	K01214	no	no	treX	isoamilasa
+supervivencia	desecacion_trehalosa	A	M00565	treY	K06044	no	si	treY	-
+supervivencia	desecacion_trehalosa	A	M00565	treZ	K01236	no	si	treZ	-
+supervivencia	desecacion_trehalosa	B	bibliografia	otsA	K00697	si	si	otsA	Laskowska 2020
+supervivencia	desecacion_trehalosa	B	bibliografia	otsB	K01087	si	si	otsB	-
+supervivencia	desecacion_trehalosa	C	bibliografia	treS	K05343	si	si	treS	K16055 (TPS) excluido: sin fuente leida
+supervivencia	reparacion_uv	A	bibliografia	phr	K01669,K06876	si	si	fotoliasas	goosen2008, Nunez 2025
+supervivencia	reparacion_uv	B	bibliografia	splB	K03716	si	si	splB	SP liasa (decision 3); goosen2008, Setlow 2023
+contexto	ciclo_tca	A	M00009	citrato	(K01647,K05942,K01659)	no	si	gltA/prpC	no puntua
+contexto	ciclo_tca	A	M00009	aconitasa	(K01681,K27802,K01682)	no	si	acnA/acnB	-
+contexto	ciclo_tca	A	M00009	isocitrato_dh	(K00031,K00030)	no	si	icd	-
+contexto	ciclo_tca	A	M00009	oxoglutarato_dh	(((K00164+K00658,K01616)+K00382),(K00174+K00175-K00177-K00176))	no	si	sucAB-lpd,korAB	-
+contexto	ciclo_tca	A	M00009	succinil_coa	(K01902+K01903,K01899+K01900,K18118)	no	si	sucCD	-
+contexto	ciclo_tca	A	M00009	succinato_dh	((K00234+K00235+K00236+(K00237,K25801)),(K00239+K00240+K00241-(K00242,K18859,K18860)),(K00244+K00245+K00246-K00247))	no	si	sdhABCD,frdABCD	-
+contexto	ciclo_tca	A	M00009	fumarasa	(K01676,K01679,K01677+K01678)	no	si	fumA/fumC	-
+contexto	ciclo_tca	A	M00009	malato_dh	(K00026,K00025,K00024,K00116)	no	si	mdh,mqo	-
+contexto	ureolisis	A	bibliografia	ure	K01430+K01429+K01428	si	si	ureABC	ambivalente (carbonato); no puntua

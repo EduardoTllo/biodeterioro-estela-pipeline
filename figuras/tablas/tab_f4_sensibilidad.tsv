@@ -1,0 +1,43 @@
+genoma	linaje_id	genero	especie	completitud	categoria	presentes_estricto	presentes_principal	presentes_flexible	evaluables
+bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	1	1	1	7
+bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	4	4	4	6
+bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	1	1	1	7
+bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	3	3	3	6
+bin-1-68	L2	Corynebacterium	NA	100	riesgo	0	0	0	7
+bin-1-68	L2	Corynebacterium	NA	100	supervivencia	1	2	2	6
+bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	0	0	0	7
+bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	1	2	2	6
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	1	1	1	7
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	4	4	4	6
+bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	0	0	0	7
+bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	1	1	1	6
+bin-1-51	L5	Pantoea	NA	100	riesgo	4	4	4	7
+bin-1-51	L5	Pantoea	NA	100	supervivencia	4	4	5	6
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	0	0	0	7
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	4	4	4	6
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	2	2	2	7
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	4	4	4	6
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	1	1	1	7
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	2	2	3	6
+bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	0	0	0	7
+bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	2	3	4	6
+bin-9-71	L10	Aristophania	NA	85.09	riesgo	2	2	2	7
+bin-9-71	L10	Aristophania	NA	85.09	supervivencia	1	1	1	6
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	1	1	1	7
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	1	1	1	6
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	1	1	1	7
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	3	3	4	6
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	1	1	1	7
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	3	4	5	6
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	2	2	2	7
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	3	3	4	6
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	2	2	2	7
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	3	3	3	6
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	2	2	2	7
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	3	4	5	6
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	0	0	0	7
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	3	3	4	6
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	0	0	0	7
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	3	3	3	6
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	0	0	0	7
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	3	3	3	6

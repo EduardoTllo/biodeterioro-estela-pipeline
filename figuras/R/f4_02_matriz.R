@@ -7,8 +7,9 @@
 
 ETIQ_FUNCION <- c(
   acido_gluconico = "Ácido glucónico", acido_2_cetogluconico = "Ácido 2-cetoglucónico",
-  eps_biopelicula = "EPS de biopelícula", curli = "Curli", nitrificacion = "Nitrificación",
-  oxidacion_azufre = "Oxidación de azufre", esporulacion = "Esporulación",
+  eps_biopelicula = "EPS de biopelícula", nitrificacion = "Nitrificación",
+  oxidacion_azufre = "Oxidación de azufre", sideroforos = "Sideróforos",
+  pigmentos = "Pigmentos (decoloración)", esporulacion = "Esporulación",
   carotenoides = "Carotenoides", estres_oxidativo = "Estrés oxidativo",
   desecacion_ectoina = "Ectoína", desecacion_trehalosa = "Trehalosa",
   reparacion_uv = "Reparación UV", ciclo_tca = "Ciclo TCA", ureolisis = "Ureólisis"
@@ -22,7 +23,7 @@ pun <- read_tsv(file.path(DIR_TAB, "tab_f4_puntajes.tsv"), show_col_types = FALS
 
 orden_bins <- pun |>
   mutate(etiqueta = paste0(etiqueta_genoma(genoma, genero, especie), " · ", linaje_id, " · ",
-                           formatC(completitud, format = "f", digits = 1, decimal.mark = ","), " %")) |>
+                           formatC(completitud, format = "f", digits = 1), " %")) |>
   arrange(as.integer(sub("^L", "", linaje_id)), genoma)
 orden_func <- unique(read_tsv(file.path("metadata", "marcadores_fase4.tsv"),
                               show_col_types = FALSE)$funcion)

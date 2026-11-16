@@ -1,295 +1,316 @@
-genoma	linaje_id	genero	especie	completitud	categoria	funcion	presente	kos_hallados
-bin-1-51	L5	Pantoea	NA	100	contexto	ciclo_tca	TRUE	K01647,K01682,K27802,K00031,K00239,K01676,K01679
-bin-1-51	L5	Pantoea	NA	100	contexto	ureolisis	FALSE	
-bin-1-51	L5	Pantoea	NA	100	riesgo	acido_2_cetogluconico	TRUE	K00117,K06135,K06136,K06137,K06138,K06139,K06150,K06151,K06152
-bin-1-51	L5	Pantoea	NA	100	riesgo	acido_gluconico	TRUE	K00117,K06135,K06136,K06137,K06138,K06139
-bin-1-51	L5	Pantoea	NA	100	riesgo	curli	FALSE	
-bin-1-51	L5	Pantoea	NA	100	riesgo	eps_biopelicula	FALSE	
-bin-1-51	L5	Pantoea	NA	100	riesgo	nitrificacion	FALSE	
-bin-1-51	L5	Pantoea	NA	100	riesgo	oxidacion_azufre	FALSE	
-bin-1-51	L5	Pantoea	NA	100	supervivencia	carotenoides	TRUE	K02291,K10027
-bin-1-51	L5	Pantoea	NA	100	supervivencia	desecacion_ectoina	FALSE	K00836
-bin-1-51	L5	Pantoea	NA	100	supervivencia	desecacion_trehalosa	TRUE	K00697,K01087,K06044,K01236
-bin-1-51	L5	Pantoea	NA	100	supervivencia	esporulacion	FALSE	
-bin-1-51	L5	Pantoea	NA	100	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-1-51	L5	Pantoea	NA	100	supervivencia	reparacion_uv	TRUE	K01669
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	contexto	ciclo_tca	TRUE	K01659,K27802,K00031,K00239,K01679
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	contexto	ureolisis	TRUE	K01430,K01429,K01428
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	acido_2_cetogluconico	FALSE	
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	acido_gluconico	FALSE	
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	curli	FALSE	
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	eps_biopelicula	FALSE	
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	nitrificacion	FALSE	
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	oxidacion_azufre	FALSE	
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	carotenoides	FALSE	
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	desecacion_ectoina	FALSE	
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	desecacion_trehalosa	FALSE	
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	esporulacion	FALSE	
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	reparacion_uv	FALSE	
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	contexto	ciclo_tca	TRUE	K01659,K27802,K00031,K00239,K01676,K01679
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	contexto	ureolisis	TRUE	K01430,K01429,K01428
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	acido_2_cetogluconico	FALSE	
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	acido_gluconico	FALSE	
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	curli	FALSE	
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	eps_biopelicula	FALSE	K19420
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	nitrificacion	FALSE	
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	oxidacion_azufre	FALSE	
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	carotenoides	FALSE	
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	desecacion_ectoina	FALSE	K00836
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	desecacion_trehalosa	FALSE	
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	esporulacion	TRUE	K07699,K06378,K06382
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	reparacion_uv	FALSE	
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	contexto	ciclo_tca	TRUE	K01647,K01659,K27802,K00239,K01679
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	contexto	ureolisis	FALSE	
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	acido_2_cetogluconico	FALSE	
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	acido_gluconico	FALSE	
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	curli	FALSE	
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	eps_biopelicula	FALSE	
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	nitrificacion	FALSE	
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	oxidacion_azufre	FALSE	
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	carotenoides	FALSE	K02291
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	desecacion_ectoina	TRUE	K06718,K00836,K06720
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	desecacion_trehalosa	TRUE	K00697,K01087
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	esporulacion	FALSE	
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	reparacion_uv	TRUE	K01669
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	contexto	ciclo_tca	TRUE	K01659,K27802,K00031,K00239,K01679
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	contexto	ureolisis	TRUE	K01430,K01429,K01428
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	acido_2_cetogluconico	FALSE	
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	acido_gluconico	FALSE	
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	curli	FALSE	
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	eps_biopelicula	FALSE	K19420
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	nitrificacion	FALSE	
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	oxidacion_azufre	FALSE	
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	carotenoides	TRUE	K02291,K10027
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	desecacion_ectoina	FALSE	
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	desecacion_trehalosa	FALSE	
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	esporulacion	TRUE	K07699,K06378,K06382
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	reparacion_uv	FALSE	
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	contexto	ciclo_tca	TRUE	K01659,K00031,K00239,K01679
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	contexto	ureolisis	FALSE	
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	acido_2_cetogluconico	FALSE	
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	acido_gluconico	FALSE	
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	curli	FALSE	
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	eps_biopelicula	TRUE	K19419,K19420,K19421,K19422,K19423,K19424,K19425,K19426,K19427,K19428,K19429,K19430,K19431,K06336,K19433
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	nitrificacion	FALSE	
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	oxidacion_azufre	FALSE	
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	carotenoides	FALSE	
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	desecacion_ectoina	FALSE	K00836
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	desecacion_trehalosa	FALSE	
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	esporulacion	TRUE	K07699,K06378,K06382
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	reparacion_uv	FALSE	
-bin-1-68	L2	Corynebacterium	NA	100	contexto	ciclo_tca	TRUE	K01647,K01659,K27802,K00239,K01679
-bin-1-68	L2	Corynebacterium	NA	100	contexto	ureolisis	FALSE	
-bin-1-68	L2	Corynebacterium	NA	100	riesgo	acido_2_cetogluconico	FALSE	
-bin-1-68	L2	Corynebacterium	NA	100	riesgo	acido_gluconico	FALSE	
-bin-1-68	L2	Corynebacterium	NA	100	riesgo	curli	FALSE	
-bin-1-68	L2	Corynebacterium	NA	100	riesgo	eps_biopelicula	FALSE	
-bin-1-68	L2	Corynebacterium	NA	100	riesgo	nitrificacion	FALSE	
-bin-1-68	L2	Corynebacterium	NA	100	riesgo	oxidacion_azufre	FALSE	
-bin-1-68	L2	Corynebacterium	NA	100	supervivencia	carotenoides	FALSE	K02291
-bin-1-68	L2	Corynebacterium	NA	100	supervivencia	desecacion_ectoina	FALSE	
-bin-1-68	L2	Corynebacterium	NA	100	supervivencia	desecacion_trehalosa	TRUE	K00697,K01087,K05343
-bin-1-68	L2	Corynebacterium	NA	100	supervivencia	esporulacion	FALSE	
-bin-1-68	L2	Corynebacterium	NA	100	supervivencia	estres_oxidativo	TRUE	K03781,K04564
-bin-1-68	L2	Corynebacterium	NA	100	supervivencia	reparacion_uv	FALSE	
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	contexto	ciclo_tca	TRUE	K01659,K27802,K00031,K00239,K01676,K01679
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	contexto	ureolisis	TRUE	K01430,K01429,K01428
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	acido_2_cetogluconico	FALSE	
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	acido_gluconico	FALSE	
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	curli	FALSE	
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	eps_biopelicula	TRUE	K19419,K19420,K19422,K19423,K19424,K19426,K19427,K19429,K19430,K06336,K11936
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	nitrificacion	FALSE	
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	oxidacion_azufre	FALSE	
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	carotenoides	FALSE	
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	desecacion_ectoina	FALSE	
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	desecacion_trehalosa	FALSE	
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	esporulacion	TRUE	K07699,K06378,K06382
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	reparacion_uv	FALSE	
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	contexto	ciclo_tca	TRUE	K01659,K27802,K00031,K00239,K01676,K01679
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	contexto	ureolisis	FALSE	
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	acido_2_cetogluconico	FALSE	K06137
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	acido_gluconico	FALSE	K06137
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	curli	FALSE	
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	eps_biopelicula	FALSE	K19419,K19420,K19423,K19426,K19430,K11936
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	nitrificacion	FALSE	
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	oxidacion_azufre	FALSE	
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	carotenoides	FALSE	
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	desecacion_ectoina	FALSE	K00836
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	desecacion_trehalosa	FALSE	
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	esporulacion	TRUE	K07699,K06378,K06382
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	reparacion_uv	FALSE	
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	contexto	ciclo_tca	TRUE	K01659,K27802,K00031,K00239,K01676,K01679
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	contexto	ureolisis	FALSE	
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	acido_2_cetogluconico	FALSE	
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	acido_gluconico	FALSE	
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	curli	FALSE	
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	eps_biopelicula	FALSE	K19419,K19420,K19422,K19424,K19429,K19430
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	nitrificacion	FALSE	
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	oxidacion_azufre	FALSE	K17224
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	carotenoides	FALSE	
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	desecacion_ectoina	FALSE	
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	desecacion_trehalosa	FALSE	
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	esporulacion	TRUE	K07699,K06378,K06382
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	reparacion_uv	FALSE	
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	contexto	ciclo_tca	TRUE	K01659,K27802,K00031,K00239,K01676,K01679
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	contexto	ureolisis	FALSE	
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	acido_2_cetogluconico	FALSE	
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	acido_gluconico	FALSE	
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	curli	FALSE	
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	eps_biopelicula	FALSE	K19420,K19430,K06336,K11936
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	nitrificacion	FALSE	
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	oxidacion_azufre	FALSE	
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	carotenoides	FALSE	K10027
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	desecacion_ectoina	FALSE	K00836
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	desecacion_trehalosa	FALSE	
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	esporulacion	TRUE	K07699,K06378,K06382
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	estres_oxidativo	TRUE	K03781,K04564
-bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	reparacion_uv	TRUE	K01669
-bin-2-69	L2	Corynebacterium	NA	99.99	contexto	ciclo_tca	TRUE	K01647,K27802,K00239,K01679
-bin-2-69	L2	Corynebacterium	NA	99.99	contexto	ureolisis	FALSE	
-bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	acido_2_cetogluconico	FALSE	
-bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	acido_gluconico	FALSE	
-bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	curli	FALSE	
-bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	eps_biopelicula	FALSE	
-bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	nitrificacion	FALSE	
-bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	oxidacion_azufre	FALSE	
-bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	carotenoides	FALSE	K02291
-bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	desecacion_ectoina	FALSE	
-bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	desecacion_trehalosa	TRUE	K00697,K01087,K05343
-bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	esporulacion	FALSE	
-bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	estres_oxidativo	TRUE	K03781,K04564
-bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	reparacion_uv	FALSE	
-bin-3-52	L1	Telluria	Telluria timonae	98.97	contexto	ciclo_tca	TRUE	K01647,K01659,K27802,K00031,K00239,K01679
-bin-3-52	L1	Telluria	Telluria timonae	98.97	contexto	ureolisis	FALSE	
-bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	acido_2_cetogluconico	FALSE	K06150,K06151,K06152
-bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	acido_gluconico	FALSE	
-bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	curli	FALSE	
-bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	eps_biopelicula	FALSE	
-bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	nitrificacion	FALSE	
-bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	oxidacion_azufre	FALSE	
-bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	carotenoides	TRUE	K02291,K10027
-bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	desecacion_ectoina	FALSE	
-bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	desecacion_trehalosa	TRUE	K00697,K01087
-bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	esporulacion	FALSE	
-bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	reparacion_uv	TRUE	K01669
-bin-3-64	L4	Sporosarcina	NA	70.14	contexto	ciclo_tca	TRUE	K01659,K00239,K01679
-bin-3-64	L4	Sporosarcina	NA	70.14	contexto	ureolisis	TRUE	K01430,K01429,K01428
-bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	acido_2_cetogluconico	FALSE	K06136,K06151,K06152
-bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	acido_gluconico	FALSE	K06136
-bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	curli	FALSE	
-bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	eps_biopelicula	FALSE	K19420
-bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	nitrificacion	FALSE	
-bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	oxidacion_azufre	FALSE	
-bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	carotenoides	FALSE	
-bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	desecacion_ectoina	FALSE	
-bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	desecacion_trehalosa	FALSE	
-bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	esporulacion	FALSE	K07699
-bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	reparacion_uv	FALSE	
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	contexto	ciclo_tca	TRUE	K01647,K01659,K01682,K00239,K01676,K01679
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	contexto	ureolisis	TRUE	K01430,K01429,K01428
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	acido_2_cetogluconico	FALSE	K00117
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	acido_gluconico	FALSE	K00117
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	curli	FALSE	
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	eps_biopelicula	TRUE	K11935,K11931,K11936,K11937
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	nitrificacion	FALSE	
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	oxidacion_azufre	FALSE	
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	carotenoides	FALSE	
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	desecacion_ectoina	FALSE	K00836
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	desecacion_trehalosa	FALSE	K01087
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	esporulacion	FALSE	
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	reparacion_uv	TRUE	K01669
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	contexto	ciclo_tca	TRUE	K01659,K00031,K00239,K01676,K01679
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	contexto	ureolisis	FALSE	
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	acido_2_cetogluconico	FALSE	K06137,K06152
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	acido_gluconico	FALSE	K06137
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	curli	FALSE	
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	eps_biopelicula	FALSE	K19420,K11936
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	nitrificacion	FALSE	
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	oxidacion_azufre	FALSE	
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	carotenoides	FALSE	
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	desecacion_ectoina	FALSE	
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	desecacion_trehalosa	FALSE	
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	esporulacion	TRUE	K07699,K06378,K06382
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	reparacion_uv	FALSE	
-bin-5-60	L9	Priestia	Priestia flexa	77.53	contexto	ciclo_tca	TRUE	K01659,K27802,K00031,K00239,K01676
-bin-5-60	L9	Priestia	Priestia flexa	77.53	contexto	ureolisis	TRUE	K01430,K01429,K01428
-bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	acido_2_cetogluconico	FALSE	
-bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	acido_gluconico	FALSE	
-bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	curli	FALSE	
-bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	eps_biopelicula	FALSE	K19419,K19420,K19422,K19424,K19429,K19430
-bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	nitrificacion	FALSE	
-bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	oxidacion_azufre	FALSE	
-bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	carotenoides	FALSE	
-bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	desecacion_ectoina	FALSE	K00836
-bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	desecacion_trehalosa	FALSE	
-bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	esporulacion	TRUE	K07699,K06378
-bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	reparacion_uv	FALSE	
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	contexto	ciclo_tca	TRUE	K01659,K27802,K00031,K01679
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	contexto	ureolisis	FALSE	
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	acido_2_cetogluconico	FALSE	
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	acido_gluconico	FALSE	
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	curli	FALSE	
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	eps_biopelicula	TRUE	K19419,K19420,K19421,K19422,K19423,K19424,K19425,K19426,K19429,K19430
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	nitrificacion	FALSE	
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	oxidacion_azufre	FALSE	
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	carotenoides	FALSE	K10027
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	desecacion_ectoina	FALSE	K00836
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	desecacion_trehalosa	FALSE	
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	esporulacion	TRUE	K07699,K06378,K06382
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	estres_oxidativo	TRUE	K03781,K04564
-bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	reparacion_uv	TRUE	K01669
-bin-6-50	L1	Telluria	Telluria timonae	100	contexto	ciclo_tca	TRUE	K01647,K01659,K27802,K00031,K00239,K01676,K01679
-bin-6-50	L1	Telluria	Telluria timonae	100	contexto	ureolisis	FALSE	
-bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	acido_2_cetogluconico	FALSE	K06150,K06151,K06152
-bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	acido_gluconico	FALSE	
-bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	curli	FALSE	
-bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	eps_biopelicula	FALSE	
-bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	nitrificacion	FALSE	
-bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	oxidacion_azufre	FALSE	
-bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	carotenoides	TRUE	K02291,K10027
-bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	desecacion_ectoina	FALSE	
-bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	desecacion_trehalosa	FALSE	K00697
-bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	esporulacion	FALSE	
-bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	reparacion_uv	TRUE	K01669
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	contexto	ciclo_tca	TRUE	K01659,K27802,K00031,K00239,K01676,K01679
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	contexto	ureolisis	FALSE	
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	acido_2_cetogluconico	FALSE	K06151,K06152
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	acido_gluconico	FALSE	
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	curli	FALSE	
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	eps_biopelicula	FALSE	K19420,K19424,K11936
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	nitrificacion	FALSE	
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	oxidacion_azufre	FALSE	
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	carotenoides	FALSE	K10027
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	desecacion_ectoina	FALSE	
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	desecacion_trehalosa	FALSE	
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	esporulacion	TRUE	K07699,K06378,K06382
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	reparacion_uv	FALSE	
-bin-9-71	L10	Aristophania	NA	85.09	contexto	ciclo_tca	FALSE	K01647,K01679
-bin-9-71	L10	Aristophania	NA	85.09	contexto	ureolisis	TRUE	K01430,K01429,K01428
-bin-9-71	L10	Aristophania	NA	85.09	riesgo	acido_2_cetogluconico	FALSE	K06136,K06137,K06138,K06139,K06151,K06152
-bin-9-71	L10	Aristophania	NA	85.09	riesgo	acido_gluconico	FALSE	K06136,K06137,K06138,K06139
-bin-9-71	L10	Aristophania	NA	85.09	riesgo	curli	FALSE	
-bin-9-71	L10	Aristophania	NA	85.09	riesgo	eps_biopelicula	FALSE	
-bin-9-71	L10	Aristophania	NA	85.09	riesgo	nitrificacion	FALSE	
-bin-9-71	L10	Aristophania	NA	85.09	riesgo	oxidacion_azufre	FALSE	
-bin-9-71	L10	Aristophania	NA	85.09	supervivencia	carotenoides	FALSE	
-bin-9-71	L10	Aristophania	NA	85.09	supervivencia	desecacion_ectoina	FALSE	
-bin-9-71	L10	Aristophania	NA	85.09	supervivencia	desecacion_trehalosa	FALSE	
-bin-9-71	L10	Aristophania	NA	85.09	supervivencia	esporulacion	FALSE	
-bin-9-71	L10	Aristophania	NA	85.09	supervivencia	estres_oxidativo	TRUE	K03781,K04564,K04047
-bin-9-71	L10	Aristophania	NA	85.09	supervivencia	reparacion_uv	FALSE	
+genoma	linaje_id	genero	especie	completitud	categoria	funcion	presente	presente_estricto	presente_flexible	mejor	kos_hallados
+bin-1-51	L5	Pantoea	NA	100	contexto	ciclo_tca	TRUE	FALSE	TRUE	A M00009: 7/8	K01647,K27802,K01682,K00031,K00164,K00658,K00382,K01902,K01903,K00239,K00240,K00242,K01676,K01679,K00116
+bin-1-51	L5	Pantoea	NA	100	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-1-51	L5	Pantoea	NA	100	riesgo	acido_2_cetogluconico	TRUE	TRUE	TRUE	A bibliografia: 3/3	K00117,K06135,K06136,K06137,K06138,K06139,K06150,K06151,K06152,K19813
+bin-1-51	L5	Pantoea	NA	100	riesgo	acido_gluconico	TRUE	TRUE	TRUE	A bibliografia: 2/2	K00117,K06135,K06136,K06137,K06138,K06139,K19813
+bin-1-51	L5	Pantoea	NA	100	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-1-51	L5	Pantoea	NA	100	riesgo	nitrificacion	FALSE	FALSE	FALSE	B M00804: 1/3	K00370,K00371
+bin-1-51	L5	Pantoea	NA	100	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-1-51	L5	Pantoea	NA	100	riesgo	pigmentos	TRUE	TRUE	TRUE	A M00097: 2/2	K02291,K10027
+bin-1-51	L5	Pantoea	NA	100	riesgo	sideroforos	TRUE	TRUE	TRUE	A M00918: 4/4	K03897,K03896,K03894,K03895
+bin-1-51	L5	Pantoea	NA	100	supervivencia	carotenoides	TRUE	TRUE	TRUE	A M00097: 2/2	K02291,K10027
+bin-1-51	L5	Pantoea	NA	100	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5	K00928,K00133,K00836
+bin-1-51	L5	Pantoea	NA	100	supervivencia	desecacion_trehalosa	TRUE	TRUE	TRUE	A M00565: 6/6	K00975,K00703,K00700,K01214,K06044,K01236,K00697,K01087
+bin-1-51	L5	Pantoea	NA	100	supervivencia	esporulacion	FALSE	FALSE	FALSE	A bibliografia: 0/3	
+bin-1-51	L5	Pantoea	NA	100	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K03782,K04564,K04565,K04047
+bin-1-51	L5	Pantoea	NA	100	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01669
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	contexto	ciclo_tca	TRUE	TRUE	TRUE	A M00009: 8/8	K01659,K27802,K00031,K00658,K00382,K00174,K00175,K01902,K01903,K00239,K00240,K00241,K01679,K00024,K00116
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	contexto	ureolisis	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01430,K01429,K01428
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	nitrificacion	FALSE	FALSE	FALSE	B M00804: 1/3	K00370,K00371
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	pigmentos	FALSE	FALSE	FALSE	B bibliografia: 1/2	K10208
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	riesgo	sideroforos	TRUE	TRUE	TRUE	C M00876: 3/3	K21898,K23446,K23447
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	carotenoides	FALSE	FALSE	FALSE	B bibliografia: 1/2	K10208
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	desecacion_ectoina	FALSE	FALSE	FALSE	A M00033: 2/5	K00928,K00133
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	C bibliografia: 0/1	
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	esporulacion	FALSE	FALSE	FALSE	A bibliografia: 0/3	
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K04564,K04047
+bin-1-53	L11	Staphylococcus	Staphylococcus warneri_A	99.84	supervivencia	reparacion_uv	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	contexto	ciclo_tca	TRUE	TRUE	TRUE	A M00009: 8/8	K01659,K27802,K00031,K00658,K00382,K00174,K00175,K01902,K01903,K18118,K00239,K00240,K00241,K01676,K01679,K00024,K00116
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	contexto	ureolisis	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01430,K01429,K01428
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	K19420
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	riesgo	sideroforos	TRUE	TRUE	TRUE	E bibliografia: 5/5	K02361,K01252,K00216,K02363,K04780
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5	K00928,K00133,K00836
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	A M00565: 3/6	K00975,K00703,K00700
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	esporulacion	TRUE	TRUE	TRUE	A bibliografia: 3/3	K07699,K06378,K06382
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K07217,K04564,K04565,K04047
+bin-1-54	L12	Peribacillus	Peribacillus frigoritolerans	92.25	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	B bibliografia: 1/1	K03716
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	contexto	ciclo_tca	TRUE	FALSE	TRUE	A M00009: 7/8	K01647,K01659,K27802,K01616,K00382,K01902,K01903,K18118,K00239,K00240,K00241,K00242,K01679,K00116
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 1/2	K02291
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	riesgo	sideroforos	FALSE	FALSE	FALSE	E bibliografia: 1/5	K04780
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 1/2	K02291
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	desecacion_ectoina	TRUE	TRUE	TRUE	A M00033: 5/5	K00928,K00133,K00836,K06718,K06720
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	desecacion_trehalosa	TRUE	TRUE	TRUE	B bibliografia: 2/2	K00697,K01087
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	esporulacion	FALSE	FALSE	FALSE	A bibliografia: 0/3	
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K03782,K04564,K04047
+bin-1-57	L6	Brevibacterium	Brevibacterium sp021023135	99.99	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01669
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	contexto	ciclo_tca	TRUE	FALSE	TRUE	A M00009: 7/8	K01659,K27802,K00031,K00658,K00382,K01902,K01903,K00239,K00240,K00241,K01679,K00024,K00116
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	contexto	ureolisis	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01430,K01429,K01428
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	K19420
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	pigmentos	TRUE	TRUE	TRUE	A M00097: 2/2	K02291,K10027,K10209
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	riesgo	sideroforos	TRUE	TRUE	TRUE	E bibliografia: 5/5	K02361,K01252,K00216,K02363,K04780
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	carotenoides	TRUE	TRUE	TRUE	A M00097: 2/2	K02291,K10027,K10209
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	desecacion_ectoina	FALSE	FALSE	FALSE	A M00033: 2/5	K00928,K00133
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	A M00565: 3/6	K00975,K00703,K00700
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	esporulacion	TRUE	TRUE	TRUE	A bibliografia: 3/3	K07699,K06378,K06382
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K07217,K04564,K04565,K04047
+bin-1-59	L7	Paenibacillus	Paenibacillus sp001955535	99.97	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	B bibliografia: 1/1	K03716
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	contexto	ciclo_tca	FALSE	FALSE	TRUE	A M00009: 6/8	K01659,K00031,K00658,K00382,K01902,K01903,K00239,K00240,K00241,K01679,K00024
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	eps_biopelicula	TRUE	TRUE	TRUE	A bibliografia: 1/1	K19419,K19420,K19421,K19422,K19423,K19424,K19425,K19426,K19427,K19428,K19429,K19430,K19431,K06336,K19433
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	nitrificacion	FALSE	FALSE	FALSE	B M00804: 1/3	K00370,K00371
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	riesgo	sideroforos	TRUE	TRUE	TRUE	E bibliografia: 5/5	K02361,K01252,K00216,K02363,K04780
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5	K00928,K00133,K00836
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	A M00565: 3/6	K00975,K00703,K00700
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	esporulacion	TRUE	TRUE	TRUE	A bibliografia: 3/3	K07699,K06378,K06382
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K07217,K04564,K04565,K04047
+bin-1-64	L14	Bacillus	Bacillus licheniformis	99.84	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	B bibliografia: 1/1	K03716
+bin-1-68	L2	Corynebacterium	NA	100	contexto	ciclo_tca	TRUE	FALSE	TRUE	A M00009: 7/8	K01647,K01659,K27802,K01616,K00382,K01902,K01903,K18118,K00239,K00240,K00241,K01679,K00116
+bin-1-68	L2	Corynebacterium	NA	100	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-1-68	L2	Corynebacterium	NA	100	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	
+bin-1-68	L2	Corynebacterium	NA	100	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-1-68	L2	Corynebacterium	NA	100	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-1-68	L2	Corynebacterium	NA	100	riesgo	nitrificacion	FALSE	FALSE	FALSE	B M00804: 1/3	K00370,K00371
+bin-1-68	L2	Corynebacterium	NA	100	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-1-68	L2	Corynebacterium	NA	100	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 1/2	K02291
+bin-1-68	L2	Corynebacterium	NA	100	riesgo	sideroforos	FALSE	FALSE	FALSE	E bibliografia: 1/5	K02361
+bin-1-68	L2	Corynebacterium	NA	100	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 1/2	K02291
+bin-1-68	L2	Corynebacterium	NA	100	supervivencia	desecacion_ectoina	FALSE	FALSE	FALSE	A M00033: 2/5	K00928,K00133
+bin-1-68	L2	Corynebacterium	NA	100	supervivencia	desecacion_trehalosa	TRUE	TRUE	TRUE	B bibliografia: 2/2	K00697,K01087,K05343
+bin-1-68	L2	Corynebacterium	NA	100	supervivencia	esporulacion	FALSE	FALSE	FALSE	A bibliografia: 0/3	
+bin-1-68	L2	Corynebacterium	NA	100	supervivencia	estres_oxidativo	TRUE	FALSE	TRUE	A bibliografia: 2/3	K03781,K04564
+bin-1-68	L2	Corynebacterium	NA	100	supervivencia	reparacion_uv	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	contexto	ciclo_tca	TRUE	TRUE	TRUE	A M00009: 8/8	K01659,K27802,K00031,K00658,K00382,K00174,K00175,K01902,K01903,K00239,K00240,K00241,K01676,K01679,K00024,K00116
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	contexto	ureolisis	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01430,K01429,K01428
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	eps_biopelicula	TRUE	TRUE	TRUE	A bibliografia: 1/1	K19419,K19420,K19422,K19423,K19424,K19426,K19427,K19429,K19430,K06336,K11936
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	riesgo	sideroforos	TRUE	TRUE	TRUE	B M01060: 3/3	K15652,K24110,K24111
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	desecacion_ectoina	FALSE	FALSE	FALSE	A M00033: 2/5	K00928,K00133
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	A M00565: 3/6	K00975,K00703,K00700
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	esporulacion	TRUE	TRUE	TRUE	A bibliografia: 3/3	K07699,K06378,K06382
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K07217,K04564,K04565,K04047
+bin-2-53	L15	Metabacillus	Metabacillus halosaccharovorans	99.99	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	B bibliografia: 1/1	K03716
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	contexto	ciclo_tca	TRUE	TRUE	TRUE	A M00009: 8/8	K01659,K27802,K00031,K00658,K00382,K00174,K00175,K01902,K01903,K18118,K00239,K00240,K00241,K01676,K01679,K01677,K01678,K00024,K00116
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	K06137
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	K06137
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	K19419,K19420,K19423,K19426,K19430,K11936
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	riesgo	sideroforos	FALSE	FALSE	FALSE	B M01060: 0/3	
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5	K00928,K00133,K00836
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	A M00565: 3/6	K00975,K00703,K00700
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	esporulacion	TRUE	TRUE	TRUE	A bibliografia: 3/3	K07699,K06378,K06382
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K07217,K04564,K04565,K04047
+bin-2-57	L17	Cytobacillus	Cytobacillus oceanisediminis	99.96	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	B bibliografia: 1/1	K03716
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	contexto	ciclo_tca	TRUE	TRUE	TRUE	A M00009: 8/8	K01659,K27802,K00031,K00658,K00382,K00174,K00175,K00177,K00176,K01902,K01903,K00239,K00240,K00241,K01676,K01679,K00024,K00116
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	K19419,K19420,K19422,K19424,K19429,K19430
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	B M00984: 1/2	K17224,K19713
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	riesgo	sideroforos	FALSE	FALSE	FALSE	B M01060: 0/3	
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	desecacion_ectoina	FALSE	FALSE	FALSE	A M00033: 2/5	K00928,K00133
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	A M00565: 3/6	K00975,K00703,K00700
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	esporulacion	TRUE	TRUE	TRUE	A bibliografia: 3/3	K07699,K06378,K06382
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K03782,K07217,K04564,K04047
+bin-2-58	L19	Mesobacillus	Mesobacillus sp014856545	100	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	B bibliografia: 1/1	K03716
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	contexto	ciclo_tca	TRUE	FALSE	TRUE	A M00009: 7/8	K01659,K27802,K00031,K00658,K00382,K00174,K00175,K01902,K00239,K00240,K00241,K01676,K01679,K00024
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	B bibliografia: 1/2	K19420,K19430,K06336,K11936
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	pigmentos	TRUE	TRUE	TRUE	B bibliografia: 2/2	K10027,K10208,K10209
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	riesgo	sideroforos	FALSE	FALSE	FALSE	B M01060: 0/3	
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	carotenoides	TRUE	TRUE	TRUE	B bibliografia: 2/2	K10027,K10208,K10209
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5	K00928,K00133,K00836
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	A M00565: 3/6	K00975,K00703,K00700
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	esporulacion	TRUE	TRUE	TRUE	A bibliografia: 3/3	K07699,K06378,K06382
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	estres_oxidativo	TRUE	FALSE	TRUE	A bibliografia: 2/3	K03781,K03782,K04564,K04565
+bin-2-63	L13	Rossellomorea	Rossellomorea marisflavi	92.39	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01669,K03716
+bin-2-69	L2	Corynebacterium	NA	99.99	contexto	ciclo_tca	TRUE	FALSE	TRUE	A M00009: 7/8	K01647,K27802,K01616,K00382,K01902,K01903,K00239,K00240,K00241,K01679,K00116
+bin-2-69	L2	Corynebacterium	NA	99.99	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	
+bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	nitrificacion	FALSE	FALSE	FALSE	B M00804: 1/3	K00370,K00371
+bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 1/2	K02291
+bin-2-69	L2	Corynebacterium	NA	99.99	riesgo	sideroforos	FALSE	FALSE	FALSE	E bibliografia: 1/5	K02361
+bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 1/2	K02291
+bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	desecacion_ectoina	FALSE	FALSE	FALSE	A M00033: 2/5	K00928,K00133
+bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	desecacion_trehalosa	TRUE	TRUE	TRUE	B bibliografia: 2/2	K00697,K01087,K05343
+bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	esporulacion	FALSE	FALSE	FALSE	A bibliografia: 0/3	
+bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	estres_oxidativo	TRUE	FALSE	TRUE	A bibliografia: 2/3	K03781,K04564
+bin-2-69	L2	Corynebacterium	NA	99.99	supervivencia	reparacion_uv	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-3-52	L1	Telluria	Telluria timonae	98.97	contexto	ciclo_tca	TRUE	TRUE	TRUE	A M00009: 8/8	K01647,K01659,K27802,K00031,K00164,K00658,K00382,K01902,K01903,K18118,K00239,K00240,K00241,K00242,K01679,K00024,K00116
+bin-3-52	L1	Telluria	Telluria timonae	98.97	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 1/2	K06150,K06151,K06152
+bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	pigmentos	TRUE	TRUE	TRUE	A M00097: 2/2	K02291,K10027
+bin-3-52	L1	Telluria	Telluria timonae	98.97	riesgo	sideroforos	FALSE	FALSE	FALSE	B M01060: 0/3	
+bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	carotenoides	TRUE	TRUE	TRUE	A M00097: 2/2	K02291,K10027
+bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	desecacion_ectoina	FALSE	FALSE	FALSE	A M00033: 2/5	K00928,K00133
+bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	desecacion_trehalosa	TRUE	TRUE	TRUE	B bibliografia: 2/2	K00697,K01087
+bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	esporulacion	FALSE	FALSE	FALSE	A bibliografia: 0/3	
+bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K07217,K04564,K04047
+bin-3-52	L1	Telluria	Telluria timonae	98.97	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01669
+bin-3-64	L4	Sporosarcina	NA	70.14	contexto	ciclo_tca	FALSE	FALSE	FALSE	A M00009: 3/8	K01659,K00658,K00382,K18118,K00239,K01679
+bin-3-64	L4	Sporosarcina	NA	70.14	contexto	ureolisis	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01430,K01429,K01428
+bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 1/2	K06136,K06151,K06152
+bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	K06136
+bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	K19420
+bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	nitrificacion	FALSE	FALSE	FALSE	B M00804: 1/3	K00370,K00371
+bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	B M00984: 1/2	K19713
+bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-3-64	L4	Sporosarcina	NA	70.14	riesgo	sideroforos	FALSE	FALSE	FALSE	C M00876: 1/3	K21898
+bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	desecacion_ectoina	FALSE	FALSE	FALSE	A M00033: 0/5	
+bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	C bibliografia: 0/1	
+bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	esporulacion	FALSE	FALSE	FALSE	A bibliografia: 1/3	K07699
+bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K04564,K04565,K04047
+bin-3-64	L4	Sporosarcina	NA	70.14	supervivencia	reparacion_uv	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	contexto	ciclo_tca	TRUE	FALSE	TRUE	A M00009: 7/8	K01647,K01659,K01682,K00164,K00658,K00382,K01902,K01903,K18118,K00239,K00240,K00241,K00242,K01676,K01679,K00024
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	contexto	ureolisis	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01430,K01429,K01428
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	A bibliografia: 1/3	K00117
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	acido_gluconico	FALSE	FALSE	FALSE	A bibliografia: 1/2	K00117
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	eps_biopelicula	TRUE	TRUE	TRUE	C bibliografia: 1/1	K11935,K11931,K11936,K11937
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	riesgo	sideroforos	FALSE	FALSE	FALSE	B M01060: 0/3	
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5	K00928,K00133,K00836
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	B bibliografia: 1/2	K01087
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	esporulacion	FALSE	FALSE	FALSE	A bibliografia: 0/3	
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K03782,K04564,K04565,K04047
+bin-4-52	L8	Acinetobacter	Acinetobacter schindleri	99.86	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01669
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	contexto	ciclo_tca	FALSE	FALSE	TRUE	A M00009: 6/8	K01659,K00031,K01902,K01903,K00239,K00240,K00241,K01676,K01679,K00024,K00116
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	K06137,K06152
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	K06137
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	K19420,K11936
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	riesgo	sideroforos	FALSE	FALSE	FALSE	B M01060: 1/3	K15652
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	desecacion_ectoina	FALSE	FALSE	FALSE	A M00033: 2/5	K00928,K00133
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	A M00565: 3/6	K00975,K00703,K00700
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	esporulacion	TRUE	TRUE	TRUE	A bibliografia: 3/3	K07699,K06378,K06382
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K07217,K04564,K04047
+bin-5-50	L18	Cytobacillus	Cytobacillus firmus_B	76.56	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	B bibliografia: 1/1	K03716
+bin-5-60	L9	Priestia	Priestia flexa	77.53	contexto	ciclo_tca	TRUE	TRUE	TRUE	A M00009: 8/8	K01659,K27802,K00031,K00658,K00382,K00174,K00175,K01902,K01903,K00239,K00240,K00241,K01676,K00024
+bin-5-60	L9	Priestia	Priestia flexa	77.53	contexto	ureolisis	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01430,K01429,K01428
+bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	
+bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	K19419,K19420,K19422,K19424,K19429,K19430
+bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-5-60	L9	Priestia	Priestia flexa	77.53	riesgo	sideroforos	FALSE	FALSE	FALSE	B M01060: 0/3	
+bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5	K00928,K00133,K00836
+bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	C bibliografia: 0/1	
+bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	esporulacion	TRUE	FALSE	TRUE	A bibliografia: 2/3	K07699,K06378
+bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K07217,K04564,K04565,K04047
+bin-5-60	L9	Priestia	Priestia flexa	77.53	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	B bibliografia: 1/1	K03716
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	contexto	ciclo_tca	FALSE	FALSE	FALSE	A M00009: 5/8	K01659,K27802,K00031,K00658,K00382,K01679,K00024
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 0/2	
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	eps_biopelicula	TRUE	TRUE	TRUE	A bibliografia: 1/1	K19419,K19420,K19421,K19422,K19423,K19424,K19425,K19426,K19429,K19430
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	pigmentos	TRUE	TRUE	TRUE	B bibliografia: 2/2	K10027,K10208,K10209
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	riesgo	sideroforos	FALSE	FALSE	FALSE	B M01060: 0/3	
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	carotenoides	TRUE	TRUE	TRUE	B bibliografia: 2/2	K10027,K10208,K10209
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	desecacion_ectoina	FALSE	FALSE	TRUE	A M00033: 3/5	K00928,K00133,K00836
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	C bibliografia: 0/1	
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	esporulacion	TRUE	TRUE	TRUE	A bibliografia: 3/3	K07699,K06378,K06382
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	estres_oxidativo	TRUE	FALSE	TRUE	A bibliografia: 2/3	K03781,K07217,K04564,K04565
+bin-5-63	L16	Bacillus	Bacillus altitudinis	72.46	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01669,K03716
+bin-6-50	L1	Telluria	Telluria timonae	100	contexto	ciclo_tca	TRUE	TRUE	TRUE	A M00009: 8/8	K01647,K01659,K27802,K00031,K00164,K00658,K00382,K01902,K01903,K18118,K00239,K00240,K00241,K00242,K01676,K01679,K00024,K00116
+bin-6-50	L1	Telluria	Telluria timonae	100	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 1/2	K06150,K06151,K06152
+bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	pigmentos	TRUE	TRUE	TRUE	A M00097: 2/2	K02291,K10027
+bin-6-50	L1	Telluria	Telluria timonae	100	riesgo	sideroforos	FALSE	FALSE	FALSE	B M01060: 0/3	
+bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	carotenoides	TRUE	TRUE	TRUE	A M00097: 2/2	K02291,K10027
+bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	desecacion_ectoina	FALSE	FALSE	FALSE	A M00033: 2/5	K00928,K00133
+bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	B bibliografia: 1/2	K00697
+bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	esporulacion	FALSE	FALSE	FALSE	A bibliografia: 0/3	
+bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K07217,K04564,K04565,K04047
+bin-6-50	L1	Telluria	Telluria timonae	100	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01669
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	contexto	ciclo_tca	TRUE	TRUE	TRUE	A M00009: 8/8	K01659,K27802,K00031,K00658,K00382,K00174,K00175,K01902,K01903,K00239,K00240,K00241,K01676,K01679,K00024,K00116
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	contexto	ureolisis	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	acido_2_cetogluconico	FALSE	FALSE	FALSE	B bibliografia: 1/2	K06151,K06152
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	acido_gluconico	FALSE	FALSE	FALSE	B bibliografia: 0/1	
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	K19420,K19424,K11936
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	pigmentos	TRUE	TRUE	TRUE	B bibliografia: 2/2	K10027,K10208,K10209
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	riesgo	sideroforos	FALSE	FALSE	FALSE	B M01060: 0/3	
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	carotenoides	TRUE	TRUE	TRUE	B bibliografia: 2/2	K10027,K10208,K10209
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	desecacion_ectoina	FALSE	FALSE	FALSE	A M00033: 2/5	K00928,K00133
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	A M00565: 3/6	K00975,K00703,K00700
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	esporulacion	TRUE	TRUE	TRUE	A bibliografia: 3/3	K07699,K06378,K06382
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K07217,K04564,K04047
+bin-6-61	L3	Bacillus_AB	Bacillus_AB infantis	100	supervivencia	reparacion_uv	TRUE	TRUE	TRUE	B bibliografia: 1/1	K03716
+bin-9-71	L10	Aristophania	NA	85.09	contexto	ciclo_tca	FALSE	FALSE	FALSE	A M00009: 2/8	K01647,K00658,K00382,K01679
+bin-9-71	L10	Aristophania	NA	85.09	contexto	ureolisis	TRUE	TRUE	TRUE	A bibliografia: 1/1	K01430,K01429,K01428
+bin-9-71	L10	Aristophania	NA	85.09	riesgo	acido_2_cetogluconico	TRUE	TRUE	TRUE	B bibliografia: 2/2	K06136,K06137,K06138,K06139,K06151,K06152,K19813
+bin-9-71	L10	Aristophania	NA	85.09	riesgo	acido_gluconico	TRUE	TRUE	TRUE	B bibliografia: 1/1	K06136,K06137,K06138,K06139,K19813
+bin-9-71	L10	Aristophania	NA	85.09	riesgo	eps_biopelicula	FALSE	FALSE	FALSE	A bibliografia: 0/1	
+bin-9-71	L10	Aristophania	NA	85.09	riesgo	nitrificacion	FALSE	FALSE	FALSE	A M00528: 0/2	
+bin-9-71	L10	Aristophania	NA	85.09	riesgo	oxidacion_azufre	FALSE	FALSE	FALSE	A M00595: 0/1	
+bin-9-71	L10	Aristophania	NA	85.09	riesgo	pigmentos	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-9-71	L10	Aristophania	NA	85.09	riesgo	sideroforos	FALSE	FALSE	FALSE	B M01060: 0/3	
+bin-9-71	L10	Aristophania	NA	85.09	supervivencia	carotenoides	FALSE	FALSE	FALSE	A M00097: 0/2	
+bin-9-71	L10	Aristophania	NA	85.09	supervivencia	desecacion_ectoina	FALSE	FALSE	FALSE	A M00033: 2/5	K00928,K00133
+bin-9-71	L10	Aristophania	NA	85.09	supervivencia	desecacion_trehalosa	FALSE	FALSE	FALSE	C bibliografia: 0/1	
+bin-9-71	L10	Aristophania	NA	85.09	supervivencia	esporulacion	FALSE	FALSE	FALSE	A bibliografia: 0/3	
+bin-9-71	L10	Aristophania	NA	85.09	supervivencia	estres_oxidativo	TRUE	TRUE	TRUE	A bibliografia: 3/3	K03781,K04564,K04047
+bin-9-71	L10	Aristophania	NA	85.09	supervivencia	reparacion_uv	FALSE	FALSE	FALSE	A bibliografia: 0/1	
